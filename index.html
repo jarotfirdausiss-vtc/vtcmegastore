@@ -279,5 +279,61 @@ function addLive(){let n=document.getElementById('sellerName').value;let link=do
 renderLive();
 </script>
 <!-- ===== END VTC LIVE ===== -->
+<script>
+// PINDAHIN VTC LIVE KE TENGAH
+setTimeout(function(){
+  var v = document.getElementById('vtcLive');
+  if(!v) return;
+  // Cari kotak "Kenapa Pindah Ke VTC SHOP"
+  var all = document.querySelectorAll('div, section');
+  for(var i=0;i<all.length;i++){
+    if(all[i].innerText && all[i].innerText.includes('Kenapa Pindah Ke VTC SHOP')){
+      all[i].parentNode.insertBefore(v, all[i].nextSibling);
+      break;
+    }
+  }
+}, 500);
+<!-- SUARA NOTIF VTC SHOP CEWEK -->
+<button id="btnSuara" onclick="aktifkanSuara()" style="position:fixed;bottom:90px;right:10px;z-index:9999;background:#ff6a00;color:#fff;border:none;padding:10px 14px;border-radius:20px;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.3);">🔊 Aktifkan Suara Notif</button>
+
+<script>
+let suaraAktif = false;
+let suaraCewek = null;
+
+function cariSuaraCewek(){
+  let voices = speechSynthesis.getVoices();
+  suaraCewek = voices.find(v => v.lang.includes('id') && v.name.toLowerCase().includes('female'))
+  || voices.find(v => v.lang === 'id-ID' && v.name.includes('Google'))
+  || voices.find(v => v.lang.includes('id-ID'))
+  || voices.find(v => v.lang.includes('id'));
+}
+speechSynthesis.onvoiceschanged = cariSuaraCewek;
+cariSuaraCewek();
+
+function aktifkanSuara(){
+  suaraAktif = true;
+  document.getElementById('btnSuara').innerText = '✅ Suara Aktif';
+  document.getElementById('btnSuara').style.background = 'green';
+  ngomong('VTC Shop, notifikasi suara sudah aktif, selamat berbelanja');
+}
+
+function ngomong(teks){
+  if(!suaraAktif) return;
+  speechSynthesis.cancel();
+  setTimeout(()=>{
+    let u = new SpeechSynthesisUtterance(teks);
+    u.lang = 'id-ID';
+    if(suaraCewek) u.voice = suaraCewek;
+    u.rate = 1.05;
+    u.pitch = 1.3;
+    u.volume = 1;
+    speechSynthesis.speak(u);
+  }, 300);
+}
+
+function notifBaru(nama){
+  ngomong('VTC Shop, ' + nama + ' baru saja live, ayo nonton sekarang');
+}
+</script>
 </body>
 </html>
