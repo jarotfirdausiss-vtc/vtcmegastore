@@ -364,7 +364,29 @@ setTimeout(()=>{
     b.style.display = 'block';
   }
 }, 1000);
-</script>
+<!-- HAPUS KENAPA PINDAH, GANTI LIVE -->
+<script>
+setTimeout(()=>{
+  let semua = document.querySelectorAll('div, section');
+  let kotakKenapa = null, kotakLive = null;
+  semua.forEach(d=>{
+    let t = d.innerText || '';
+    if(t.includes('Kenapa Pindah Ke VTC SHOP?') && t.includes('COD Pangkal Pinang')){
+      if(!kotakKenapa || t.length < kotakKenapa.innerText.length) kotakKenapa = d;
+    }
+    if(t.includes('VTC LIVE') && t.includes('Kamu Seller? Lagi LIVE?')){
+      if(!kotakLive || t.length < kotakLive.innerText.length) kotakLive = d;
+    }
+  });
+  if(kotakKenapa && kotakLive){
+    let parent = kotakKenapa.parentElement;
+    kotakKenapa.style.display = 'none';
+    parent.insertBefore(kotakLive, kotakKenapa);
+    kotakLive.style.display = 'block';
+  } else if(kotakKenapa){
+    kotakKenapa.style.display = 'none';
+  }
+}, 1500);
 </script>
 </body>
 </html>
