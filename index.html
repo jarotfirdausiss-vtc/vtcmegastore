@@ -367,24 +367,25 @@ setTimeout(()=>{
   if(jK && jL){
     let kK=naik(jK,5); let kL=naik(jL,5);
     kK.parentElement.insertBefore(kL,kK);
-    kK.style.display='none';
-  }
-  if(!document.getElementById('btnSuaraVTC')){
-    let b=document.createElement('button');
-    b.id='btnSuaraVTC';
-    b.innerText='🔊 DENGARIN VTC SHOP - PENCET DI SINI';
-  b.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;padding:14px 20px;background:#FF6B00;color:white;border:3px solid white;border-radius:50px;font-size:16px;font-weight:bold;';  b.style.cssText='display:block;width:90%;margin:15px auto;padding:15px;background:#FF6B00;color:white;border:none;border-radius:15px;font-size:18px;font-weight:bold;';
-    b.onclick=()=>{
-      window.speechSynthesis.cancel();
-      let u=new SpeechSynthesisUtterance('Selamat datang di VTC SHOP. Platform baru Bangka. Ada 12 seller mitra, 86 produk asli Bangka. Bisa COD Pangkal Pinang tanpa ribet. Silakan belanja sekarang.');
-      u.lang='id-ID'; window.speechSynthesis.speak(u);
-      b.innerText='🔊 LAGI NGOMONG...';
-    };
-    let jB=cariTeks('BELANJA SEKARANG');
-    if(jB){ let kB=naik(jB,4); kB.parentElement.insertBefore(b,kB.nextSibling); }
-    else document.body.prepend(b);
-  }
+    kK.style.display='none'
+    }
 },2000);
-</script> </body>
+</script>
+<script>
+let udahNgomong=false;
+function ngomongOtomatis(){
+if(udahNgomong) return; udahNgomong=true;
+let teks='Selamat datang di VTC SHOP! Satu aplikasi untuk semua kebutuhan. Belanja murah, nonton live, dan main game seru!';
+let u=new SpeechSynthesisUtterance(teks);
+u.lang='id-ID'; u.rate=1;
+window.speechSynthesis.speak(u);
+}
+window.addEventListener('load',function(){ setTimeout(ngomongOtomatis,1000); });
+document.addEventListener('click',ngomongOtomatis);
+document.addEventListener('touchstart',ngomongOtomatis);
+</script>
+</body>
 </html>
-<button onclick="var u=new SpeechSynthesisUtterance('Selamat datang di VTC SHOP, Satu App Semua Bisa, Pangkal Pinang.');u.lang='id-ID';speechSynthesis.speak(u)" style="position:fixed;bottom:100px;left:50%;transform:translateX(-50%);z-index:99999;padding:14px 20px;background:#FF6B00;color:white;border:3px solid white;border-radius:50px;font-size:16px;font-weight:bold;">🔊 PENCET BUAT DENGERIN</button>
+
+
+
