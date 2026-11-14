@@ -373,7 +373,7 @@ setTimeout(()=>{
     let b=document.createElement('button');
     b.id='btnSuaraVTC';
     b.innerText='🔊 DENGARIN VTC SHOP - PENCET DI SINI';
-    b.style.cssText='display:block;width:90%;margin:15px auto;padding:15px;background:#FF6B00;color:white;border:none;border-radius:15px;font-size:18px;font-weight:bold;';
+  b.style.cssText='position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:99999;padding:14px 20px;background:#FF6B00;color:white;border:3px solid white;border-radius:50px;font-size:16px;font-weight:bold;';  b.style.cssText='display:block;width:90%;margin:15px auto;padding:15px;background:#FF6B00;color:white;border:none;border-radius:15px;font-size:18px;font-weight:bold;';
     b.onclick=()=>{
       window.speechSynthesis.cancel();
       let u=new SpeechSynthesisUtterance('Selamat datang di VTC SHOP. Platform baru Bangka. Ada 12 seller mitra, 86 produk asli Bangka. Bisa COD Pangkal Pinang tanpa ribet. Silakan belanja sekarang.');
