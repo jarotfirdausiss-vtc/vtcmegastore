@@ -352,41 +352,38 @@ let pantauChat = new MutationObserver(()=>{
   } else { chatTerakhir = sekarang; }
 });
 pantauChat.observe(document.body, {childList:true, subtree:true, characterData:true});
-</script> <!-- PERBAIKAN TOMBOL + LIVE -->
-<script>
-setTimeout(()=>{
-  let b = document.getElementById('btnSuara');
-  if(b){
-    b.style.position = 'fixed';
-    b.style.bottom = '100px';
-    b.style.right = '10px';
-    b.style.zIndex = '99999';
-    b.style.display = 'block';
-  }
-}, 1000);
-<!-- HAPUS KENAPA PINDAH, GANTI LIVE -->
-<script>
-setTimeout(()=>{
-  let semua = document.querySelectorAll('div, section');
-  let kotakKenapa = null, kotakLive = null;
-  semua.forEach(d=>{
-    let t = d.innerText || '';
-    if(t.includes('Kenapa Pindah Ke VTC SHOP?') && t.includes('COD Pangkal Pinang')){
-      if(!kotakKenapa || t.length < kotakKenapa.innerText.length) kotakKenapa = d;
-    }
-    if(t.includes('VTC LIVE') && t.includes('Kamu Seller? Lagi LIVE?')){
-      if(!kotakLive || t.length < kotakLive.innerText.length) kotakLive = d;
-    }
-  });
-  if(kotakKenapa && kotakLive){
-    let parent = kotakKenapa.parentElement;
-    kotakKenapa.style.display = 'none';
-    parent.insertBefore(kotakLive, kotakKenapa);
-    kotakLive.style.display = 'block';
-  } else if(kotakKenapa){
-    kotakKenapa.style.display = 'none';
-  }
-}, 1500);
 </script>
-</body>
+<!-- FIX LIVE + SUARA - FINAL -->
+<script>
+setTimeout(()=>{
+  function cariTeks(t){
+    let a=document.querySelectorAll('*');
+    for(let e of a){ if(e.children.length==0 && (e.innerText||'').includes(t)) return e; }
+    return null;
+  }
+  function naik(e,n){ let p=e; for(let i=0;i<n && p.parentElement;i++) p=p.parentElement; return p; }
+  let jK=cariTeks('Kenapa Pindah Ke VTC SHOP?');
+  let jL=cariTeks('VTC LIVE - Nonton Semua Seller');
+  if(jK && jL){
+    let kK=naik(jK,5); let kL=naik(jL,5);
+    kK.parentElement.insertBefore(kL,kK);
+    kK.style.display='none';
+  }
+  if(!document.getElementById('btnSuaraVTC')){
+    let b=document.createElement('button');
+    b.id='btnSuaraVTC';
+    b.innerText='🔊 DENGARIN VTC SHOP - PENCET DI SINI';
+    b.style.cssText='display:block;width:90%;margin:15px auto;padding:15px;background:#FF6B00;color:white;border:none;border-radius:15px;font-size:18px;font-weight:bold;';
+    b.onclick=()=>{
+      window.speechSynthesis.cancel();
+      let u=new SpeechSynthesisUtterance('Selamat datang di VTC SHOP. Platform baru Bangka. Ada 12 seller mitra, 86 produk asli Bangka. Bisa COD Pangkal Pinang tanpa ribet. Silakan belanja sekarang.');
+      u.lang='id-ID'; window.speechSynthesis.speak(u);
+      b.innerText='🔊 LAGI NGOMONG...';
+    };
+    let jB=cariTeks('BELANJA SEKARANG');
+    if(jB){ let kB=naik(jB,4); kB.parentElement.insertBefore(b,kB.nextSibling); }
+    else document.body.prepend(b);
+  }
+},2000);
+</script> </body>
 </html>
