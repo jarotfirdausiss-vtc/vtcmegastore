@@ -55,8 +55,8 @@ body{background:#0f0f0f}
 <div class="toast" id="toast"></div>
 <div id="app">
 
-<div id="page-home">
-<div class="appbar"><div class="toprow"><div class="logo-vtc"><img src="logo.png" onerror="this.style.display='none'"><div><b style="font-size:20px">VTC SHOP</b><br><span style="font-size:11px;opacity:.95">Satu App Semua Bisa • Pangkal Pinang</span></div></div><div style="display:flex;gap:8px;align-items:center"><span style="background:rgba(255,255,255,.25);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700">🟢 Seller Online</span><div style="width:36px;height:36px;background:#fff;color:#FF5A00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer" onclick="goPage('akun',document.querySelectorAll('.bottom div')[4])">👤</div></div></div>
+<div id="page-home">vtcshop
+<div class="appbar"><div class="toprow"><div class="logo-"><img src="logo.png" onerror="this.style.display='none'"><div><b style="font-size:20px">VTC SHOP</b><br><span style="font-size:11px;opacity:.95">Satu App Semua Bisa • Pangkal Pinang</span></div></div><div style="display:flex;gap:8px;align-items:center"><span style="background:rgba(255,255,255,.25);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700">🟢 Seller Online</span><div style="width:36px;height:36px;background:#fff;color:#FF5A00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer" onclick="goPage('akun',document.querySelectorAll('.bottom div')[4])">👤</div></div></div>
 <div class="searchbar"><input id="searchInput" placeholder="Cari apa aja di VTC SHOP... terasi, bumbu, sandal, hp..." oninput="render();saranVTC()" onfocus="saranVTC()" onkeydown="if(event.key==='Enter')cariVTC()" autocomplete="off"><button onclick="cariVTC()">CARI</button><div class="saran" id="saranBox"></div></div>
 <p style="font-size:11px;margin-top:7px;opacity:.95">✦ Marketplace Bangka • COD • Kirim 38+ Provinsi • Aman & Terpercaya</p></div>
 
@@ -81,31 +81,31 @@ body{background:#0f0f0f}
 
 <div class="toko-card">
 <img src="logo.png" onerror="this.src='https://via.placeholder.com/52x52/FF5A00/fff?text=V'">
-<div style="flex:1"><b style="font-size:14px">VTC BANGKA BLOK UMAMI</b><br><span style="font-size:12px;color:#666">ID: jmf_22102011 • Shopee Official • Pangkal Pinang</span><br><span style="font-size:12px;color:#FF5A00">⭐ 4.9 • COD • Kirim 38+ Provinsi</span></div>
+<div style="flex:1"><b style="font-size:14px"> vtcshop BANGKA BLOK UMAMI</b><br><span style="font-size:12px;color:#666">ID: jmf_22102011 • Shopee Official • Pangkal Pinang</span><br><span style="font-size:12px;color:#FF5A00">⭐ 4.9 • COD • Kirim 38+ Provinsi</span></div>
 <button onclick="bukaTokoShopee()" style="background:#FF5A00;color:#fff;border:none;padding:9px 12px;border-radius:10px;font-weight:800;font-size:12px">LIHAT TOKO ↗️</button>
 </div>
 
-<div class="ai-box"><b>🤖 AI VTC Rekomendasi Untuk Kamu</b><p id="aiText" style="font-size:13px;margin-top:4px">Kamu suka Bumbu & Sembako. Toko VTC BANGKA BLOK UMAMI baru upload Bumbu Umami Premium. Cek sekarang!</p><button style="background:#111;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-weight:700;margin-top:8px" onclick="cariCepat('Bumbu Umami')">Lihat Rekomendasi AI →</button></div>
+<div class="ai-box"><b>🤖 AI vtcshop Rekomendasi Untuk Kamu</b><p id="aiText" style="font-size:13px;margin-top:4px">Kamu suka Bumbu & Sembako. Toko VTC BANGKA BLOK UMAMI baru upload Bumbu Umami Premium. Cek sekarang!</p><button style="background:#111;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-weight:700;margin-top:8px" onclick="cariCepat('Bumbu Umami')">Lihat Rekomendasi AI →</button></div>
 
 <div class="cats"><div class="cat-item active" onclick="setKat('Semua',this)"><div class="ic">🏠</div><p>Semua</p></div><div class="cat-item" onclick="setKat('Fashion',this)"><div class="ic">👕</div><p>Fashion</p></div><div class="cat-item" onclick="setKat('Perkakas',this)"><div class="ic">🔧</div><p>Perkakas</p></div><div class="cat-item" onclick="setKat('Ban & Otomotif',this)"><div class="ic">🛞</div><p>Ban</p></div><div class="cat-item" onclick="setKat('Elektronik',this)"><div class="ic">📱</div><p>Elektronik</p></div><div class="cat-item" onclick="setKat('Sembako',this)"><div class="ic">🧅</div><p>Sembako</p></div><div class="cat-item" onclick="setKat('Bumbu',this)"><div class="ic">🧂</div><p>Bumbu</p></div><div class="cat-item" onclick="setKat('Makanan',this)"><div class="ic">🍲</div><p>Makanan</p></div></div>
 
-<div class="sec"><h3>🔥 Produk Pilihan VTC SHOP</h3><span onclick="setKat('Semua',document.querySelector('.cat-item'))">Semua ></span></div>
+<div class="sec"><h3>🔥 Produk Pilihan vtcshop</h3><span onclick="setKat('Semua',document.querySelector('.cat-item'))">Semua ></span></div>
 <div style="padding:0 12px 8px;font-size:13px">📍 Lokasi: <b id="lokAktif">Semua Indonesia</b> • Kirim 38+ Provinsi</div>
 <div class="pill-row"><button class="active" onclick="setLok('Semua Indonesia',this)">Semua Indonesia</button><button onclick="setLok('Pangkal Pinang',this)">Pangkal Pinang</button><button onclick="setLok('Bekasi',this)">Bekasi</button><button onclick="setLok('Jakarta',this)">Jakarta</button></div>
 <div class="pill-row"><button onclick="cariCepat('Bumbu Umami')">Bumbu Umami</button><button onclick="cariCepat('Terasi')">Terasi</button><button onclick="cariCepat('Sandal')">Sandal</button><button onclick="cariCepat('Jarum')">Jarum</button><button onclick="cariCepat('Obeng')">Obeng</button><button onclick="cariCepat('Cabe')">Cabe</button><button onclick="cariCepat('Kompor')">Kompor</button></div>
 
 <div id="produk" class="grid"></div>
-<div class="detail"><h3>🙏 Gak Ketemu? Request Ke Seller VTC</h3><input id="reqBarang" placeholder="Cari barang apa? Ex: Jarum Pentul 1 Box"><button class="btn-orange" onclick="buatRequest()">📢 POST REQUEST KE SEMUA SELLER</button></div>
+<div class="detail"><h3>🙏 Gak Ketemu? Request Ke Seller vtcshop</h3><input id="reqBarang" placeholder="Cari barang apa? Ex: Jarum Pentul 1 Box"><button class="btn-orange" onclick="buatRequest()">📢 POST REQUEST KE SEMUA SELLER</button></div>
 <div class="detail hide" id="liveBox" style="border:2px solid #25D366"><h3>🟢 LIVE TRANSAKSI VTC - REAL TIME</h3><div id="liveContent"></div><div class="progress"><div id="liveBar"></div></div><p id="liveStatus" style="font-weight:700;font-size:13px"></p><p id="liveKurir" style="font-size:12px;color:#666"></p><button class="btn-dark" onclick="cekWA()">📲 CEK STATUS KE ADMIN VTC</button></div>
 <div class="detail"><h3>🛒 Keranjang VTC SHOP</h3><div id="cartList"><p style="color:#999">Belum ada produk.</p></div><div style="display:flex;justify-content:space-between;font-weight:800;margin-top:10px"><span>Total:</span><span id="totalHarga" style="color:#FF5A00">Rp 0</span></div><p style="font-size:11px;color:#888;margin-top:4px">Harga VTC sudah termasuk Fee Layanan VTC Rp 5.000 / barang untuk COD & Garansi Uang Kembali 100%.</p></div>
-<div class="detail"><h3>📦 Checkout Via VTC SHOP - COD / Transfer / QRIS</h3><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap - Bisa Kirim Seluruh Indonesia"><select id="bayar"><option>COD - Bayar di Tempat via VTC (Paling Aman)</option><option>Transfer BRI - VTC</option><option>DANA - VTC</option><option>QRIS - VTC</option></select><select id="kurir"><option>Kurir VTC - Pangkal Pinang (Rp 10.000)</option><option>Ambil Sendiri ke Seller - Gratis</option><option>JNE / J&T Seluruh Indonesia</option></select><textarea id="catatan" placeholder="Catatan: Size, Warna, dll"></textarea><button class="btn-green" onclick="checkoutWA()">✅ CHECKOUT VIA VTC SHOP - AMAN</button><p style="font-size:11px;color:#888;text-align:center;margin-top:6px">Admin VTC: • Uang diteruskan ke Seller setelah barang sampai.</p></div>
-
+<div class="detail"><h3>📦 Checkout Via vtcshop- COD / Transfer / QRIS</h3><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap - Bisa Kirim Seluruh Indonesia"><select id="bayar"><option>COD - Bayar di Tempat via VTC (Paling Aman)</option><option>Transfer BRI - VTC</option><option>DANA - VTC</option><option>QRIS - VTC</option></select><select id="kurir"><option>Kurir VTC - Pangkal Pinang (Rp 10.000)</option><option>Ambil Sendiri ke Seller - Gratis</option><option>JNE / J&T Seluruh Indonesia</option></select><textarea id="catatan" placeholder="Catatan: Size, Warna, dll"></textarea><button class="btn-green" onclick="checkoutWA()">✅ CHECKOUT VIA VTC SHOP - AMAN</button><p style="font-size:11px;color:#888;text-align:center;margin-top:6px">Admin VTC: • Uang diteruskan ke Seller setelah barang sampai.</p></div>
+6
 <div style="background:#fff;margin:12px;border-radius:16px;padding:14px;font-size:12px;color:#666;line-height:1.7">
-<b>🛡️ Keamanan & Privasi VTC SHOP</b><br>
+<b>🛡️ Keamanan & Privasi vtcshop</b><br>
 - Nomor WA pembeli & seller tidak ditampilkan ke publik, hanya Admin VTC yang tau untuk proses order.<br>
 - Pembayaran COD: Bayar setelah barang sampai. Kalo barang gak sampai / tidak sesuai foto, uang balik 100%.<br>
-- VTC SHOP tidak menyimpan password & tidak membagikan data ke pihak lain.<br>
-- Semua transaksi tercatat & bisa dicek ke Admin VTC.<br>
+- vtcshop tidak menyimpan password & tidak membagikan data ke pihak lain.<br>
+- Semua transaksi tercatat & bisa dicek ke Admin vtcshop.<br>
 - <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Kebijakan Privasi VTC SHOP: Data hanya dipakai untuk proses order & pengiriman. Tidak dibagikan ke pihak lain.')">Kebijakan Privasi</span> • <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Syarat & Ketentuan VTC SHOP: Seller wajib kirim barang sesuai deskripsi & foto. Jika tidak sesuai, pembeli berhak komplain 1x24 jam.')">Syarat & Ketentuan</span> • <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Pengembalian: Barang rusak / tidak sesuai, foto & chat Admin VTC max 1x24 jam. Uang balik 100%.')">Pengembalian</span>
 </div>
 <div style="text-align:center;padding:10px;color:#999;font-size:12px">VTC SHOP • Satu App Semua Bisa • Kirim Ke Seluruh Indonesia<br>38+ Provinsi • 500+ Kota • Pangkal Pinang • Toko Shopee: jmf_22102011<br>🔒 HTTPS Aman • Gratis Share Ke Semua Orang</div>
