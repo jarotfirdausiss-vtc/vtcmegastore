@@ -334,6 +334,24 @@ function ngomong(teks){
 function notifBaru(nama){
   ngomong('VTC Shop, ' + nama + ' baru saja live, ayo nonton sekarang');
 }
+</script> <!-- TAMBAHAN AUTO CHAT BUNYI -->
+<script>
+let chatTerakhir = document.body.innerHTML.length;
+document.addEventListener('click', function(){
+  if(typeof suaraAktif !== 'undefined' && !suaraAktif){
+    suaraAktif = true;
+    let b = document.getElementById('btnSuara');
+    if(b){ b.innerText = '✅ Suara Chat Aktif'; b.style.background = 'green'; }
+  }
+});
+let pantauChat = new MutationObserver(()=>{
+  let sekarang = document.body.innerHTML.length;
+  if(sekarang > chatTerakhir + 200){
+    chatTerakhir = sekarang;
+    if(typeof ngomong === 'function') ngomong('VTC Shop, ada pesan baru masuk, ayo cek chat sekarang');
+  } else { chatTerakhir = sekarang; }
+});
+pantauChat.observe(document.body, {childList:true, subtree:true, characterData:true});
 </script>
 </body>
 </html>
