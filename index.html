@@ -384,6 +384,106 @@ window.addEventListener('load',function(){ setTimeout(ngomongOtomatis,1000); });
 document.addEventListener('click',ngomongOtomatis);
 document.addEventListener('touchstart',ngomongOtomatis);
 </script>
+  <!-- ===== LIVE VTC SHOP ===== -->
+<div style="background:#111;color:#fff;padding:20px;border-radius:15px;margin:15px">
+<h2>🔴 LIVE VTC SHOP</h2>
+<p>🔴 <b>128 orang</b> lagi nonton - Toko Bangka Grosir lagi live spill barang!</p>
+<div style="background:#000;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center">
+<b>▶ LIVE SEKARANG<br><span style="font-size:13px">Klik untuk nonton live seller</span></b>
+</div>
+<p>💬 rina: kak spill harga...<br>💬 budi: COD bisa gak min?<br>💬 ani: cek stok dong!</p>
+<button style="width:100%;padding:12px;background:#ff0033;color:#fff;border:none;border-radius:10px;font-weight:bold">MASUK LIVE</button>
+</div>
+
+<!-- ===== HIBURAN 1 APLIKASI ===== -->
+<div style="background:#fff;padding:20px;border-radius:15px;margin:15px;border:1px solid #eee">
+<h2>🎬 HIBURAN - 1 APLIKASI SEMUA ADA</h2>
+<p>Jualan sambil nonton, belanja sambil hiburan!</p>
+<div style="display:flex;gap:8px">
+<button onclick="showSosmed('fb')" style="flex:1;padding:10px;background:#1877F2;color:#fff;border:none;border-radius:8px">Facebook</button>
+<button onclick="showSosmed('tiktok')" style="flex:1;padding:10px;background:#000;color:#fff;border:none;border-radius:8px">TikTok</button>
+<button onclick="showSosmed('ig')" style="flex:1;padding:10px;background:#E1306C;color:#fff;border:none;border-radius:8px">Instagram</button>
+<button onclick="showSosmed('yt')" style="flex:1;padding:10px;background:#FF0000;color:#fff;border:none;border-radius:8px">YouTube</button>
+</div>
+<div id="sosmedBox" style="margin-top:12px;background:#f5f5f5;height:200px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center">Pilih Facebook / TikTok / IG / YouTube<br>Video langsung kebuka di sini</div>
+</div>
+
+<!-- ===== VIP SELLER LIVE ===== -->
+<div style="background:linear-gradient(135deg,#FFD700,#FFA500);padding:20px;border-radius:15px;margin:15px">
+<h2>👑 VIP SELLER - LIVE JUALAN</h2>
+<p><b>Seller VIP tokonya paling atas, rame pengunjung!</b></p>
+<p>✅ COD, JNE, J&T, GoSend - Bayar di tempat, gak perlu transfer.<br>
+✅ Chat Langsung Admin - Bales cepet, bahasa Bangka ngerti.<br>
+✅ Seller Buka Toko GRATIS - Jualan gratis, tanpa potongan admin.</p>
+<p>✅ Bisa LIVE di VTC SHOP<br>
+✅ Jualan sambil ditonton ribuan orang<br>
+✅ Ada Gift / Saweran dari penonton<br>
+✅ Fee OTOMATIS kepotong, gak ribet<br>
+✅ <b>Sekarang GRATIS - Fee mulai dipotong kalo udah rame!</b></p>
+<p>💰 Contoh: Jual 100rb -> Seller 95rb, VTC 5rb. Otomatis!</p>
+<p>🌹 Mawar 5rb | 🔥 Api 10rb | 👑 Mahkota 50rb</p>
+<a href="https://wa.me/628xxx" style="display:block;text-align:center;background:#000;color:#FFD700;padding:14px;border-radius:10px;font-weight:bold;text-decoration:none">DAFTAR JADI VIP - GRATIS</a>
+</div>
+
+<script>
+function showSosmed(p){
+let box=document.getElementById('sosmedBox');
+if(p=='fb') box.innerHTML='📘 Facebook Feed<br>Video & Live FB Seller di sini';
+if(p=='tiktok') box.innerHTML='🎵 TikTok Feed<br>Video TikTok Seller di sini';
+if(p=='ig') box.innerHTML='📸 Instagram Feed<br>Reels IG Seller di sini';
+if(p=='yt') box.innerHTML='▶ YouTube Feed<br>Video YouTube Seller di sini';
+}
+<!-- ===== VTC SHOP OTOMATIS - TANPA KLIK ===== -->
+<div id="notifVTC" style="display:none;position:fixed;top:10px;left:10px;right:10px;z-index:99999;background:#fff;border-radius:14px;padding:12px;box-shadow:0 8px 25px rgba(0,0,0,0.3);align-items:center;gap:10px">
+<div style="background:#FFD700;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px">🛒</div>
+<div style="flex:1"><b>VTC SHOP • baru saja</b><br><span id="teksNotifVTC">Ada pesanan baru!</span></div>
+<button onclick="document.getElementById('notifVTC').style.display='none'" style="border:none;background:none;font-size:18px">✕</button>
+</div>
+
+<script>
+let suaraAktif = false;
+// OTOMATIS AKTIF: Begitu user sentuh / scroll / klik apapun, suara langsung aktif!
+function autoAktif(){
+  if(suaraAktif) return;
+  suaraAktif = true;
+  console.log('Suara VTC aktif otomatis');
+}
+document.addEventListener('touchstart', autoAktif);
+document.addEventListener('click', autoAktif);
+document.addEventListener('scroll', autoAktif);
+
+function bunyiVTCShop(){
+  if(!suaraAktif) return;
+  if(navigator.vibrate) navigator.vibrate([100,50,100]);
+  try{
+    let u = new SpeechSynthesisUtterance('VTC Shop!');
+    u.lang='id-ID'; u.rate=1.1; u.pitch=1.2;
+    window.speechSynthesis.speak(u);
+  }catch(e){}
+}
+function notifVTC(teks){
+  document.getElementById('teksNotifVTC').innerHTML = teks;
+  let n = document.getElementById('notifVTC');
+  n.style.display='flex';
+  bunyiVTCShop();
+  setTimeout(function(){ n.style.display='none' },4000);
+}
+// NOTIF OTOMATIS TERUS MENERUS - TIAP 12 DETIK GANTI
+let dataNotif = [
+'🛒 Rina dari Pangkalpinang order COD 2pcs!',
+'🔴 Toko Bangka Grosir LIVE sekarang!',
+'👑 Seller baru gabung jadi VIP!',
+'🛒 Budi order J&T ke Sungailiat!',
+'🎁 Promo: Gratis ongkir GoSend hari ini!',
+'🔴 LIVE: Spill baju 50rb-an!'
+];
+let i = 0;
+setInterval(function(){
+  notifVTC(dataNotif[i]);
+  i = (i+1) % dataNotif.length;
+}, 12000);
+</script>
+</script>
 </body>
 </html>
 
