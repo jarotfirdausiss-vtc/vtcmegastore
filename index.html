@@ -549,6 +549,31 @@ setInterval(function(){
 </script>
 </script>
 </body>
+  <!-- FIREBASE VTC - TEMPELAN BARU, JANGAN HAPUS YANG LAMA -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",
+  authDomain: "vtc-mega-shop-resmi.firebaseapp.com",
+  projectId: "vtc-mega-shop-resmi",
+  storageBucket: "vtc-mega-shop-resmi.firebasestorage.app",
+  messagingSenderId: "959376548779",
+  appId: "1:959376548779:web:45ceae80758eefab2a68ee",
+  measurementId: "G-TDCL3505F2"
+};
+try{
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const snap = await getDocs(collection(db,"products"));
+  window.VTC_FIREBASE_PRODUCTS = [];
+  snap.forEach(d=>{ window.VTC_FIREBASE_PRODUCTS.push({id:d.id, ...d.data()}) });
+  console.log("VTC Firebase OK:", window.VTC_FIREBASE_PRODUCTS.length, "produk");
+  if(window.VTC_FIREBASE_PRODUCTS.length>0 && typeof notifVTC==="function"){
+    notifVTC("Firebase nyambung! "+window.VTC_FIREBASE_PRODUCTS.length+" produk dari Firestore!");
+  }
+}catch(e){ console.log("VTC Firebase gagal:", e.message); }
+</script>
 </html>
 
 
