@@ -424,7 +424,71 @@ document.addEventListener('touchstart',ngomongOtomatis);
 <p>🌹 Mawar 5rb | 🔥 Api 10rb | 👑 Mahkota 50rb</p>
 <a href="https://wa.me/628xxx" style="display:block;text-align:center;background:#000;color:#FFD700;padding:14px;border-radius:10px;font-weight:bold;text-decoration:none">DAFTAR JADI VIP - GRATIS</a>
 </div>
+<!-- GAME TANAM VTC - GANTI KOTAK KENAPA PINDAH -->
+<div id="gameVTC" style="max-width:480px;margin:16px auto;background:#fff;border-radius:20px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.1);font-family:sans-serif;text-align:center;border:2px solid #22c55e">
+  <h2 style="margin:0">🌱 TANAM VTC - MAIN & DAPET HADIAH!</h2>
+  <p style="font-size:13px;color:#666;margin:4px 0 10px">Siram tiap hari -> Panen -> Buka Kotak Hadiah!</p>
 
+  <div style="font-size:70px" id="tanaman">🌱</div>
+  <div style="background:#eee;border-radius:20px;overflow:hidden;height:14px;margin:10px 0">
+    <div id="barTanam" style="width:0%;height:100%;background:#22c55e;transition:.3s"></div>
+  </div>
+  <p id="statusTanam" style="font-weight:bold">Siram 0 / 5 untuk Panen!</p>
+  <p>💰 Koin VTC Kamu: <b id="koinVTC">0</b></p>
+
+  <button onclick="siram()" style="background:#22c55e;color:#fff;border:none;padding:12px 20px;border-radius:12px;font-weight:bold;font-size:16px;width:100%">💧 SIRAM SEKARANG</button>
+
+  <div id="areaKotak" style="display:none;margin-top:16px;border-top:1px dashed #ddd;padding-top:14px">
+    <h3>🎁 PANEN BERHASIL! Pilih 1 Kotak!</h3>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
+      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
+      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
+    </div>
+    <p id="hasilKotak" style="font-weight:bold;color:#dc2626;margin-top:10px"></p>
+    <button onclick="klaimVoucher()" id="btnKlaim" style="display:none;background:#ee4d2d;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:bold">KLAIM & BELANJA SEKARANG 🛒</button>
+  </div>
+
+  <div style="margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:10px;font-size:13px">
+    🏪 <b>SELLER!</b> Mau voucher lo masuk ke Kotak Hadiah?<br>
+    <b>Cuma 20rb / minggu!</b><br>
+    <a href="https://wa.me/6283878502333" style="display:inline-block;margin-top:6px;background:#25D366;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold">Chat Admin - Pasang 20rb ➡️</a>
+  </div>
+</div>
+
+<script>
+let siramKe = 0;
+let koin = parseInt(localStorage.getItem('koinVTC')||'0');
+document.getElementById('koinVTC').innerText = koin;
+let hadiahList = [
+  "🎉 VOUCHER 10RB dari Toko Bangka Grosir!",
+  "🎉 GRATIS ONGKIR dari VTC SHOP!",
+  "🎉 50 KOIN VTC!",
+  "😅 ZONK! Siram lagi besok ya!",
+  "🎉 VOUCHER 5RB dari Seller Pangkalpinang!"
+];
+function siram(){
+  if(siramKe>=5) return alert('Udah panen! Pilih kotak dulu!');
+  siramKe++;
+  document.getElementById('barTanam').style.width = (siramKe*20)+'%';
+  document.getElementById('tanaman').innerText = ['🌱','🌿','🌱','🌿','🌳','🌳'][siramKe];
+  document.getElementById('statusTanam').innerText = 'Siram '+siramKe+' / 5 untuk Panen!';
+  if(siramKe>=5){
+    document.getElementById('areaKotak').style.display='block';
+    document.getElementById('statusTanam').innerText = '🌳 SIAP PANEN! Pilih Kotak di bawah!';
+  }
+}
+function bukaKotak(btn){
+  let hadiah = hadiahList[Math.floor(Math.random()*hadiahList.length)];
+  btn.innerText = '🎁';
+  document.getElementById('hasilKotak').innerText = hadiah;
+  document.getElementById('btnKlaim').style.display='inline-block';
+  if(hadiah.includes('50 KOIN')){ koin+=50; localStorage.setItem('koinVTC', koin); document.getElementById('koinVTC').innerText = koin; }
+  setTimeout(()=>{ siramKe=0; document.getElementById('barTanam').style.width='0%'; document.getElementById('tanaman').innerText='🌱'; }, 1000);
+}
+function klaimVoucher(){ alert('Voucher tersimpan! Yuk belanja di VTC SHOP sekarang!'); window.scrollTo({top:0, behavior:'smooth'}); }
+</script>
+<!-- AKHIR GAME VTC -->
 <script>
 function showSosmed(p){
 let box=document.getElementById('sosmedBox');
