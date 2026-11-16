@@ -3,125 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>VTC SHOP - Kayak Shopee</title>
-<meta name="theme-color" content="#EE4D2D">
+<title>VTC SHOP</title>
+<link rel="icon" href="logo.png">
+<meta name="theme-color" content="#FF6A00">
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:Arial;background:#F5F5F5;padding-bottom:75px}
-.top{position:sticky;top:0;z-index:99;background:linear-gradient(#EE4D2D,#FF6B00);padding:10px 12px;color:#fff}
+*{box-sizing:border-box} body{margin:0;font-family:Helvetica,Arial;background:#F5F5F5;padding-bottom:70px;color:#222}
+.top{position:sticky;top:0;z-index:99;background:linear-gradient(180deg,#F53D2D,#FE6633);padding:10px 12px;color:#fff}
 .topRow{display:flex;gap:8px;align-items:center}
-.searchBox{flex:1;background:#fff;border-radius:8px;display:flex;align-items:center;padding:8px 10px;gap:6px;color:#999}
+.logoImg{width:38px;height:38px;border-radius:8px;object-fit:cover;background:#fff}
+.searchWrap{flex:1;position:relative}
+.searchBox{background:#fff;border-radius:6px;display:flex;align-items:center;padding:8px 10px;gap:6px}
 .searchBox input{border:0;outline:0;flex:1;font-size:14px}
-.iconTop{font-size:24px;position:relative}
-.badge{position:absolute;top:-6px;right:-6px;background:#FFD700;color:#000;font-size:10px;font-weight:900;padding:1px 5px;border-radius:10px}
-.banner{margin:10px;background:#fff;border-radius:12px;overflow:hidden}
-.bannerScroll{display:flex;overflow:auto;scroll-snap-type:x mandatory}
-.bannerScroll img{width:100%;flex:0 0 100%;height:150px;object-fit:cover}
-.iconGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:#fff;padding:14px 10px;margin:0 10px;border-radius:12px;text-align:center}
-.iconGrid div{font-size:11px;cursor:pointer;line-height:1.2}
-.iconGrid b{font-size:28px;display:block;margin-bottom:4px}
-.populer{background:#fff;margin:10px;padding:12px;border-radius:12px}
-.popRow{display:flex;gap:8px;overflow:auto}
-.popRow div{flex:0 0 100px;background:#eee;border-radius:10px;overflow:hidden;text-align:center;font-size:11px}
+.searchBox button{border:0;background:none;font-size:18px}
+.saran{position:absolute;top:42px;left:0;right:0;background:#fff;color:#111;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.2);display:none;overflow:hidden;z-index:100}
+.saran div{padding:10px 12px;border-bottom:1px solid #eee;cursor:pointer;font-size:13px}
+.cart{font-size:26px;position:relative}.badgeCart{position:absolute;top:-7px;right:-7px;background:#FFD700;color:#000;font-size:10px;font-weight:900;padding:2px 5px;border-radius:10px}
+.chat{font-size:26px}
+.bannerWrap{margin:10px 10px 0;background:#fff;border-radius:10px;overflow:hidden}
+.bannerScroll{display:flex;overflow:hidden;scroll-behavior:smooth}
+.bannerScroll img{width:100%;flex:0 0 100%;height:155px;object-fit:cover}
+.dots{text-align:center;font-size:12px;padding:6px 0;color:#999}
+.cat{background:#fff;margin:10px;border-radius:10px;padding:12px 8px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px;text-align:center}
+.cat div{font-size:11px;line-height:1.2;cursor:pointer}.cat b{font-size:30px;display:block;margin-bottom:4px}
+.pop{background:#fff;margin:10px;padding:12px;border-radius:10px}
+.popRow{display:flex;gap:8px;overflow:auto;margin-top:8px}
+.popRow div{flex:0 0 105px;background:#F5F5F5;border-radius:8px;overflow:hidden;text-align:center;font-size:11px;padding-bottom:6px;cursor:pointer}
 .popRow img{width:100%;height:80px;object-fit:cover}
-.flash{background:#fff;margin:10px;padding:12px;border-radius:12px}
-.flashHead{display:flex;justify-content:space-between}
-.flashHead b{color:#EE4D2D}
+.flash{background:#fff;margin:10px;padding:12px;border-radius:10px}
+.flashTop{display:flex;justify-content:space-between;align-items:center}
+.flashTop b{color:#EE4D2D;font-size:16px}
 .flashRow{display:flex;gap:10px;overflow:auto;margin-top:10px}
-.flashCard{flex:0 0 115px;background:#FFF5F3;border-radius:10px;padding:8px;text-align:center}
-.flashCard img{width:100%;height:85px;object-fit:cover;border-radius:8px}
-.games{background:linear-gradient(#FF6B00,#EE4D2D);margin:10px;padding:12px;border-radius:12px;color:#fff}
-.gameCard{background:#fff;color:#111;border-radius:10px;padding:10px;margin-top:10px;display:flex;justify-content:space-between;align-items:center}
-.gameCard b{font-size:14px}
-.btnGame{background:#EE4D2D;color:#fff;border:0;padding:8px 12px;border-radius:8px;font-weight:800}
-.manula{background:#FFF9C4;margin:10px;padding:12px;border-radius:12px;border:2px dashed #EE4D2D}
-.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:800;font-size:16px;margin-top:8px}
+.fCard{flex:0 0 118px;text-align:center;cursor:pointer}
+.fCard img{width:100%;height:90px;object-fit:cover;border-radius:8px}
+.fCard .p{color:#EE4D2D;font-weight:900;font-size:14px}.fCard .s{font-size:11px;color:#888}.fCard .bar{height:6px;background:#FFD9D1;border-radius:10px;margin-top:4px;overflow:hidden}.fCard .bar i{display:block;height:100%;background:#EE4D2D}
+.games{background:linear-gradient(180deg,#FF6A00,#EE4D2D);margin:10px;padding:12px;border-radius:10px;color:#fff}
+.gCard{background:#fff;color:#111;border-radius:10px;padding:10px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.gCard b{font-size:13px}.gCard p{font-size:11px;margin:3px 0;color:#666}.gBtn{background:#EE4D2D;color:#fff;border:0;padding:9px 12px;border-radius:8px;font-weight:800;white-space:nowrap}
+.cartBox{background:#fff;margin:10px;padding:12px;border-radius:10px;border:1px solid #eee}
+.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:800;font-size:15px;margin-top:8px}
 .btnO{background:#EE4D2D;color:#fff} .btnG{background:#25D366;color:#fff} .btnW{background:#fff;border:1px solid #EE4D2D;color:#111}
-.section{background:#fff;margin:10px;padding:14px;border-radius:12px} .section input,.section select,.section textarea{width:100%;padding:13px;margin:6px 0;border:1px solid #ddd;border-radius:10px;font-size:15px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 10px}
-.card{background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;position:relative}
-.card img{width:100%;height:150px;object-fit:cover}
-.cardBody{padding:8px}
-.cardBody h3{font-size:13px;margin:0;height:32px;overflow:hidden;font-weight:400}
-.price{color:#EE4D2D;font-weight:900;font-size:16px}
-.badgeDisc{position:absolute;top:8px;left:8px;background:#EE4D2D;color:#fff;font-size:10px;padding:3px 6px;border-radius:4px;font-weight:800}
-.empty{background:#fff;margin:10px;border-radius:12px;padding:20px;text-align:center}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;overflow:auto} .modalBox{background:#fff;padding:16px;margin-top:30px;border-radius:18px 18px 0 0;min-height:90vh} .modalBox img{width:100%;height:300px;object-fit:cover;border-radius:12px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0;z-index:99} .bottom a{text-decoration:none;color:#777;text-align:center;font-size:11px} .bottom a.active{color:#EE4D2D;font-weight:800} .bottom b{font-size:22px;display:block}
-.chip{padding:7px 10px;border:1px solid #EE4D2D;border-radius:20px;background:#fff;font-weight:700}
+.section{background:#fff;margin:10px;padding:14px;border-radius:10px} .section input,.section select,.section textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px;font-size:14px}
+.hasilBox{background:#FFF3CD;margin:10px;padding:12px;border-radius:10px;display:none;font-weight:700;font-size:14px}
+.secTitle{padding:0 12px;font-size:15px;font-weight:800}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 10px}
+.card{background:#fff;border-radius:8px;overflow:hidden;cursor:pointer;position:relative}
+.card img{width:100%;height:155px;object-fit:cover}
+.cardBody{padding:8px}.cardBody h3{font-size:12px;margin:0;height:30px;overflow:hidden;font-weight:400;line-height:1.3}
+.price{color:#EE4D2D;font-weight:900;font-size:15px;margin-top:4px}.coret{font-size:11px;color:#999;text-decoration:line-through}.meta{font-size:11px;color:#FFA500}.toko{font-size:11px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.disc{position:absolute;top:0;right:0;background:#FDD800;color:#EE4D2D;font-size:10px;font-weight:900;padding:4px 6px;border-radius:0 0 0 8px}.mall{position:absolute;top:8px;left:8px;background:#EE4D2D;color:#fff;font-size:9px;padding:2px 5px;border-radius:3px;font-weight:800}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;overflow:auto} .modalBox{background:#fff;padding:14px;margin-top:20px;border-radius:16px 16px 0 0;min-height:92vh} .modalBox img{width:100%;height:320px;object-fit:cover;border-radius:10px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:7px 0 4px;z-index:99} .bottom a{text-decoration:none;color:#777;text-align:center;font-size:10px} .bottom a.on{color:#EE4D2D;font-weight:800} .bottom b{font-size:22px;display:block}
+.voucher{display:flex;gap:8px;overflow:auto;margin-top:10px}.voucher div{flex:0 0 160px;background:#FFF3CD;border:1px dashed #EE4D2D;border-radius:8px;padding:10px;text-align:center;font-size:12px}
+.splash{position:fixed;inset:0;background:#FF6A00;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1000;color:#fff}
+.splash img{width:150px;border-radius:20px}
 </style>
 </head>
 <body>
-<div class="top">
-<div class="topRow"><b style="font-size:20px">🛒 VTC</b><div class="searchBox">🔍 <input id="cari" placeholder="Cari di VTC..."> <button onclick="mulaiSuara()" style="border:0;background:none;font-size:18px">🎤</button></div><span class="iconTop">🛒<span class="badge" id="jmlKeranjang">0</span></span><span class="iconTop">💬</span></div>
-<p style="margin:8px 0 0;font-size:12px">Penampung Ratusan Juta Seller • Jembatan Jual Beli • Admin WA 08387850233</p>
-</div>
+<div class="splash" id="splash"><img src="logo.png"><h1 style="margin:12px 0 0;letter-spacing:3px">VTC SHOP</h1></div>
+<div class="top"><div class="topRow"><img src="logo.png" class="logoImg" onerror="this.style.display='none'">
+<div class="searchWrap"><div class="searchBox">🔍 <input id="cari" placeholder="Cari di VTC..." autocomplete="off"> <button onclick="mulaiSuara()">🎤</button> <button onclick="cariGambar()">📷</button></div><div class="saran" id="saranBox"></div></div>
+<div class="cart">🛒<span class="badgeCart" id="jmlKeranjang">0</span></div><div class="chat">💬</div></div></div>
 
-<div class="banner"><div class="bannerScroll"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800"></div><p style="text-align:center;margin:6px;font-size:12px">● ● ● VTC MEGA SALE</p></div>
+<div class="bannerWrap"><div class="bannerScroll" id="bannerScroll"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=800"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800"></div><div class="dots" id="dots">● ○ ○</div></div>
 
-<div class="iconGrid">
-<div onclick="document.getElementById('uploadBox').scrollIntoView()"><b>🛍️</b>VTC Mall</div>
-<div onclick="alert('Garansi Harga Termurah!')"><b>🏷️</b>Garansi Harga Termurah</div>
-<div onclick="document.getElementById('live').scrollIntoView()"><b>💡</b>Inspirasi VTC</div>
-<div onclick="filterKat('Khas Bangka')"><b>🦀</b>Kreasi Nusantara</div>
-<div onclick="checkIn()"><b>📅</b>Daily Check-In<br><span id="koinTxt" style="color:#EE4D2D;font-weight:800">🪙 0 Koin</span></div>
-<div onclick="alert('Gratis Ongkir!')"><b>🚚</b>Gratis Ongkir</div>
-<div onclick="document.getElementById('topup').scrollIntoView()"><b>🏦</b>Promo Bank</div>
-<div onclick="alert('Semua Promo VTC!')"><b>🎁</b>Semua Promo</div>
-</div>
+<div class="cat"><div onclick="cariProduk('')"><b>🛍️</b>VTC Mall</div><div onclick="alert('Garansi Harga Termurah')"><b>🏷️</b>Garansi Harga Termurah</div><div onclick="document.getElementById('live').scrollIntoView()"><b>💡</b>Inspirasi</div><div onclick="cariProduk('Bangka')"><b>🦀</b>Kreasi Nusantara</div><div onclick="checkIn()"><b>📅</b>Check-In<br><span id="koinTxt" style="color:#EE4D2D;font-weight:800">🪙 0</span></div><div onclick="alert('Gratis Ongkir')"><b>🚚</b>Gratis Ongkir</div><div onclick="document.getElementById('topup').scrollIntoView()"><b>🏦</b>Promo Bank</div><div onclick="alert('Semua Promo')"><b>🎁</b>Semua Promo</div></div>
 
-<div class="manula"><b>👵 MANULA - Pencet 🎤 terus ngomong: "Cari beras"</b><br><span id="hasilSuara">Siap dengerin...</span><br><button class="btn btnO" onclick="mulaiSuara()">🎤 PENCET & NGOMONG</button></div>
+<div class="pop"><b>Pencarian Populer</b>
+<div class="popRow"><div onclick="cariProduk('Kasur')"><img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400"><br>kasur</div><div onclick="cariProduk('Baju')"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"><br>panjang wanita</div><div onclick="cariProduk('HP')"><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"><br>xiaomi note</div><div onclick="cariProduk('Beras')"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"><br>beras bangka</div><div onclick="cariProduk('Kemplang')"><img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=400"><br>kemplang</div></div>
+<div class="voucher"><div>🎟️ Gratis Ongkir<br><b>Rp 0</b><br><button class="btn btnO" style="padding:8px" onclick="alert('Voucher diklaim')">Klaim</button></div><div>🎟️ Diskon 50%<br><b>s/d Rp 20rb</b><br><button class="btn btnO" style="padding:8px" onclick="alert('Voucher diklaim')">Klaim</button></div><div>🎟️ Cashback 10%<br><b>Koin</b><br><button class="btn btnO" style="padding:8px" onclick="alert('Voucher diklaim')">Klaim</button></div></div></div>
 
-<div class="populer"><b>PENCARIAN POPULER</b> <span style="font-size:11px;color:#888">Diupdate 9PM</span><div class="popRow"><div><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400"><br>anak pakaian</div><div><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400"><br>panjang wanita</div><div><img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400"><br>xiaomi note</div><div><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"><br>beras bangka</div></div></div>
+<div class="flash"><div class="flashTop"><b>⚡ FLASH SALE</b><span style="font-size:11px;color:#888">Lihat Semua ></span><span id="timer" style="color:#EE4D2D;font-weight:900">00 : 12 : 45</span></div><div class="flashRow" id="flashRow"></div></div>
 
-<div class="flash"><div class="flashHead"><b>⚡ FLASH SALE</b><span style="color:#EE4D2D;font-weight:800">00 : 12 : 45 ⏰</span></div><div class="flashRow" id="flashRow"><div class="flashCard">Upload produk dulu jadi Flash Sale!</div></div></div>
+<div class="games"><h3 style="margin:0">🎮 VTC Games</h3>
+<div class="gCard"><div><b>🌾 Panen 12JT Setiap Jam</b><p>Cara cepat panen 12JT</p></div><button class="gBtn" onclick="mainGame('Panen')">Cek</button></div>
+<div class="gCard"><div><b>🐾 VTC Pets</b><p>Dapat 10x lipat koin</p></div><button class="gBtn" onclick="mainGame('Pets')">Main</button></div>
+<div class="gCard"><div><b>🍀 Lucky Prize</b><p>Dapat 1 juta koin</p></div><button class="gBtn" onclick="mainGame('Lucky')">Main</button></div></div>
 
-<div class="games"><h3 style="margin:0">🎮 VTC GAMES - Kayak Shopee Games!</h3><p style="font-size:12px;margin:6px 0">Main tiap hari, dapet koin, bisa buat belanja!</p>
-<div class="gameCard"><div><b>🌾 PANEN 12JT SETIAP JAM</b><br><span style="font-size:12px">Cara Cepat Panen 12JT Setiap Jam</span></div><button class="btnGame" onclick="mainGame('Panen')">CEK SEKARANG</button></div>
-<div class="gameCard"><div><b>🐾 VTC PETS</b><br><span style="font-size:12px">Main Tiap Hari Pasti Dapat 10X Lipat Koin!</span></div><button class="btnGame" onclick="mainGame('Pets')">MAIN</button></div>
-<div class="gameCard"><div><b>🍀 VTC LUCKY PRIZE</b><br><span style="font-size:12px">Setiap Hari Dapat 1 JUTA KOIN</span></div><button class="btnGame" onclick="mainGame('Lucky')">MAIN</button></div>
-</div>
+<div class="cartBox"><b>🛒 Keranjang: <span id="jmlKeranjang2">0</span> • 🪙 <span id="koin2">0</span></b><br><span id="isiKeranjang" style="font-size:13px">Belum ada barang.</span><button class="btn btnO" onclick="checkout()">Checkout</button></div>
 
-<div class="section" style="background:#111;color:#fff"><b>🛒 KERANJANG: <span id="jmlKeranjang2">0</span> barang • 🪙 Koin: <span id="koin2">0</span></b><br><span id="isiKeranjang">Belum ada barang.</span><button class="btn btnO" onclick="checkout()">✅ CHECKOUT - COD / TRANSFER</button></div>
-<div class="section" style="background:#FFF3CD"><b>🏪 VTC CUMA PENAMPUNG / JEMBATAN!</b><br>VTC gak jualan. Yang jualan itu ratusan juta seller. VTC cuma sediain lapaknya.</div>
-
-<h3 style="padding:0 12px">🔥 REKOMENDASI UNTUK KAMU</h3>
-<div class="empty" id="emptyBox"><h3>🏪 PASAR MASIH KOSONG</h3><p>Produk baru muncul kalau seller upload produk ASLI mereka.</p><button class="btn btnO" onclick="document.getElementById('uploadBox').scrollIntoView()">➕ JADI SELLER PERTAMA</button></div>
+<div class="hasilBox" id="hasilCariBox"></div>
+<div class="secTitle">Rekomendasi Untuk Kamu</div>
 <div class="grid" id="produkGrid"></div>
 
-<div class="section" id="uploadBox"><h2>➕ UPLOAD PRODUK</h2><input id="upNama" placeholder="Nama Produk"><input id="upHarga" type="number" placeholder="Harga"><input id="upHargaCoret" type="number" placeholder="Harga Coret - Biar keliatan diskon!"><input id="upSizeManual" placeholder="Size: 200gr, 500gr, S,M,L,XL"><select onchange="document.getElementById('upSizeManual').value=this.value"><option value="">-- Pilih Cepat --</option><option>100gr</option><option>200gr</option><option>500gr</option><option>1kg</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>All Size</option></select><input id="upWarna" placeholder="Warna: Merah, Hitam..."><input id="upVarian" placeholder="Varian: Pedas, Manis..."><input id="upStok" type="number" placeholder="Stok"><input id="upToko" placeholder="Nama Toko Kamu"><select id="upKategori"><option>Makanan</option><option>Fashion</option><option>Motor</option><option>Elektronik</option><option>Sembako</option><option>Khas Bangka</option><option>Lainnya</option></select><textarea id="upDesk" placeholder="Deskripsi"></textarea><select id="upBayar"><option>COD - Bayar di Tempat</option><option>COD + Transfer</option><option>Transfer Saja</option><option>DANA / QRIS</option><option>Semua Bisa</option></select><input id="upOngkir" placeholder="Ongkir"><input id="upFoto" type="file" accept="image/*"><img id="previewFoto" style="width:100%;border-radius:12px;display:none"><button class="btn btnO" onclick="uploadProduk()">✅ UPLOAD - OTOMATIS TAYANG!</button></div>
+<div class="section" id="uploadBox"><h2>Upload Produk</h2><input id="upNama" placeholder="Nama Produk"><input id="upHarga" type="number" placeholder="Harga"><input id="upHargaCoret" type="number" placeholder="Harga Coret"><input id="upSizeManual" placeholder="Size: 200gr, 500gr, S, M, L, XL"><input id="upWarna" placeholder="Warna"><input id="upVarian" placeholder="Varian"><input id="upStok" type="number" placeholder="Stok"><input id="upToko" placeholder="Nama Toko"><select id="upKategori"><option>Makanan</option><option>Fashion</option><option>Motor</option><option>Elektronik</option><option>Sembako</option><option>Khas Bangka</option><option>Lainnya</option></select><textarea id="upDesk" placeholder="Deskripsi"></textarea><select id="upBayar"><option>COD - Bayar di Tempat</option><option>COD + Transfer</option><option>Transfer Saja</option><option>DANA / QRIS</option><option>Semua Bisa</option></select><input id="upOngkir" placeholder="Ongkir"><input id="upFoto" type="file" accept="image/*"><img id="previewFoto" style="width:100%;border-radius:12px;display:none"><button class="btn btnO" onclick="uploadProduk()">Upload</button></div>
 
-<div class="modal" id="modalDetail"><div class="modalBox"><button class="btn btnW" onclick="tutupDetail()">❌ TUTUP</button><img id="dFoto"><h2 id="dNama"></h2><div><span class="price" id="dHarga"></span> <s id="dHargaCoret" style="color:#999"></s> <span id="dDiskon" style="background:#EE4D2D;color:#fff;padding:2px 6px;border-radius:4px;font-size:12px"></span></div><p>⭐ <span id="dRating">4.9</span> • Terjual <span id="dTerjual">100+</span> • Toko: <b id="dToko"></b></p><p><b>Size:</b> <span id="dSize"></span> | <b>Warna:</b> <span id="dWarna"></span> | <b>Varian:</b> <span id="dVarian"></span></p><p><b>Stok:</b> <span id="dStok"></span> | <b>Bayar:</b> <span id="dBayar"></span> | <b>Ongkir:</b> <span id="dOngkir"></span></p><p id="dDesk"></p><select id="dPilihSize"><option>100gr</option><option>200gr</option><option>500gr</option><option>1kg</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>All Size</option></select><select id="dPilihWarna"><option>Merah</option><option>Hitam</option><option>Putih</option><option>Biru</option><option>Hijau</option><option>Kuning</option></select><input id="dQty" type="number" value="1" min="1"><button class="btn btnO" onclick="tambahKeranjang()">🛒 + KERANJANG</button><button class="btn btnG" onclick="beliLangsung()">⚡ BELI SEKARANG - COD</button><button class="btn btnW" onclick="window.open('https://wa.me/628387850233?text=Halo%20mau%20tanya%20produk','_blank')">💬 CHAT SELLER</button></div></div>
+<div class="modal" id="modalDetail"><div class="modalBox"><button class="btn btnW" onclick="tutupDetail()">Tutup</button><img id="dFoto"><h2 id="dNama"></h2><div><span class="price" style="font-size:22px" id="dHarga"></span> <s id="dHargaCoret" style="color:#999"></s> <span id="dDiskon" style="background:#EE4D2D;color:#fff;padding:3px 7px;border-radius:4px;font-size:12px"></span></div><p>⭐ <span id="dRating">4.9</span> • Terjual <span id="dTerjual">100+</span> • Toko: <b id="dToko"></b></p><p><b>Size:</b> <span id="dSize"></span> | <b>Warna:</b> <span id="dWarna"></span> | <b>Varian:</b> <span id="dVarian"></span></p><p><b>Stok:</b> <span id="dStok"></span> | <b>Pembayaran:</b> <span id="dBayar"></span> | <b>Ongkir:</b> <span id="dOngkir"></span></p><p id="dDesk"></p><select id="dPilihSize"><option>100gr</option><option>200gr</option><option>500gr</option><option>1kg</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>All Size</option></select><select id="dPilihWarna"><option>Merah</option><option>Hitam</option><option>Putih</option><option>Biru</option><option>Hijau</option><option>Kuning</option></select><input id="dQty" type="number" value="1" min="1"><button class="btn btnO" onclick="tambahKeranjang()">+ Keranjang</button><button class="btn btnG" onclick="beliLangsung()">Beli Sekarang</button><button class="btn btnW" onclick="window.open('https://wa.me/628387850233?text=Halo%20mau%20tanya%20produk','_blank')">Chat Seller</button></div></div>
 
-<div class="section" id="live"><h2>📡 LIVE</h2><input id="namaTokoLive" placeholder="Nama Toko Kamu"><input id="linkLive" placeholder="Link YouTube / TikTok Live"><button class="btn btnO" onclick="buatLive()">📡 MULAI LIVE</button></div>
-<div class="section" id="tv"><h2>📺 TV LIVE</h2><p>RCTI • SCTV • Indosiar • Trans TV • Trans 7 • TV One • Metro TV</p></div>
-<div class="section"><h2>🎵 VTC LIVE MUSIK</h2><p>Dangdut • Koplo • Bangka • Sholawat • DJ Remix</p></div>
-<div class="section" id="topup"><h2>💳 TOP UP</h2><select><option>Pulsa Telkomsel</option><option>Pulsa XL</option><option>Paket Data</option><option>Token PLN</option><option>DANA</option><option>OVO</option><option>GoPay</option></select><input placeholder="No HP"><input placeholder="Nominal"><button class="btn btnO" onclick="alert('Top Up diproses!')">⚡ TOP UP</button></div>
-<div class="section" id="resi"><h2>📦 CEK RESI</h2><select id="ekspedisi"><option>JNT</option><option>JNE</option><option>SiCepat</option><option>Pos Indonesia</option></select><input id="noResi" placeholder="No Resi"><button class="btn btnO" onclick="cekResi()">🔍 LACAK</button><p id="hasilResi"></p></div>
-<div class="section"><h2>👤 SAYA - Akun Saya</h2><p>Pesanan Saya • Pulsa, Tagihan & Tiket • Dompet Saya • ShopeePay • Koin • Voucher Saya • Favorit Saya • Terakhir Dilihat • Penilaian Saya • Pengaturan Akun • Pusat Bantuan</p><input placeholder="Nama Kamu"><input placeholder="No WA"><button class="btn btnG" onclick="alert('Selamat datang di VTC!')">✅ DAFTAR / LOGIN</button></div>
-<div class="section"><h2>🏪 INFO SELLER</h2><p>✅ Daftar<br>✅ Jualan<br>✅ Live<br>✅ COD & Transfer bebas<br>✅ Input Resi bebas<br>❌ Dilarang tipu-tipu</p></div>
-<div class="section" style="text-align:center"><h2>💬 BUTUH BANTUAN?</h2><button class="btn btnG" onclick="window.open('https://wa.me/628387850233?text=Halo%20Admin%20VTC','_blank')">💬 CHAT ADMIN WA - 08387850233</button></div>
-<div class="bottom"><a href="#" class="active"><b>🏠</b>Beranda</a><a href="#live"><b>📡</b>Live</a><a href="#uploadBox"><b>➕</b>Jual</a><a href="#resi"><b>📦</b>Resi</a><a href="https://wa.me/628387850233"><b>👤</b>Saya</a></div>
+<div class="section" id="live"><h2>Live</h2><input id="namaTokoLive" placeholder="Nama Toko"><input id="linkLive" placeholder="Link YouTube / TikTok Live"><button class="btn btnO" onclick="buatLive()">Mulai Live</button></div>
+<div class="section" id="tv"><h2>TV Live</h2><p>RCTI • SCTV • Indosiar • Trans TV • Trans 7 • TV One • Metro TV</p></div>
+<div class="section"><h2>Live Musik</h2><p>Dangdut • Koplo • Bangka • Sholawat • DJ Remix</p></div>
+<div class="section" id="topup"><h2>Top Up</h2><select><option>Pulsa Telkomsel</option><option>Pulsa XL</option><option>Paket Data</option><option>Token PLN</option><option>DANA</option><option>OVO</option><option>GoPay</option></select><input placeholder="No HP"><input placeholder="Nominal"><button class="btn btnO" onclick="alert('Top Up diproses')">Top Up</button></div>
+<div class="section" id="resi"><h2>Cek Resi</h2><select id="ekspedisi"><option>JNT</option><option>JNE</option><option>SiCepat</option><option>Pos Indonesia</option></select><input id="noResi" placeholder="No Resi"><button class="btn btnO" onclick="cekResi()">Lacak</button><p id="hasilResi"></p></div>
+<div class="section"><h2>Akun Saya</h2><p>Pesanan Saya • Pulsa, Tagihan & Tiket • Dompet Saya • Koin • Voucher Saya • Favorit Saya • Terakhir Dilihat • Penilaian Saya • Pengaturan Akun • Pusat Bantuan</p><input placeholder="Nama"><input placeholder="No WA"><button class="btn btnG" onclick="alert('Selamat datang di VTC')">Daftar / Login</button></div>
+<div class="section" style="text-align:center"><img src="logo.png" style="width:80px;border-radius:12px"><br><b>VTC SHOP</b><br><button class="btn btnG" onclick="window.open('https://wa.me/628387850233?text=Halo%20Admin%20VTC','_blank')">Chat Admin WA - 08387850233</button></div>
+<div class="bottom"><a href="#" class="on"><b>🏠</b>Beranda</a><a href="#live"><b>📡</b>Live</a><a href="#uploadBox"><b>➕</b>Jual</a><a href="#resi"><b>📦</b>Notifikasi</a><a href="https://wa.me/628387850233"><b>👤</b>Saya</a></div>
+
 <script>
-let produkList=[]; let keranjang=[]; let produkDipilih=null; let koin=0;
+setTimeout(function(){document.getElementById('splash').style.display='none';},1500);
+let produkList=[
+{nama:"Kasur Busa Tebal Empuk - Kasur Lipat",harga:250000,coret:450000,size:"160x200",warna:"Biru",varian:"Empuk",stok:50,toko:"Toko Kasur Bangka",kat:"Lainnya",desk:"Kasur busa tebal, empuk, bisa dilipat.",bayar:"COD - Bayar di Tempat",ongkir:"Gratis",foto:"https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600",terjual:120,rating:"4.9",soldBar:85},
+{nama:"Beras Bangka Premium 5kg",harga:65000,coret:85000,size:"5kg",warna:"Putih",varian:"Premium",stok:100,toko:"Toko Sembako Bangka",kat:"Sembako",desk:"Beras asli Bangka, pulen, wangi.",bayar:"COD - Bayar di Tempat",ongkir:"Gratis",foto:"https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600",terjual:250,rating:"4.8",soldBar:92},
+{nama:"Baju Kaos Distro - Kaos Panjang Wanita",harga:35000,coret:75000,size:"L",warna:"Hitam",varian:"Polos",stok:80,toko:"Distro Bangka",kat:"Fashion",desk:"Kaos adem, bahan katun.",bayar:"COD + Transfer",ongkir:"10000",foto:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",terjual:180,rating:"4.9",soldBar:70},
+{nama:"Kerupuk Kemplang Panggang Asli Bangka",harga:20000,coret:30000,size:"500gr",warna:"Coklat",varian:"Original",stok:200,toko:"Oleh-oleh Bangka",kat:"Khas Bangka",desk:"Kemplang asli panggang, gurih!",bayar:"COD - Bayar di Tempat",ongkir:"Gratis",foto:"https://images.unsplash.com/photo-1626074353765-517a681e40be?w=600",terjual:300,rating:"5.0",soldBar:95},
+{nama:"Motor Bekas Honda Beat 2020",harga:8500000,coret:9500000,size:"All Size",warna:"Hitam",varian:"Beat",stok:2,toko:"Motor Bangka",kat:"Motor",desk:"Motor mulus, surat lengkap.",bayar:"COD + Transfer",ongkir:"Tanya Seller",foto:"https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600",terjual:15,rating:"4.7",soldBar:40},
+{nama:"HP Xiaomi Note 13 - Baru Garansi",harga:2100000,coret:2500000,size:"All Size",warna:"Biru",varian:"8/256",stok:10,toko:"HP Bangka Cell",kat:"Elektronik",desk:"HP baru, garansi resmi.",bayar:"COD + Transfer",ongkir:"Gratis",foto:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600",terjual:90,rating:"4.8",soldBar:60}
+];
+let keranjang=[]; let produkDipilih=null; let koin=0;
+let bannerIdx=0; let bannerBox=document.getElementById('bannerScroll');
+setInterval(function(){bannerIdx=(bannerIdx+1)%3; bannerBox.scrollTo({left:bannerIdx*bannerBox.clientWidth,behavior:'smooth'}); document.getElementById('dots').innerHTML=['● ○ ○','○ ● ○','○ ○ ●'][bannerIdx];},3000);
+let sisa=12*60+45; setInterval(function(){sisa--; if(sisa<0) sisa=12*60; let j=Math.floor(sisa/60), d=sisa%60; document.getElementById('timer').innerText='00 : '+String(j).padStart(2,'0')+' : '+String(d).padStart(2,'0');},1000);
+document.getElementById('cari').addEventListener('input',function(){
+  let q=this.value.toLowerCase().trim(); let box=document.getElementById('saranBox');
+  if(!q){box.style.display='none'; cariProduk(''); return;}
+  let saran=produkList.filter(p=>p.nama.toLowerCase().includes(q)).slice(0,4);
+  if(saran.length==0){box.style.display='none';} else {box.style.display='block'; box.innerHTML=saran.map(p=>'<div onclick="cariProduk(\''+p.nama.split(' ')[0]+'\')">🔍 '+p.nama+' - Rp '+Number(p.harga).toLocaleString('id-ID')+'</div>').join('');}
+  cariProduk(q);
+});
+document.addEventListener('click',function(e){if(!e.target.closest('.searchWrap')) document.getElementById('saranBox').style.display='none';});
 document.getElementById('upFoto').addEventListener('change',function(e){let f=e.target.files[0]; if(!f) return; let r=new FileReader(); r.onload=function(ev){let img=document.getElementById('previewFoto'); img.src=ev.target.result; img.style.display='block';}; r.readAsDataURL(f);});
-function checkIn(){koin+=100; updateKoin(); alert('✅ Check-In Berhasil! +100 Koin! Total: '+koin+' Koin');}
-function mainGame(nama){let d=Math.floor(Math.random()*500)+100; koin+=d; updateKoin(); alert('🎮 '+nama+' Berhasil! Kamu dapet +'+d+' Koin! Total: '+koin);}
-function updateKoin(){document.getElementById('koinTxt').innerText='🪙 '+koin+' Koin'; document.getElementById('koin2').innerText=koin;}
-function uploadProduk(){let nama=document.getElementById('upNama').value; let harga=document.getElementById('upHarga').value; let coret=document.getElementById('upHargaCoret').value||''; let size=document.getElementById('upSizeManual').value; let warna=document.getElementById('upWarna').value; let varian=document.getElementById('upVarian').value; let stok=document.getElementById('upStok').value; let toko=document.getElementById('upToko').value||'Toko Seller'; let kat=document.getElementById('upKategori').value; let desk=document.getElementById('upDesk').value||'Produk asli seller.'; let bayar=document.getElementById('upBayar').value; let ongkir=document.getElementById('upOngkir').value||'Tanya Seller'; let foto=document.getElementById('previewFoto').src; if(!nama||!harga){alert('Isi Nama & Harga dulu!');return;} if(!foto||foto.includes('logo')){alert('Upload foto ASLI dulu!');return;} let p={nama,harga,coret,size,warna,varian,stok,toko,kat,desk,bayar,ongkir,foto,terjual:Math.floor(Math.random()*200)+10,rating:(4.5+Math.random()*0.5).toFixed(1)}; produkList.push(p); renderProduk(); alert('✅ BERHASIL! Produk '+nama+' udah tayang kayak di Shopee!'); document.getElementById('emptyBox').style.display='none';}
-function renderProduk(){let g=document.getElementById('produkGrid'); g.innerHTML=''; let f=document.getElementById('flashRow'); f.innerHTML=''; produkList.forEach((p,i)=>{let d=document.createElement('div'); d.className='card'; d.onclick=function(){bukaDetail(i)}; let diskon=p.coret?Math.round((1-p.harga/p.coret)*100):0; d.innerHTML=(diskon>0?'<div class=badgeDisc>-'+diskon+'%</div>':'')+'<img src="'+p.foto+'"><div class=cardBody><h3>'+p.nama+'</h3><div class=price>Rp '+Number(p.harga).toLocaleString('id-ID')+'</div>'+(p.coret?'<s style=color:#999;font-size:11px>Rp '+Number(p.coret).toLocaleString('id-ID')+'</s>':'')+'<div style=font-size:11px;color:#FFA500>⭐ '+p.rating+' • Terjual '+p.terjual+'+</div><div style=font-size:11px;color:#888>'+p.toko+'</div></div>'; g.appendChild(d); let fc=document.createElement('div'); fc.className='flashCard'; fc.onclick=function(){bukaDetail(i)}; fc.innerHTML='<img src="'+p.foto+'"><div style=color:#EE4D2D;font-weight:900>Rp '+Number(p.harga).toLocaleString('id-ID')+'</div><div style=font-size:11px>Terjual '+p.terjual+'</div>'; f.appendChild(fc);});}
+function checkIn(){koin+=100; updateKoin();}
+function mainGame(n){let d=Math.floor(Math.random()*500)+100; koin+=d; updateKoin();}
+function updateKoin(){document.getElementById('koinTxt').innerText='🪙 '+koin; document.getElementById('koin2').innerText=koin;}
+function uploadProduk(){let nama=document.getElementById('upNama').value; let harga=document.getElementById('upHarga').value; let coret=document.getElementById('upHargaCoret').value||''; let size=document.getElementById('upSizeManual').value; let warna=document.getElementById('upWarna').value; let varian=document.getElementById('upVarian').value; let stok=document.getElementById('upStok').value; let toko=document.getElementById('upToko').value||'Toko Seller'; let kat=document.getElementById('upKategori').value; let desk=document.getElementById('upDesk').value||''; let bayar=document.getElementById('upBayar').value; let ongkir=document.getElementById('upOngkir').value||'Tanya Seller'; let foto=document.getElementById('previewFoto').src; if(!nama||!harga){alert('Isi Nama & Harga dulu');return;} if(!foto||foto.includes('logo')){alert('Upload foto dulu');return;} produkList.push({nama,harga,coret,size,warna,varian,stok,toko,kat,desk,bayar,ongkir,foto,terjual:10,rating:"4.9",soldBar:20}); renderProduk(); alert('Berhasil! Produk sudah tayang.');}
+function renderProduk(){let g=document.getElementById('produkGrid'); g.innerHTML=''; let f=document.getElementById('flashRow'); f.innerHTML=''; produkList.forEach((p,i)=>{let d=document.createElement('div'); d.className='card'; d.onclick=function(){bukaDetail(i)}; let diskon=p.coret?Math.round((1-p.harga/p.coret)*100):0; d.innerHTML=(diskon>0?'<div class=disc>-'+diskon+'%</div>':'')+'<div class=mall>Mall</div><img src="'+p.foto+'"><div class=cardBody><h3>'+p.nama+'</h3><div class=price>Rp '+Number(p.harga).toLocaleString('id-ID')+'</div>'+(p.coret?'<div class=coret>Rp '+Number(p.coret).toLocaleString('id-ID')+'</div>':'')+'<div class=meta>⭐ '+p.rating+' • Terjual '+p.terjual+'+</div><div class=toko>'+p.toko+' • '+p.size+'</div></div>'; g.appendChild(d); let fc=document.createElement('div'); fc.className='fCard'; fc.onclick=function(){bukaDetail(i)}; fc.innerHTML='<img src="'+p.foto+'"><div class=p>Rp '+Number(p.harga).toLocaleString('id-ID')+'</div><div class=s>Terjual '+p.terjual+'</div><div class=bar><i style="width:'+(p.soldBar||50)+'%"></i></div>'; f.appendChild(fc);});}
 function bukaDetail(i){produkDipilih=produkList[i]; document.getElementById('dFoto').src=produkDipilih.foto; document.getElementById('dNama').innerText=produkDipilih.nama; document.getElementById('dHarga').innerText='Rp '+Number(produkDipilih.harga).toLocaleString('id-ID'); document.getElementById('dHargaCoret').innerText=produkDipilih.coret?'Rp '+Number(produkDipilih.coret).toLocaleString('id-ID'):''; document.getElementById('dDiskon').innerText=produkDipilih.coret?'-'+Math.round((1-produkDipilih.harga/produkDipilih.coret)*100)+'%':''; document.getElementById('dRating').innerText=produkDipilih.rating; document.getElementById('dTerjual').innerText=produkDipilih.terjual+'+'; document.getElementById('dToko').innerText=produkDipilih.toko; document.getElementById('dSize').innerText=produkDipilih.size||'-'; document.getElementById('dWarna').innerText=produkDipilih.warna||'-'; document.getElementById('dVarian').innerText=produkDipilih.varian||'-'; document.getElementById('dStok').innerText=produkDipilih.stok||'-'; document.getElementById('dBayar').innerText=produkDipilih.bayar; document.getElementById('dOngkir').innerText=produkDipilih.ongkir; document.getElementById('dDesk').innerText=produkDipilih.desk; document.getElementById('modalDetail').style.display='block';}
 function tutupDetail(){document.getElementById('modalDetail').style.display='none';}
-function tambahKeranjang(){if(!produkDipilih) return; let q=document.getElementById('dQty').value||1; keranjang.push(produkDipilih.nama+' x'+q); updateKeranjang(); tutupDetail(); alert('✅ Masuk keranjang!');}
+function tambahKeranjang(){if(!produkDipilih) return; let q=document.getElementById('dQty').value||1; keranjang.push(produkDipilih.nama+' x'+q); updateKeranjang(); tutupDetail();}
 function beliLangsung(){if(!produkDipilih) return; window.open('https://wa.me/628387850233?text=Halo%20mau%20beli%20'+encodeURIComponent(produkDipilih.nama),'_blank');}
 function updateKeranjang(){document.getElementById('jmlKeranjang').innerText=keranjang.length; document.getElementById('jmlKeranjang2').innerText=keranjang.length; document.getElementById('isiKeranjang').innerText=keranjang.join(', ')||'Belum ada barang.';}
-function checkout(){if(keranjang.length==0){alert('Keranjang masih kosong!');return;} alert('Checkout: '+keranjang.join(', '));}
-function cekResi(){let e=document.getElementById('ekspedisi').value; let r=document.getElementById('noResi').value; if(!r){alert('Isi No Resi dulu!');return;} document.getElementById('hasilResi').innerText='📦 '+e+' - '+r+' : Paket sedang dalam perjalanan.';}
-function buatLive(){let l=document.getElementById('linkLive').value; if(!l){alert('Tempel link Live dulu!');return;} alert('✅ LIVE berhasil tayang!');}
-function filterKat(k){alert('Filter: '+k);}
-function mulaiSuara(){document.getElementById('hasilSuara').innerText='🎤 Dengerin...'; try{let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; if(!Rec){alert('HP belum support suara, ketik aja.');return;} let rec=new Rec(); rec.lang='id-ID'; rec.start(); rec.onresult=function(e){let t=e.results[0][0].transcript; document.getElementById('cari').value=t; document.getElementById('hasilSuara').innerText='Kamu ngomong: "'+t+'"';};}catch(err){alert('Izinkan mikrofon dulu!');}}
-function cariProduk(q){q=q.toLowerCase(); document.querySelectorAll('.card').forEach(c=>{c.style.display=c.innerText.toLowerCase().includes(q)?'block':'none';});}
-document.getElementById('cari').addEventListener('input',function(){cariProduk(this.value);});
+function checkout(){if(keranjang.length==0){alert('Keranjang masih kosong');return;} alert('Checkout: '+keranjang.join(', '));}
+function cekResi(){let e=document.getElementById('ekspedisi').value; let r=document.getElementById('noResi').value; if(!r){alert('Isi No Resi dulu');return;} document.getElementById('hasilResi').innerText='📦 '+e+' - '+r+' : Paket sedang dalam perjalanan.';}
+function buatLive(){let l=document.getElementById('linkLive').value; if(!l){alert('Tempel link Live dulu');return;} alert('Live berhasil tayang');}
+function cariProduk(q){
+  if(q===undefined||q===null) q=document.getElementById('cari').value;
+  document.getElementById('cari').value=q;
+  q=q.toLowerCase().trim();
+  let box=document.getElementById('hasilCariBox');
+  if(q==""){ document.querySelectorAll('.card').forEach(c=>c.style.display='block'); box.style.display='none'; return; }
+  let ketemu=0;
+  document.querySelectorAll('.card').forEach(c=>{ if(c.innerText.toLowerCase().includes(q)){c.style.display='block'; ketemu++;} else {c.style.display='none';} });
+  box.style.display='block';
+  if(ketemu==0){ box.innerHTML='Tidak ditemukan "'+q+'". Coba: Kasur, Beras, Baju, Kemplang, Motor, HP'; }
+  else { box.innerHTML='Ditemukan '+ketemu+' produk untuk "'+q+'"'; }
+  if(document.activeElement!==document.getElementById('cari')) box.scrollIntoView({behavior:'smooth'});
+}
+function mulaiSuara(){try{let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; if(!Rec){return;} let rec=new Rec(); rec.lang='id-ID'; rec.start(); rec.onresult=function(e){let t=e.results[0][0].transcript; cariProduk(t);};}catch(err){}}
+function cariGambar(){let i=document.createElement('input'); i.type='file'; i.accept='image/*'; i.onchange=function(){alert('Pencarian gambar: Foto diterima, menampilkan produk mirip.'); cariProduk('');}; i.click();}
 document.getElementById('modalDetail').addEventListener('click',function(e){if(e.target==this) tutupDetail();});
+renderProduk();
 </script>
 </body>
 </html>
