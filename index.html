@@ -2,579 +2,121 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>VTC SHOP - Satu App Semua Bisa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VTC MEGA STORE - Satu App Semua Bisa</title>
+<meta name="theme-color" content="#FF6B00">
+<meta name="description" content="VTC MEGA STORE - Satu App Semua Bisa. Beranda, Video, Jual, Chat, Saya. Ringan untuk HP kentang, Manula, Anak.">
 <link rel="icon" href="logo.png">
-<link rel="apple-touch-icon" href="logo.png">
-<link rel="manifest" href="manifest.json">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#FF5A00">
-<meta name="description" content="VTC SHOP - Satu App Semua Bisa. Marketplace Bangka. COD Pangkal Pinang, Kirim 38+ Provinsi.">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;-webkit-tap-highlight-color:transparent}
-body{background:#0f0f0f}
-#app{max-width:480px;margin:0 auto;background:#f6f6f6;min-height:100vh;padding-bottom:90px;position:relative}
-.hide{display:none!important}
-.appbar{background:#FF5A00;color:#fff;padding:12px 14px 14px;position:sticky;top:0;z-index:90;border-radius:0 0 20px 20px;box-shadow:0 6px 20px rgba(255,90,0,.35)}
-.toprow{display:flex;justify-content:space-between;align-items:center}
-.logo-vtc{display:flex;gap:10px;align-items:center}
-.logo-vtc img{width:46px;height:46px;border-radius:13px;background:#fff;padding:2px;object-fit:cover}
-.searchbar{margin-top:11px;display:flex;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.15);position:relative}
-.searchbar input{flex:1;padding:13px 15px;border:none;outline:none;font-size:14px}
-.searchbar button{background:#111;color:#fff;border:none;padding:0 18px;font-weight:900}
-.saran{position:absolute;top:100%;left:0;right:0;background:#fff;border-radius:0 0 16px 16px;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:999;overflow:hidden;display:none}
-.saran-item{padding:13px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;color:#222;font-size:14px;cursor:pointer}
-.stats{display:flex;gap:8px;margin:12px 12px 0}.stats div{flex:1;background:#fff;border-radius:14px;padding:11px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}.stats b{font-size:15px;display:block}.stats span{font-size:11px;color:#777}
-.banner-vtc{margin:12px;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 4px 15px rgba(0,0,0,.15);background:linear-gradient(135deg,#FF5A00,#FF8A00);min-height:150px}
-.banner-vtc img{width:100%;display:block}
-.banner-vtc .fallback{padding:20px;color:#fff}
-.banner-vtc button{position:absolute;bottom:12px;left:12px;background:#fff;color:#FF5A00;border:none;padding:10px 16px;border-radius:20px;font-weight:900;font-size:13px}
-.toko-card{margin:0 12px 12px;background:#fff;border-radius:16px;padding:12px;display:flex;gap:12px;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.toko-card img{width:52px;height:52px;border-radius:14px;object-fit:cover;background:#FF5A00}
-.cats{display:flex;gap:9px;overflow:auto;padding:4px 12px 12px;scrollbar-width:none}.cat-item{text-align:center;min-width:66px;cursor:pointer}.cat-item .ic{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:27px;margin:auto;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06)}.cat-item.active .ic{background:#FF5A00}.cat-item p{font-size:11px;margin-top:5px}.cat-item.active p{font-weight:800;color:#FF5A00}
-.pill-row{display:flex;gap:7px;overflow:auto;padding:0 12px 12px;scrollbar-width:none}.pill-row button{white-space:nowrap;border:1px solid #e5e5e5;background:#fff;padding:8px 14px;border-radius:20px;font-size:12px}.pill-row button.active{background:#FF5A00;color:#fff;border-color:#FF5A00}
-.sec{padding:0 12px 8px;display:flex;justify-content:space-between;align-items:center}.sec span{color:#FF5A00;font-weight:700;font-size:13px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
-.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);position:relative}.card img{width:100%;height:138px;object-fit:cover}.card-body{padding:10px}.card-body h3{font-size:13px;min-height:36px;line-height:1.3}.price{color:#FF5A00;font-weight:900;font-size:16px;margin:4px 0}.loc{font-size:11px;color:#888}.tag{font-size:10px;background:#FFF3E0;color:#FF5A00;padding:3px 7px;border-radius:8px;font-weight:700}.seller{font-size:11px;color:#555;margin-top:4px}
-.badge-verified{position:absolute;top:8px;left:8px;background:#25D366;color:#fff;font-size:10px;padding:3px 7px;border-radius:10px;font-weight:700}
-.add{width:100%;margin-top:7px;background:#FF5A00;color:#fff;border:none;padding:9px;border-radius:10px;font-weight:800}.add2{width:100%;margin-top:5px;background:#fff;color:#FF5A00;border:1px solid #FF5A00;padding:8px;border-radius:10px;font-weight:700}
-.detail{background:#fff;margin:12px;border-radius:18px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}.detail input,.detail textarea,.detail select{width:100%;padding:12px;margin:6px 0;border:1px solid #eee;border-radius:12px;font-size:14px;background:#fafafa}.detail button{border:none;padding:13px;width:100%;border-radius:12px;font-weight:800;margin-top:6px;cursor:pointer}
-.btn-green{background:#25D366;color:#fff}.btn-orange{background:#FF5A00;color:#fff}.btn-dark{background:#111;color:#fff}.btn-blue{background:#2196F3;color:#fff}
-.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;display:flex;justify-content:space-around;padding:9px 0 14px;border-top:1px solid #eee;z-index:100;border-radius:20px 20px 0 0;box-shadow:0 -6px 20px rgba(0,0,0,.08)}.bottom div{text-align:center;font-size:11px;cursor:pointer;color:#999;flex:1}.bottom div.active{color:#FF5A00;font-weight:800}.bottom div span{font-size:23px;display:block}.bottom .center span{width:48px;height:48px;background:#FF5A00;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin:-18px auto 2px;box-shadow:0 4px 12px rgba(255,90,0,.4)}
-.chip{display:inline-block;padding:7px 12px;border:1px solid #ddd;border-radius:20px;font-size:12px;margin:3px;cursor:pointer;background:#fff}.chip.sel{background:#FF5A00;color:#fff;border-color:#FF5A00}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:200}.modal-box{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:18px;max-height:94vh;overflow:auto}.modal-box input{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:12px}
-.ai-box{background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1px solid #FFCC80;margin:12px;border-radius:16px;padding:13px}
-.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:11px 18px;border-radius:20px;font-size:13px;z-index:999;display:none}
-.video-card{background:#000;color:#fff;margin:12px;border-radius:18px;overflow:hidden;position:relative}.video-card img{width:100%;height:380px;object-fit:cover}.video-info{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:50px 12px 12px}
-.live{border-left:4px solid #25D366;padding-left:10px;margin:10px 0}.progress{height:9px;background:#eee;border-radius:10px;overflow:hidden;margin:10px 0}.progress div{height:100%;background:#25D366;width:25%;transition:.5s}
-.cart-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #eee;font-size:13px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5;padding-bottom:70px;transition:.3s}
+body.dark{background:#111;color:#fff}
+body.dark .card,body.dark .profile,body.dark .box,body.dark .search,body.dark nav,body.dark .chat-box{background:#222!important;color:#fff!important;border-color:#333!important}
+body.big{font-size:18px} body.big .card h4{font-size:16px}
+body.manula{font-size:20px} body.manula .card h4{font-size:20px} body.manula nav button{font-size:15px;padding:14px 0} body.manula .btn{padding:18px;font-size:20px} body.manula .card button{padding:14px;font-size:17px}
+header{background:#FF6B00;color:#fff;padding:14px;text-align:center;position:sticky;top:0;z-index:10}
+header b{font-size:22px;letter-spacing:1px} header p{font-size:12px;opacity:.9}
+.search{padding:10px;background:#fff;display:flex;gap:8px}
+.search input{flex:1;padding:11px;border:1px solid #ddd;border-radius:20px;outline:none}
+.search button{background:#FF6B00;color:#fff;border:none;padding:10px 16px;border-radius:20px;font-weight:bold}
+.cat{display:flex;gap:8px;overflow:auto;padding:10px;background:#fff}
+.cat span{background:#FFF0E6;color:#FF6B00;padding:7px 14px;border-radius:20px;font-size:13px;white-space:nowrap;font-weight:bold}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#fff;border-radius:12px;overflow:hidden;padding-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.card img{width:100%;height:130px;object-fit:cover}
+.card h4{font-size:13px;padding:8px 8px 2px} .card p{font-size:12px;color:#FF6B00;font-weight:bold;padding:0 8px}
+.card button{margin:8px;width:calc(100% - 16px);background:#FF6B00;color:#fff;border:none;padding:8px;border-radius:8px;font-weight:bold}
+.page{display:none;padding:12px} .page.active{display:block}
+.video-card{background:#fff;border-radius:12px;overflow:hidden;margin-bottom:12px}
+.video-card video{width:100%;height:200px;background:#000} .video-card div{padding:10px}
+input,textarea,select{width:100%;padding:11px;margin-bottom:10px;border:1px solid #ddd;border-radius:10px;background:#fff}
+.btn{background:#FF6B00;color:#fff;border:none;padding:12px;border-radius:10px;width:100%;font-weight:bold;font-size:15px}
+.chat-box{background:#fff;border-radius:12px;height:300px;overflow:auto;padding:10px;margin-bottom:10px}
+.msg{background:#FFF0E6;padding:8px 10px;border-radius:10px;margin-bottom:8px;font-size:14px;color:#000} .msg.me{background:#FF6B00;color:#fff;text-align:right}
+.profile{background:#fff;border-radius:12px;padding:16px;text-align:center}
+.avatar{width:80px;height:80px;background:#FF6B00;color:#fff;font-size:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.box{background:#fff;border-radius:12px;padding:14px;margin-top:12px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee;gap:8px}
+.row:last-child{border:none} .row small{color:#888}
+.switch{width:48px;height:26px;background:#ccc;border-radius:20px;position:relative;cursor:pointer;flex-shrink:0} .switch:after{content:'';position:absolute;width:22px;height:22px;background:#fff;border-radius:50%;top:2px;left:2px;transition:.2s} .switch.on{background:#FF6B00} .switch.on:after{left:24px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #ddd;z-index:20}
+nav button{flex:1;background:none;border:none;padding:10px 0;font-size:11px;color:#888} nav button.on{color:#FF6B00;font-weight:bold} nav button i{display:block;font-size:20px}
+#cartInfo{background:#fff;padding:10px;text-align:center;font-weight:bold;color:#FF6B00}
+.install-banner{background:#111;color:#fff;border-radius:12px;padding:14px;margin-bottom:12px;text-align:center}
 </style>
 </head>
-<>
-<div class="toast" id="toast"></div>
-<div id="app">
+<body>
+<header><b>VTC MEGA STORE</b><p id="t-sub">Satu App Semua Bisa - Beranda • Video • Jual • Chat • Saya</p></header>
 
-<div id="page-home">vtcshop
-<div class="appbar"><div class="toprow"><div class="logo-"><img src="logo.png" onerror="this.style.display='none'"><div><b style="font-size:20px">VTC SHOP</b><br><span style="font-size:11px;opacity:.95">Satu App Semua Bisa • Pangkal Pinang</span></div></div><div style="display:flex;gap:8px;align-items:center"><span style="background:rgba(255,255,255,.25);padding:5px 10px;border-radius:20px;font-size:11px;font-weight:700">🟢 Seller Online</span><div style="width:36px;height:36px;background:#fff;color:#FF5A00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer" onclick="goPage('akun',document.querySelectorAll('.bottom div')[4])">👤</div></div></div>
-<div class="searchbar"><input id="searchInput" placeholder="Cari apa aja di VTC SHOP... terasi, bumbu, sandal, hp..." oninput="render();saranVTC()" onfocus="saranVTC()" onkeydown="if(event.key==='Enter')cariVTC()" autocomplete="off"><button onclick="cariVTC()">CARI</button><div class="saran" id="saranBox"></div></div>
-<p style="font-size:11px;margin-top:7px;opacity:.95">✦ Marketplace Bangka • COD • Kirim 38+ Provinsi • Aman & Terpercaya</p></div>
-
-<div class="stats"><div>🏪<b>12</b><span>Seller Mitra Bangka</span></div><div>📦<b>86</b><span>Produk Asli Bangka</span></div><div>✅<b>100%</b><span>COD & Garansi</span></div><div>🌏<b>38+</b><span>Provinsi Terkirim</span></div></div>
-<p style="font-size:11px;color:#888;text-align:center;margin:6px 12px 0">VTC SHOP - Platform baru Bangka. Seller bertambah tiap hari. Jadi Seller ke-13 GRATIS, tanpa potongan admin.</p>
-
-<div class="banner-vtc">
-<img src="banner.jpg" onerror="this.style.display='none';document.getElementById('bannerFallback').style.display='block'">
-<div class="fallback hide" id="bannerFallback"><h2 style="font-size:28px;line-height:1.1">SATU APP<br>SEMUA BISA</h2><p style="font-size:14px;margin-top:6px;font-weight:700">KIRIM KE SELURUH INDONESIA</p><p style="font-size:12px;margin-top:6px">Jangkau 38+ Provinsi • 500+ Kota/Kabupaten • Pengiriman Cepat & Terpercaya</p></div>
-<button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">🛒 BELANJA SEKARANG →</button>
+<div id="p-beranda" class="page active">
+<div class="install-banner">📲 <b>VTC MEGA STORE Bisa Di-Install!</b><br><small>Jadi aplikasi di HP, gak perlu Play Store</small><br><button onclick="installApp()" style="background:#FF6B00;color:#fff;border:none;padding:10px 18px;border-radius:20px;font-weight:bold;margin-top:8px">📲 INSTALL SEKARANG</button><br><small id="installInfo" style="opacity:.8"></small></div>
+<div class="search"><input id="cari" placeholder="Cari di VTC MEGA STORE..."><button onclick="cariBarang()">Cari</button></div>
+<div id="cartInfo">🛒 Keranjang: <span id="cartCount">0</span> barang | Total: Rp <span id="cartTotal">0</span></div>
+<div class="cat"><span>Semua</span><span>Elektronik</span><span>Fashion</span><span>Makanan</span><span>Rumah</span><span>Promo</span></div>
+<div class="grid" id="produkList"></div>
 </div>
 
-<div style="margin:0 12px 12px;background:#111;color:#fff;border-radius:16px;padding:14px">
-<b>Kenapa Pindah Ke VTC SHOP?</b>
-<p style="font-size:13px;line-height:1.8;margin-top:6px">
-✅ <b>COD Pangkal Pinang Tanpa Ribet</b> - Bayar di tempat, gak perlu transfer.<br>
-✅ <b>Chat Langsung Admin Bangka</b> - Bukan robot, bales cepet, bahasa Bangka ngerti.<br>
-✅ <b>Barang Asli Bangka</b> - Bumbu Umami, Terasi Toboali, Keripik Bangka.<br>
-✅ <b>Seller Jualan GRATIS</b> - Tanpa potongan admin gede kayak marketplace lain.
-</p>
+<div id="p-video" class="page">
+<h3 style="margin-bottom:10px">🎬 Video Produk</h3>
+<div class="video-card"><video controls poster="https://picsum.photos/600/300?1"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video><div><b>Review Produk Best Seller - Wajib Tonton!</b><p>VTC MEGA STORE • 12rb ditonton</p></div></div>
+<div class="video-card"><video controls poster="https://picsum.photos/600/300?2"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video><div><b>Cara Jualan di VTC MEGA STORE - 1 Menit Laku</b><p>VTC MEGA STORE • 8rb ditonton</p></div></div>
+<div class="video-card"><video controls poster="https://picsum.photos/600/300?3"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video><div><b>Unboxing Paket VTC - Asli 100%</b><p>VTC MEGA STORE • 20rb ditonton</p></div></div>
 </div>
 
-<div class="toko-card">
-<img src="logo.png" onerror="this.src='https://via.placeholder.com/52x52/FF5A00/fff?text=V'">
-<div style="flex:1"><b style="font-size:14px"> vtcshop BANGKA BLOK UMAMI</b><br><span style="font-size:12px;color:#666">ID: jmf_22102011 • Shopee Official • Pangkal Pinang</span><br><span style="font-size:12px;color:#FF5A00">⭐ 4.9 • COD • Kirim 38+ Provinsi</span></div>
-<button onclick="bukaTokoShopee()" style="background:#FF5A00;color:#fff;border:none;padding:9px 12px;border-radius:10px;font-weight:800;font-size:12px">LIHAT TOKO ↗️</button>
+<div id="p-jual" class="page">
+<h3 style="margin-bottom:10px">🛍️ Jual di VTC MEGA STORE</h3>
+<div class="box"><input id="jNama" placeholder="Nama Barang - contoh: Sepatu VTC Original"><input id="jHarga" type="number" placeholder="Harga - contoh: 150000"><select><option>Elektronik</option><option>Fashion</option><option>Makanan</option><option>Rumah</option><option>Promo</option></select><textarea id="jDesc" placeholder="Deskripsi barang..."></textarea><input id="jFoto" placeholder="Link Foto (boleh kosong)"><button class="btn" onclick="tambahJualan()" id="t-jualBtn">+ PASANG JUALAN SEKARANG</button><p id="jualOk" style="text-align:center;color:green;font-weight:bold;margin-top:10px"></p></div>
 </div>
 
-<div class="ai-box"><b>🤖 AI vtcshop Rekomendasi Untuk Kamu</b><p id="aiText" style="font-size:13px;margin-top:4px">Kamu suka Bumbu & Sembako. Toko VTC BANGKA BLOK UMAMI baru upload Bumbu Umami Premium. Cek sekarang!</p><button style="background:#111;color:#fff;border:none;padding:8px 14px;border-radius:10px;font-weight:700;margin-top:8px" onclick="cariCepat('Bumbu Umami')">Lihat Rekomendasi AI →</button></div>
-
-<div class="cats"><div class="cat-item active" onclick="setKat('Semua',this)"><div class="ic">🏠</div><p>Semua</p></div><div class="cat-item" onclick="setKat('Fashion',this)"><div class="ic">👕</div><p>Fashion</p></div><div class="cat-item" onclick="setKat('Perkakas',this)"><div class="ic">🔧</div><p>Perkakas</p></div><div class="cat-item" onclick="setKat('Ban & Otomotif',this)"><div class="ic">🛞</div><p>Ban</p></div><div class="cat-item" onclick="setKat('Elektronik',this)"><div class="ic">📱</div><p>Elektronik</p></div><div class="cat-item" onclick="setKat('Sembako',this)"><div class="ic">🧅</div><p>Sembako</p></div><div class="cat-item" onclick="setKat('Bumbu',this)"><div class="ic">🧂</div><p>Bumbu</p></div><div class="cat-item" onclick="setKat('Makanan',this)"><div class="ic">🍲</div><p>Makanan</p></div></div>
-
-<div class="sec"><h3>🔥 Produk Pilihan vtcshop</h3><span onclick="setKat('Semua',document.querySelector('.cat-item'))">Semua ></span></div>
-<div style="padding:0 12px 8px;font-size:13px">📍 Lokasi: <b id="lokAktif">Semua Indonesia</b> • Kirim 38+ Provinsi</div>
-<div class="pill-row"><button class="active" onclick="setLok('Semua Indonesia',this)">Semua Indonesia</button><button onclick="setLok('Pangkal Pinang',this)">Pangkal Pinang</button><button onclick="setLok('Bekasi',this)">Bekasi</button><button onclick="setLok('Jakarta',this)">Jakarta</button></div>
-<div class="pill-row"><button onclick="cariCepat('Bumbu Umami')">Bumbu Umami</button><button onclick="cariCepat('Terasi')">Terasi</button><button onclick="cariCepat('Sandal')">Sandal</button><button onclick="cariCepat('Jarum')">Jarum</button><button onclick="cariCepat('Obeng')">Obeng</button><button onclick="cariCepat('Cabe')">Cabe</button><button onclick="cariCepat('Kompor')">Kompor</button></div>
-
-<div id="produk" class="grid"></div>
-<div class="detail"><h3>🙏 Gak Ketemu? Request Ke Seller vtcshop</h3><input id="reqBarang" placeholder="Cari barang apa? Ex: Jarum Pentul 1 Box"><button class="btn-orange" onclick="buatRequest()">📢 POST REQUEST KE SEMUA SELLER</button></div>
-<div class="detail hide" id="liveBox" style="border:2px solid #25D366"><h3>🟢 LIVE TRANSAKSI VTC - REAL TIME</h3><div id="liveContent"></div><div class="progress"><div id="liveBar"></div></div><p id="liveStatus" style="font-weight:700;font-size:13px"></p><p id="liveKurir" style="font-size:12px;color:#666"></p><button class="btn-dark" onclick="cekWA()">📲 CEK STATUS KE ADMIN VTC</button></div>
-<div class="detail"><h3>🛒 Keranjang VTC SHOP</h3><div id="cartList"><p style="color:#999">Belum ada produk.</p></div><div style="display:flex;justify-content:space-between;font-weight:800;margin-top:10px"><span>Total:</span><span id="totalHarga" style="color:#FF5A00">Rp 0</span></div><p style="font-size:11px;color:#888;margin-top:4px">Harga VTC sudah termasuk Fee Layanan VTC Rp 5.000 / barang untuk COD & Garansi Uang Kembali 100%.</p></div>
-<div class="detail"><h3>📦 Checkout Via vtcshop- COD / Transfer / QRIS</h3><input id="nama" placeholder="Nama Lengkap"><input id="alamat" placeholder="Alamat Lengkap - Bisa Kirim Seluruh Indonesia"><select id="bayar"><option>COD - Bayar di Tempat via VTC (Paling Aman)</option><option>Transfer BRI - VTC</option><option>DANA - VTC</option><option>QRIS - VTC</option></select><select id="kurir"><option>Kurir VTC - Pangkal Pinang (Rp 10.000)</option><option>Ambil Sendiri ke Seller - Gratis</option><option>JNE / J&T Seluruh Indonesia</option></select><textarea id="catatan" placeholder="Catatan: Size, Warna, dll"></textarea><button class="btn-green" onclick="checkoutWA()">✅ CHECKOUT VIA VTC SHOP - AMAN</button><p style="font-size:11px;color:#888;text-align:center;margin-top:6px">Admin VTC: • Uang diteruskan ke Seller setelah barang sampai.</p></div>
-6
-<div style="background:#fff;margin:12px;border-radius:16px;padding:14px;font-size:12px;color:#666;line-height:1.7">
-<b>🛡️ Keamanan & Privasi vtcshop</b><br>
-- Nomor WA pembeli & seller tidak ditampilkan ke publik, hanya Admin VTC yang tau untuk proses order.<br>
-- Pembayaran COD: Bayar setelah barang sampai. Kalo barang gak sampai / tidak sesuai foto, uang balik 100%.<br>
-- vtcshop tidak menyimpan password & tidak membagikan data ke pihak lain.<br>
-- Semua transaksi tercatat & bisa dicek ke Admin vtcshop.<br>
-- <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Kebijakan Privasi VTC SHOP: Data hanya dipakai untuk proses order & pengiriman. Tidak dibagikan ke pihak lain.')">Kebijakan Privasi</span> • <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Syarat & Ketentuan VTC SHOP: Seller wajib kirim barang sesuai deskripsi & foto. Jika tidak sesuai, pembeli berhak komplain 1x24 jam.')">Syarat & Ketentuan</span> • <span style="color:#FF5A00;font-weight:700;cursor:pointer" onclick="alert('Pengembalian: Barang rusak / tidak sesuai, foto & chat Admin VTC max 1x24 jam. Uang balik 100%.')">Pengembalian</span>
-</div>
-<div style="text-align:center;padding:10px;color:#999;font-size:12px">VTC SHOP • Satu App Semua Bisa • Kirim Ke Seluruh Indonesia<br>38+ Provinsi • 500+ Kota • Pangkal Pinang • Toko Shopee: jmf_22102011<br>🔒 HTTPS Aman • Gratis Share Ke Semua Orang</div>
+<div id="p-chat" class="page">
+<h3 style="margin-bottom:10px">💬 Chat</h3>
+<div class="chat-box" id="chatBox"><div class="msg">Halo! Selamat datang di VTC MEGA STORE 👋 Mau cari apa?</div><div class="msg">Admin: Semua barang ready, bisa COD & Gratis Ongkir!</div></div>
+<div style="display:flex;gap:8px"><input id="chatInput" placeholder="Ketik pesan..." style="margin:0"><button onclick="kirimChat()" style="background:#FF6B00;color:#fff;border:none;padding:0 18px;border-radius:10px;font-weight:bold">Kirim</button></div>
 </div>
 
-<div id="page-video" class="hide"><div class="appbar"><div class="logo-vtc"><img src="logo.png"><div><b>VTC SHOP</b><br><span style="font-size:11px">Video Jualan Seller</span></div></div></div><div class="video-card"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800"><div class="video-info"><b>@VTC_BANGKA_BLOK_UMAMI • Pangkal Pinang • 4.9⭐</b><p style="font-size:13px">Bumbu Umami Bangka Block Premium - Gurih Alami</p><div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><b style="font-size:18px">Rp 35.000 • COD</b><button onclick="addCart(1)" style="background:#FF5A00;color:#fff;border:none;padding:9px 14px;border-radius:10px;font-weight:800">Beli Via VTC 🛒</button></div></div></div></div>
-
-<div id="page-jual" class="hide"><div class="appbar"><div class="logo-vtc"><img src="logo.png"><div><b>+ Jual Barang</b><br><span style="font-size:11px">Jadi Seller ke-13 di VTC SHOP - GRATIS</span></div></div></div><div class="detail"><h3>📸 Posting Jualan Super Cepat - GRATIS</h3><div style="border:2px dashed #ccc;border-radius:12px;padding:14px;text-align:center;color:#666;font-size:13px" onclick="document.getElementById('fotoInput').click()">📤 Ketuk upload foto barang<br><span id="fotoNama" style="color:#FF5A00;font-weight:700"></span></div><input type="file" id="fotoInput" accept="image/*" style="display:none" onchange="document.getElementById('fotoNama').innerText=this.files[0]?this.files[0].name+' ✅':''"><input id="jualNama" placeholder="Nama barang - Ex: Jarum Pentul 1 Box"><input id="jualHarga" type="number" placeholder="Harga Rp"><select id="jualKat"><option>Fashion</option><option>Perkakas</option><option>Ban & Otomotif</option><option>Elektronik</option><option>Sembako</option><option>Bumbu</option><option>Makanan</option><option>Lainnya</option></select><input id="jualKota" value="Pangkal Pinang"><textarea id="jualDesk" placeholder="Deskripsi: Kondisi baru/second, ukuran, warna, dll"></textarea><button class="btn-orange" onclick="postingJualan()">🚀 POSTING - LANGSUNG TAYANG DI VTC SHOP</button><p style="font-size:12px;color:#888;margin-top:8px">Jualan di VTC GRATIS, tanpa potongan admin. Pembeli bayar COD, uang diteruskan setelah barang sampai.</p></div><div class="detail"><h3>Barang Kamu di VTC</h3><div id="myProduk"></div></div></div>
-
-<div id="page-chat" class="hide"><div class="appbar"><div class="logo-vtc"><img src="logo.png"><div><b>Chat VTC</b></div></div></div><div class="detail"><h3>💬 Pusat Chat VTC SHOP</h3><p style="font-size:13px;color:#666">Buyer - Seller - Admin tersambung di 1 nomor: <b>Admin VTC</b> </p><button class="btn-green" onclick="chatAdmin()">💬 CHAT ADMIN VTC</button><button class="btn-blue" onclick="cekWA()">📦 CEK STATUS TRANSAKSI</button></div><div class="detail"><h3>Chat Terakhir</h3><p style="font-size:13px;line-height:1.8">• <b>@VTC_Official:</b> Order kamu sudah dikemas...<br>• <b>@VTC_BANGKA_BLOK_UMAMI:</b> Bumbu Umami ready, mau berapa?<br>• <b>@Sandal_Bangka:</b> Sandal Uk 42 ready, COD bisa.</p></div></div>
-
-<div id="page-akun" class="hide"><div class="appbar"><div class="logo-vtc"><img src="logo.png"><div><b>Akun Saya</b></div></div></div><div class="detail"><h3>👤 Akun Saya</h3><p id="akunInfo" style="font-size:13px">Belum login. Login OTP biar bisa jual & beli.</p><button class="btn-orange" onclick="openLogin()">🔐 LOGIN / OTP - VTC SHOP</button></div><div class="detail"><h3>🏪 Toko Shopee Saya</h3><p style="font-size:13px;line-height:1.8">🏪 VTC BANGKA BLOK UMAMI<br>🆔 ID: jmf_22102011<br>🔗 shopee.co.id/jmf_22102011<br>⭐ Rating 4.9 / 5.0</p><button class="btn-orange" onclick="bukaTokoShopee()">↗️ BUKA TOKO SHOPEE SAYA</button></div><div class="detail"><h3>📊 Statistik VTC SHOP</h3><p style="font-size:13px;line-height:1.8">🏪 12 Seller Mitra Bangka<br>📦 86 Produk Asli Bangka<br>✅ 100% COD & Garansi Uang Kembali<br>🌏 38+ Provinsi • 500+ Kota<br>🚚 Kurir VTC Pangkal Pinang - COD</p></div></div>
+<div id="p-saya" class="page">
+<div class="profile"><div class="avatar">V</div><h3>VTC MEGA STORE</h3><p style="color:#666;font-size:13px">@jarotfirdausiss-vtc • Bekasi, Indonesia</p><p style="margin-top:10px">⭐ 4.9 • 1.2rb Pengikut • 500+ Terjual</p></div>
+<div class="box"><h3>⚙️ Pengaturan Lengkap</h3>
+<div class="row"><div><b>👴 MODE MANULA / ANAK</b><br><small>Tombol jadi SUPER GEDE. Buat orang tua & awam.</small></div><div class="switch" id="manulaSwitch" onclick="toggleManula()"></div></div>
+<div class="row"><div><b>🎨 Tampilan</b><br><small>Terang / Gelap</small></div><div style="display:flex;gap:6px"><button onclick="setTema('terang')" id="btnTerang" style="padding:8px 12px;border-radius:20px;border:1px solid #FF6B00;background:#FF6B00;color:#fff;font-weight:bold">☀️ Terang</button><button onclick="setTema('gelap')" id="btnGelap" style="padding:8px 12px;border-radius:20px;border:1px solid #ddd;background:#fff">🌙 Gelap</button></div></div>
+<div class="row"><div><b>🌐 Bahasa / Language</b><br><small>Indonesia / English</small></div><select id="pilihBahasa" onchange="gantiBahasa()" style="width:130px;margin:0"><option value="id">🇮🇩 Indonesia</option><option value="en">🇺🇸 English</option></select></div>
+<div class="row"><div><b>🔤 Ukuran Huruf</b><br><small>Kecil / Besar</small></div><div style="display:flex;gap:6px"><button onclick="setHuruf('kecil')" style="padding:8px 12px;border-radius:20px;border:1px solid #ddd;background:#fff">A- Kecil</button><button onclick="setHuruf('besar')" style="padding:8px 12px;border-radius:20px;border:1px solid #FF6B00;background:#FF6B00;color:#fff;font-weight:bold">A+ Besar</button></div></div>
+<div class="row"><div><b>🔔 Notifikasi</b><br><small>Promo & Pesanan</small></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+<div class="row"><div><b>🔊 Suara</b><br><small>Bunyi saat chat masuk</small></div><div class="switch on" onclick="this.classList.toggle('on')"></div></div>
+<div class="row"><div><b>📍 Lokasi</b></div><select style="width:130px;margin:0"><option>Bekasi</option><option>Jakarta</option><option>Bandung</option><option>Surabaya</option><option>Lainnya</option></select></div>
+<div class="row"><div><b>💰 Mata Uang</b></div><select style="width:130px;margin:0"><option>Rupiah (Rp)</option><option>Dollar ($)</option></select></div>
+<div class="row"><div><b>📱 Spek HP</b><br><small>Ringan - HP 2GB RAM bisa</small></div><span style="background:#E8FFE8;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:bold">✅ RINGAN</span></div>
+</div>
+<div class="box"><div class="row"><span>📦 Pesanan Saya</span><span>›</span></div><div class="row"><span>❤️ Favorit Saya</span><span>›</span></div><div class="row"><span>🏪 Toko Saya</span><span>›</span></div><div class="row"><span>📞 Bantuan VTC MEGA STORE</span><span>›</span></div></div>
+<button class="btn" onclick="installApp()" style="margin-top:12px;background:#111">📲 INSTALL APLIKASI VTC MEGA STORE</button>
+<button class="btn" style="margin-top:8px" onclick="kosongKeranjang()">🗑️ Kosongkan Keranjang</button>
 </div>
 
-<div class="bottom"><div class="active" onclick="goPage('home',this)"><span>🏠</span>Beranda</div><div onclick="goPage('video',this)"><span>▶️</span>Video</div><div class="center" onclick="goPage('jual',this)"><span>➕</span>Jual</div><div onclick="goPage('chat',this)"><span>💬</span>Chat</div><div onclick="goPage('akun',this)"><span>👤</span>Saya</div></div>
-
-<div class="modal" id="detailModal"><div class="modal-box"><img id="dImg" src="" style="width:100%;height:230px;object-fit:cover;border-radius:16px"><div style="display:flex;justify-content:space-between;margin-top:10px"><h3 id="dNama"></h3><span onclick="closeDetail()" style="font-size:22px;cursor:pointer">✕</span></div><p id="dHarga" style="color:#FF5A00;font-weight:900;font-size:22px"></p><p id="dSeller" style="font-size:13px;color:#555"></p><p id="dInfo" style="font-size:13px;color:#666"></p><p style="font-size:12px;background:#FFF3E0;padding:9px;border-radius:10px;margin-top:8px">🛡️ Transaksi via VTC SHOP aman: Uang diteruskan ke Seller setelah barang sampai & COD sukses. Garansi Uang Kembali 100%. Admin VTC: • Toko Shop: jmf_22102011</p><div style="margin-top:10px"><b style="font-size:13px">Size / Ukuran:</b><div id="dSize"></div><b style="font-size:13px">Warna:</b><div id="dWarna"></div></div><div style="display:flex;gap:8px;margin-top:14px"><button style="background:#fff;color:#FF5A00;border:1px solid #FF5A00;flex:1;padding:12px;border-radius:12px;font-weight:800" onclick="chatSeller()">💬 Chat Seller</button><button class="btn-orange" style="flex:1" onclick="beliSekarang()">Beli Via VTC - COD</button></div><button style="background:#fff;border:1px solid #ddd;flex:1;padding:10px;border-radius:10px;margin-top:8px;width:100%" onclick="bukaTokoShopee()">🛒 LIHAT DI TOKO SHOPEE VTC - jmf_22102011</button><button style="background:#fff;border:1px solid #ddd;flex:1;padding:10px;border-radius:10px;margin-top:8px;width:100%" onclick="addFromDetail()">🛒 + Keranjang VTC</button></div></div>
-
-<div class="modal" id="loginModal"><div class="modal-box" style="border-radius:20px"><h2>🔐 Login VTC SHOP</h2><p style="font-size:13px;color:#666">Masukkan No WA, kami kirim kode OTP. 1 akun untuk Jual & Beli. Data aman, tidak dibagikan.</p><input id="noWA" placeholder="08xxxxxxxxxx"><button class="btn-orange" onclick="kirimOTP()">KIRIM KODE OTP</button><div id="otpArea" style="display:none"><div style="background:#FFF3E0;border:1px dashed #FF5A00;padding:12px;border-radius:12px;margin:10px 0">Kode OTP: <b id="otpCode">123456</b> (Otomatis Terisi)</div><input id="otpInput" placeholder="Masukkan 6 digit OTP" maxlength="6"><button class="btn-green" onclick="verifikasiOTP()">VERIFIKASI OTP ✅</button></div><p onclick="closeLogin()" style="margin-top:12px;color:#888;cursor:pointer;text-align:center">Tutup ✕</p></div></div>
-
-<div id="waFallback" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:999;align-items:flex-end;justify-content:center">
-<div style="background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:18px"><div style="display:flex;justify-content:space-between"><h3>💬 Chat VTC SHOP - Admin 0838****2333</h3><span onclick="tutupWAFallback()" style="font-size:22px;cursor:pointer">✕</span></div><p style="font-size:13px;color:#666;margin:8px 0">WA ke-blokir di preview Acode. Ini normal. Pesan kamu udah disiapin, tinggal salin:</p><div style="background:#f5f5f5;padding:12px;border-radius:12px;font-size:13px;white-space:pre-line" id="waFallbackPesan"></div><button onclick="salinPesanWA()" style="width:100%;background:#25D366;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;margin-top:10px">📋 SALIN PESAN & BUKA WA MANUAL</button><button onclick="window.open('https://api.whatsapp.com/send?phone=6283878502333','_blank')" style="width:100%;background:#111;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;margin-top:6px">↗️ COBA BUKA WA LAGI</button></div></div>
+<nav>
+<button class="on" onclick="pindah('beranda',this)"><i>🏠</i><span class="n-beranda">Beranda</span></button>
+<button onclick="pindah('video',this)"><i>🎬</i><span class="n-video">Video</span></button>
+<button onclick="pindah('jual',this)"><i>➕</i><span class="n-jual">Jual</span></button>
+<button onclick="pindah('chat',this)"><i>💬</i><span class="n-chat">Chat</span></button>
+<button onclick="pindah('saya',this)"><i>👤</i><span class="n-saya">Saya</span></button>
+</nav>
 
 <script>
-let WA_PUSAT="6283878502333";
-let TOKO_SHOPEE_VTC="https://shopee.co.id/jmf_22102011";
-let NAMA_TOKO="VTC BANGKA BLOK UMAMI";
-let LINK_AFFILIATE_VTC="https://shopee.co.id/jmf_22102011";
-let FEE_VTC=5000;
-let GOOGLE_API_KEY="";
-let GOOGLE_CX="";
-function bukaTokoShopee(){ window.open(LINK_AFFILIATE_VTC,"_blank"); toast("Buka Toko Shopee: "+NAMA_TOKO); }
-function bukaWA(pesan, seller, produk, harga){
-  let kata=document.getElementById('searchInput')?document.getElementById('searchInput').value:"";
-  let isi=pesan;
-  if(produk){ isi="Halo VTC SHOP! Saya mau pesan:\n\n📦 Produk: "+produk+"\n"+(harga?"💰 Harga VTC: Rp "+harga.toLocaleString('id-ID')+" (Sudah + Fee VTC Rp 5.000)\n":"")+(seller?"👤 Seller: "+seller+"\n":"")+(kata?"🔍 Cari: "+kata+" (di VTC SHOP)\n":"")+"🏪 Toko Shopee: "+NAMA_TOKO+" (jmf_22102011)\n📍 Lokasi: Pangkal Pinang - Kirim 38+ Provinsi"; }
-  window.pesanTerakhir=isi;
-  let url="https://api.whatsapp.com/send?phone="+WA_PUSAT+"&text="+encodeURIComponent(isi);
-  let w=window.open(url,"_blank");
-  setTimeout(function(){ if(!w||w.closed){ document.getElementById('waFallbackPesan').innerText=isi; document.getElementById('waFallback').style.display='flex'; } },1500);
-}
-function tutupWAFallback(){document.getElementById('waFallback').style.display='none';}
-function salinPesanWA(){ navigator.clipboard.writeText(window.pesanTerakhir||""); toast("Pesan disalin! Paste ke WA Admin VTC"); }
-function toast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200);}
-let products=[
-{id:1,nama:"Bumbu Umami - Bangka Block Premium 200gr",harga:35000,kat:"Bumbu",lok:"Pangkal Pinang",seller:"@VTC_BANGKA_BLOK_UMAMI",img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500",star:"⭐ 4.9",desc:"Dari Toko VTC BANGKA BLOK UMAMI (jmf_22102011). Lada Muntok + Terasi Toboali + Ikan Tenggiri. No MSG. Kirim 38+ Provinsi.",tags:"bumbu umami",sizes:["200gr","500gr"],colors:["-"],slug:"bumbu-umami"},
-{id:2,nama:"Terasi Toboali Asli Bangka 500gr",harga:45000,kat:"Bumbu",lok:"Pangkal Pinang",seller:"@VTC_BANGKA_BLOK_UMAMI",img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500",star:"⭐ 4.9",desc:"Dari Toko VTC BANGKA BLOK UMAMI. Fermentasi alami.",tags:"terasi toboali",sizes:["200gr","500gr","1kg"],colors:["-"],slug:"terasi-toboali"},
-{id:7,nama:"Ban Motor 90/90-14 Tubeless - Beat Vario",harga:185000,kat:"Ban & Otomotif",lok:"Pangkal Pinang",seller:"@Bengkel_Bangka",img:"https://images.unsplash.com/photo-1578844251758-2f71da64c96f?w=500",star:"⭐ 4.9",desc:"Dari Seller @Bengkel_Bangka. Bisa pasang di tempat.",tags:"ban motor",sizes:["90/90-14","80/90-14"],colors:["Hitam"],slug:"ban-motor"},
-{id:10,nama:"Baju Anak Laki Kaos 1-8 Tahun",harga:45000,kat:"Fashion",lok:"Pangkal Pinang",seller:"@Baju_Anak_Bangka",img:"https://images.unsplash.com/photo-1522771930-78848d9293e8?w=500",star:"⭐ 4.9",desc:"Dari Seller @Baju_Anak_Bangka. Katun 100%.",tags:"baju anak",sizes:["1-2 Th","3-4 Th","5-6 Th","7-8 Th"],colors:["Biru","Merah","Hijau","Hitam"],slug:"baju-anak"},
-{id:13,nama:"Kunci Pas Set 14 Pcs - Mekanik",harga:145000,kat:"Perkakas",lok:"Pangkal Pinang",seller:"@Perkakas_Bangka",img:"https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=500",star:"⭐ 4.9",desc:"Dari Seller @Perkakas_Bangka. Baja chrome.",tags:"kunci pas perkakas",sizes:["14 Pcs","8 Pcs"],colors:["Silver"],slug:"kunci-pas"},
-{id:15,nama:"Bawang Merah Bangka 1kg",harga:38000,kat:"Sembako",lok:"Pangkal Pinang",seller:"@Petani_Bangka",img:"https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500",star:"⭐ 4.9",desc:"Dari Seller @Petani_Bangka. Panen baru.",tags:"bawang merah",sizes:["500gr","1kg"],colors:["Merah"],slug:"bawang-merah"},
-{id:20,nama:"Sandal Jepit Swallow Uk 39-43",harga:25000,kat:"Fashion",lok:"Pangkal Pinang",seller:"@Sandal_Bangka",img:"https://images.unsplash.com/photo-1603487742131-4160ec999306?w=500",star:"⭐ 4.8",desc:"Dari Seller @Sandal_Bangka. Uk 39-43.",tags:"sandal jepit swallow",sizes:["39","40","41","42","43"],colors:["Hitam","Biru","Merah"],slug:"sandal-jepit"},
-{id:21,nama:"Obeng Set 6 Pcs + Tespen - Magnetik",harga:45000,kat:"Perkakas",lok:"Pangkal Pinang",seller:"@Perkakas_Bangka",img:"https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=500",star:"⭐ 4.8",desc:"Dari Seller @Perkakas_Bangka. Plus minus magnetik.",tags:"obeng set tespen",sizes:["6 Pcs"],colors:["-"],slug:"obeng-set"},
-{id:22,nama:"Kompor Gas 2 Tungku - Garansi 1 Th",harga:285000,kat:"Elektronik",lok:"Pangkal Pinang",seller:"@Elektronik_Bangka",img:"https://images.unsplash.com/photo-1585515320310-259814833eec?w=500",star:"⭐ 4.9",desc:"Dari Seller @Elektronik_Bangka. Garansi 1 tahun.",tags:"kompor gas",sizes:["2 Tungku","1 Tungku"],colors:["Hitam"],slug:"kompor-gas"},
-{id:23,nama:"Jarum Pentul Kecil 1 Box Isi 20 Pcs",harga:12000,kat:"Fashion",lok:"Pangkal Pinang",seller:"@Jahit_Bangka",img:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",star:"⭐ 4.9",desc:"Dari Seller @Jahit_Bangka. Jarum pentul mini stainless.",tags:"jarum pentul jahit",sizes:["1 Box","3 Box"],colors:["Warna-Warni"],slug:"jarum-pentul"},
-{id:31,nama:"Keripik Pisang Balado 250gr",harga:25000,kat:"Makanan",lok:"Pangkal Pinang",seller:"@GorenganKriuk",img:"https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500",star:"⭐ 4.8",desc:"Dari Seller @GorenganKriuk. Renyah & pedas.",tags:"keripik pisang",sizes:["250gr","500gr"],colors:["-"],slug:"keripik-pisang"}
-];
-let katAktif="Semua",lokAktif="Semua Indonesia",cart=[],userLogin=null,otpBenar="",orderAktif=null,liveStep=0,detailId=null,selSize="",selWarna="",kataTerakhir="";
-function goPage(p,el){['home','video','jual','chat','akun'].forEach(x=>document.getElementById('page-'+x).classList.add('hide'));document.getElementById('page-'+p).classList.remove('hide');document.querySelectorAll('.bottom div').forEach(d=>d.classList.remove('active'));el.classList.add('active');window.scrollTo(0,0);if(p==='home')render();}
-function cariCepat(k){document.getElementById('searchInput').value=k;cariVTC();}
-function setKat(k,el){katAktif=k;document.querySelectorAll('.cat-item').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');render();}
-function setLok(l,el){lokAktif=l;document.getElementById('lokAktif').innerText=l;document.querySelectorAll('.pill-row button').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');render();}
-function saranVTC(){let q=document.getElementById('searchInput').value.toLowerCase();let box=document.getElementById('saranBox');if(q.length<1){box.style.display='none';return;}let saran=[];products.forEach(p=>{if((p.nama+" "+p.kat+" "+p.tags).toLowerCase().includes(q)) saran.push(p.nama);});if(saran.length==0) saran=[q, q+" - VTC SHOP Pangkal Pinang", q+" murah", q+" original"];saran=[...new Set(saran)].slice(0,6);box.innerHTML=saran.map(n=>"<div class=\"saran-item\" onclick=\"pilihSaran('"+n.replace(/'/g,'')+"')\"><span>🔍 "+n+"</span><span style=\"color:#FF5A00;font-size:11px\">VTC →</span></div>").join('');box.style.display='block';}
-function pilihSaran(n){document.getElementById('searchInput').value=n;document.getElementById('saranBox').style.display='none';cariVTC();}
-document.addEventListener('click',function(e){if(!e.target.closest('.searchbar')){document.getElementById('saranBox').style.display='none';}});
-async function cariVTC(){
-  let q=document.getElementById('searchInput').value.trim();
-  if(!q){alert("Ketik dulu mau cari apa");return;}
-  kataTerakhir=q;
-  document.getElementById('aiText').innerText="AI VTC: Lagi cari '"+q+"' di Seller VTC SHOP + Mesin VTC SHOP...";
-  document.getElementById('produk').innerHTML="<div style='grid-column:span 2;background:#fff;padding:20px;border-radius:12px;text-align:center'>🔍 VTC SHOP lagi cari <b>"+q+"</b>...<br><span style='font-size:12px;color:#888'>Mesin VTC SHOP • Seller Mitra Bangka • Kirim 38+ Provinsi</span></div>";
-  document.getElementById('produk').scrollIntoView({behavior:'smooth'});
-  let hasilVTC=products.filter(p=>(p.nama+" "+p.tags+" "+p.seller).toLowerCase().includes(q.toLowerCase()));
-  let hasilGoogle=[];
-  if(GOOGLE_API_KEY && GOOGLE_CX){
-    try{
-      let res=await fetch("https://www.googleapis.com/customsearch/v1?key="+GOOGLE_API_KEY+"&cx="+GOOGLE_CX+"&q="+encodeURIComponent(q+" harga beli")+"&num=8");
-      let data=await res.json();
-      if(data.items) hasilGoogle=data.items.map((item,i)=>({id:9000+i,nama:item.title.replace(/ - .*$/,'').substring(0,50)+" - "+q,harga:[15000,25000,35000,45000,85000,125000][i%6],kat:"Semua",lok:"Pangkal Pinang",seller:"@VTC_Partner_"+(i+1),img:item.pagemap&&item.pagemap.cse_thumbnail?item.pagemap.cse_thumbnail[0].src:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",star:"⭐ 4.8",desc:(item.snippet||"Produk Partner VTC SHOP. COD Pangkal Pinang, Kirim 38+ Provinsi.").substring(0,120),tags:q.toLowerCase(),sizes:["Standar"],colors:["-"],slug:"vtc-"+q.toLowerCase()+"-"+i}));
-    }catch(e){}
-  }
-  let semua=[...hasilVTC,...hasilGoogle];
-  semua=semua.filter((v,i,a)=>a.findIndex(t=>t.nama===v.nama)===i);
-  if(semua.length===0){
-    for(let i=0;i<4;i++){ semua.push({id:Date.now()+i,nama:q+" - Original Premium "+(i+1),harga:[12000,25000,35000,45000][i],kat:"Semua",lok:"Pangkal Pinang",seller:i===0?"@VTC_BANGKA_BLOK_UMAMI":"@VTC_Partner_"+(i+1),img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",star:"⭐ 4.8",desc:"Dari Seller VTC SHOP. Stok ready, COD Pangkal Pinang, Kirim 38+ Provinsi.",tags:q.toLowerCase(),sizes:["Standar"],colors:["-"],slug:"vtc-"+q.toLowerCase()}); }
-  }
-  semua.forEach(p=>{if(!products.find(x=>x.nama===p.nama)) products.unshift(p);});
-  render();
-  document.getElementById('aiText').innerText="AI VTC: Ketemu "+semua.length+" produk untuk '"+q+"' dari Seller VTC SHOP + Mesin VTC SHOP. Semua sudah dicek, COD Pangkal Pinang, Garansi Uang Kembali 100%.";
-  toast("✅ VTC SHOP nemu "+semua.length+" produk untuk '"+q+"'");
-}
-function render(){let q=document.getElementById('searchInput').value.toLowerCase();let list=products.filter(p=>(katAktif==="Semua"||p.kat===katAktif)&&(lokAktif==="Semua Indonesia"||p.lok===lokAktif)&&((p.nama+" "+p.kat+" "+p.tags+" "+p.seller).toLowerCase().includes(q)));document.getElementById('produk').innerHTML=list.map(p=>"<div class=\"card\"><span class=\"badge-verified\">✅ Seller Terverifikasi</span><img src=\""+p.img+"\" onclick=\"openDetail("+p.id+")\"><div class=\"card-body\"><span class=\"tag\">"+p.kat+"</span><h3>"+p.nama+"</h3><div class=\"price\">Rp "+p.harga.toLocaleString('id-ID')+"</div><div class=\"loc\">📍 "+p.lok+" • "+p.star+" • Kirim 38+ Provinsi</div><div class=\"seller\">👤 <b>"+p.seller+"</b></div><button class=\"add\" onclick=\"openDetail("+p.id+")\">LIHAT DETAIL</button><button class=\"add2\" onclick=\"addCart("+p.id+")\">+ KERANJANG</button><button style=\"width:100%;margin-top:5px;background:#fff;color:#111;border:1px solid #ddd;padding:7px;border-radius:10px;font-size:11px;font-weight:700\" onclick=\"bukaTokoShopee()\">🛒 LIHAT DI SHOPEE - jmf_22102011</button></div></div>").join('')||"<div style=\"grid-column:span 2;background:#fff;padding:16px;border-radius:12px;text-align:center\">Produk VTC SHOP untuk \"<b>"+q+"</b>\" lagi dicarikan seller.</div>";}
-function buatRequest(){let b=document.getElementById('reqBarang').value;if(!b){alert("Tulis dulu barang yang dicari");return;}bukaWA("Halo VTC SHOP! Saya Request barang: "+b+". Tolong infokan ke Seller VTC SHOP.");toast("Request '"+b+"' dikirim ke Seller!");}
-function openDetail(id){let p=products.find(x=>x.id===id);detailId=id;selSize=p.sizes?p.sizes[0]:"Standar";selWarna=p.colors?p.colors[0]:"-";document.getElementById('dImg').src=p.img;document.getElementById('dNama').innerText=p.nama;document.getElementById('dHarga').innerText="Rp "+p.harga.toLocaleString('id-ID')+" (Harga VTC, Sudah + Fee Rp 5.000)";document.getElementById('dSeller').innerText="Seller: "+p.seller+" • Lokasi: "+p.lok+" • "+p.star+" • Toko Shopee: jmf_22102011";document.getElementById('dInfo').innerText=p.desc;document.getElementById('dSize').innerHTML=(p.sizes||["Standar"]).map(s=>"<span class=\"chip "+(s===selSize?'sel':'')+"\" onclick=\"pilihChip(this,'size','"+s+"')\">"+s+"</span>").join('');document.getElementById('dWarna').innerHTML=(p.colors||["-"]).map(c=>"<span class=\"chip "+(c===selWarna?'sel':'')+"\" onclick=\"pilihChip(this,'warna','"+c+"')\">"+c+"</span>").join('');document.getElementById('copyLink').innerText=location.origin+location.pathname+"?id="+p.id;document.getElementById('detailModal').style.display='flex';}
-function pilihChip(el,t,val){el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');if(t==='size')selSize=val;else selWarna=val;}
-function closeDetail(){document.getElementById('detailModal').style.display='none';}
-function chatSeller(){let p=products.find(x=>x.id===detailId);bukaWA("",p.seller,p.nama,p.harga);}
-function addFromDetail(){addCart(detailId);closeDetail();}
-function beliSekarang(){addCart(detailId);closeDetail();goPage('home',document.querySelectorAll('.bottom div')[0]);}
-function addCart(id){let p=products.find(x=>x.id===id);cart.push(p);updateCart();toast("✅ "+p.nama+" dari "+p.seller+" masuk keranjang!");}
-function updateCart(){let total=cart.reduce((a,b)=>a+b.harga,0);document.getElementById('totalHarga').innerText="Rp "+total.toLocaleString('id-ID');document.getElementById('cartList').innerHTML=cart.length?cart.map(c=>"<div class=\"cart-item\"><span>"+c.nama+"<br><small style=\"color:#888\">Seller: "+c.seller+" • Fee VTC Rp 5.000 • Garansi 100%</small></span><b>Rp "+c.harga.toLocaleString('id-ID')+"</b></div>").join(''):'<p style="color:#999">Belum ada produk.</p>';}
-function shareWA(){let p=products.find(x=>x.id===detailId);let url="https://api.whatsapp.com/send?text="+encodeURIComponent("Cek di VTC SHOP: "+p.nama+" dari "+p.seller+" Rp "+p.harga.toLocaleString('id-ID')+" - Toko Shopee jmf_22102011");window.open(url,"_blank");}
-function salinLink(){let t=document.getElementById('copyLink').innerText;navigator.clipboard.writeText("https://"+t);toast("Link disalin!");}
-function postingJualan(){let n=document.getElementById('jualNama').value;let h=parseInt(document.getElementById('jualHarga').value);let k=document.getElementById('jualKat').value;let kota=document.getElementById('jualKota').value;let d=document.getElementById('jualDesk').value;if(!n||!h){alert("Isi Nama Barang & Harga dulu!");return;}products.unshift({id:Date.now(),nama:n,harga:h,kat:k,lok:kota,seller:userLogin?"@Seller_"+userLogin.slice(-4):"@Kamu_Seller",img:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",star:"⭐ Baru",desc:d||"Barang dari Seller baru VTC SHOP.",tags:n.toLowerCase(),sizes:["Standar"],colors:["-"],slug:"baru-"+n.replace(/\s/g,'-').toLowerCase()});render();renderMy();toast("🎉 Jualan '"+n+"' tayang! Kamu Seller baru VTC SHOP!");document.getElementById('jualNama').value="";goPage('home',document.querySelectorAll('.bottom div')[0]);}
-function renderMy(){document.getElementById('myProduk').innerHTML=products.slice(0,5).map(p=>"<div style=\"display:flex;gap:10px;align-items:center;border-bottom:1px solid #eee;padding:8px 0\"><img src=\""+p.img+"\" style=\"width:50px;height:50px;object-fit:cover;border-radius:8px\"><div><b style=\"font-size:13px\">"+p.nama+"</b><br><span style=\"font-size:12px\">Rp "+p.harga.toLocaleString('id-ID')+" • "+p.seller+"</span></div></div>").join('');}
-function openLogin(){document.getElementById('loginModal').style.display='flex';}
-function closeLogin(){document.getElementById('loginModal').style.display='none';}
-function kirimOTP(){let no=document.getElementById('noWA').value;if(no.length<10){alert("Masukkan No WA yang benar");return;}otpBenar=Math.floor(100000+Math.random()*900000).toString();document.getElementById('otpArea').style.display='block';document.getElementById('otpInput').value=otpBenar;document.getElementById('otpCode').innerText=otpBenar.slice(0,3)+"*** (Otomatis Terisi)";toast("✅ Kode OTP terkirim ke WA "+no.slice(0,4)+"****"+no.slice(-3)+" - Otomatis terisi!");setTimeout(function(){verifikasiOTP();},1500);}
-function verifikasiOTP(){let inp=document.getElementById('otpInput').value;if(inp===otpBenar){userLogin=document.getElementById('noWA').value;document.getElementById('akunInfo').innerText="Login sebagai: "+userLogin.slice(0,4)+"****"+userLogin.slice(-3)+" ✅ Kamu bisa Jual & Beli di VTC SHOP.";document.getElementById('nama').value="User "+userLogin.slice(-4);closeLogin();toast("Login Berhasil! Selamat datang di VTC SHOP!");}else{alert("Kode OTP salah!");}}
-function checkoutWA(){if(cart.length==0){alert("Keranjang kosong!");return;}if(!userLogin){alert("Login OTP dulu!");openLogin();return;}let nama=document.getElementById('nama').value||userLogin;let alamat=document.getElementById('alamat').value||"-";let bayar=document.getElementById('bayar').value;let kurir=document.getElementById('kurir').value;let catatan=document.getElementById('catatan').value||"-";let total=cart.reduce((a,b)=>a+b.harga,0);orderAktif={nama,total,items:cart.length};document.getElementById('liveBox').classList.remove('hide');liveStep=0;updateLive();document.getElementById('liveBox').scrollIntoView({behavior:'smooth'});let pesan="Halo VTC SHOP! ORDER BARU VIA VTC SHOP:%0A%0A"+cart.map(c=>"• "+c.nama+" - Rp "+c.harga.toLocaleString('id-ID')+" (Seller: "+c.seller+")").join("%0A")+"%0A%0ATOTAL: Rp "+total.toLocaleString('id-ID')+" (Sudah Termasuk Fee VTC & Garansi)%0A%0ANama Pembeli: "+nama+"%0ANo WA Pembeli: "+userLogin+"%0AAlamat: "+alamat+"%0APembayaran: "+bayar+"%0AKurir: "+kurir+"%0ACatatan: "+catatan+"%0A%0AToko Shopee: VTC BANGKA BLOK UMAMI (jmf_22102011)";bukaWA(pesan);}
-function updateLive(){let steps=["Order Masuk ke VTC SHOP - Admin teruskan ke Seller","Seller Siapkan Barang - Dikemas","Kurir VTC OTW - COD ke Pembeli","Barang Sampai - Transaksi Selesai ✅"];let kurirInfo=["VTC: Menunggu Seller konfirmasi","Seller: Sedang packing","Kurir: Bang Udin OTW ke lokasi kamu!","Selesai! Uang diteruskan ke Seller."];let persen=[25,50,75,100][liveStep]||25;document.getElementById('liveBar').style.width=persen+"%";document.getElementById('liveContent').innerHTML="<div class=\"live\"><b>Order #VTC-"+Math.floor(1000+Math.random()*9000)+"</b><br>"+(orderAktif?orderAktif.items+" item • Rp "+orderAktif.total.toLocaleString('id-ID')+" • Via VTC SHOP":"")+"</div>";document.getElementById('liveStatus').innerText="Status: "+steps[liveStep];document.getElementById('liveKurir').innerText=kurirInfo[liveStep];if(liveStep<3){setTimeout(()=>{liveStep++;updateLive();},6000);}}
-function chatAdmin(){bukaWA("Halo Admin VTC SHOP! Saya mau tanya soal jual beli di VTC SHOP. Toko: VTC BANGKA BLOK UMAMI (jmf_22102011)");}
-function cekWA(){bukaWA("Halo VTC SHOP! Saya mau cek status transaksi saya. Admin:");}
-function bukaWA(pesan){
-let link = "https://wa.me/6283878502333?text=" + encodeURIComponent(pesan);
-window.open(link, "_blank");
-}
-render();renderMy();
-</script>
-<script>
-setInterval(()=>{
-  document.querySelectorAll('*').forEach(el=>{
-    if(el.textContent==='Powered by Netlify'){
-      el.closest('div').style.display='none';
-    }
-  });
-},300);
-</script>
-<button id="installBtn" style="display:none;position:fixed;bottom:90px;left:50%;transform:translateX(-50%);z-index:9999;background:#FFD700;color:#000;padding:14px 22px;border-radius:50px;border:none;font-weight:bold;box-shadow:0 4px 20px rgba(0,0,0,0.4);">⬇️ DOWNLOAD APLIKASI VTC SHOP</button>
-<script>
-let deferredPrompt;
-const btn = document.getElementById('installBtn');
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  btn.style.display = 'block';
-});
-btn.addEventListener('click', async () => {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    btn.style.display = 'none';
-  } else {
-    alert('Di HP Android: Pencet titik 3 > Tambahkan ke Layar Utama\nDi iPhone: Pencet Share > Add to Home Screen');
-  }
-});
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
-</script>
-<!-- ===== VTC LIVE ===== -->
-<div id="vtcLive" style="background:#fff7ed;border-radius:20px;margin:12px;padding:14px">
-<h2 style="margin:0;font-size:19px">🔴 VTC LIVE - Nonton Semua Seller</h2>
-<p style="margin:6px 0;color:#666;font-size:13px">Satu aplikasi buat nonton Live TikTok, FB & Shopee seller Bangka!</p>
-<div id="liveList"></div>
-<div style="background:#000;color:#fff;border-radius:14px;padding:14px;margin-top:10px">
-<b>📡 Kamu Seller? Lagi LIVE?</b><br>
-<input id="sellerName" placeholder="Nama Toko lo" style="width:100%;padding:10px;border-radius:10px;border:0;margin:8px 0">
-<input id="sellerLink" placeholder="Paste Link Live TikTok / FB / Shopee" style="width:100%;padding:10px;border-radius:10px;border:0;margin-bottom:8px">
-<select id="sellerPlatform" style="width:100%;padding:10px;border-radius:10px;border:0;margin-bottom:10px"><option>TikTok</option><option>Facebook</option><option>Shopee</option><option>YouTube</option></select>
-<button onclick="addLive()" style="width:100%;background:#ff6a00;color:#fff;border:0;padding:12px;border-radius:12px;font-weight:800">🔴 GO LIVE SEKARANG!</button>
-</div></div>
-<script>
-let lives=[
-{name:'VTC BANGKA - Bumbu Umami',platform:'TikTok',viewers:128,link:'https://www.tiktok.com/@jmf_22102011/live',desc:'Diskon Umami + Terasi Toboali!'},
-{name:'Terasi Toboali Asli',platform:'Facebook',viewers:86,link:'https://www.facebook.com/',desc:'Masak live, tanya-tanya bumbu!'},
-{name:'Keripik Bangka Crispy',platform:'Shopee',viewers:212,link:'https://shopee.co.id/',desc:'Keripik baru mateng!'}];
-function renderLive(){document.getElementById('liveList').innerHTML=lives.map(l=>`<div style="background:#fff;border-radius:14px;padding:12px;margin-bottom:10px;display:flex;gap:10px;align-items:center"><div style="width:48px;height:48px;border-radius:50%;background:#ff6a00;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800">${l.name.charAt(0)}</div><div style="flex:1"><b>${l.name}</b> <span style="background:red;color:#fff;font-size:11px;padding:2px 7px;border-radius:20px">● LIVE</span><br><span style="font-size:12px;color:#666">${l.platform} • 👀 ${l.viewers} nonton</span><br><span style="font-size:12px">${l.desc}</span></div><a href="${l.link}" target="_blank" style="background:#000;color:#fff;padding:8px 12px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:800">▶️ NONTON</a></div>`).join('')}
-function addLive(){let n=document.getElementById('sellerName').value;let link=document.getElementById('sellerLink').value;let p=document.getElementById('sellerPlatform').value;if(!n||!link){alert('Isi Nama Toko & Link Live dulu!');return;}if(!link.startsWith('http'))link='https://'+link;lives.unshift({name:n,platform:p,viewers:12,link:link,desc:'Live dari '+p});renderLive();alert('Berhasil! Live lo udah muncul!')}
-renderLive();
-</script>
-<!-- ===== END VTC LIVE ===== -->
-<script>
-// PINDAHIN VTC LIVE KE TENGAH
-setTimeout(function(){
-  var v = document.getElementById('vtcLive');
-  if(!v) return;
-  // Cari kotak "Kenapa Pindah Ke VTC SHOP"
-  var all = document.querySelectorAll('div, section');
-  for(var i=0;i<all.length;i++){
-    if(all[i].innerText && all[i].innerText.includes('Kenapa Pindah Ke VTC SHOP')){
-      all[i].parentNode.insertBefore(v, all[i].nextSibling);
-      break;
-    }
-  }
-}, 500);
-<!-- SUARA NOTIF VTC SHOP CEWEK -->
-<button id="btnSuara" onclick="aktifkanSuara()" style="position:fixed;bottom:90px;right:10px;z-index:9999;background:#ff6a00;color:#fff;border:none;padding:10px 14px;border-radius:20px;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.3);">🔊 Aktifkan Suara Notif</button>
-
-<script>
-let suaraAktif = false;
-let suaraCewek = null;
-
-function cariSuaraCewek(){
-  let voices = speechSynthesis.getVoices();
-  suaraCewek = voices.find(v => v.lang.includes('id') && v.name.toLowerCase().includes('female'))
-  || voices.find(v => v.lang === 'id-ID' && v.name.includes('Google'))
-  || voices.find(v => v.lang.includes('id-ID'))
-  || voices.find(v => v.lang.includes('id'));
-}
-speechSynthesis.onvoiceschanged = cariSuaraCewek;
-cariSuaraCewek();
-
-function aktifkanSuara(){
-  suaraAktif = true;
-  document.getElementById('btnSuara').innerText = '✅ Suara Aktif';
-  document.getElementById('btnSuara').style.background = 'green';
-  ngomong('VTC Shop, notifikasi suara sudah aktif, selamat berbelanja');
-}
-
-function ngomong(teks){
-  if(!suaraAktif) return;
-  speechSynthesis.cancel();
-  setTimeout(()=>{
-    let u = new SpeechSynthesisUtterance(teks);
-    u.lang = 'id-ID';
-    if(suaraCewek) u.voice = suaraCewek;
-    u.rate = 1.05;
-    u.pitch = 1.3;
-    u.volume = 1;
-    speechSynthesis.speak(u);
-  }, 300);
-}
-
-function notifBaru(nama){
-  ngomong('VTC Shop, ' + nama + ' baru saja live, ayo nonton sekarang');
-}
-</script> <!-- TAMBAHAN AUTO CHAT BUNYI -->
-<script>
-let chatTerakhir = document.body.innerHTML.length;
-document.addEventListener('click', function(){
-  if(typeof suaraAktif !== 'undefined' && !suaraAktif){
-    suaraAktif = true;
-    let b = document.getElementById('btnSuara');
-    if(b){ b.innerText = '✅ Suara Chat Aktif'; b.style.background = 'green'; }
-  }
-});
-let pantauChat = new MutationObserver(()=>{
-  let sekarang = document.body.innerHTML.length;
-  if(sekarang > chatTerakhir + 200){
-    chatTerakhir = sekarang;
-    if(typeof ngomong === 'function') ngomong('VTC Shop, ada pesan baru masuk, ayo cek chat sekarang');
-  } else { chatTerakhir = sekarang; }
-});
-pantauChat.observe(document.body, {childList:true, subtree:true, characterData:true});
-</script>
-<!-- FIX LIVE + SUARA - FINAL -->
-<script>
-setTimeout(()=>{
-  function cariTeks(t){
-    let a=document.querySelectorAll('*');
-    for(let e of a){ if(e.children.length==0 && (e.innerText||'').includes(t)) return e; }
-    return null;
-  }
-  function naik(e,n){ let p=e; for(let i=0;i<n && p.parentElement;i++) p=p.parentElement; return p; }
-  let jK=cariTeks('Kenapa Pindah Ke VTC SHOP?');
-  let jL=cariTeks('VTC LIVE - Nonton Semua Seller');
-  if(jK && jL){
-    let kK=naik(jK,5); let kL=naik(jL,5);
-    kK.parentElement.insertBefore(kL,kK);
-    kK.style.display='none'
-    }
-},2000);
-</script>
-<script>
-let udahNgomong=false;
-function ngomongOtomatis(){
-if(udahNgomong) return; udahNgomong=true;
-let teks='Selamat datang di VTC SHOP! Satu aplikasi untuk semua kebutuhan. Belanja murah, nonton live, dan main game seru!';
-let u=new SpeechSynthesisUtterance(teks);
-u.lang='id-ID'; u.rate=1;
-window.speechSynthesis.speak(u);
-}
-window.addEventListener('load',function(){ setTimeout(ngomongOtomatis,1000); });
-document.addEventListener('click',ngomongOtomatis);
-document.addEventListener('touchstart',ngomongOtomatis);
-</script>
-  <!-- ===== LIVE VTC SHOP ===== -->
-<div style="background:#111;color:#fff;padding:20px;border-radius:15px;margin:15px">
-<h2>🔴 LIVE VTC SHOP</h2>
-<p>🔴 <b>128 orang</b> lagi nonton - Toko Bangka Grosir lagi live spill barang!</p>
-<div style="background:#000;height:220px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center">
-<b>▶ LIVE SEKARANG<br><span style="font-size:13px">Klik untuk nonton live seller</span></b>
-</div>
-<p>💬 rina: kak spill harga...<br>💬 budi: COD bisa gak min?<br>💬 ani: cek stok dong!</p>
-<button style="width:100%;padding:12px;background:#ff0033;color:#fff;border:none;border-radius:10px;font-weight:bold">MASUK LIVE</button>
-</div>
-
-<!-- ===== HIBURAN 1 APLIKASI ===== -->
-<div style="background:#fff;padding:20px;border-radius:15px;margin:15px;border:1px solid #eee">
-<h2>🎬 HIBURAN - 1 APLIKASI SEMUA ADA</h2>
-<p>Jualan sambil nonton, belanja sambil hiburan!</p>
-<div style="display:flex;gap:8px">
-<button onclick="showSosmed('fb')" style="flex:1;padding:10px;background:#1877F2;color:#fff;border:none;border-radius:8px">Facebook</button>
-<button onclick="showSosmed('tiktok')" style="flex:1;padding:10px;background:#000;color:#fff;border:none;border-radius:8px">TikTok</button>
-<button onclick="showSosmed('ig')" style="flex:1;padding:10px;background:#E1306C;color:#fff;border:none;border-radius:8px">Instagram</button>
-<button onclick="showSosmed('yt')" style="flex:1;padding:10px;background:#FF0000;color:#fff;border:none;border-radius:8px">YouTube</button>
-</div>
-<div id="sosmedBox" style="margin-top:12px;background:#f5f5f5;height:200px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center">Pilih Facebook / TikTok / IG / YouTube<br>Video langsung kebuka di sini</div>
-</div>
-
-<!-- ===== VIP SELLER LIVE ===== -->
-<div style="background:linear-gradient(135deg,#FFD700,#FFA500);padding:20px;border-radius:15px;margin:15px">
-<h2>👑 VIP SELLER - LIVE JUALAN</h2>
-<p><b>Seller VIP tokonya paling atas, rame pengunjung!</b></p>
-<p>✅ COD, JNE, J&T, GoSend - Bayar di tempat, gak perlu transfer.<br>
-✅ Chat Langsung Admin - Bales cepet, bahasa Bangka ngerti.<br>
-✅ Seller Buka Toko GRATIS - Jualan gratis, tanpa potongan admin.</p>
-<p>✅ Bisa LIVE di VTC SHOP<br>
-✅ Jualan sambil ditonton ribuan orang<br>
-✅ Ada Gift / Saweran dari penonton<br>
-✅ Fee OTOMATIS kepotong, gak ribet<br>
-✅ <b>Sekarang GRATIS - Fee mulai dipotong kalo udah rame!</b></p>
-<p>💰 Contoh: Jual 100rb -> Seller 95rb, VTC 5rb. Otomatis!</p>
-<p>🌹 Mawar 5rb | 🔥 Api 10rb | 👑 Mahkota 50rb</p>
-<a href="https://wa.me/628xxx" style="display:block;text-align:center;background:#000;color:#FFD700;padding:14px;border-radius:10px;font-weight:bold;text-decoration:none">DAFTAR JADI VIP - GRATIS</a>
-</div>
-<!-- GAME TANAM VTC - GANTI KOTAK KENAPA PINDAH -->
-<div id="gameVTC" style="max-width:480px;margin:16px auto;background:#fff;border-radius:20px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.1);font-family:sans-serif;text-align:center;border:2px solid #22c55e">
-  <h2 style="margin:0">🌱 TANAM VTC - MAIN & DAPET HADIAH!</h2>
-  <p style="font-size:13px;color:#666;margin:4px 0 10px">Siram tiap hari -> Panen -> Buka Kotak Hadiah!</p>
-
-  <div style="font-size:70px" id="tanaman">🌱</div>
-  <div style="background:#eee;border-radius:20px;overflow:hidden;height:14px;margin:10px 0">
-    <div id="barTanam" style="width:0%;height:100%;background:#22c55e;transition:.3s"></div>
-  </div>
-  <p id="statusTanam" style="font-weight:bold">Siram 0 / 5 untuk Panen!</p>
-  <p>💰 Koin VTC Kamu: <b id="koinVTC">0</b></p>
-
-  <button onclick="siram()" style="background:#22c55e;color:#fff;border:none;padding:12px 20px;border-radius:12px;font-weight:bold;font-size:16px;width:100%">💧 SIRAM SEKARANG</button>
-
-  <div id="areaKotak" style="display:none;margin-top:16px;border-top:1px dashed #ddd;padding-top:14px">
-    <h3>🎁 PANEN BERHASIL! Pilih 1 Kotak!</h3>
-    <div style="display:flex;gap:10px;justify-content:center">
-      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
-      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
-      <button onclick="bukaKotak(this)" style="font-size:40px;background:#fef3c7;border:2px solid #f59e0b;border-radius:14px;padding:10px">📦</button>
-    </div>
-    <p id="hasilKotak" style="font-weight:bold;color:#dc2626;margin-top:10px"></p>
-    <button onclick="klaimVoucher()" id="btnKlaim" style="display:none;background:#ee4d2d;color:#fff;border:none;padding:10px 16px;border-radius:10px;font-weight:bold">KLAIM & BELANJA SEKARANG 🛒</button>
-  </div>
-
-  <div style="margin-top:16px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:10px;font-size:13px">
-    🏪 <b>SELLER!</b> Mau voucher lo masuk ke Kotak Hadiah?<br>
-    <b>Cuma 20rb / minggu!</b><br>
-    <a href="https://wa.me/6283878502333" style="display:inline-block;margin-top:6px;background:#25D366;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:bold">Chat Admin - Pasang 20rb ➡️</a>
-  </div>
-</div>
-
-<script>
-let siramKe = 0;
-let koin = parseInt(localStorage.getItem('koinVTC')||'0');
-document.getElementById('koinVTC').innerText = koin;
-let hadiahList = [
-  "🎉 VOUCHER 10RB dari Toko Bangka Grosir!",
-  "🎉 GRATIS ONGKIR dari VTC SHOP!",
-  "🎉 50 KOIN VTC!",
-  "😅 ZONK! Siram lagi besok ya!",
-  "🎉 VOUCHER 5RB dari Seller Pangkalpinang!"
-];
-function siram(){
-  if(siramKe>=5) return alert('Udah panen! Pilih kotak dulu!');
-  siramKe++;
-  document.getElementById('barTanam').style.width = (siramKe*20)+'%';
-  document.getElementById('tanaman').innerText = ['🌱','🌿','🌱','🌿','🌳','🌳'][siramKe];
-  document.getElementById('statusTanam').innerText = 'Siram '+siramKe+' / 5 untuk Panen!';
-  if(siramKe>=5){
-    document.getElementById('areaKotak').style.display='block';
-    document.getElementById('statusTanam').innerText = '🌳 SIAP PANEN! Pilih Kotak di bawah!';
-  }
-}
-function bukaKotak(btn){
-  let hadiah = hadiahList[Math.floor(Math.random()*hadiahList.length)];
-  btn.innerText = '🎁';
-  document.getElementById('hasilKotak').innerText = hadiah;
-  document.getElementById('btnKlaim').style.display='inline-block';
-  if(hadiah.includes('50 KOIN')){ koin+=50; localStorage.setItem('koinVTC', koin); document.getElementById('koinVTC').innerText = koin; }
-  setTimeout(()=>{ siramKe=0; document.getElementById('barTanam').style.width='0%'; document.getElementById('tanaman').innerText='🌱'; }, 1000);
-}
-function klaimVoucher(){ alert('Voucher tersimpan! Yuk belanja di VTC SHOP sekarang!'); window.scrollTo({top:0, behavior:'smooth'}); }
-</script>
-<!-- AKHIR GAME VTC -->
-<script>
-function showSosmed(p){
-let box=document.getElementById('sosmedBox');
-if(p=='fb') box.innerHTML='📘 Facebook Feed<br>Video & Live FB Seller di sini';
-if(p=='tiktok') box.innerHTML='🎵 TikTok Feed<br>Video TikTok Seller di sini';
-if(p=='ig') box.innerHTML='📸 Instagram Feed<br>Reels IG Seller di sini';
-if(p=='yt') box.innerHTML='▶ YouTube Feed<br>Video YouTube Seller di sini';
-}
-<!-- ===== VTC SHOP OTOMATIS - TANPA KLIK ===== -->
-<div id="notifVTC" style="display:none;position:fixed;top:10px;left:10px;right:10px;z-index:99999;background:#fff;border-radius:14px;padding:12px;box-shadow:0 8px 25px rgba(0,0,0,0.3);align-items:center;gap:10px">
-<div style="background:#FFD700;width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px">🛒</div>
-<div style="flex:1"><b>VTC SHOP • baru saja</b><br><span id="teksNotifVTC">Ada pesanan baru!</span></div>
-<button onclick="document.getElementById('notifVTC').style.display='none'" style="border:none;background:none;font-size:18px">✕</button>
-</div>
-
-<script>
-let suaraAktif = false;
-// OTOMATIS AKTIF: Begitu user sentuh / scroll / klik apapun, suara langsung aktif!
-function autoAktif(){
-  if(suaraAktif) return;
-  suaraAktif = true;
-  console.log('Suara VTC aktif otomatis');
-}
-document.addEventListener('touchstart', autoAktif);
-document.addEventListener('click', autoAktif);
-document.addEventListener('scroll', autoAktif);
-
-function bunyiVTCShop(){
-  if(!suaraAktif) return;
-  if(navigator.vibrate) navigator.vibrate([100,50,100]);
-  try{
-    let u = new SpeechSynthesisUtterance('VTC Shop!');
-    u.lang='id-ID'; u.rate=1.1; u.pitch=1.2;
-    window.speechSynthesis.speak(u);
-  }catch(e){}
-}
-function notifVTC(teks){
-  document.getElementById('teksNotifVTC').innerHTML = teks;
-  let n = document.getElementById('notifVTC');
-  n.style.display='flex';
-  bunyiVTCShop();
-  setTimeout(function(){ n.style.display='none' },4000);
-}
-// NOTIF OTOMATIS TERUS MENERUS - TIAP 12 DETIK GANTI
-let dataNotif = [
-'🛒 Rina dari Pangkalpinang order COD 2pcs!',
-'🔴 Toko Bangka Grosir LIVE sekarang!',
-'👑 Seller baru gabung jadi VIP!',
-'🛒 Budi order J&T ke Sungailiat!',
-'🎁 Promo: Gratis ongkir GoSend hari ini!',
-'🔴 LIVE: Spill baju 50rb-an!'
-];
-let i = 0;
-setInterval(function(){
-  notifVTC(dataNotif[i]);
-  i = (i+1) % dataNotif.length;
-}, 12000);
-</script>
+let produk=[{nama:"Sepatu VTC Original",harga:185000,img:"https://picsum.photos/400/300?11"},{nama:"Jaket VTC MEGA STORE",harga:250000,img:"https://picsum.photos/400/300?12"},{nama:"Headset Bluetooth VTC",harga:99000,img:"https://picsum.photos/400/300?13"},{nama:"Tas Ransel VTC",harga:145000,img:"https://picsum.photos/400/300?14"},{nama:"Jam Tangan VTC",harga:320000,img:"https://picsum.photos/400/300?15"},{nama:"Kaos VTC Premium",harga:85000,img:"https://picsum.photos/400/300?16"}];
+let cart=0,total=0,deferredPrompt=null;
+function tampilProduk(f=""){let l=document.getElementById("produkList");l.innerHTML="";produk.filter(p=>p.nama.toLowerCase().includes(f.toLowerCase())).forEach(p=>{l.innerHTML+=`<div class="card"><img src="${p.img}"><h4>${p.nama}</h4><p>Rp ${p.harga.toLocaleString('id-ID')}</p><button onclick="beli(${p.harga})">+ Beli</button></div>`})}
+function beli(h){cart++;total+=h;document.getElementById("cartCount").innerText=cart;document.getElementById("cartTotal").innerText=total.toLocaleString('id-ID');alert("Ditambah ke keranjang! Total Rp "+total.toLocaleString('id-ID'))}
+function cariBarang(){tampilProduk(document.getElementById("cari").value)}
+function pindah(n,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('p-'+n).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('on'));el.classList.add('on');window.scrollTo(0,0)}
+function tambahJualan(){let n=document.getElementById("jNama").value,h=document.getElementById("jHarga").value,f=document.getElementById("jFoto").value;if(!n||!h){alert("Isi Nama & Harga dulu!");return}produk.unshift({nama:n,harga:parseInt(h),img:f||"https://picsum.photos/400/300?99"});tampilProduk();document.getElementById("jualOk").innerText="✅ Berhasil! Barang lu udah muncul di Beranda!";pindah('beranda',document.querySelector('nav button'))}
+function kirimChat(){let v=document.getElementById("chatInput").value;if(!v)return;let b=document.getElementById("chatBox");b.innerHTML+=`<div class="msg me">${v}</div>`;document.getElementById("chatInput").value="";setTimeout(()=>{b.innerHTML+=`<div class="msg">Admin: Siap! Mau order yang mana? 🙏</div>`;b.scrollTop=b.scrollHeight},800);b.scrollTop=b.scrollHeight}
+function kosongKeranjang(){cart=0;total=0;document.getElementById("cartCount").innerText=0;document.getElementById("cartTotal").innerText=0;alert("Keranjang dikosongkan!")}
+function setTema(t){if(t=='gelap'){document.body.classList.add('dark');document.getElementById("btnGelap").style.background="#FF6B00";document.getElementById("btnGelap").style.color="#fff";document.getElementById("btnTerang").style.background="#fff";document.getElementById("btnTerang").style.color="#000"}else{document.body.classList.remove('dark');document.getElementById("btnTerang").style.background="#FF6B00";document.getElementById("btnTerang").style.color="#fff";document.getElementById("btnGelap").style.background="#fff";document.getElementById("btnGelap").style.color="#000"}}
+function setHuruf(u){if(u=='besar')document.body.classList.add('big');else document.body.classList.remove('big')}
+function toggleManula(){let b=document.body;let s=document.getElementById("manulaSwitch");b.classList.toggle('manula');s.classList.toggle('on');if(b.classList.contains('manula')){alert("👴 MODE MANULA AKTIF! Tombol jadi SUPER GEDE!")}else{alert("Mode Manula dimatikan")}}
+function gantiBahasa(){let v=document.getElementById("pilihBahasa").value;if(v=='en'){document.getElementById("t-sub").innerText="One App For Everything";document.querySelector(".n-beranda").innerText="Home";document.querySelector(".n-video").innerText="Video";document.querySelector(".n-jual").innerText="Sell";document.querySelector(".n-chat").innerText="Chat";document.querySelector(".n-saya").innerText="Me";document.getElementById("t-jualBtn").innerText="+ POST FOR SALE NOW";alert("Language changed to English!")}else{location.reload()}}
+window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById("installInfo").innerText="✅ Siap di-install, pencet tombol di atas!"});
+function installApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(r=>{if(r.outcome=='accepted')alert("✅ Berhasil di-install! Cek icon VTC MEGA STORE di HP lu!");deferredPrompt=null})}else{alert("Cara Install:\n\nANDROID: Chrome > titik 3 kanan atas > Tambahkan ke Layar Utama / Install Aplikasi\n\nIPHONE: Safari > tombol Share > Tambah ke Layar Utama")}}
+tampilProduk();
 </script>
 </body>
-  <!-- FIREBASE VTC - TEMPELAN BARU, JANGAN HAPUS YANG LAMA -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",
-  authDomain: "vtc-mega-shop-resmi.firebaseapp.com",
-  projectId: "vtc-mega-shop-resmi",
-  storageBucket: "vtc-mega-shop-resmi.firebasestorage.app",
-  messagingSenderId: "959376548779",
-  appId: "1:959376548779:web:45ceae80758eefab2a68ee",
-  measurementId: "G-TDCL3505F2"
-};
-try{
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const snap = await getDocs(collection(db,"products"));
-  window.VTC_FIREBASE_PRODUCTS = [];
-  snap.forEach(d=>{ window.VTC_FIREBASE_PRODUCTS.push({id:d.id, ...d.data()}) });
-  console.log("VTC Firebase OK:", window.VTC_FIREBASE_PRODUCTS.length, "produk");
-  if(window.VTC_FIREBASE_PRODUCTS.length>0 && typeof notifVTC==="function"){
-    notifVTC("Firebase nyambung! "+window.VTC_FIREBASE_PRODUCTS.length+" produk dari Firestore!");
-  }
-}catch(e){ console.log("VTC Firebase gagal:", e.message); }
-</script>
 </html>
-
-
-
