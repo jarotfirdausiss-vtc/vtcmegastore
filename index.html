@@ -2,72 +2,95 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>VTC Penampung Seller - Semua Bisa Jualan</title>
+<title>VTC - Kayak Shopee</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#f2f2f2;padding-bottom:80px}
-.top{background:linear-gradient(180deg,#ff7a00,#ff8a00);color:#fff;padding:12px;position:sticky;top:0;z-index:99}
-.search{display:flex;background:#fff;border-radius:999px;padding:0 12px;margin-top:10px;height:46px;align-items:center;gap:8px}
-.search input{border:0;outline:0;flex:1}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#f5f5f5;padding-bottom:70px}
+.top{background:linear-gradient(180deg,#ff7a00,#ff5a00);padding:10px 12px 12px;position:sticky;top:0;z-index:99;color:#fff}
+.search{display:flex;background:#fff;border-radius:999px;height:42px;align-items:center;padding:0 10px;gap:8px}
+.search input{border:0;outline:0;flex:1;font-size:13px}
+.wallet{background:#fff;border-radius:10px;display:flex;padding:10px 6px;margin-top:10px}
+.wallet div{flex:1;text-align:center;font-size:10px;color:#333}.wallet b{font-size:12px;display:block}
+.icons{background:#fff;display:flex;padding:12px 4px;margin:8px 10px 0;border-radius:12px;overflow-x:auto}
+.icons div{flex:1;min-width:62px;text-align:center;font-size:10px}.icons span{font-size:26px;display:block}
+.liveFlash{display:flex;gap:8px;padding:10px}
+.liveBox{flex:1;background:#fff;border-radius:10px;overflow:hidden}.liveBox h4{padding:8px;font-size:13px;color:#ee4d2d}
+.flashBox{flex:1;background:#fff;border-radius:10px;overflow:hidden}.flashBox h4{padding:8px;font-size:13px}
+.liveGrid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 4px 6px}
+.liveGrid div{position:relative;border-radius:8px;overflow:hidden;background:#ffe0b2;height:90px;display:flex;align-items:center;justify-content:center;font-size:32px}
+.liveTag{position:absolute;top:4px;left:4px;background:#f00;color:#fff;font-size:9px;padding:2px 5px;border-radius:4px;font-weight:800}
+.banner{margin:0 10px;border-radius:12px;overflow:hidden;background:linear-gradient(90deg,#ff3d00,#ff9100);color:#fff;padding:14px;display:flex;align-items:center;gap:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
+.card{background:#fff;border-radius:10px;overflow:hidden;padding-bottom:8px;text-align:center}
+.card .foto{height:150px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:60px}
+.card p{font-size:11px;padding:4px 6px;height:30px;overflow:hidden}.card b{color:#ee4d2d;font-size:13px}
 .sec{background:#fff;margin:10px;border-radius:12px;padding:12px}
-.card{background:#fff;border-radius:12px;overflow:hidden;padding-bottom:8px;text-align:center}
-.card img{width:100%;height:140px;object-fit:cover}.card b{color:#ee4d2d}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px;font-size:14px}
-.btn{width:100%;background:#ee4d2d;color:#fff;border:0;padding:13px;border-radius:999px;font-weight:900;margin-top:10px}
-.btn2{background:#1a73e8}.btn3{background:#25D366}.btnHitam{background:#111}
+.sellerCard{background:#fff;margin:0 10px 8px;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
+input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px}
+.btn{width:100%;background:#ee4d2d;color:#fff;border:0;padding:12px;border-radius:999px;font-weight:900;margin-top:10px}
+.btn2{background:#1a73e8}
 .page{display:none}.page.on{display:block}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;padding:6px 2px 8px;border-top:1px solid #eee;height:62px;z-index:100}
-.nav div{flex:1;text-align:center;font-size:11px;color:#666;cursor:pointer}.nav div.on{color:#ee4d2d;font-weight:800}.nav b{font-size:20px;display:block}
-.sellerCard{background:#fff;margin:10px;border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center}
-.sellerCard img{width:56px;height:56px;border-radius:50%;object-fit:cover}
-.badge{background:#e8f5e9;color:#2e7d32;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:800}
-.otpBox{display:flex;gap:8px;margin-top:10px}.otpBox input{text-align:center;font-size:20px;font-weight:900;padding:12px 0}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;padding:6px 2px 8px;border-top:1px solid #eee;height:60px;z-index:100}
+.nav div{flex:1;text-align:center;font-size:10px;color:#666}.nav div.on{color:#ee4d2d;font-weight:800}.nav b{font-size:19px;display:block}
 </style>
 </head>
 <body>
 <div class="top">
-  <div style="display:flex;justify-content:space-between;align-items:center"><div><b style="font-size:21px">🛒 VTC Penampung Seller</b><br><small>100+ Seller • Semua Bisa Jualan • COD Masing-Masing</small></div><div style="font-size:22px" onclick="go('akun')">👤</div></div>
-  <div class="search"><span>🔍</span><input id="cari" placeholder="Cari" oninput="renderAll()"><span>🎤</span><span>📷</span></div>
-  <div style="display:flex;gap:6px;margin-top:10px"><button onclick="go('daftar')" style="flex:1;background:#fff;color:#ee4d2d;border:0;padding:10px;border-radius:999px;font-weight:900">+ Daftar Jadi Seller</button><button onclick="go('login')" style="flex:1;background:#111;color:#fff;border:0;padding:10px;border-radius:999px;font-weight:900">Login OTP →</button></div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:19px">🛒 VTC</b><span style="font-size:11px">Bekasi • COD • 342 Seller</span><span>🛒 💬</span></div>
+  <div class="search" style="margin-top:10px"><span>🔍</span><input placeholder="Koleksi Fashion Terbaru 🔥"><span>📷</span><span>🛒<sup style="color:red;font-weight:900">23</sup></span><span>💬</span></div>
+  <div class="wallet"><div><b>💰 VTCPay</b>10.882<br>Isi Saldo</div><div><b>🔄 Transfer</b>Gratis 25RB!<br>Gratis</div><div><b>🎁 Voucher</b>25RB<br>Gratis</div><div><b>✅ COD</b>Aktif<br>Per Seller</div></div>
 </div>
 
-<!-- BERANDA - SEMUA SELLER -->
 <div id="p-beranda" class="page on">
-  <div class="sec"><b>🔥 Ratusan Seller Sudah Gabung!</b><p style="font-size:13px;margin-top:4px">Konsumen bisa belanja, bisa jualan, bisa COD. Lu jualan? Lu dapet toko sendiri. Lu belanja? Lu COD ke seller terdekat.</p><div style="display:flex;gap:6px;margin-top:8px;text-align:center;font-size:11px"><div style="flex:1;background:#fff3e0;padding:8px;border-radius:10px"><b style="font-size:16px">342</b><br>Seller</div><div style="flex:1;background:#e8f5e9;padding:8px;border-radius:10px"><b style="font-size:16px">12.4rb</b><br>Produk</div><div style="flex:1;background:#e3f2fd;padding:8px;border-radius:10px"><b style="font-size:16px">98%</b><br>COD Sukses</div></div></div>
-  <div class="sec"><h3>Toko Seller Terdekat - COD Bisa</h3></div>
-  <div id="listSeller"></div>
-  <div class="sec"><h3>Produk Dari Semua Seller <span style="color:#ee4d2d">Lihat Semua ›</span></h3></div>
-  <div class="grid" id="gridProduk"></div>
-</div>
-
-<!-- LOGIN OTP -->
-<div id="p-login" class="page">
-  <div class="sec"><h2>Login / Daftar - Pakai OTP</h2><p style="font-size:13px;color:#666;margin-top:4px">Aman, tanpa password. Kode dikirim ke WhatsApp / SMS.</p>
-  <label style="font-size:12px">Nomor HP / WhatsApp</label><input id="hpLogin" placeholder="Contoh: 081234567890" value="0812">
-  <button class="btn btn2" onclick="kirimOTP()">Kirim Kode OTP →</button>
-  <div id="otpArea" style="display:none"><p style="margin-top:12px"><b>Masukkan Kode OTP (Coba: 123456)</b><br><small style="color:#666">Kode dikirim ke <span id="hpTampil"></span> • <span id="hitung">60 detik</span></small></p><div class="otpBox"><input maxlength="1" class="otp"><input maxlength="1" class="otp"><input maxlength="1" class="otp"><input maxlength="1" class="otp"><input maxlength="1" class="otp"><input maxlength="1" class="otp"></div><button class="btn" onclick="verifikasiOTP()">Verifikasi & Masuk ✅</button><button class="btn btnHitam" onclick="kirimOTP()">Kirim Ulang OTP</button></div>
-  <div id="loginSukses" style="display:none;background:#e8f5e9;padding:12px;border-radius:12px;margin-top:12px"><b>✅ Login Berhasil!</b><br>Halo, <span id="namaUser">Pembeli</span>! Kamu bisa belanja & jualan.<br><button class="btn" onclick="go('seller')">Buka Dashboard Seller Saya →</button></div>
+  <div class="icons">
+    <div onclick="go('daftar')"><span>🏪</span>Daftar<br>Seller</div>
+    <div onclick="go('login')"><span>🔑</span>Login<br>OTP</div>
+    <div><span>🍔</span>VTC<br>Food</div>
+    <div><span>📍</span>Pilih<br>Lokal</div>
+    <div><span>🎁</span>Hadiah<br>VTC</div>
+    <div><span>📱</span>Pulsa &<br>Tiket</div>
   </div>
+
+  <!-- PERSIS SHOPEE: LIVE KIRI, FLASH SALE KANAN -->
+  <div class="liveFlash">
+    <div class="liveBox"><h4>VTC Live ›</h4><div class="liveGrid"><div>🧕<span class="liveTag">● LIVE</span></div><div>👩<span class="liveTag">● LIVE</span></div></div><p style="font-size:10px;padding:0 6px 6px">Sale up to 70% Original...</p></div>
+    <div class="flashBox"><h4>⚡ FLASH SALE <span style="background:#000;color:#fff;padding:1px 4px;border-radius:4px;font-size:10px">23:26:28</span></h4><div class="liveGrid"><div>👕<span class="liveTag" style="background:#ff9100">-30%</span></div><div>👩<span class="liveTag" style="background:#ff9100">-30%</span></div></div><p style="font-size:10px;padding:0 6px 6px"><b style="color:#ee4d2d">Rp43.000</b> • <b style="color:#ee4d2d">Rp93.000</b></p></div>
+  </div>
+
+  <div class="banner"><div style="font-size:40px">👩</div><div><b style="font-size:20px">9.9 SUPER<br>SHOPPING DAY</b><br><small>Semua Seller Diskon • COD Semua Kota</small></div><div style="margin-left:auto;font-size:40px">👕</div></div>
+
+  <div class="sec"><b>🏪 Toko Seller Terdekat - COD Bisa</b><p style="font-size:11px;color:#666;margin-top:4px">Ratusan seller, COD masing-masing. Konsumen bisa belanja, bisa jualan.</p></div>
+  <div class="sellerCard"><div style="width:48px;height:48px;background:#ff7a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">👕</div><div style="flex:1"><b>Toko Baju Bekasi</b><br><small>Budi - Bekasi • ⭐ 4.9 • 24 Produk • ✅ COD Bekasi</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
+  <div class="sellerCard"><div style="width:48px;height:48px;background:#1668f2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">👟</div><div style="flex:1"><b>Sepatu Jakarta</b><br><small>Sari - Jakarta • ⭐ 4.8 • 18 Produk • ✅ COD Jakarta</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
+  <div class="sellerCard"><div style="width:48px;height:48px;background:#2e7d32;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">🎒</div><div style="flex:1"><b>Tas Bandung</b><br><small>Ayu - Bandung • ⭐ 5.0 • 32 Produk • ✅ COD Bandung</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
+
+  <div style="padding:0 10px;display:flex;justify-content:space-between"><b>Produk Untukmu</b><span style="color:#ee4d2d;font-size:12px">Lihat Semua ›</span></div>
+  <div class="grid">
+    <div class="card"><div class="foto">👕</div><p>Kaos Polos Cotton Combed - Hitam</p><b>Rp43.000</b><br><small>⭐ 4.9 • Terjual 200+ • COD Bekasi</small></div>
+    <div class="card"><div class="foto">👟</div><p>Sepatu Sneaker Sport Casual</p><b>Rp128.000</b><br><small>⭐ 4.8 • Terjual 89+ • COD Jakarta</small></div>
+    <div class="card"><div class="foto">🎒</div><p>Tas Ransel Waterproof 20L</p><b>Rp95.000</b><br><small>⭐ 5.0 • Terjual 54+ • COD Bandung</small></div>
+    <div class="card"><div class="foto">📱</div><p>HP Android 6.5" 128GB</p><b>Rp1.899.000</b><br><small>⭐ 4.9 • Terjual 32+ • COD Bekasi</small></div>
+  </div>
+  <div class="sec"><b>🌐 Sosial + TV Biar Gak Jenuh</b><p style="font-size:12px;margin-top:4px">Facebook • IG • TikTok • YouTube • VTC TV semua di dalam 1 app.</p><button class="btn btn2" onclick="go('live')">Buka Live / TV 📺</button></div>
 </div>
 
-<!-- DAFTAR SELLER -->
-<div id="p-daftar" class="page">
-  <div class="sec"><h2>📝 Daftar Jadi Seller - GRATIS</h2><p style="font-size:13px;color:#666">Isi sekali, langsung punya toko. Konsumen jadi seller dalam 1 menit.</p>
-  <input id="namaToko" placeholder="Nama Toko Kamu - Contoh: Toko Baju Bekasi"><input id="namaSeller" placeholder="Nama Kamu"><input id="hpSeller" placeholder="Nomor HP / WA - Contoh: 0812xxxx"><select id="kotaSeller"><option>Bekasi - COD Bekasi</option><option>Jakarta - COD Jakarta</option><option>Bandung - COD Bandung</option><option>Surabaya - COD Surabaya</option><option>Medan - COD Medan</option><option>Lainnya - COD Seluruh Indonesia</option></select><select id="kategoriSeller"><option>Jual Kaos / Baju</option><option>Jual Sepatu</option><option>Jual Tas</option><option>Jual HP / Elektronik</option><option>Jual Makanan</option><option>Jual Semua</option></select><label style="font-size:12px">Metode COD Kamu:</label><select><option>COD Ketemuan Langsung</option><option>COD Kurir / Ojek</option><option>COD + Transfer + QRIS</option></select><button class="btn" onclick="daftarSeller()">Daftar & Kirim OTP →</button><p style="font-size:11px;color:#888;margin-top:8px">✅ Gratis • ✅ Langsung Aktif • ✅ VTC hanya penampung, toko 100% milik kamu</p></div>
+<div id="p-login" class="page"><div class="sec"><h2>Login OTP - VTC</h2><p style="font-size:12px;color:#666">Login tanpa password, kode dikirim ke WA.</p><input placeholder="Nomor HP - 0812xxxx"><button class="btn btn2" onclick="alert('OTP: 123456')">Kirim Kode OTP →</button><input placeholder="Kode OTP - 123456"><button class="btn" onclick="alert('Login Berhasil!');go('seller')">Verifikasi & Masuk ✅</button></div></div>
+<div id="p-daftar" class="page"><div class="sec"><h2>📝 Daftar Jadi Seller - GRATIS</h2><p style="font-size:12px;color:#666">VTC hanya penampung, toko 100% milik kamu, COD kamu yang atur.</p><input placeholder="Nama Toko Kamu"><input placeholder="Nama Kamu"><input placeholder="Nomor HP / WA"><select><option>Bekasi - COD Bekasi</option><option>Jakarta - COD Jakarta</option><option>Bandung - COD Bandung</option></select><button class="btn" onclick="alert('Seller berhasil daftar!');go('login')">Daftar & Kirim OTP →</button></div></div>
+<div id="p-seller" class="page"><div class="sec"><h2>🏪 Toko Saya</h2><p><b>Toko Baju Bekasi</b> • ✅ Terverifikasi<br>24 Produk • 18 Pesanan • Saldo Rp1.2jt</p><button class="btn" onclick="alert('Tambah produk!')">+ Tambah Produk</button><button class="btn btn2" onclick="go('live')">🔴 Live Jualan</button></div></div>
+<div id="p-live" class="page"><div class="sec"><h3>📺 VTC Live - Kayak Shopee Live</h3><p style="font-size:12px">Semua seller bisa live, konsumen bisa beli langsung dari live.</p><button class="btn" onclick="alert('Live dimulai!')">🔴 Mulai Live Jualan</button></div></div>
+<div id="p-cart" class="page"><div class="sec"><h3>Keranjang</h3><p>COD per seller, tiap seller hubungi kamu.</p><button class="btn" onclick="alert('Checkout Berhasil!')">Checkout COD →</button></div></div>
+<div id="p-akun" class="page"><div class="sec"><h2>👤 Saya</h2><button class="btn" onclick="go('login')">Login OTP →</button><button class="btn btn2" onclick="go('daftar')">Daftar Jadi Seller →</button></div></div>
+
+<!-- NAV PERSIS SHOPEE -->
+<div class="nav">
+  <div class="on" onclick="go('beranda',this)"><b>🏠</b>Beranda</div>
+  <div onclick="go('daftar',this)"><b>🏷️</b>Produk Baru</div>
+  <div onclick="go('live',this)"><b>📺</b>Live</div>
+  <div onclick="go('live',this)"><b>▶️</b>Video</div>
+  <div onclick="go('akun',this)"><b>🔔</b>Notifikasi</div>
+  <div onclick="go('akun',this)"><b>👤</b>Saya</div>
 </div>
-
-<!-- DASHBOARD SELLER -->
-<div id="p-seller" class="page">
-  <div class="sec"><h2>🏪 Dashboard Seller Saya</h2><p><b id="tokoSaya">Toko Baju Bekasi</b> • <span class="badge">✅ Terverifikasi</span><br><small>Bekasi • COD Aktif • ⭐ 4.9</small></p><div style="display:flex;gap:6px;margin-top:10px;text-align:center;font-size:11px"><div style="flex:1;background:#fff3e0;padding:8px;border-radius:10px"><b>24</b><br>Produk</div><div style="flex:1;background:#e8f5e9;padding:8px;border-radius:10px"><b>18</b><br>Pesanan</div><div style="flex:1;background:#e3f2fd;padding:8px;border-radius:10px"><b>Rp1.2jt</b><br>Saldo</div></div><button class="btn" onclick="go('tambahProduk')">+ Tambah Produk Jualan</button><button class="btn btn2" onclick="go('live')">🔴 Live Jualan Sekarang</button><button class="btn btn3" onclick="alert('Link toko kamu dibagikan ke WA!')">Bagikan Toko Ke WA →</button></div>
-  <div class="sec"><h3>Produk Saya</h3><div id="produkSaya"></div></div>
-</div>
-
-<!-- TAMBAH PRODUK -->
-<div id="p-tambahProduk" class="page"><div class="sec"><h2>+ Tambah Produk - Seller</h2><input id="np" placeholder="Nama Produk - Contoh: Kaos Polos Hitam"><input id="hp2" type="number" placeholder="Harga - Contoh: 43000"><select id="kp"><option>Kaos</option><option>Sepatu</option><option>Tas</option><option>HP</option></select><input placeholder="Stok - Contoh: 50"><select><option>COD Bekasi - Ketemuan</option><option>COD Kurir</option><option>COD + Kirim Ekspedisi</option></select><input type="file" accept="image/*"><button class="btn" onclick="tambahProdukSeller()">Upload & Jual Sekarang ✅</button><p style="font-size:11px;color:#888;margin-top:6px">Produk langsung muncul di Beranda VTC, dilihat ribuan konsumen.</p></div></div>
-
-<!-- LIVE -->
-<div id="p-live" class="page"><div class="sec"><h3>📺 Live - Semua Seller Bisa Live</h3><p style="font-size:12px">VTC TV • TikTok • YouTube • FB • IG</p><div style="display:flex;gap:6px;margin-top:8px"><button class="btn" style="margin:0" onclick="alert('Live dimulai! Semua konsumen bisa nonton & beli!')">🔴 Mulai Live Jualan</button></div></div></div>
-
-<!-- CART -->
-<div id="p-cart" class="page"><div class="sec"><h3>Keranjang - COD Per Seller</h3><p style="font-size:12px;color:#666">Tiap seller COD nya masing-masing. Kamu bisa COD ke banyak seller sekaligus.</p></div><div id="cartList"></div><div class="sec"><p>Total: <b id="totalTxt" style="color:#ee4d2d">Rp0</b></p><button class="btn" onclick="alert('Checkout Berhasil! Tiap seller akan hubungi kamu untuk COD!')">Checkout COD Semua Seller →</button></div></div>
-<div id="p-akun" class="page"><div class="sec"><h2>👤 Akun Saya</h2><p id="akunInfo">Belum Login - Login pakai OTP dulu</p><button class="btn" onclick="go('login')">Login OTP →</button><button class="btn btn2" onclick="go('daftar')">
+<script>
+function go(id,el){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on')});var m={beranda:'p-beranda',login:'p-login',daftar:'p-daftar',seller:'p-seller',live:'p-live',cart:'p-cart',akun:'p-akun'};document.getElementById(m[id]).classList.add('on');document.querySelectorAll('.nav div').forEach(function(d){d.classList.remove('on')});if(el)el.classList.add('on');window.scrollTo(0,0)}
+</script>
+</body>
+</html>
