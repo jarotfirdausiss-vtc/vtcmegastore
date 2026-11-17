@@ -1,6 +1,7 @@
 {
   "name": "VTC SHOP - Marketplace Bangka",
   "short_name": "VTC SHOP",
+  "id": "/vtcmegastore/",
   "start_url": "/vtcmegastore/",
   "scope": "/vtcmegastore/",
   "display": "standalone",
@@ -9,14 +10,16 @@
   "description": "Marketplace-nya Wong Bangka! COD Pangkal Pinang, Kirim 38+ Provinsi",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/263/263142.png",
+      "src": "https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/263/263142.png&w=192&h=192",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/263/263142.png",
+      "src": "https://images.weserv.nl/?url=cdn-icons-png.flaticon.com/512/263/263142.png&w=512&h=512",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
