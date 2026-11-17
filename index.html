@@ -2,58 +2,118 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VTC V102 + Fibest - Marketplace Aman Terpercaya</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC 2050 - Belanja, Nonton, Top Up</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{background:#0A0A0A;color:#fff}
-a{color:inherit;text-decoration:none}
-.top{background:#FF5A00;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
-.logo{font-size:26px;font-weight:900}.logo span{font-size:12px;font-weight:600;opacity:.9}
-.search{margin:12px;background:#fff;border-radius:999px;padding:12px 16px;color:#999}
-.wrap{max-width:1100px;margin:auto;padding:0 12px 120px}
-.card{background:#161616;border:1px solid #2a2a2a;border-radius:18px;padding:16px;margin:12px 0}
-input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#0f0f0f;color:#fff;margin:6px 0}
-.btn{border:0;border-radius:999px;padding:13px 18px;font-weight:800;cursor:pointer}
-.btn-o{background:#FF5A00;color:#fff}.btn-w{background:#fff;color:#FF5A00}.btn-b{background:#000;color:#fff;border:1px solid #333}
-.badge{background:#FF5A00;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.p{background:#1c1c1c;border-radius:16px;overflow:hidden;border:1px solid #2a2a2a}
-.p img{width:100%;height:110px;object-fit:cover;display:block}
-.p b{font-size:12px;display:block;padding:8px 8px 0}.p i{font-size:11px;color:#aaa;padding:0 8px;display:block}
-.price{color:#FF8A3D;font-weight:900;padding:6px 8px 10px}
-.voucher{background:#111;border:1.5px dashed #FF5A00;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin:8px 0}
-.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;font-size:11px}
-.trust div{background:#161616;padding:12px;border-radius:14px}
-.live{position:relative;border-radius:18px;overflow:hidden;margin:12px 0}
-.live img{width:100%;height:340px;object-fit:cover}
-.live-info{position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:14px;display:flex;flex-direction:column;justify-content:flex-end}
-.chat{background:rgba(0,0,0,.65);border:1px solid #FF5A00;padding:8px 10px;border-radius:12px;font-size:12px;margin-top:6px;max-width:80%}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#111;border-top:1px solid #222;display:flex;justify-content:space-around;padding:12px 6px 18px;font-size:11px;text-align:center}
-.nav b{color:#FF5A00}
-.download{background:linear-gradient(135deg,#FF5A00,#FF8A00);border-radius:18px;padding:18px;margin:12px 0;text-align:center}
-@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:repeat(2,1fr)}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial;background:#f5f5f5;color:#111}
+header{background:#fff;padding:12px 16px;position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001}
+h1{margin:0;font-size:22px;color:#0a1a4d}h3{margin:0}
+.wrap{padding:12px;max-width:480px;margin:auto}
+.card{background:#fff;border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 2px 10px #0001}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pro{background:#fff;border-radius:14px;overflow:hidden;padding:8px;box-shadow:0 2px 8px #0001}
+.pro img{width:100%;height:110px;object-fit:cover;border-radius:10px}
+.pro b{font-size:13px}.price{color:#e65100;font-weight:900}
+.small{font-size:12px;color:#666}.btn{width:100%;padding:12px;border:0;border-radius:12px;font-weight:900;cursor:pointer}
+.btn2{padding:10px 12px;border:0;border-radius:12px;font-weight:800;cursor:pointer}
+input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;margin-top:6px}
+.flex{display:flex;gap:8px}.ucCard{transition:.2s}
+.tvBtn{padding:12px;border-radius:12px;text-align:center;cursor:pointer;color:#fff}
+.flash{background:linear-gradient(90deg,#ff0000,#ff9900);color:#fff;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
+<header><h1>VTC 2050</h1><div>🔍 🛒<sup>3</sup> 🔔</div></header>
+<div class="wrap">
 
-<div class="top">
-  <div class="logo">V <span>VTC</span> <span>Marketplace + Sosmed + TV</span> <span class="badge">V102</span></div>
-  <div>🔍 🔔 👤</div>
+<!-- PRODUK -->
+<h2>Produk Terpopuler <a href="#" style="float:right;font-size:14px">Lihat Semua ></a></h2>
+<div class="grid" id="list"></div>
+<script>
+let produk=[
+["Earphone Bluetooth TWS",149000,"4.9 | 1.2rb terjual","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"],
+["Kemeja Katun Pria Slim Fit",89000,"4.8 | 2.5rb terjual","https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"],
+["Tumbler Stainless 1L",75000,"4.9 | 980 terjual","https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400"],
+["Mie Instan Goreng 5pcs",18500,"4.7 | 5.1rb terjual","https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400"],
+["Sepatu Sneakers Putih",129000,"4.8 | 1.9rb terjual","https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"],
+["Jam Tangan Smartwatch",199000,"4.9 | 1.4rb terjual","https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"],
+["Tas Ransel Hitam",95000,"4.7 | 870 terjual","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400"],
+["Headset Gaming",175000,"4.8 | 1.1rb terjual","https://images.unsplash.com/photo-1599669454699-248893623440?w=400"],
+];
+document.getElementById('list').innerHTML=produk.map(p=>`
+<div class="pro"><img src="${p[3]}"><br><b>${p[0]}</b><br><span class="price">Rp ${p[1].toLocaleString('id-ID')}</span><br><span class="small">⭐ ${p[2]}</span><br><button class="btn" style="background:#ff6600;color:#fff;margin-top:6px;padding:8px" onclick="alert('Ditambah ke keranjang: ${p[0]}')">+ Keranjang</button></div>`).join('');
+</script>
+
+<!-- VTC TV -->
+<div class="card" style="background:linear-gradient(135deg,#ff0000,#000);color:#fff">
+<h3>📺 VTC TV - LIVE STREAMING <span style="background:#ff0000;padding:4px 10px;border-radius:20px;font-size:12px;float:right">🔴 LIVE • 2.1rb</span></h3>
+<div style="background:#000;border-radius:14px;overflow:hidden;margin-top:10px">
+<iframe width="100%" height="230" src="https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID" frameborder="0" allowfullscreen></iframe>
+</div>
+<p class="small" style="color:#ddd">Ganti UC_YOUR_CHANNEL_ID dengan Channel ID @vtcbangka kamu.</p>
+<div class="flex"><button class="btn2" style="background:#ff0000;color:#fff;flex:1" onclick="window.open('https://youtube.com/@vtcbangka/live','_blank')">▶️ YouTube Live</button>
+<button class="btn2" style="background:#1877F2;color:#fff;flex:1" onclick="window.open('https://facebook.com','_blank')">📘 Facebook</button>
+<button class="btn2" style="background:#000;color:#fff;border:1px solid #fff;flex:1" onclick="window.open('https://tiktok.com','_blank')">🎵 TikTok</button></div>
 </div>
 
-<div class="wrap">
-  <div class="search">🔍 Cari di VTC - earbuds, fashion, elektronik...</div>
+<!-- TV NASIONAL -->
+<div class="card" style="background:#eaf2ff">
+<h3>📺 TV NASIONAL - LIVE GRATIS <span class="small" style="float:right">Gratis • Tanpa Login</span></h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+<div class="tvBtn" style="background:#e60000" onclick="window.open('https://www.rctiplus.com/tv/rcti','_blank')"><b>RCTI</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#0033cc" onclick="window.open('https://www.vidio.com/live/204-sctv','_blank')"><b>SCTV</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#ff6600" onclick="window.open('https://www.vidio.com/live/205-indosiar','_blank')"><b>INDOSIAR</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#ffcc00;color:#000" onclick="window.open('https://www.vidio.com/live/206-antv','_blank')"><b>ANTV</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#009933" onclick="window.open('https://www.vidio.com/live/208-metro-tv','_blank')"><b>METRO TV</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#cc0000" onclick="window.open('https://www.vidio.com/live/209-tvone','_blank')"><b>TV ONE</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#00ccff" onclick="window.open('https://www.vidio.com/live/210-trans-tv','_blank')"><b>TRANS TV</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#6600cc" onclick="window.open('https://www.vidio.com/live/211-trans7','_blank')"><b>TRANS 7</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+<div class="tvBtn" style="background:#0066ff" onclick="window.open('https://www.vidio.com/live/212-mnc-tv','_blank')"><b>MNCTV</b><br><span style="font-size:11px">▶️ Nonton</span></div>
+</div>
+<div class="flex" style="margin-top:10px"><button class="btn2" style="background:#ff0000;color:#fff;flex:1" onclick="window.open('https://www.rctiplus.com','_blank')">RCTI+ App</button><button class="btn2" style="background:#e60023;color:#fff;flex:1" onclick="window.open('https://www.vidio.com','_blank')">Vidio App</button><button class="btn2" style="background:#000;color:#fff;flex:1" onclick="window.open('https://www.visionplus.id','_blank')">Vision+ App</button></div>
+</div>
 
-  <!-- TRUST / FIBEST -->
-  <div class="trust">
-    <div>🛡️<br><b>Rekening Bersama</b><br>Dana aman di Fibest</div>
-    <div>✅<br><b>Terverifikasi</b><br>Seller KTP + Toko</div>
-    <div>🚚<br><b>Garansi Kirim</b><br>Refund jika gagal</div>
-    <div>💬<br><b>CS 24 Jam</b><br>Resolusi sengketa</div>
-  </div>
+<!-- FLASH SALE -->
+<div class="flash">
+<div><div style="font-size:26px;font-weight:900">⚡ FLASH SALE <span style="font-size:16px">90% OFF</span></div><b>Diskon Gila Hari Ini</b></div>
+<div style="text-align:right"><div class="small" style="color:#fff">Berakhir dalam:</div><div id="timer" style="font-size:24px;font-weight:900;background:#000;padding:4px 10px;border-radius:10px">02:59:59</div><button class="btn2" style="background:#fff;color:#e65100;margin-top:6px" onclick="alert('🎉 Voucher 90% diklaim! Kode: VTC2050')">Klaim Voucher</button></div>
+</div>
+<br>
 
-  <!-- LOGIN -->
-  <div class="card">
-    <h3>VTC V102 - Login Seller / Buyer</h3>
-    <p style="color:#aaa;font-size:13
+<!-- TOP UP PUBG -->
+<div class="card" style="background:linear-gradient(135deg,#ff9900,#000);color:#fff">
+<h3>🎮 TOP UP GAME - PUBG MOBILE <span style="background:#ff9900;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;float:right">🔥 LARIS</span></h3>
+<p class="small" style="color:#ddd">Top Up UC Resmi • 1 Menit Masuk • QRIS / DANA</p>
+<div class="flex"><button class="btn2" style="background:#ff9900;color:#000">🎮 PUBG</button><button class="btn2" onclick="alert('Segera hadir: Free Fire')">🔥 FF</button><button class="btn2" onclick="alert('Segera hadir: ML')">⚔️ ML</button><button class="btn2" onclick="alert('Segera hadir: Valorant')">🎯 Valorant</button></div>
+<label class="small" style="color:#fff"><b>ID PUBG Kamu:</b></label>
+<input id="pubgId" placeholder="Contoh: 5212345678">
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
+<div onclick="pilihUC('60 UC','Rp 14.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>60 UC</b><br><b style="color:#ffcc00">Rp 14.000</b><br><span class="small" style="color:#fff">Instant</span></div>
+<div onclick="pilihUC('325 UC','Rp 72.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>325 UC</b><br><b style="color:#ffcc00">Rp 72.000</b><br><span class="small" style="color:#fff">BEST SELLER</span></div>
+<div onclick="pilihUC('660 UC','Rp 145.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>660 UC</b><br><b style="color:#ffcc00">Rp 145.000</b><br><span class="small" style="color:#fff">Bonus 60 UC</span></div>
+<div onclick="pilihUC('1800 UC','Rp 365.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>1800 UC</b><br><b style="color:#ffcc00">Rp 365.000</b><br><span class="small" style="color:#fff">Bonus 300 UC</span></div>
+<div onclick="pilihUC('3850 UC','Rp 720.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>3850 UC</b><br><b style="color:#ffcc00">Rp 720.000</b><br><span class="small" style="color:#fff">Bonus 850 UC</span></div>
+<div onclick="pilihUC('8100 UC','Rp 1.450.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>8100 UC</b><br><b style="color:#ffcc00">Rp 1.450.000</b><br><span class="small" style="color:#fff">SULTAN PACK</span></div>
+</div>
+<p id="pilihUCText" style="text-align:center;font-weight:800">Pilih UC dulu bro...</p>
+<button class="btn" style="background:#ff9900;color:#000" onclick="beliUC()">🛒 BELI SEKARANG - Bayar QRIS</button>
+<button class="btn2" style="width:100%;margin-top:8px" onclick="window.open('https://wa.me/6283878502333?text=Halo%20VTC%20mau%20top%20up%20PUBG','_blank')">💬 Tanya Admin WA - 0838 7850 2333</button>
+</div>
+
+<p style="text-align:center" class="small">© 2026 VTC 2050 • Bangka • Belanja - Nonton - Top Up</p>
+</div>
+
+<script>
+let ucPilih='',hargaPilih='';
+function pilihUC(n,h,el){ucPilih=n;hargaPilih=h;document.querySelectorAll('.ucCard').forEach(c=>c.style.border='2px solid transparent');el.style.border='2px solid #ff9900';document.getElementById('pilihUCText').innerText='✅ Kamu pilih: '+n+' - '+h;}
+function beliUC(){
+  let id=document.getElementById('pubgId').value;
+  if(!id) return alert('Isi dulu ID PUBG kamu!');
+  if(!ucPilih) return alert('Pilih UC dulu!');
+  alert('✅ ORDER BERHASIL!\n\nPUBG ID: '+id+'\nPaket: '+ucPilih+'\nHarga: '+hargaPilih+'\n\nSilakan bayar via QRIS, UC akan masuk 1 menit!\nKalo ada kendala, klik tombol Tanya Admin WA di bawah.');
+  // AUTO WA DIMATIKAN - TIDAK MUNCUL OTOMATIS
+}
+let s=2*3600+59*60+59;setInterval(()=>{s--;if(s<0)s=2*3600+59*60+59;let h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),d=String(s%60).padStart(2,'0');document.getElementById('timer').innerText=h+':'+m+':'+d;},1000);
+</script>
+</body>
+</html>
