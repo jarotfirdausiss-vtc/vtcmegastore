@@ -1,96 +1,148 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>VTC - Kayak Shopee</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ee4d2d">
+<title>VTC - Jual Beli Online</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#f5f5f5;padding-bottom:70px}
-.top{background:linear-gradient(180deg,#ff7a00,#ff5a00);padding:10px 12px 12px;position:sticky;top:0;z-index:99;color:#fff}
-.search{display:flex;background:#fff;border-radius:999px;height:42px;align-items:center;padding:0 10px;gap:8px}
-.search input{border:0;outline:0;flex:1;font-size:13px}
-.wallet{background:#fff;border-radius:10px;display:flex;padding:10px 6px;margin-top:10px}
-.wallet div{flex:1;text-align:center;font-size:10px;color:#333}.wallet b{font-size:12px;display:block}
-.icons{background:#fff;display:flex;padding:12px 4px;margin:8px 10px 0;border-radius:12px;overflow-x:auto}
-.icons div{flex:1;min-width:62px;text-align:center;font-size:10px}.icons span{font-size:26px;display:block}
-.liveFlash{display:flex;gap:8px;padding:10px}
-.liveBox{flex:1;background:#fff;border-radius:10px;overflow:hidden}.liveBox h4{padding:8px;font-size:13px;color:#ee4d2d}
-.flashBox{flex:1;background:#fff;border-radius:10px;overflow:hidden}.flashBox h4{padding:8px;font-size:13px}
-.liveGrid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:0 4px 6px}
-.liveGrid div{position:relative;border-radius:8px;overflow:hidden;background:#ffe0b2;height:90px;display:flex;align-items:center;justify-content:center;font-size:32px}
-.liveTag{position:absolute;top:4px;left:4px;background:#f00;color:#fff;font-size:9px;padding:2px 5px;border-radius:4px;font-weight:800}
-.banner{margin:0 10px;border-radius:12px;overflow:hidden;background:linear-gradient(90deg,#ff3d00,#ff9100);color:#fff;padding:14px;display:flex;align-items:center;gap:10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
-.card{background:#fff;border-radius:10px;overflow:hidden;padding-bottom:8px;text-align:center}
-.card .foto{height:150px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:60px}
-.card p{font-size:11px;padding:4px 6px;height:30px;overflow:hidden}.card b{color:#ee4d2d;font-size:13px}
-.sec{background:#fff;margin:10px;border-radius:12px;padding:12px}
-.sellerCard{background:#fff;margin:0 10px 8px;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
-input,select{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px}
-.btn{width:100%;background:#ee4d2d;color:#fff;border:0;padding:12px;border-radius:999px;font-weight:900;margin-top:10px}
-.btn2{background:#1a73e8}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f5f5;padding-bottom:80px}
+.top{background:#ee4d2d;color:#fff;padding:14px;position:sticky;top:0;z-index:10}
+.top input{width:100%;padding:12px;border:0;border-radius:999px;margin-top:8px;outline:0;font-size:15px}
+.card{background:#fff;margin:10px;border-radius:14px;overflow:hidden}
+.card img{width:100%;height:200px;object-fit:cover;background:#eee;display:block}
+.isi{padding:12px}
+.btn{width:100%;background:#ee4d2d;color:#fff;border:0;padding:14px;border-radius:999px;font-weight:900;margin-top:8px;font-size:15px}
+.btn2{background:#25D366}
+.btn3{background:#111}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin-top:8px;font-size:15px}
 .page{display:none}.page.on{display:block}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;padding:6px 2px 8px;border-top:1px solid #eee;height:60px;z-index:100}
-.nav div{flex:1;text-align:center;font-size:10px;color:#666}.nav div.on{color:#ee4d2d;font-weight:800}.nav b{font-size:19px;display:block}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #eee;padding:10px 0;z-index:20}
+.nav div{flex:1;text-align:center;font-size:12px;cursor:pointer}
+.nav div.on{color:#ee4d2d;font-weight:900}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:99;overflow:auto}
+.modalBox{background:#fff;margin:15px;border-radius:16px;padding:14px}
+.modalBox img{width:100%;height:280px;object-fit:cover;border-radius:12px}
+.toast{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;color:#fff;padding:14px 20px;border-radius:12px;display:none;z-index:999;text-align:center}
 </style>
 </head>
 <body>
-<div class="top">
-  <div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:19px">🛒 VTC</b><span style="font-size:11px">Bekasi • COD • 342 Seller</span><span>🛒 💬</span></div>
-  <div class="search" style="margin-top:10px"><span>🔍</span><input placeholder="Koleksi Fashion Terbaru 🔥"><span>📷</span><span>🛒<sup style="color:red;font-weight:900">23</sup></span><span>💬</span></div>
-  <div class="wallet"><div><b>💰 VTCPay</b>10.882<br>Isi Saldo</div><div><b>🔄 Transfer</b>Gratis 25RB!<br>Gratis</div><div><b>🎁 Voucher</b>25RB<br>Gratis</div><div><b>✅ COD</b>Aktif<br>Per Seller</div></div>
+<div id="toast" class="toast"></div>
+<div class="top"><b style="font-size:22px">VTC</b> <span style="font-size:12px">Jual Beli Online - Penampung Seller</span><input id="cari" placeholder="Cari produk..." oninput="tampil()"></div>
+
+<div id="p-home" class="page on">
+<div class="card" style="padding:14px"><b>Pasar VTC</b><br><small>Produk di sini cuma dari seller asli yang upload pake foto asli. Lu cuma jembatan.</small><br><button class="btn btn2" onclick="go('jual')">+ Jualan - Upload Produk Lu</button></div>
+<div id="emptyBox" class="card" style="padding:20px;text-align:center;border:2px dashed #ee4d2d"><h3>Pasar Masih Kosong</h3><p style="margin-top:8px;font-size:14px;color:#555">Belum ada seller yang upload. Bukan eror. Produk akan muncul kalo seller udah upload pake foto asli.</p><button class="btn" onclick="go('jual')">Jadi Seller Pertama</button></div>
+<div id="listProduk"></div>
 </div>
 
-<div id="p-beranda" class="page on">
-  <div class="icons">
-    <div onclick="go('daftar')"><span>🏪</span>Daftar<br>Seller</div>
-    <div onclick="go('login')"><span>🔑</span>Login<br>OTP</div>
-    <div><span>🍔</span>VTC<br>Food</div>
-    <div><span>📍</span>Pilih<br>Lokal</div>
-    <div><span>🎁</span>Hadiah<br>VTC</div>
-    <div><span>📱</span>Pulsa &<br>Tiket</div>
-  </div>
-
-  <!-- PERSIS SHOPEE: LIVE KIRI, FLASH SALE KANAN -->
-  <div class="liveFlash">
-    <div class="liveBox"><h4>VTC Live ›</h4><div class="liveGrid"><div>🧕<span class="liveTag">● LIVE</span></div><div>👩<span class="liveTag">● LIVE</span></div></div><p style="font-size:10px;padding:0 6px 6px">Sale up to 70% Original...</p></div>
-    <div class="flashBox"><h4>⚡ FLASH SALE <span style="background:#000;color:#fff;padding:1px 4px;border-radius:4px;font-size:10px">23:26:28</span></h4><div class="liveGrid"><div>👕<span class="liveTag" style="background:#ff9100">-30%</span></div><div>👩<span class="liveTag" style="background:#ff9100">-30%</span></div></div><p style="font-size:10px;padding:0 6px 6px"><b style="color:#ee4d2d">Rp43.000</b> • <b style="color:#ee4d2d">Rp93.000</b></p></div>
-  </div>
-
-  <div class="banner"><div style="font-size:40px">👩</div><div><b style="font-size:20px">9.9 SUPER<br>SHOPPING DAY</b><br><small>Semua Seller Diskon • COD Semua Kota</small></div><div style="margin-left:auto;font-size:40px">👕</div></div>
-
-  <div class="sec"><b>🏪 Toko Seller Terdekat - COD Bisa</b><p style="font-size:11px;color:#666;margin-top:4px">Ratusan seller, COD masing-masing. Konsumen bisa belanja, bisa jualan.</p></div>
-  <div class="sellerCard"><div style="width:48px;height:48px;background:#ff7a00;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">👕</div><div style="flex:1"><b>Toko Baju Bekasi</b><br><small>Budi - Bekasi • ⭐ 4.9 • 24 Produk • ✅ COD Bekasi</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
-  <div class="sellerCard"><div style="width:48px;height:48px;background:#1668f2;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">👟</div><div style="flex:1"><b>Sepatu Jakarta</b><br><small>Sari - Jakarta • ⭐ 4.8 • 18 Produk • ✅ COD Jakarta</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
-  <div class="sellerCard"><div style="width:48px;height:48px;background:#2e7d32;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px">🎒</div><div style="flex:1"><b>Tas Bandung</b><br><small>Ayu - Bandung • ⭐ 5.0 • 32 Produk • ✅ COD Bandung</small></div><button style="background:#ee4d2d;color:#fff;border:0;padding:7px 12px;border-radius:20px;font-weight:800" onclick="go('seller')">Lihat →</button></div>
-
-  <div style="padding:0 10px;display:flex;justify-content:space-between"><b>Produk Untukmu</b><span style="color:#ee4d2d;font-size:12px">Lihat Semua ›</span></div>
-  <div class="grid">
-    <div class="card"><div class="foto">👕</div><p>Kaos Polos Cotton Combed - Hitam</p><b>Rp43.000</b><br><small>⭐ 4.9 • Terjual 200+ • COD Bekasi</small></div>
-    <div class="card"><div class="foto">👟</div><p>Sepatu Sneaker Sport Casual</p><b>Rp128.000</b><br><small>⭐ 4.8 • Terjual 89+ • COD Jakarta</small></div>
-    <div class="card"><div class="foto">🎒</div><p>Tas Ransel Waterproof 20L</p><b>Rp95.000</b><br><small>⭐ 5.0 • Terjual 54+ • COD Bandung</small></div>
-    <div class="card"><div class="foto">📱</div><p>HP Android 6.5" 128GB</p><b>Rp1.899.000</b><br><small>⭐ 4.9 • Terjual 32+ • COD Bekasi</small></div>
-  </div>
-  <div class="sec"><b>🌐 Sosial + TV Biar Gak Jenuh</b><p style="font-size:12px;margin-top:4px">Facebook • IG • TikTok • YouTube • VTC TV semua di dalam 1 app.</p><button class="btn btn2" onclick="go('live')">Buka Live / TV 📺</button></div>
+<div id="p-jual" class="page">
+<div class="card" style="padding:14px"><h3>Upload Produk - Foto Asli</h3><small>Upload pake foto asli produk lu. Jangan pake foto contoh.</small>
+<input id="namaToko" placeholder="Nama Toko Lu">
+<input id="namaProduk" placeholder="Nama Produk - contoh: Bumbu Bangka Premium">
+<input id="hargaProduk" type="number" placeholder="Harga - contoh: 35000">
+<select id="sizeProduk"><option value="">Pilih Ukuran / Size</option><option>100gr</option><option>200gr</option><option>500gr</option><option>1kg</option><option>2kg</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>All Size</option></select>
+<select id="katProduk"><option>Makanan</option><option>Bumbu</option><option>Sembako</option><option>Fashion</option><option>Elektronik</option><option>Lainnya</option></select>
+<input id="waProduk" placeholder="No WA Seller - contoh: 08387850233">
+<label style="font-size:13px">Foto Produk ASLI - pilih dari HP lu:</label>
+<input type="file" id="fileFoto" accept="image/*">
+<img id="previewFoto" style="width:100%;border-radius:12px;display:none;margin-top:8px">
+<textarea id="deskProduk" placeholder="Deskripsi detail - contoh: Bumbu asli, isi 200gr, tahan 6 bulan"></textarea>
+<button class="btn" onclick="tambahProduk()">Simpan & Tayangkan</button>
+<button class="btn btn3" onclick="go('home')">Lihat Beranda</button></div>
+<div class="card" style="padding:14px"><b>Produk Saya</b><div id="produkSaya"></div></div>
 </div>
 
-<div id="p-login" class="page"><div class="sec"><h2>Login OTP - VTC</h2><p style="font-size:12px;color:#666">Login tanpa password, kode dikirim ke WA.</p><input placeholder="Nomor HP - 0812xxxx"><button class="btn btn2" onclick="alert('OTP: 123456')">Kirim Kode OTP →</button><input placeholder="Kode OTP - 123456"><button class="btn" onclick="alert('Login Berhasil!');go('seller')">Verifikasi & Masuk ✅</button></div></div>
-<div id="p-daftar" class="page"><div class="sec"><h2>📝 Daftar Jadi Seller - GRATIS</h2><p style="font-size:12px;color:#666">VTC hanya penampung, toko 100% milik kamu, COD kamu yang atur.</p><input placeholder="Nama Toko Kamu"><input placeholder="Nama Kamu"><input placeholder="Nomor HP / WA"><select><option>Bekasi - COD Bekasi</option><option>Jakarta - COD Jakarta</option><option>Bandung - COD Bandung</option></select><button class="btn" onclick="alert('Seller berhasil daftar!');go('login')">Daftar & Kirim OTP →</button></div></div>
-<div id="p-seller" class="page"><div class="sec"><h2>🏪 Toko Saya</h2><p><b>Toko Baju Bekasi</b> • ✅ Terverifikasi<br>24 Produk • 18 Pesanan • Saldo Rp1.2jt</p><button class="btn" onclick="alert('Tambah produk!')">+ Tambah Produk</button><button class="btn btn2" onclick="go('live')">🔴 Live Jualan</button></div></div>
-<div id="p-live" class="page"><div class="sec"><h3>📺 VTC Live - Kayak Shopee Live</h3><p style="font-size:12px">Semua seller bisa live, konsumen bisa beli langsung dari live.</p><button class="btn" onclick="alert('Live dimulai!')">🔴 Mulai Live Jualan</button></div></div>
-<div id="p-cart" class="page"><div class="sec"><h3>Keranjang</h3><p>COD per seller, tiap seller hubungi kamu.</p><button class="btn" onclick="alert('Checkout Berhasil!')">Checkout COD →</button></div></div>
-<div id="p-akun" class="page"><div class="sec"><h2>👤 Saya</h2><button class="btn" onclick="go('login')">Login OTP →</button><button class="btn btn2" onclick="go('daftar')">Daftar Jadi Seller →</button></div></div>
+<div id="p-keranjang" class="page">
+<div class="card" style="padding:14px"><h3>Keranjang Kamu</h3><div id="listKeranjang"></div><button class="btn" onclick="checkout()">Checkout - COD / Transfer</button></div>
+<div class="card" style="padding:14px"><b>Pesanan</b><div id="listPesanan"></div></div>
+</div>
 
-<!-- NAV PERSIS SHOPEE -->
+<div id="modalDetail" class="modal"><div class="modalBox">
+<button class="btn btn3" onclick="tutupDetail()">Tutup</button>
+<img id="dFoto" src="">
+<h2 id="dNama" style="margin-top:10px"></h2>
+<div id="dHarga" style="color:#ee4d2d;font-weight:900;font-size:20px"></div>
+<p><b>Toko:</b> <span id="dToko"></span></p>
+<p><b>Ukuran / Size:</b> <span id="dSize"></span></p>
+<p><b>Kategori:</b> <span id="dKat"></span></p>
+<p><b>Detail:</b><br><span id="dDesk"></span></p>
+<p><b>Pengiriman:</b> COD / JNT / JNE / SiCepat</p>
+<label><b>Pilih Size Lagi:</b></label><select id="dPilihSize"><option>100gr</option><option>200gr</option><option>500gr</option><option>1kg</option><option>All Size</option></select>
+<label><b>Jumlah:</b></label><input id="dQty" type="number" value="1" min="1">
+<button class="btn" onclick="tambahKeranjang()">+ Tambah Keranjang</button>
+<button class="btn btn2" onclick="beliLangsung()">Beli Langsung - WA Seller</button>
+</div></div>
+
 <div class="nav">
-  <div class="on" onclick="go('beranda',this)"><b>🏠</b>Beranda</div>
-  <div onclick="go('daftar',this)"><b>🏷️</b>Produk Baru</div>
-  <div onclick="go('live',this)"><b>📺</b>Live</div>
-  <div onclick="go('live',this)"><b>▶️</b>Video</div>
-  <div onclick="go('akun',this)"><b>🔔</b>Notifikasi</div>
-  <div onclick="go('akun',this)"><b>👤</b>Saya</div>
+<div class="on" onclick="go('home',this)">Beranda</div>
+<div onclick="go('jual',this)">+ Jualan</div>
+<div onclick="go('keranjang',this)">Keranjang (<span id="jmlCart">0</span>)</div>
 </div>
+
 <script>
-function go(id,el){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on')});var m={beranda:'p-beranda',login:'p-login',daftar:'p-daftar',seller:'p-seller',live:'p-live',cart:'p-cart',akun:'p-akun'};document.getElementById(m[id]).classList.add('on');document.querySelectorAll('.nav div').forEach(function(d){d.classList.remove('on')});if(el)el.classList.add('on');window.scrollTo(0,0)}
+let produk = JSON.parse(localStorage.getItem('vtc_produk')||'[]');
+let cart = JSON.parse(localStorage.getItem('vtc_cart')||'[]');
+let pesanan = JSON.parse(localStorage.getItem('vtc_pesanan')||'[]');
+let dipilih = null;
+function simpan(){localStorage.setItem('vtc_produk',JSON.stringify(produk));localStorage.setItem('vtc_cart',JSON.stringify(cart));localStorage.setItem('vtc_pesanan',JSON.stringify(pesanan));}
+function show(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2200)}
+function go(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('p-'+id).classList.add('on');document.querySelectorAll('.nav div').forEach(d=>d.classList.remove('on'));if(el)el.classList.add('on');if(id=='home')tampil();if(id=='jual')tampilSaya();if(id=='keranjang')tampilCart();window.scrollTo(0,0)}
+document.getElementById('fileFoto').addEventListener('change',function(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=ev=>{let img=document.getElementById('previewFoto');img.src=ev.target.result;img.style.display='block'};r.readAsDataURL(f);});
+function tampil(){
+let q=(document.getElementById('cari').value||'').toLowerCase();
+document.getElementById('emptyBox').style.display=produk.length?'none':'block';
+let html='';
+produk.forEach((p,i)=>{
+if(q && (p.nama+' '+p.toko).toLowerCase().indexOf(q)==-1)return;
+html+=`<div class="card" onclick="bukaDetail(${i})"><img src="${p.foto}"><div class="isi"><b>${p.toko}</b><br>${p.nama}<br><small>Size: ${p.size} • ${p.kat}</small><br><b style="color:#ee4d2d;font-size:18px">Rp${Number(p.harga).toLocaleString('id-ID')}</b><br><small style="color:#ee4d2d;font-weight:800">KLIK UNTUK LIAT DETAIL</small></div></div>`;
+});
+document.getElementById('listProduk').innerHTML=html;
+document.getElementById('jmlCart').innerText=cart.length;
+}
+function tampilSaya(){document.getElementById('produkSaya').innerHTML=produk.length?produk.map((p,i)=>`<div style="padding:8px 0;border-bottom:1px solid #eee;display:flex;gap:8px;align-items:center"><img src="${p.foto}" style="width:50px;height:50px;object-fit:cover;border-radius:8px"><span style="flex:1"><b>${p.nama}</b><br><small>${p.toko} - Rp${Number(p.harga).toLocaleString('id-ID')} - ${p.size}</small></span><button onclick="hapusProduk(${i})" style="background:#fff;border:1px solid #ddd;padding:6px;border-radius:8px">Hapus</button></div>`).join(''):'Belum ada produk.'}
+function hapusProduk(i){if(!confirm('Hapus produk ini?'))return;produk.splice(i,1);simpan();tampil();tampilSaya();show('Produk dihapus')}
+function tambahProduk(){
+let toko=document.getElementById('namaToko').value.trim();
+let nama=document.getElementById('namaProduk').value.trim();
+let harga=document.getElementById('hargaProduk').value;
+let size=document.getElementById('sizeProduk').value;
+let kat=document.getElementById('katProduk').value;
+let wa=document.getElementById('waProduk').value.trim();
+let desk=document.getElementById('deskProduk').value.trim();
+let foto=document.getElementById('previewFoto').src;
+if(!toko||!nama||!harga){show('Isi Nama Toko, Nama Produk, Harga dulu!');return}
+if(!foto||foto==''||!foto.startsWith('data:')){show('Pilih foto ASLI dari HP lu dulu!');return}
+if(!size){show('Pilih Size dulu!');return}
+produk.unshift({toko,nama,harga,size,kat,wa,desk,foto});
+simpan();tampil();tampilSaya();
+document.getElementById('namaProduk').value='';document.getElementById('hargaProduk').value='';document.getElementById('deskProduk').value='';
+show('Produk berhasil tayang!');
+go('home');
+}
+function bukaDetail(i){
+dipilih=produk[i];
+document.getElementById('dFoto').src=dipilih.foto;
+document.getElementById('dNama').innerText=dipilih.nama;
+document.getElementById('dHarga').innerText='Rp '+Number(dipilih.harga).toLocaleString('id-ID');
+document.getElementById('dToko').innerText=dipilih.toko;
+document.getElementById('dSize').innerText=dipilih.size;
+document.getElementById('dKat').innerText=dipilih.kat;
+document.getElementById('dDesk').innerText=dipilih.desk||'-';
+document.getElementById('dPilihSize').value=dipilih.size;
+document.getElementById('modalDetail').style.display='block';
+}
+function tutupDetail(){document.getElementById('modalDetail').style.display='none'}
+document.getElementById('modalDetail').addEventListener('click',function(e){if(e.target==this)tutupDetail()});
+function tambahKeranjang(){if(!dipilih)return;let q=document.getElementById('dQty').value||1;let s=document.getElementById('dPilihSize').value;cart.push({...dipilih,nama:dipilih.nama+' ('+s+' x'+q+')'});simpan();tutupDetail();tampil();show('Masuk keranjang!');}
+function beliLangsung(){if(!dipilih)return;let pesan=encodeURIComponent('Halo '+dipilih.toko+', saya mau beli: '+dipilih.nama+' - Size '+dipilih.size+' - Rp'+Number(dipilih.harga).toLocaleString('id-ID'));let no=(dipilih.wa||'').replace(/[^0-9]/g,'');if(no.startsWith('0'))no='62'+no.slice(1);window.open('https://wa.me/'+no+'?text='+pesan,'_blank')}
+function tampilCart(){
+document.getElementById('listKeranjang').innerHTML=cart.length?cart.map(p=>`<div style="padding:8px 0;border-bottom:1px solid #eee">✅ ${p.nama} - <b>Rp${Number(p.harga).toLocaleString('id-ID')}</b><br><small>${p.toko}</small></div>`).join(''):'Keranjang kosong. Klik produk, liat detail, baru tambah keranjang.';
+document.getElementById('listPesanan').innerHTML=pesanan.length?pesanan.map(p=>`<div style="padding:8px 0;border-bottom:1px solid #eee">📦 ${p.nama} - Rp${Number(p.harga).toLocaleString('id-ID')}<br><small>${p.toko} - ${p.tanggal}</small></div>`).join(''):'Belum ada pesanan.';
+}
+function checkout(){if(!cart.length){show('Keranjang masih kosong!');return}pesanan=pesanan.concat(cart.map(c=>({...c,tanggal:new Date().toLocaleString('id-ID')})));cart=[];simpan();tampilCart();tampil();show('Checkout berhasil! Pesanan masuk.');}
+tampil();
 </script>
 </body>
 </html>
