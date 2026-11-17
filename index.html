@@ -1,69 +1,43 @@
-<!-- FIX BERSIH - HAPUS TULISAN PENAMPUNG / KAYAK SHOPEE -->
-<script>
-// Jalan otomatis, bersihin semua tulisan jiplakan di web lu
-(function bersihinVTC(){
-  // 1. Hapus semua teks yang nyebut penampung / kayak shopee / seperti shopee
-  let kataKotor = ['penampung seller','penampung','kayak shopee','seperti shopee','mirip shopee','ala shopee','shopee mini','kayak Shopee','Seperti Shopee','VTC Penampung'];
-  document.querySelectorAll('h1,h2,h3,b,small,p,span,div,button,a').forEach(el=>{
-    // Cuma bersihin teks langsung, bukan yang punya anak banyak biar gak rusak
-    if(el.childNodes.length==1 && el.childNodes[0].nodeType==3){
-      let t=el.textContent;
-      kataKotor.forEach(k=>{
-        if(t.toLowerCase().includes(k.toLowerCase())){
-          // Ganti dengan kalimat bersih
-          if(t.toLowerCase().includes('penampung')) el.textContent = t.replace(/VTC Penampung Seller.*$/i,'VTC').replace(/Penampung Seller.*$/i,'VTC').replace(/penampung seller/i,'VTC').replace(/penampung/i,'VTC');
-          else el.textContent = t.replace(/kayak shopee|seperti shopee|mirip shopee|ala shopee|shopee mini/gi,'').trim();
-          if(el.textContent.trim()=='' || el.textContent.trim()=='-' ) el.style.display='none';
-        }
-      });
-    }
-  });
-
-  // 2. Ganti judul-judul yang kemarin gue bikin kotor
-  let ganti = [
-    {cari:'VTC PENAMPUNG', ganti:'VTC'},
-    {cari:'PENAMPUNG SELLER', ganti:'VTC'},
-    {cari:'KAYAK SHOPEE', ganti:''},
-    {cari:'SEPERTI SHOPEE', ganti:''},
-    {cari:'Toko Seller di VTC', ganti:'Toko di VTC'},
-    {cari:'Toko Seller', ganti:'Toko'},
-    {cari:'Mau jualan? Daftar jadi seller gratis.', ganti:'Buka toko gratis, jualan sekarang.'},
-    {cari:'Daftar - Jadi Seller VTC', ganti:'Daftar - VTC'},
-    {cari:'Masuk - VTC', ganti:'Masuk'},
-    {cari:'Data tersimpan aman di HP, kayak Shopee Lite.', ganti:'Data tersimpan aman di perangkat kamu.'},
-    {cari:'Gratis, kayak Shopee.', ganti:'Gratis.'},
-    {cari:'Bisa jadi Pembeli + Seller sekaligus.', ganti:'Bisa beli & jualan di satu akun.'},
-    {cari:'Dengan daftar, kamu setuju COD, JNE, J&T, Retur sesuai aturan VTC.', ganti:'Dengan daftar, kamu setuju dengan ketentuan VTC.'},
-    {cari:'Coba akun demo: demo@vtc.com / 123456 - Ada toko demo + order demo.', ganti:'Akun demo: demo@vtc.com / 123456'},
-    {cari:'Masing-masing seller punya toko sendiri, kayak Shopee.', ganti:'Setiap seller punya toko sendiri.'},
-    {cari:'Masing-masing seller punya toko sendiri, punya produk sendiri', ganti:'Setiap toko punya produk sendiri.'},
-    {cari:'Buka toko gratis, jualan sekarang.', ganti:'Buka toko gratis.'},
-  ];
-  document.querySelectorAll('*').forEach(el=>{
-    if(el.childNodes.length==1 && el.childNodes[0].nodeType==3){
-      ganti.forEach(g=>{
-        if(el.textContent.includes(g.cari)) el.textContent = el.textContent.replace(g.cari, g.ganti);
-      });
-    }
-  });
-
-  // 3. Ganti placeholder & alert yang masih nyebut Shopee (di JS, gue override)
-  window._alertAsli = window.alert;
-  // Jangan override alert global, cuma bersihin teks yang keluar di fungsi VTC
-  let _daftarAsli = window.daftarVTC;
-  console.log('✅ VTC DIBERSIHIN - Udah gak ada tulisan Penampung / Kayak Shopee');
-})();
-</script>
-
-<!-- GANTI BAGIAN JUDUL YANG KOTOR KEMARIN PAKE YANG BERSIH INI -->
-<!-- Kalau lu masih liat judul kotor, ganti manual 3 ini di HTML lu: -->
-
-<!-- DULU (KOTOR, HAPUS): -->
-<!-- <h3>🏪 Toko Seller di VTC</h3> <small>Masing-masing seller punya toko sendiri, kayak Shopee.</small> -->
-<!-- <h2>Daftar - Jadi Seller VTC</h2> <small>Gratis, kayak Shopee. Bisa jadi Pembeli + Seller sekaligus.</small> -->
-<!-- <div>VTC PENAMPUNG SELLER - KAYAK SHOPEE</div> -->
-
-<!-- SEKARANG (BERSIH, PAKE INI): -->
-<!-- <h3>🏪 Toko di VTC</h3> <small>Setiap seller punya toko sendiri.</small> -->
-<!-- <h2>Daftar</h2> <small>Gratis. Bisa beli & jualan di satu akun.</small> -->
-<!-- <div>VTC</div> -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC - Beli & Jualan</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0A0A0A;color:#fff;font-family:Arial,sans-serif;padding-bottom:100px}
+.top{position:sticky;top:0;background:#0A0A0A;padding:14px;display:flex;justify-content:space-between;border-bottom:1px solid #262626;z-index:99}
+.logo{font-size:26px;font-weight:900}.logo i{color:#FF6B00;font-style:normal}
+.search{display:flex;gap:8px;padding:12px 14px}
+.search input{flex:1;background:#1A1A1A;border:1px solid #333;color:#fff;padding:12px;border-radius:999px}
+.search button{background:#FF6B00;color:#fff;border:none;padding:12px 18px;border-radius:999px;font-weight:800}
+.card{background:#161616;border:1px solid #262626;border-radius:20px;padding:14px;margin:10px 14px}
+.inp{width:100%;background:#1A1A1A;border:1px solid #333;color:#fff;padding:12px;border-radius:12px;margin-bottom:8px}
+.btn{width:100%;background:#FF6B00;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:900}
+.btn2{width:100%;background:#222;color:#fff;border:1px solid #333;padding:12px;border-radius:12px;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:8px 14px}
+.p{background:#1E1E1E;border-radius:16px;padding:10px;text-align:center;cursor:pointer}
+.p img{width:100%;height:80px;object-fit:cover;border-radius:12px}
+.p b{font-size:12px;display:block;height:30px;overflow:hidden}
+.p .h{color:#FF6B00;font-weight:900}
+.nav{position:fixed;left:12px;right:12px;bottom:12px;background:#141414;border:1px solid #333;border-radius:24px;display:flex;justify-content:space-around;padding:12px 6px;z-index:999}
+.nav a{font-size:11px;color:#888;text-align:center;text-decoration:none}
+.nav .plus{background:#FF6B00;color:#fff!important;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin-top:-30px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:16px}
+.modal.open{display:flex}.box{background:#161616;border-radius:20px;padding:16px;width:100%;max-width:380px}
+.chip{display:inline-block;padding:7px 12px;border-radius:999px;background:#222;border:1px solid #333;font-size:12px;margin:2px}
+.chip.on{background:#FF6B00}
+.order{border:1px solid #333;border-radius:14px;padding:12px;margin-bottom:8px;background:#1A1A1A;font-size:13px}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo"><i>•</i>VTC</div><div style="display:flex;gap:14px;font-size:20px"><span onclick="bukaWarna()">🎨</span><span onclick="bukaAuth()">👤</span></div></div>
+<div class="search"><input id="cari" placeholder="Cari Terasi, Kopi, Baju..." oninput="cari()"><button onclick="cari()">Cari</button></div>
+<div class="card"><b id="akunNama">👋 Halo, Tamu</b><br><small id="akunToko">Buka toko gratis, jualan sekarang.</small><br><button class="btn" style="margin-top:10px" onclick="bukaAuth()" id="btnAkun">Daftar / Masuk</button><button class="btn2" onclick="logout()" id="btnKeluar" style="display:none">Keluar</button></div>
+<div style="display:flex;justify-content:space-between;padding:6px 16px"><h3>Produk Hari Ini</h3><a href="#" onclick="tampilSemua();return false" style="color:#FF6B00">Lihat Semua ›</a></div>
+<div class="grid" id="grid"></div>
+<div class="card"><h3>🏪 Toko di VTC</h3><small>Setiap seller punya toko sendiri.</small><div id="listToko" style="margin-top:8px"></div><button class="btn2" onclick="tambahProduk()">+ Tambah Produk</button></div>
+<div class="card"><h3>🛒 Checkout - COD</h3><div id="checkoutIsi"><small style="color:#888">Pilih produk dulu.</small></div><br><select class="inp" id="kurir"><option value="JNE|15000">JNE REG - Rp 15.000</option><option value="J&T|12000">J&T Express - Rp 12.000</option><option value="COD|0">COD Ketemuan - Rp 0</option></select><select class="inp" id="bayar"><option value="COD">COD - Bayar di Tempat</option><option value="Transfer">Transfer</option><option value="QRIS">QRIS</option></select><input class="inp" id="alamat" placeholder="Alamat lengkap"><div id="ringkasan" style="font-size:13px;background:#1A1A1A;padding:10px;border-radius:12px;margin-bottom:8px">Total: -</div><button class="btn" onclick="buatPesanan()">✅ Buat Pesanan</button></div>
+<div class="card"><h3>📦 Pesanan Saya</h3><div id="listOrder"></div><div style="background:#1A1A1A;padding:10px;border-radius:12px;margin-top:10px"><b>🔍 Lacak Resi</b><div style="display:flex;gap:6px;margin-top:8px"><input class="inp" id="inputResi" placeholder="JNE012345" style="margin:0"><button onclick="lacak()" style="background:#FF6B00;color:#fff;border:none;padding:12px;border-radius:12px">Lacak</button></div><div id="hasilLacak" style="font-size:13px;margin-top:8px"></div></div></div>
+<div class="modal" id="mAuth"><div class="box"><div style="display:flex;justify-content:space-between"><h2>Daftar / Masuk</h2><button onclick="tutupAuth()" style="background:#222;color:#fff;border:none;width:32px;height:32px;border-radius:50%">✕</button></div><br><input class="inp" id="rNama" placeholder="Nama Lengkap"><input class="inp" id="rToko" placeholder="Nama Toko"><input class="inp" id="
