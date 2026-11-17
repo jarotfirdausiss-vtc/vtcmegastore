@@ -6,27 +6,24 @@
 <title>VTC Mega Store Indonesia</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f2f2f2;padding-bottom:70px}
-a{color:inherit;text-decoration:none}
+body{background:#f2f2f2;padding-bottom:80px;overflow-x:hidden}
 .top{background:linear-gradient(90deg,#ff6a00,#ff8a00);color:#fff;padding:10px 12px 12px;position:sticky;top:0;z-index:99}
 .top1{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:19px;line-height:1}.logo small{font-size:11px;font-weight:400;opacity:.9}
-.top1 .ic{font-size:20px;display:flex;gap:14px}
-.search{display:flex;background:#fff;border-radius:999px;padding:9px 10px;margin-top:10px;align-items:center;gap:6px}
-.search input{border:0;outline:0;flex:1;font-size:13px}
-.search span{font-size:17px}
-.g3{display:flex;gap:8px;margin-top:10px}
-.g3 button{flex:1;border:0;border-radius:999px;padding:9px 4px;font-weight:700;font-size:12px;color:#fff;cursor:pointer}
-.g3 button:nth-child(1){background:#fff;color:#1a73e8}.g3 button:nth-child(2){background:#1a73e8}.g3 button:nth-child(3){background:#0f9d58}
-.menu{display:flex;justify-content:space-between;background:#fff;padding:12px 10px;text-align:center}
-.menu div{font-size:11px;cursor:pointer}.menu b{font-size:22px;display:block}
+.logo{font-weight:900;font-size:18px;line-height:1.1}.logo small{font-size:11px;font-weight:400}
+.top1 .ic{font-size:19px;display:flex;gap:14px;white-space:nowrap}
+/* SEARCH OTOMATIS - CUMA 1 BARIS, GAK ADA TOMBOL BIRU LAGI */
+.search{display:flex;background:#fff;border-radius:999px;padding:0 10px;margin-top:10px;align-items:center;gap:6px;height:46px;overflow:hidden}
+.search input{border:0;outline:0;flex:1;min-width:0;font-size:13px;height:100%}
+.search .s-ic{flex-shrink:0;font-size:18px;cursor:pointer}
+.menu{display:flex;justify-content:space-between;background:#fff;padding:12px 8px;text-align:center}
+.menu div{font-size:11px;cursor:pointer;flex:1}.menu b{font-size:22px;display:block}
 .flash{background:#fff;margin:10px;border-radius:12px;overflow:hidden}
-.flash-h{background:#ee4d2d;color:#fff;padding:9px 10px;display:flex;justify-content:space-between;font-weight:900}
-.flash-h span:last-child{background:#7a1a00;padding:3px 8px;border-radius:20px;font-size:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;background:#f2f2f2}
+.flash-h{background:#ee4d2d;color:#fff;padding:9px 10px;display:flex;justify-content:space-between;align-items:center;font-weight:900}
+.flash-h span:last-child{background:#7a1a00;padding:4px 8px;border-radius:20px;font-size:11px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
 .card{background:#fff;border-radius:12px;overflow:hidden;padding-bottom:8px;text-align:center;cursor:pointer}
 .card img{width:100%;height:140px;object-fit:cover}
-.card p{font-size:12px;padding:4px 6px;height:30px;overflow:hidden}
+.card p{font-size:12px;padding:4px 6px;height:32px;overflow:hidden;line-height:1.3}
 .card b{color:#ee4d2d;font-size:13px}.card small{color:#777;font-size:11px;display:block}
 .sec{background:#fff;margin:10px;border-radius:12px;padding:12px}
 .sec h3{display:flex;justify-content:space-between;font-size:15px}
@@ -34,163 +31,65 @@ a{color:inherit;text-decoration:none}
 #videoLive{width:100%;height:340px;object-fit:cover;background:#111;display:block}
 .liveTag{position:absolute;top:10px;left:10px;background:#f00;color:#fff;padding:4px 8px;border-radius:20px;font-size:12px;font-weight:800}
 .viewTag{position:absolute;top:10px;left:70px;background:rgba(0,0,0,.6);color:#fff;padding:4px 8px;border-radius:20px;font-size:12px}
-.komen{position:absolute;left:10px;bottom:110px;display:flex;flex-direction:column;gap:6px}
+.komen{position:absolute;left:10px;bottom:20px;display:flex;flex-direction:column;gap:6px}
 .komen div{background:rgba(0,0,0,.65);color:#fff;font-size:12px;padding:6px 9px;border-radius:20px;max-width:240px}
 .proLive{background:#fff3e0;margin:10px;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
 .proLive img{width:64px;height:64px;object-fit:cover;border-radius:8px}
-.proLive button{margin-left:auto;background:#ee4d2d;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-weight:800}
+.proLive button{margin-left:auto;background:#ee4d2d;color:#fff;border:0;padding:10px 16px;border-radius:20px;font-weight:800;flex-shrink:0}
 .tokoBanner{background:linear-gradient(90deg,#ff6a00,#ff8a00);color:#fff;border-radius:12px;padding:14px;text-align:center}
 .tokoBanner button{background:#fff;color:#ee4d2d;border:0;padding:7px 12px;border-radius:20px;font-weight:700;margin:8px 4px 0}
 .cartItem{background:#fff;margin:10px;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center}
 .cartItem img{width:70px;height:70px;object-fit:cover;border-radius:8px}
-.qty{margin-left:auto;display:flex;align-items:center;gap:8px}
-.qty button{width:28px;height:28px;border:1px solid #ddd;background:#fff;border-radius:50%;font-size:16px}
 input,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-top:6px;font-size:13px}
 .btn{width:100%;background:#ee4d2d;color:#fff;border:0;padding:13px;border-radius:999px;font-weight:900;font-size:15px;margin-top:10px;cursor:pointer}
 .btn2{background:#1a73e8}
 .page{display:none}.page.on{display:block}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 10px;border-top:1px solid #eee;z-index:99}
-.nav div{text-align:center;font-size:11px;cursor:pointer;color:#666}.nav div.on{color:#ee4d2d;font-weight:800}.nav b{font-size:20px;display:block}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;padding:6px 2px calc(6px + env(safe-area-inset-bottom));border-top:1px solid #eee;z-index:100;height:62px}
+.nav div{flex:1;text-align:center;font-size:10px;cursor:pointer;color:#666;white-space:nowrap;overflow:hidden;line-height:1.2}
+.nav div.on{color:#ee4d2d;font-weight:800}.nav b{font-size:19px;display:block;line-height:1.2}
 .badge{background:#ee4d2d;color:#fff;font-size:10px;padding:2px 6px;border-radius:20px}
-.chat{position:fixed;right:12px;bottom:80px;background:#1a73e8;color:#fff;border:0;padding:12px 14px;border-radius:999px;font-weight:800;z-index:99}
+.chat{position:fixed;right:10px;bottom:72px;background:#1a73e8;color:#fff;border:0;padding:8px 11px;border-radius:999px;font-weight:700;font-size:12px;z-index:99}
 </style>
 </head>
 <body>
-
-<!-- HEADER -->
 <div class="top">
   <div class="top1"><div class="logo">🛍️ VTC Mega Store<br><small>Indonesia</small></div><div class="ic"><span onclick="go('cart')">🛒<span class="badge" id="cartCount">0</span></span><span>💬</span></div></div>
-  <div class="search"><span>🔍</span><input id="cari" placeholder="Cari Kaos, Sepatu, Jarum..." oninput="filterProduk()"><span onclick="cariSuara()">🎤</span><span onclick="cariKamera()">📷</span></div>
-  <div class="g3"><button onclick="cariGoogle()">G Telusuri</button><button onclick="cariSuara()">🎤 Penelusuran Suara</button><button onclick="cariKamera()">📷 Cari dengan Kamera</button></div>
+  <!-- INI DOANG, OTOMATIS. GAK ADA 3 BULATAN BIRU LAGI -->
+  <div class="search"><span>🔍</span><input id="cari" placeholder="Cari Kaos, Sepatu, Jarum..." oninput="renderProduk()"><span class="s-ic" onclick="cariSuaraOtomatis()">🎤</span><span class="s-ic" onclick="cariKamera()">📷</span></div>
 </div>
 
-<!-- BERANDA -->
 <div id="p-beranda" class="page on">
   <div class="menu"><div onclick="filterKategori('Kaos')"><b>👕</b>Kaos</div><div onclick="filterKategori('Sepatu')"><b>👟</b>Sepatu</div><div onclick="filterKategori('Tas')"><b>🎒</b>Tas</div><div onclick="filterKategori('HP')"><b>📱</b>HP</div><div onclick="go('live')"><b style="color:red">🔴</b>Live</div></div>
   <div class="flash"><div class="flash-h"><span>⚡ FLASH SALE</span><span>Berakhir dalam <span id="timer">23:26:28</span></span></div>
-  <div style="display:flex;gap:10px;padding:10px"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" style="width:90px;height:90px;object-fit:cover;border-radius:10px"><div><b>Kaos Polos Cotton Combed 24s - Hitam</b><br><b style="color:#ee4d2d">Rp43.000</b> <s style="color:#999;font-size:12px">Rp61.000</s><br><div style="height:7px;background:#eee;border-radius:20px;margin:6px 0"><div style="width:60%;height:7px;background:#ee4d2d;border-radius:20px"></div></div><small>Terjual 60% • 120 terjual</small></div></div></div>
+  <div style="display:flex;gap:10px;padding:10px"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300" style="width:90px;height:90px;object-fit:cover;border-radius:10px;flex-shrink:0"><div><b>Kaos Polos Cotton Combed 24s - Hitam</b><br><b style="color:#ee4d2d">Rp43.000</b> <s style="color:#999;font-size:12px">Rp61.000</s><br><div style="height:7px;background:#eee;border-radius:20px;margin:6px 0"><div style="width:60%;height:7px;background:#ee4d2d;border-radius:20px"></div></div><small>Terjual 60% • 120 terjual</small></div></div></div>
   <div class="sec"><h3>Produk Untukmu <span style="color:#ee4d2d;font-weight:400;font-size:13px">Lihat Semua ›</span></h3></div>
   <div class="grid" id="gridProduk"></div>
 </div>
 
-<!-- LIVE / TV STREAMING - SUDAH NORMAL -->
 <div id="p-live" class="page">
-  <div class="sec"><h3>🔴 VTC TV - Live Streaming <span style="color:#1a73e8">HD</span></h3><p style="font-size:12px;color:#666;margin-top:6px">TV Streaming udah normal. Pencet Mulai Live, kamera langsung jalan.</p></div>
-  <div class="livebox">
-    <video id="videoLive" autoplay muted playsinline></video>
-    <div class="liveTag">● LIVE</div><div class="viewTag">👁️ <span id="viewCount">1.284</span> menonton</div>
-    <div class="komen" id="komenBox"><div><b>Ayu:</b> Kaosnya masih ada?</div><div><b>Budi:</b> COD bisa?</div></div>
-  </div>
-  <div style="display:flex;gap:8px;padding:0 10px">
-    <button class="btn" style="margin:0" onclick="mulaiLive()">🔴 Mulai Live</button>
-    <button class="btn" style="margin:0;background:#333" onclick="stopLive()">⏹ Stop</button>
-  </div>
-  <div class="sec"><b>Status Live:</b> <span id="statusLive">Belum Live - Pencet Mulai Live</span><br><br><b>Pilih Kamera:</b><br><select id="kameraPilih" onchange="gantiKamera()"><option value="user">Kamera Depan (Selfie)</option><option value="environment">Kamera Belakang</option></select><br><br>
-  <input id="inputKomen" placeholder="Kirim komentar..."><button class="btn btn2" onclick="kirimKomen()">Kirim Komentar</button></div>
-  <div class="proLive"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200"><div><b>Kaos Polos</b><br><b style="color:#ee4d2d">Rp43.000</b><br><small>Stok: 120 • Terjual 200+</small></div><button onclick="tambah('Kaos Polos',43000)">Beli</button></div>
+  <div class="sec"><h3>🔴 VTC TV - Live Streaming</h3><p style="font-size:12px;color:#666;margin-top:6px">Pencet Mulai Live, kamera langsung jalan.</p></div>
+  <div class="livebox"><video id="videoLive" autoplay muted playsinline></video><div class="liveTag">● LIVE</div><div class="viewTag">👁️ <span id="viewCount">1.284</span></div><div class="komen" id="komenBox"><div><b>Ayu:</b> Kaosnya masih ada?</div><div><b>Budi:</b> COD bisa?</div></div></div>
+  <div style="display:flex;gap:8px;padding:0 10px"><button class="btn" style="margin:0" onclick="mulaiLive()">🔴 Mulai Live</button><button class="btn" style="margin:0;background:#333" onclick="stopLive()">⏹ Stop</button></div>
+  <div class="sec"><b>Status:</b> <span id="statusLive">Belum Live</span><br><br><select id="kameraPilih"><option value="user">Kamera Depan</option><option value="environment">Kamera Belakang</option></select><br><br><input id="inputKomen" placeholder="Kirim komentar..."><button class="btn btn2" onclick="kirimKomen()">Kirim Komentar</button></div>
+  <div class="proLive"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200"><div><b>Kaos Polos</b><br><b style="color:#ee4d2d">Rp43.000</b></div><button onclick="tambah('Kaos Polos',43000)">Beli</button></div>
 </div>
 
-<!-- TOKO -->
 <div id="p-toko" class="page">
-  <div class="sec"><div class="tokoBanner"><h2>Toko Baju Bekasi</h2><p>Toko Baju Murah Bekasi • COD Bisa • Retur</p><p>⭐ 4.9 (12.5rb Penilaian) • Pengikut 25.3rb</p><button onclick="alert('Banner diganti!')">+ Ubah Banner</button><button onclick="alert('Toko diatur!')">⚙️ Atur Toko</button></div></div>
-  <div class="sec"><h3>Produk Unggulan <span style="color:#ee4d2d;font-weight:400">Lihat Semua ›</span></h3></div>
-  <div class="grid" id="gridToko"></div>
+  <div class="sec"><div class="tokoBanner"><h2>Toko Baju Bekasi</h2><p>Toko Baju Murah Bekasi • COD Bisa • Retur</p><p>⭐ 4.9 • Pengikut 25.3rb</p><button onclick="alert('Banner diganti!')">+ Ubah Banner</button><button onclick="alert('Toko diatur!')">⚙️ Atur Toko</button></div></div>
+  <div class="sec"><h3>Produk Unggulan</h3></div><div class="grid" id="gridToko"></div>
 </div>
 
-<!-- KERANJANG -->
 <div id="p-cart" class="page">
   <div class="sec"><h3>Keranjang (<span id="cartNum">0</span>)</h3></div>
-  <div id="cartList"><div class="sec">Keranjang masih kosong. Yuk belanja dulu!</div></div>
-  <div class="sec"><b>Voucher:</b> <input id="kodeVoucher" placeholder="Kode: VTC10"><button class="btn btn2" onclick="pakaiVoucher()">Pakai Voucher -Rp10.000</button>
-  <p style="margin-top:10px">Subtotal: <b id="subTotal">Rp0</b><br>Voucher: <b id="diskonTxt" style="color:green">-Rp0</b><br>Ongkir: <b>Rp0 - Gratis</b><br><span style="font-size:18px">Total: <b id="totalTxt" style="color:#ee4d2d">Rp0</b></span></p>
-  <button class="btn" onclick="go('checkout')">Checkout →</button></div>
+  <div id="cartList"><div class="sec">Keranjang masih kosong.</div></div>
+  <div class="sec"><b>Voucher:</b><input placeholder="Kode: VTC10"><button class="btn btn2" onclick="pakaiVoucher()">Pakai Voucher -Rp10.000</button><p style="margin-top:10px">Subtotal: <b id="subTotal">Rp0</b><br>Voucher: <b id="diskonTxt" style="color:green">-Rp0</b><br>Total: <b id="totalTxt" style="color:#ee4d2d">Rp0</b></p><button class="btn" onclick="go('checkout')">Checkout →</button></div>
 </div>
 
-<!-- CHECKOUT -->
 <div id="p-checkout" class="page">
-  <div class="sec"><h3>Checkout</h3><p style="margin-top:8px"><b>Alamat Pengiriman</b><br>Bekasi, Jawa Barat<br>Jl. Raya Bekasi No. 88, Bekasi Timur, Kota Bekasi, 17111 | +62 812-3456-7890</p></div>
+  <div class="sec"><h3>Checkout</h3><p style="margin-top:8px"><b>Alamat</b><br>Bekasi, Jawa Barat<br>Jl. Raya Bekasi No. 88, Bekasi Timur, 17111</p></div>
   <div class="sec"><b>Metode Pembayaran</b><br><label><input type="radio" name="bayar" checked> COD (Bayar di Tempat)</label><br><label><input type="radio" name="bayar"> Transfer Bank</label><br><label><input type="radio" name="bayar"> QRIS</label></div>
   <div class="sec"><b>Ringkasan</b><p id="ringkasan"></p><button class="btn" onclick="buatPesanan()">Buat Pesanan</button></div>
 </div>
 
-<!-- AKUN -->
 <div id="p-akun" class="page">
-  <div class="sec"><h2>👤 Halo, Pembeli VTC</h2><p>Bekasi, Indonesia</p><button class="btn" onclick="alert('Login berhasil!')">Masuk / Daftar</button></div>
-  <div class="sec"><b>Pesanan Saya</b><p>Belum Bayar • Dikemas • Dikirim • Selesai</p><br><b>Bantuan</b><p>Chat CS • Lacak Pesanan • Voucher Saya</p></div>
-</div>
-
-<button class="chat" onclick="alert('Halo! Ada yang bisa dibantu? CS VTC siap 24 jam.')">💬 Chat CS</button>
-
-<div class="nav">
-  <div class="on" onclick="go('beranda',this)"><b>🏠</b>Beranda</div>
-  <div onclick="go('toko',this)"><b>🏪</b>Toko</div>
-  <div onclick="go('live',this)"><b style="color:red">▶️</b>Live</div>
-  <div onclick="go('cart',this)"><b>🛒</b>Keranjang</div>
-  <div onclick="go('akun',this)"><b>👤</b>Akun</div>
-</div>
-
-<input type="file" id="fileKamera" accept="image/*" style="display:none" onchange="hasilKamera()">
-
-<script>
-let produk=[
-{id:1,nama:'Kaos Polos Oversize Katun',harga:43000,kat:'Kaos',img:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',terjual:'200+'},
-{id:2,nama:'Sepatu Sneaker Sport Casual',harga:128000,kat:'Sepatu',img:'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',terjual:'89+'},
-{id:3,nama:'Tas Ransel Waterproof 20L',harga:95000,kat:'Tas',img:'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400',terjual:'54+'},
-{id:4,nama:'HP Android 6.5" 128GB',harga:1899000,kat:'HP',img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400',terjual:'32+'},
-{id:5,nama:'Kaos Hitam Polos Premium',harga:43000,kat:'Kaos',img:'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400',terjual:'120+'},
-{id:6,nama:'Sepatu Putih Sneaker',harga:129000,kat:'Sepatu',img:'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400',terjual:'210+'},
-];
-let cart=[],diskon=0,filterKat='';
-function renderProduk(){
- let list=produk.filter(p=>(!filterKat||p.kat===filterKat)&&(p.nama.toLowerCase().includes(document.getElementById('cari').value.toLowerCase())));
- document.getElementById('gridProduk').innerHTML=list.map(p=>`<div class="card" onclick="tambah('${p.nama}',${p.harga})"><img src="${p.img}"><p>${p.nama}</p><b>Rp${p.harga.toLocaleString('id-ID')}</b><small>Terjual ${p.terjual}</small></div>`).join('')||'<div class="sec">Gak ketemu, coba kata lain</div>';
- document.getElementById('gridToko').innerHTML=produk.slice(0,4).map(p=>`<div class="card" onclick="tambah('${p.nama}',${p.harga})"><img src="${p.img}"><p>${p.nama}</p><b>Rp${p.harga.toLocaleString('id-ID')}</b><small>⭐ 4.9 • Terjual ${p.terjual}</small></div>`).join('');
-}
-function filterKategori(k){filterKat=k;renderProduk();go('beranda');}
-function filterProduk(){renderProduk()}
-function tambah(nama,harga){cart.push({nama,harga});updateCart();alert(nama+' masuk keranjang!')}
-function updateCart(){
- document.getElementById('cartCount').innerText=cart.length;
- document.getElementById('cartNum').innerText=cart.length;
- let sub=cart.reduce((a,b)=>a+b.harga,0);let total=Math.max(0,sub-diskon);
- document.getElementById('subTotal').innerText='Rp'+sub.toLocaleString('id-ID');
- document.getElementById('diskonTxt').innerText='-Rp'+diskon.toLocaleString('id-ID');
- document.getElementById('totalTxt').innerText='Rp'+total.toLocaleString('id-ID');
- document.getElementById('ringkasan').innerHTML=cart.map(c=>c.nama+' - Rp'+c.harga.toLocaleString('id-ID')).join('<br>')+`<br>Total: <b>Rp${total.toLocaleString('id-ID')}</b>`;
- document.getElementById('cartList').innerHTML=cart.length?cart.map((c,i)=>`<div class="cartItem"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200"><div><b>${c.nama}</b><br><b style="color:#ee4d2d">Rp${c.harga.toLocaleString('id-ID')}</b></div><div class="qty"><button onclick="hapus(${i})">🗑️</button></div></div>`).join(''):'<div class="sec">Keranjang masih kosong.</div>';
-}
-function hapus(i){cart.splice(i,1);updateCart()}
-function pakaiVoucher(){diskon=10000;updateCart();alert('Voucher VTC10 dipakai! -Rp10.000')}
-function buatPesanan(){if(!cart.length){alert('Keranjang kosong!');return}alert('Pesanan Berhasil! Total Rp'+(cart.reduce((a,b)=>a+b.harga,0)-diskon).toLocaleString('id-ID')+'. Terima kasih sudah belanja di VTC!');cart=[];diskon=0;updateCart();go('beranda')}
-function go(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('p-'+id).classList.add('on');document.querySelectorAll('.nav div').forEach(d=>d.classList.remove('on'));if(el)el.classList.add('on');window.scrollTo(0,0)}
-function cariGoogle(){let q=document.getElementById('cari').value||'Kaos';alert('Google Telusuri: '+q);renderProduk()}
-function cariSuara(){alert('🎤 Ngomong... Contoh: "Cari Kaos Hitam"');document.getElementById('cari').value='Kaos Hitam';renderProduk()}
-function cariKamera(){document.getElementById('fileKamera').click()}
-function hasilKamera(){alert('📷 Foto ketemu! Hasil mirip: Kaos Polos Rp43.000');document.getElementById('cari').value='Kaos';renderProduk()}
-
-// ===== TV STREAMING - SUDAH DIPERBAIKI, NORMAL =====
-let streamLive=null,viewInterval=null;
-async function mulaiLive(){
- try{
-  document.getElementById('statusLive').innerText='Menghubungkan kamera...';
-  if(streamLive) streamLive.getTracks().forEach(t=>t.stop());
-  let facing=document.getElementById('kameraPilih').value;
-  streamLive=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1280},height:{ideal:720}},audio:true});
-  let v=document.getElementById('videoLive');
-  v.srcObject=streamLive; v.muted=true; await v.play();
-  document.getElementById('statusLive').innerText='🔴 LIVE - Gambar jalan normal - HD';
-  let c=1284; clearInterval(viewInterval);
-  viewInterval=setInterval(()=>{c+=Math.floor(Math.random()*5);document.getElementById('viewCount').innerText=c.toLocaleString('id-ID')},2000);
- }catch(e){ document.getElementById('statusLive').innerText='Kamera belum diizinin. Pencet Izinkan di atas, harus HTTPS.'; alert('Kamera belum keizinin.\n\nCara benerin:\n1. Pencet gembok di address bar\n2. Izinkan Kamera + Mic\n3. Refresh, pencet Mulai Live lagi\n\nHarus buka lewat HTTPS, jangan file://'); }
-}
-async function gantiKamera(){ if(streamLive) mulaiLive(); }
-function stopLive(){ if(streamLive) streamLive.getTracks().forEach(t=>t.stop()); clearInterval(viewInterval); document.getElementById('videoLive').srcObject=null; document.getElementById('statusLive').innerText='Live berhenti'; }
-function kirimKomen(){ let t=document.getElementById('inputKomen').value; if(!t)return; let d=document.createElement('div'); d.innerHTML='<b>Kamu:</b> '+t; document.getElementById('komenBox').appendChild(d); document.getElementById('inputKomen').value=''; }
-function bukaLive(){}
-function tutupLive(){}
-let detik=23*3600+26*60+28;
-setInterval(()=>{detik--;if(detik<0)detik=23*3600;let h=Math.floor(detik/3600),m=Math.floor(detik%3600/60),s=detik%60;document.getElementById('timer').innerText=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')},1000);
-renderProduk();updateCart();
-</script>
-</body>
-</html>
+  <div class="sec"><h2>👤 Halo, Pembeli VTC</h2><p>B
