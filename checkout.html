@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Checkout - VTC MEGASTORE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#f5f5f5;padding-bottom:140px}
+.topbar{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #eee}
+.topbar a{text-decoration:none;color:#000;font-size:22px}
+.topbar b{font-size:17px}
+.card{background:#fff;padding:14px;margin-top:8px}
+.alamat-top{display:flex;gap:10px}
+.alamat-top span{font-size:22px}
+.alamat-top b{font-size:14px}
+.alamat-top p{font-size:13px;color:#555;line-height:1.5;margin-top:3px}
+.edit{color:#ee4d2d;font-size:13px;font-weight:700;white-space:nowrap}
+.shop-head{display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid #eee}
+.shop-head .logo{width:32px;height:32px;border-radius:50%;background:#ee4d2d;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+.prod{display:flex;gap:12px;padding:12px 0}
+.prod img{width:80px;height:80px;object-fit:cover;border-radius:8px;background:#eee}
+.prod .info{flex:1}
+.prod .info b{font-size:14px;line-height:1.3}
+.prod .info p{font-size:12px;color:#888;margin-top:4px}
+.prod .harga{text-align:right}
+.prod .harga b{color:#ee4d2d}
+.prod .harga s{color:#999;font-size:12px}
+.qty{display:flex;align-items:center;gap:0;border:1px solid #ddd;width:100px;margin-top:8px}
+.qty button{width:32px;height:32px;background:#fff;border:none;font-size:16px}
+.qty input{width:36px;text-align:center;border:none;outline:none}
+.row{display:flex;justify-content:space-between;padding:9px 0;font-size:14px}
+.row span:last-child{font-weight:700}
+.voucher{border:1px dashed #ee4d2d;color:#ee4d2d;padding:10px;border-radius:8px;display:flex;justify-content:space-between;font-size:13px;font-weight:700;cursor:pointer;background:#fff7f0}
+.pay-opt{border:1px solid #ddd;border-radius:10px;padding:12px;display:flex;gap:10px;margin-top:10px;cursor:pointer}
+.pay-opt.on{border-color:#ee4d2d;background:#fff0ed}
+.pay-opt input{accent-color:#ee4d2d}
+.pay-opt b{font-size:14px}
+.pay-opt p{font-size:12px;color:#666;margin-top:2px}
+.vtc-aman{background:#fffbe6;border:1px dashed #ff9800;border-radius:10px;padding:12px}
+.vtc-aman b{color:#d84315;font-size:14px}
+.vtc-aman p{font-size:13px;line-height:1.5;margin-top:5px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;padding:12px;z-index:100}
+.total-row{display:flex;justify-content:space-between;align-items:center}
+.total-row .total{color:#ee4d2d;font-size:20px;font-weight:800}
+.btn-bayar{width:100%;background:#ee4d2d;color:#fff;border:none;padding:15px;border-radius:8px;font-weight:800;font-size:16px;margin-top:10px}
+.btn-bayar:active{opacity:.8}
+.note{font-size:11px;color:#888;text-align:center;margin-top:8px}
+.wa{position:fixed;bottom:135px;right:12px;background:#25D366;color:#fff;padding:9px 13px;border-radius:30px;text-decoration:none;font-weight:800;font-size:12px;z-index:99}
+.success{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.success .box{background:#fff;border-radius:16px;padding:24px;text-align:center;max-width:360px;width:100%}
+.success .box h2{color:#22c55e;font-size:22px}
+.success .box p{font-size:14px;line-height:1.6;margin:10px 0}
+</style>
+</head>
+<body>
+
+<div class="topbar"><a href="detail.html">←</a><b>Checkout</b><span style="margin-left:auto">⋮</span></div>
+
+<!-- ALAMAT PERSIS SHOPEE -->
+<div class="card">
+<div class="alamat-top">
+<span>📍</span>
+<div style="flex:1"><b>Nama Penerima | <span id="nohp">0838-7850-2333</span></b><p id="alamatTxt">Jl. Merdeka No. 123, Palembang, Sumatera Selatan 30111</p></div>
+<span class="edit" onclick="gantiAlamat()">Ubah ›</span>
+</div>
+</div>
+
+<!-- PRODUK -->
+<div class="card">
+<div class="shop-head"><div class="logo">V</div><b>VTC Megastore Official</b><span style="color:#ee4d2d;font-size:12px;font-weight:700">Chat ›</span></div>
+<div class="prod">
+<img src="https://via.placeholder.com/200x200/ee4d2d/fff?text=VTC">
+<div class="info"><b>Paket Sembako Hemat VTC - COD Garansi</b><p>Varian: Paket A - Sembako</p>
+<div class="qty"><button onclick="min()">-</button><input id="jml" value="1" readonly><button onclick="plus()">+</button></div>
+</div>
+<div class="harga"><s>Rp 99.800</s><br><b id="hargaSat">Rp 49.900</b></div>
+</div>
+<div class="row"><span>Opsi Pengiriman</span><span>Reguler - Rp 12.000</span></div>
+<div class="row"><span>Estimasi Tiba</span><span style="color:#22c55e">Besok - 2 Hari</span></div>
+<div class="voucher" onclick="pakaiVoucher()">🎫 Voucher VTC 50% <span>Pakai ›</span></div>
+</div>
+
+<!-- PEMBAYARAN -->
+<div class="card">
+<b style="font-size:15px">Metode Pembayaran - Pilih Satu</b>
+<label class="pay-opt on" onclick="pilihPay(this,'COD')">
+<input type="radio" name="pay" checked>
+<div><b>💵 COD - Bayar di Tempat (RECOMMENDED)</b><p>Bayar ke kurir setelah barang dicek. Uang ditahan VTC dulu, aman 100%!</p></div>
+</label>
+<label class="pay-opt" onclick="pilihPay(this,'TRANSFER')">
+<input type="radio" name="pay">
+<div><b>🏦 Transfer Bank / QRIS</b><p>BCA, BRI, Mandiri, DANA, OVO, GoPay - Langsung terverifikasi</p></div>
+</label>
+<label class="pay-opt" onclick="pilihPay(this,'VA')">
+<input type="radio" name="pay">
+<div><b>💳 Virtual Account</b><p>BCA VA, BRI VA - Otomatis masuk</p></div>
+</label>
+</div>
+
+<!-- KEUNGGULAN VTC DI ATAS SHOPEE -->
+<div class="card">
+<div class="vtc-aman">
+<b>🛡️ KENAPA VTC LEBIH AMAN DARI SHOPEE?</b>
+<p>✅ <b>Uang Ditahan VTC Dulu</b> - Seller baru dapat uang kalau lu klik "Barang Bagus"<br>
+✅ <b>Retur 1 Klik</b> - Kalau rusak, klik retur, uang balik, gak perlu debat 7 hari<br>
+✅ <b>Bos Langsung Mutusin</b> - Sengketa diputus Admin VTC, bukan robot<br>
+✅ <b>Live AI Bantu Seller</b> - Foto & deskripsi udah dicek AI, gak ada barang palsu</p>
+</div>
+</div>
+
+<!-- RINCIAN -->
+<div class="card">
+<b>Rincian Pembayaran</b>
+<div class="row"><span>Subtotal Produk</span><span id="subtotal">Rp 49.900</span></div>
+<div class="row"><span>Ongkir</span><span>Rp 12.000</span></div>
+<div class="row" style="color:#22c55e"><span>Diskon Voucher 50%</span><span id="diskon">- Rp 0</span></div>
+<div class="row" style="border-top:1px solid #eee;margin-top:6px;padding-top:12px"><span><b>Total Pembayaran</b></span><span style="color:#ee4d2d;font-size:18px" id="totalBayar">Rp 61.900</span></div>
+<p style="font-size:12px;color:#888;margin-top:6px">Dengan klik "Buat Pesanan", lu setuju dengan COD Garansi VTC. Uang lu aman sampai barang diterima.</p>
+</div>
+
+<a class="wa" href="https://wa.me/6283878502333?text=Halo%20VTC%2C%20saya%20mau%20checkout">💬 Butuh Bantuan? WA 0838-7850-2333</a>
+
+<div class="bottom">
+<div class="total-row"><span style="font-size:13px;color:#666">Total Pembayaran<br><span style="font-size:11px">Termasuk ongkir & diskon</span></span><span class="total" id="totalBawah">Rp 61.900</span></div>
+<button class="btn-bayar" onclick="buatPesanan()">Buat Pesanan - <span id="metodeTxt">COD</span> | Bayar di Tempat</button>
+<p class="note">Link: https://vtcmegastoreindonesia.github.io/vtcmegastore/ • VTC Megastore Indonesia</p>
+</div>
+
+<!-- POPUP SUKSES -->
+<div class="success" id="popup">
+<div class="box">
+<div style="font-size:50px">✅</div>
+<h2>Pesanan Berhasil!</h2>
+<p><b>No. Pesanan: VTC-<span id="noPesanan"></span></b><br>Metode: <span id="metodeSukses">COD</span><br>Total: <span id="totalSukses">Rp 61.900</span></p>
+<p style="background:#fffbe6;padding:10px;border-radius:8px">💰 Uang lu <b>Ditahan VTC Dulu</b>. Seller baru dapat uang kalau lu klik <b>"Barang Bagus"</b>. Kalau rusak, klik <b>"Retur"</b>, uang balik 100%!</p>
+<button class="btn-bayar" onclick="kePesanan()">Lihat Pesanan Saya ›</button>
+<button style="background:#fff;border:1px solid #ddd;padding:12px;border-radius:8px;width:100%;margin-top:8px" onclick="closePopup()">Lanjut Belanja</button>
+</div>
+</div>
+
+<script>
+let harga=49900, ongkir=12000, diskon=0, metode='COD';
+function format(n){return 'Rp '+n.toLocaleString('id-ID')}
+function hitung(){
+let sub=harga*parseInt(document.getElementById('jml').value);
+let total=sub+ongkir-diskon;
+document.getElementById('subtotal').innerText=format(sub);
+document.getElementById('totalBayar').innerText=format(total);
+document.getElementById('totalBawah').innerText=format(total);
+document.getElementById('totalSukses').innerText=format(total);
+}
+function plus(){let e=document.getElementById('jml');e.value=parseInt(e.value)+1;hitung()}
+function min(){let e=document.getElementById('jml');if(parseInt(e.value)>1)e.value=parseInt(e.value)-1;hitung()}
+function pilihPay(el,m){document.querySelectorAll('.pay-opt').forEach(o=>o.classList.remove('on'));el.classList.add('on');metode=m;document.getElementById('metodeTxt').innerText=m;document.getElementById('metodeSukses').innerText=m}
+function pakaiVoucher(){diskon=24950;document.getElementById('diskon').innerText='- '+format(diskon);hitung();alert('Voucher 50% Berhasil Dipakai! Hemat Rp 24.950')}
+function gantiAlamat(){
+let a=prompt('Masukkan Alamat Lengkap:',document.getElementById('alamatTxt').innerText);
+if(a) document.getElementById('alamatTxt').innerText=a;
+let n=prompt('Nama Penerima:','Nama Penerima');
+}
+function buatPesanan(){
+let no=Math.floor(100000+Math.random()*900000);
+document.getElementById('noPesanan').innerText=no;
+document.getElementById('popup').style.display='flex';
+}
+function closePopup(){document.getElementById('popup').style.display='none'}
+function kePesanan(){alert('Nanti lari ke pesanan.html - Gas pesanan ya Bos!');window.location.href='pesanan.html'}
+hitung();
+</script>
+</body>
+</html>
