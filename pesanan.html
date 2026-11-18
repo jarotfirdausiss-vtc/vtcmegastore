@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Pesanan Saya - VTC MEGASTORE</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#f5f5f5;padding-bottom:80px}
+.topbar{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #eee}
+.topbar a{text-decoration:none;color:#000;font-size:22px}
+.topbar b{font-size:17px}
+.tabs{position:sticky;top:49px;z-index:98;background:#fff;display:flex;overflow-x:auto;white-space:nowrap;border-bottom:1px solid #eee}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{padding:13px 14px;border:none;background:#fff;font-size:13px;white-space:nowrap;color:#555}
+.tabs button.on{color:#ee4d2d;border-bottom:2px solid #ee4d2d;font-weight:800}
+.card{background:#fff;padding:14px;margin:8px;border-radius:10px}
+.shop-row{display:flex;justify-content:space-between;align-items:center}
+.shop-row b{font-size:13px}
+.status{color:#ee4d2d;font-size:12px;font-weight:800}
+.prod{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.prod img{width:70px;height:70px;object-fit:cover;border-radius:8px;background:#eee}
+.prod .info{flex:1}
+.prod .info b{font-size:14px;line-height:1.3}
+.prod .info p{font-size:12px;color:#888;margin-top:3px}
+.prod .harga{text-align:right;font-size:13px}
+.prod .harga b{color:#ee4d2d}
+.total-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0}
+.total-row b{color:#ee4d2d}
+.track{display:flex;justify-content:space-between;margin:14px 0;position:relative}
+.track:before{content:'';position:absolute;top:14px;left:10%;right:10%;height:2px;background:#eee;z-index:0}
+.track .dot{position:relative;z-index:1;text-align:center;width:25%}
+.track .circle{width:28px;height:28px;border-radius:50%;background:#ddd;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:13px;font-weight:800}
+.track .dot.on .circle{background:#22c55e}
+.track .dot.now .circle{background:#ee4d2d;box-shadow:0 0 0 4px #ffe0d6}
+.track p{font-size:10px;margin-top:5px;line-height:1.2}
+.track small{font-size:9px;color:#888}
+.btn-row{display:flex;gap:8px;margin-top:10px}
+.btn-row button{flex:1;padding:11px;border-radius:8px;font-size:13px;font-weight:800;border:none;cursor:pointer}
+.btn-bagus{background:#22c55e;color:#fff}
+.btn-retur{background:#fff;border:1px solid #ee4d2d!important;color:#ee4d2d}
+.btn-chat{background:#fff;border:1px solid #ddd!important;color:#333}
+.btn-beli{background:#ee4d2d;color:#fff}
+.vtc-info{background:#fffbe6;border:1px dashed #ff9800;border-radius:8px;padding:10px;font-size:12px;line-height:1.5;margin-top:10px}
+.vtc-info b{color:#d84315}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #eee}
+.bottom-nav a{flex:1;text-align:center;text-decoration:none;color:#666;font-size:11px;padding:10px 0}
+.bottom-nav a.on{color:#ee4d2d}
+.bottom-nav a span{font-size:20px;display:block}
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.popup .box{background:#fff;border-radius:16px;padding:22px;text-align:center;width:100%;max-width:360px}
+.popup .box input,.popup .box textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;margin-top:10px;outline:none;font-size:14px}
+.popup .box button{width:100%;padding:13px;border:none;border-radius:8px;font-weight:800;margin-top:10px;font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="topbar"><a href="index.html">←</a><b>Pesanan Saya</b><span style="margin-left:auto">🔍 ⋮</span></div>
+
+<!-- TAB PERSIS SHOPEE -->
+<div class="tabs" id="tabs">
+<button class="on" onclick="filterTab(this,'semua')">Semua</button>
+<button onclick="filterTab(this,'belum')">Belum Bayar</button>
+<button onclick="filterTab(this,'dikemas')">Dikemas</button>
+<button onclick="filterTab(this,'dikirim')">Dikirim</button>
+<button onclick="filterTab(this,'selesai')">Selesai</button>
+<button onclick="filterTab(this,'retur')">Retur / Sengketa</button>
+</div>
+
+<!-- PESANAN 1 - DIKIRIM - INI YANG PALING PENTING -->
+<div class="card" data-cat="dikirim">
+<div class="shop-row"><b>🏪 VTC Megastore Official ›</b><span class="status">🚚 DIKIRIM</span></div>
+<div class="prod">
+<img src="https://via.placeholder.com/200x200/ee4d2d/fff?text=VTC">
+<div class="info"><b>Paket Sembako Hemat VTC - COD Garansi</b><p>Varian: Paket A - Sembako • x1</p><p>No. Pesanan: VTC-482910</p></div>
+<div class="harga"><s style="color:#999">Rp 99.800</s><br><b>Rp 49.900</b></div>
+</div>
+
+<!-- TRACKING PERSIS SHOPEE -->
+<div class="track">
+<div class="dot on"><div class="circle">✓</div><p>Pesanan<br>Dibuat</p><small>18 Nov</small></div>
+<div class="dot on"><div class="circle">✓</div><p>Dikemas<br>Seller</p><small>18 Nov</small></div>
+<div class="dot now"><div class="circle">●</div><p>Dikirim<br>Kurir</p><small>19 Nov</small></div>
+<div class="dot"><div class="circle">○</div><p>Sampai<br>Tujuan</p><small>-</small></div>
+</div>
+
+<div class="vtc-info">
+<b>🛡️ UANG LU AMAN - DITAHAN VTC!</b><br>
+Uang Rp 61.900 masih ditahan VTC. Seller BELUM dapat uang!<br>
+• Kalau barang bagus → Klik <b>"Barang Bagus"</b>, uang langsung ke Seller<br>
+• Kalau barang rusak → Klik <b>"Ajukan Retur"</b>, uang balik 100%!
+</div>
+
+<div class="total-row"><span>Total Pembayaran (COD)</span><b>Rp 61.900</b></div>
+
+<div class="btn-row">
+<button class="btn-chat" onclick="chatWA()">💬 Chat Seller</button>
+<button class="btn-retur" onclick="bukaRetur()">⚠️ Ajukan Retur</button>
+</div>
+<div class="btn-row">
+<button class="btn-bagus" onclick="barangBagus()">✅ Barang Bagus, Lepas Uang ke Seller</button>
+</div>
+</div>
+
+<!-- PESANAN 2 - SELESAI -->
+<div class="card" data-cat="selesai">
+<div class="shop-row"><b>🏪 VTC Megastore Official ›</b><span class="status" style="color:#22c55e">✅ SELESAI</span></div>
+<div class="prod">
+<img src="https://via.placeholder.com/200x200/ffcc00/000?text=VTC+2">
+<div class="info"><b>Paket Snack Hemat VTC</b><p>Varian: Paket B - Snack • x2</p><p>No. Pesanan: VTC-391022</p></div>
+<div class="harga"><b>Rp 89.800</b></div>
+</div>
+<div class="total-row"><span>Total</span><b>Rp 89.800</b></div>
+<div class="btn-row"><button class="btn-chat" onclick="chatWA()">💬 Chat</button><button class="btn-beli" onclick="location.href='detail.html'">Beli Lagi</button><button class="btn-chat" onclick="alert('Kasih Bintang 5 ya Bos! ⭐⭐⭐⭐⭐')">⭐ Nilai</button></div>
+</div>
+
+<!-- PESANAN 3 - SENGKETA -->
+<div class="card" data-cat="retur">
+<div class="shop-row"><b>🏪 VTC Megastore Official ›</b><span class="status" style="color:#f59e0b">⚖️ MENUNGGU PUTUSAN BOS VTC</span></div>
+<div class="prod">
+<img src="https://via.placeholder.com/200x200/333/fff?text=VTC+3">
+<div class="info"><b>Paket Campuran VTC</b><p>Varian: Paket C • x1</p><p>No. Pesanan: VTC-299001 - Sengketa: Barang Rusak</p></div>
+<div class="harga"><b>Rp 75.000</b></div>
+</div>
+<div class="vtc-info">Bos VTC lagi ngecek bukti foto lu & seller. Keputusan max 1x24 jam. Uang masih ditahan, aman!</div>
+<div class="btn-row"><button class="btn-chat" onclick="chatWA()">💬 Hubungi Admin VTC</button></div>
+</div>
+
+<p style="text-align:center;font-size:12px;color:#999;padding:12px">Link: https://vtcmegastoreindonesia.github.io/vtcmegastore/<br>WA Admin: 0838-7850-2333 • VTC Megastore Indonesia</p>
+
+<div class="bottom-nav">
+<a href="index.html"><span>🏠</span>Home</a>
+<a href="detail.html"><span>🔥</span>Produk</a>
+<a href="checkout.html"><span>🛒</span>Keranjang</a>
+<a href="pesanan.html" class="on"><span>📦</span>Pesanan</a>
+<a href="https://wa.me/6283878502333"><span>👤</span>Akun</a>
+</div>
+
+<!-- POPUP RETUR -->
+<div class="popup" id="popupRetur">
+<div class="box">
+<div style="font-size:45px">⚠️</div><h3>Ajukan Retur / Sengketa</h3>
+<p style="font-size:13px;color:#666;margin-top:6px">Ceritain kenapa mau retur. Bos VTC langsung yang mutusin, bukan robot!</p>
+<textarea rows="3" placeholder="Contoh: Barang pecah / tidak sesuai foto / kurang..."></textarea>
+<input placeholder="Link Foto Bukti (opsional)">
+<button style="background:#ee4d2d;color:#fff" onclick="kirimRetur()">Kirim ke Bos VTC ⚖️</button>
+<button style="background:#f0f0f0" onclick="tutupRetur()">Batal</button>
+</div>
+</div>
+
+<!-- POPUP SUKSES BAGUS -->
+<div class="popup" id="popupBagus">
+<div class="box">
+<div style="font-size:45px">✅</div><h3>Terima Kasih!</h3>
+<p style="font-size:14px;margin-top:8px">Uang Rp 61.900 sudah dilepas ke Seller.<br>Pesanan selesai!</p>
+<button style="background:#22c55e;color:#fff" onclick="tutupBagus()">Selesai ⭐ Kasih Bintang 5</button>
+</div>
+</div>
+
+<script>
+function filterTab(el,cat){
+document.querySelectorAll('#tabs button').forEach(b=>b.classList.remove('on'));el.classList.add('on');
+document.querySelectorAll('.card[data-cat]').forEach(c=>{
+if(cat==='semua')c.style.display='block';else c.style.display=(c.dataset.cat===cat?'block':'none');
+});
+}
+function chatWA(){window.open('https://wa.me/6283878502333?text=Halo%20VTC%2C%20saya%20mau%20tanya%20pesanan%20saya','_blank')}
+function bukaRetur(){document.getElementById('popupRetur').style.display='flex'}
+function tutupRetur(){document.getElementById('popupRetur').style.display='none'}
+function kirimRetur(){tutupRetur();alert('Sengketa Terkirim ke Admin VTC! Bos langsung cek. Uang lu tetap ditahan, aman!')}
+function barangBagus(){document.getElementById('popupBagus').style.display='flex'}
+function tutupBagus(){document.getElementById('popupBagus').style.display='none';alert('Makasih udah belanja di VTC!')}
+</script>
+</body>
+</html>
