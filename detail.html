@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VTC MEGASTORE - Detail Produk</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{background:#f5f5f5;padding-bottom:120px}
+.topbar{position:sticky;top:0;z-index:99;background:#fff;display:flex;align-items:center;gap:10px;padding:10px}
+.topbar a{font-size:22px;text-decoration:none;color:#000}
+.topbar input{flex:1;background:#f0f0f0;border:none;padding:9px 12px;border-radius:20px;outline:none}
+.topbar span{font-size:20px}
+/* GALERI GESER KANAN-KIRI - PERSIS SHOPEE */
+.gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;background:#fff}
+.gallery::-webkit-scrollbar{display:none}
+.gallery img{width:100%;flex-shrink:0;scroll-snap-align:center;aspect-ratio:1/1;object-fit:cover}
+.dots{display:flex;justify-content:center;gap:6px;background:#fff;padding:8px}
+.dots span{width:8px;height:8px;border-radius:50%;background:#ddd}
+.dots span.on{background:#ee4d2d}
+.card{background:#fff;padding:14px;margin-top:8px}
+.price-row{display:flex;align-items:center;gap:8px}
+.price{color:#ee4d2d;font-size:28px;font-weight:800}
+.old{color:#999;text-decoration:line-through;font-size:14px}
+.disc{background:#ee4d2d;color:#fff;font-size:12px;padding:3px 6px;border-radius:4px;font-weight:700}
+.title{font-size:16px;line-height:1.4;margin-top:8px;font-weight:600}
+.meta{color:#777;font-size:13px;margin-top:8px}
+.badge{display:inline-block;background:#fff3e0;color:#ee4d2d;border:1px solid #ee4d2d;padding:5px 8px;border-radius:4px;font-size:12px;font-weight:700;margin-top:10px}
+.vtc-box{background:#fffbe6;border:1px dashed #ff9800;border-radius:10px;padding:12px;margin-top:10px}
+.vtc-box b{color:#d84315}
+.vtc-box p{font-size:13px;line-height:1.5;margin-top:4px}
+h3{font-size:15px;margin-bottom:10px}
+.varian{display:flex;gap:8px;flex-wrap:wrap}
+.varian button{padding:9px 14px;border:1px solid #ddd;background:#fff;border-radius:6px;cursor:pointer}
+.varian button.on{border-color:#ee4d2d;color:#ee4d2d;background:#fff0ed}
+.qty{display:flex;align-items:center;gap:0;border:1px solid #ddd;width:120px}
+.qty button{width:38px;height:38px;background:#fff;border:none;font-size:18px}
+.qty input{width:44px;text-align:center;border:none;outline:none;font-size:16px}
+.shop{display:flex;align-items:center;gap:10px}
+.shop img{width:48px;height:48px;border-radius:50%;background:#ee4d2d;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:20px}
+.btn-shop{border:1px solid #ee4d2d;color:#ee4d2d;background:#fff;padding:7px 12px;border-radius:6px;font-size:13px}
+.desc{font-size:14px;line-height:1.7;color:#333;white-space:pre-line}
+.review{border-bottom:1px solid #eee;padding:12px 0}
+.review b{font-size:14px}
+/* BOTTOM BAR PERSIS SHOPEE */
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #eee;z-index:100}
+.bottom .icon{width:20%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:#333;text-decoration:none;padding:8px 0}
+.bottom .icon span{font-size:22px}
+.bottom button{flex:1;border:none;color:#fff;font-weight:800;font-size:15px;padding:14px}
+.btn-cart{background:#ff9e2c}
+.btn-buy{background:#ee4d2d}
+.wa-float{position:fixed;bottom:75px;right:12px;background:#25D366;color:#fff;padding:10px 14px;border-radius:30px;text-decoration:none;font-weight:800;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:99}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<a href="index.html">←</a>
+<input placeholder="Cari di VTC Megastore...">
+<span>🛒</span><span>⋮</span>
+</div>
+
+<!-- FOTO BISA DIGESER KANAN-KIRI -->
+<div class="gallery" id="gal">
+<img src="https://via.placeholder.com/800x800/ee4d2d/fff?text=VTC+PRODUK+1">
+<img src="https://via.placeholder.com/800x800/ffcc00/000?text=VTC+PRODUK+2">
+<img src="https://via.placeholder.com/800x800/333/fff?text=VTC+PRODUK+3">
+</div>
+<div class="dots"><span class="on"></span><span></span><span></span></div>
+
+<div class="card">
+<div class="price-row"><div class="price">Rp 49.900</div><div class="old">Rp 99.800</div><div class="disc">-50%</div></div>
+<div class="title">Paket Sembako Hemat VTC Megastore Indonesia - COD Garansi - Barang Bagus Baru Dibayar</div>
+<div class="meta">⭐ 4.9 | Terjual 10rb+ | ❤️ 2,3rb suka</div>
+<div class="badge">🔥 DISKON 50% HARI INI</div>
+<div class="vtc-box">
+<b>🛡️ KEUNGGULAN VTC DI ATAS SHOPEE:</b>
+<p>✅ COD GARANSI - Uang Ditahan VTC Dulu<br>
+✅ Bisa Retur 100% - Gak Ribet<br>
+✅ Belanja Aman - Barang Bagus Baru Dibayar<br>
+✅ Bos Langsung Mutusin Sengketa - Gak Nunggu 7 Hari!</p>
+</div>
+</div>
+
+<div class="card">
+<h3>Pilih Varian</h3>
+<div class="varian" id="varian">
+<button class="on" onclick="pilih(this)">Paket A - Sembako</button>
+<button onclick="pilih(this)">Paket B - Snack</button>
+<button onclick="pilih(this)">Paket C - Campuran</button>
+</div>
+<h3 style="margin-top:16px">Jumlah</h3>
+<div class="qty"><button onclick="min()">-</button><input id="jml" value="1" readonly><button onclick="plus()">+</button></div>
+<p style="font-size:13px;color:#777;margin-top:8px">Stok: <b style="color:#000">999</b> | Kirim dari: Palembang</p>
+</div>
+
+<div class="card">
+<div class="shop">
+<div style="width:48px;height:48px;border-radius:50%;background:#ee4d2d;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px">V</div>
+<div style="flex:1"><b>VTC Megastore Official</b><br><span style="font-size:12px;color:#777">Aktif 5 menit lalu • Palembang</span></div>
+<button class="btn-shop">Chat</button>
+<button class="btn-shop">Kunjungi Toko</button>
+</div>
+</div>
+
+<div class="card">
+<h3>Deskripsi Produk</h3>
+<div class="desc">VTC MEGASTORE INDONESIA - Toko Paling Aman di Indonesia!
+
+Link Toko: https://vtcmegastoreindonesia.github.io/vtcmegastore/
+
+Kenapa Belanja di VTC?
+- Harga lebih murah dari Shopee
+- COD Garansi, gak perlu takut ditipu
+- Bisa retur kalau gak sesuai
+- Dikirim cepat dari Palembang
+
+Cara Beli:
+1. Pilih Varian
+2. Klik Beli Sekarang
+3. Isi Alamat
+4. Pilih COD
+5. Barang Datang, Cek Dulu, Baru Bayar!
+
+WA Admin: 0838-7850-2333</div>
+</div>
+
+<div class="card">
+<h3>Ulasan Pembeli (10rb+)</h3>
+<div class="review"><b>⭐⭐⭐⭐⭐ Budi - Palembang</b><p style="font-size:13px;margin-top:4px">Barang bagus, sesuai foto, COD aman. Lebih cepet dari Shopee!</p></div>
+<div class="review"><b>⭐⭐⭐⭐⭐ Siti - Jakarta</b><p style="font-size:13px;margin-top:4px">Pelayanannya ramah, retur gampang. Recommended!</p></div>
+</div>
+
+<a class="wa-float" href="https://wa.me/6283878502333?text=Halo%20VTC%2C%20saya%20mau%20tanya%20produk%20ini">💬 WA: 0838-7850-2333</a>
+
+<div class="bottom">
+<a class="icon" href="index.html"><span>🏠</span>Home</a>
+<a class="icon" href="https://wa.me/6283878502333"><span>💬</span>Chat</a>
+<button class="btn-cart" onclick="addCart()">+ Keranjang</button>
+<button class="btn-buy" onclick="beli()">Beli Sekarang</button>
+</div>
+
+<script>
+function pilih(el){document.querySelectorAll('#varian button').forEach(b=>b.classList.remove('on'));el.classList.add('on')}
+function plus(){let e=document.getElementById('jml');e.value=parseInt(e.value)+1}
+function min(){let e=document.getElementById('jml');if(parseInt(e.value)>1)e.value=parseInt(e.value)-1}
+function addCart(){alert('Masuk Keranjang! Lanjut ke Checkout ya Bos.');window.location.href='checkout.html'}
+function beli(){window.location.href='checkout.html'}
+// dots galeri
+document.getElementById('gal').addEventListener('scroll',e=>{
+let i=Math.round(e.target.scrollLeft / e.target.clientWidth);
+document.querySelectorAll('.dots span').forEach((d,idx)=>d.classList.toggle('on',idx===i))
+});
+</script>
+</body>
+</html>
