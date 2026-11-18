@@ -2,57 +2,193 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VTC SHOP v5.0 - Asisten Otomatis AI</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VTC SHOP v6.0 - Geser Menu + CS Otomatis</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif}
-:root{--bg:#0A0A0A;--card:#161616;--card2:#1E1E1E;--gold:#C9A86A;--gold2:#F5D67B;--green:#25D366}
-body{background:#000;color:#fff;padding:14px}
-.top{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px}
-.logo{font-size:26px;font-weight:900}.logo span{color:var(--gold)}
-.badge{background:var(--gold);color:#000;padding:7px 13px;border-radius:20px;font-weight:800;font-size:12px}
-.app{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-@media(max-width:950px){.app{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.app{grid-template-columns:1fr}}
-.phone{background:var(--bg);border:1.5px solid #2A2A2A;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;min-height:660px}
-.p-head{padding:16px 14px 6px}.p-head h2{font-size:21px}
-.card{margin:10px 14px;background:var(--card);border:1px solid #222;border-radius:16px;padding:13px}
-.btn{background:linear-gradient(180deg,#E8C87A,#C9A86A);color:#000;border:none;padding:12px;border-radius:12px;font-weight:800;width:100%;cursor:pointer}
-.btn-outline{background:#222;color:#fff;border:1px solid #333;padding:10px;border-radius:10px;width:100%;cursor:pointer;font-weight:700}
-.chatbox{flex:1;margin:10px 14px;background:#111;border-radius:16px;padding:12px;overflow:auto;display:flex;flex-direction:column;gap:10px;min-height:380px}
-.msg{max-width:85%;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.5}
-.msg.ai{background:#1E1E1E;border:1px solid #2A2A2A;align-self:flex-start}
-.msg.user{background:var(--gold);color:#000;align-self:flex-end;font-weight:600}
-.msg small{display:block;font-size:10px;opacity:.6;margin-top:4px}
-.quick{display:flex;gap:7px;flex-wrap:wrap;padding:0 14px 10px}.quick button{background:#222;border:1px solid #333;color:#fff;padding:8px 11px;border-radius:20px;font-size:12px;cursor:pointer}
-.input-row{display:flex;gap:8px;padding:10px 14px;border-top:1px solid #222}.input-row input{flex:1;background:#222;border:1px solid #333;border-radius:20px;padding:11px 14px;color:#fff;outline:none}.input-row button{background:var(--gold);border:none;width:42px;height:42px;border-radius:50%;font-size:18px;cursor:pointer}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+:root{--orange:#FF6A00;--orange2:#FF8A2A;--bg:#0A0A0A;--card:#161616;--gold:#FF8A2A}
+body{background:#000;color:#fff;overflow:hidden;height:100dvh}
+/* HEADER */
+.top{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;background:#000;position:fixed;top:0;left:0;right:0;z-index:50}
+.logo{font-size:20px;font-weight:900;letter-spacing:1px}.logo span{color:var(--orange)}
+.cs-badge{background:#111;border:1px solid #333;padding:6px 11px;border-radius:20px;font-size:11px;display:flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;background:#25D366;border-radius:50%;box-shadow:0 0 0 3px rgba(37,211,102,.25);animation:pulse 1.5s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.4)}100%{box-shadow:0 0 0 8px rgba(37,211,102,0)}}
+/* MENU GESER - BUKAN SCROLL */
+.viewport{position:fixed;inset:52px 0 78px 0;overflow:hidden;touch-action:pan-y}
+.track{display:flex;height:100%;transition:transform .45s cubic-bezier(.22,1,.36,1);will-change:transform}
+.page{min-width:100%;height:100%;overflow-y:auto;overscroll-behavior:contain;padding:14px 14px 20px;scrollbar-width:none}
+.page::-webkit-scrollbar{display:none}
+.phone{max-width:480px;margin:0 auto}
+h2{font-size:22px;margin-bottom:4px}small{color:#aaa}
+.card{background:var(--card);border:1px solid #222;border-radius:16px;padding:13px;margin-top:12px}
+.btn{background:linear-gradient(180deg,#FF8A2A,#FF6A00);color:#fff;border:none;padding:13px;border-radius:12px;font-weight:800;width:100%;cursor:pointer}
+.btn-dark{background:#222;color:#fff;border:1px solid #333;padding:11px;border-radius:11px;width:100%;cursor:pointer;font-weight:700}
+input,select{width:100%;background:#222;border:1px solid #333;border-radius:11px;padding:12px;color:#fff;outline:none;margin-top:6px}
+label{font-size:12px;color:#aaa;display:block;margin-top:12px}
 .row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #222;font-size:13px}.row:last-child{border:none}
-.tag{display:inline-block;background:var(--gold);color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px}
-.toggle{width:38px;height:22px;background:var(--gold);border-radius:99px;position:relative}.toggle:after{content:"";position:absolute;right:3px;top:3px;width:16px;height:16px;background:#fff;border-radius:50%}
-.toggle.off{background:#333}.toggle.off:after{right:auto;left:3px}
-.online{width:10px;height:10px;background:var(--green);border-radius:50%;display:inline-block;box-shadow:0 0 0 3px rgba(37,211,102,.2)}
-.typing{font-size:12px;color:#aaa;padding:0 14px;display:none}
-.nav{margin-top:auto;display:flex;justify-content:space-around;padding:12px 5px;border-top:1px solid #222;background:#0D0D0D}.nav div{text-align:center;font-size:10px;color:#888}.nav div.active{color:var(--gold)}.nav i{display:block;font-size:18px;margin-bottom:3px}
+.tag{background:var(--orange);color:#fff;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px}
+.price{color:#FFB86A;font-weight:800}
+.chip{display:inline-block;background:#222;border:1px solid #333;padding:8px 11px;border-radius:20px;font-size:12px;margin:4px 4px 0 0}
+/* BOTTOM MENU GESER */
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0D0D0D;border-top:1px solid #222;padding:8px 6px 10px;z-index:50}
+.bottom-in{max-width:480px;margin:0 auto;display:flex;justify-content:space-between}
+.tab{flex:1;text-align:center;font-size:10px;color:#888;padding:6px 2px;border-radius:12px;cursor:pointer;background:none;border:none}
+.tab.active{color:#fff;background:#1E1E1E}.tab.active b{color:var(--orange)}
+.tab i{display:block;font-size:20px;margin-bottom:3px;font-style:normal}
+.dots{display:flex;justify-content:center;gap:6px;padding:8px 0 2px}.dots span{width:7px;height:7px;background:#333;border-radius:50%;transition:.3s}.dots span.on{width:20px;background:var(--orange);border-radius:99px}
+/* CS OTOMATIS - TANPA ROBOT */
+.cs-box{background:#111;border:1px solid #2A2A2A;border-radius:16px;padding:12px;margin-top:12px}
+.cs-msg{background:#1E1E1E;border:1px solid #222;padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.5;margin-top:8px}
+.cs-msg.me{background:#2A1600;border-color:#4A2A00;align-self:flex-end}
+.cs-input{display:flex;gap:8px;margin-top:10px}.cs-input input{margin:0;border-radius:20px}.cs-input button{background:var(--orange);border:none;width:42px;height:42px;border-radius:50%;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0}
+.auto-tag{font-size:10px;background:#0F2A1A;color:#25D366;border:1px solid #1A4A2A;padding:3px 7px;border-radius:20px}
+.toggle{width:38px;height:22px;background:var(--orange);border-radius:99px;position:relative;flex-shrink:0}.toggle:after{content:"";position:absolute;right:3px;top:3px;width:16px;height:16px;background:#fff;border-radius:50%}
+.otp{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:8px}.otp input{text-align:center;font-size:18px;font-weight:800;padding:10px 0}
+.splash{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#FF6A00,#FF3D00)}
+.splash .v{font-size:130px;font-weight:900;line-height:.9;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
-<div class="top"><div class="logo">VTC <span>SHOP</span> <small style="font-size:12px;color:#888">+ VTC AI</small></div><div class="badge">🤖 V5.0 ASISTEN OTOMATIS • ONLINE 24 JAM • BALES < 1 DETIK</div></div>
 
-<div class="app">
-
-<!-- 1 ASISTEN OTOMATIS CHAT -->
-<div class="phone">
-<div class="p-head"><h2>🤖 VTC AI Asisten <span class="tag">OTOMATIS</span></h2><small><span class="online"></span> Online • Membalas Otomatis • CS.service</small></div>
-
-<div class="chatbox" id="chat">
-<div class="msg ai">Halo! 👋 Saya <b>VTC AI</b>, Asisten Otomatis VTC SHOP.<br><br>Saya bisa bantu:<br>✅ Cek harga & stok<br>✅ Lacak pesanan<br>✅ Info COD / OTP<br>✅ Rekomendasi produk<br><br>Mau cari apa hari ini?<small>VTC AI • Baru saja • Otomatis</small></div>
-<div class="msg user">Berapa harga TWS Earbuds Pro?<small>Kamu • 14:20</small></div>
-<div class="msg ai">TWS Earbuds Pro lagi <b>Flash Sale!</b> 🎧<br><br>💰 <b>Rp 149.000</b> <s style="color:#888">Rp 299.000</s><br>📦 Stok: Tersedia (128 pcs)<br>🚚 Gratis Ongkir • COD Bisa<br><br>Mau saya masukkan ke keranjang?<small>VTC AI • Otomatis • 0.3 detik</small></div>
-<div class="msg user">Bisa COD?<small>Kamu • 14:21</small></div>
-<div class="msg ai">Bisa banget! ✅<br><br>🚚 <b>COD - Bayar di Tempat</b><br>• Cek barang dulu baru bayar<br>• Kurir JNE / J&T / SiCepat<br>• Garansi Retur 7 Hari<br><br>Klik tombol di bawah untuk buat pesanan COD 👇<small>VTC AI • Otomatis</small></div>
+<div class="top">
+  <div class="logo">VTC <span>SHOP</span></div>
+  <div class="cs-badge"><span class="dot"></span> CS Otomatis • Online <span class="auto-tag">AUTO</span></div>
 </div>
 
-<div class="typing" id="typing">🤖 VTC AI sedang mengetik...</div>
-<div class="quick">
-<button onclick="sendQ('Cek harga TWS')">💰 C
+<!-- GESER: TRACK -->
+<div class="viewport" id="viewport">
+<div class="track" id="track">
+
+<!-- 0 SPLASH -->
+<div class="page" style="padding:0"><div class="splash"><div class="v">V</div><h1 style="font-size:26px">VTC SHOP</h1><p style="font-size:12px;opacity:.9">MEGA STORE INDONESIA</p><p style="margin-top:20px;font-size:12px">Memuat... 5 detik</p><button class="btn" style="width:200px;margin-top:16px;background:#fff;color:#FF6A00" onclick="go(1)">GESER / KLIK UNTUK MASUK →</button></div></div>
+
+<!-- 1 HOME -->
+<div class="page"><div class="phone">
+<h2>Home MegaStore</h2><small>VTC MegaStore • Beranda</small>
+<input placeholder="🔍 Cari di VTC SHOP...">
+<div style="margin-top:10px"><span class="chip">⚡ Gratis Ongkir</span><span class="chip">🎟️ Voucher</span><span class="chip">📺 Live</span><span class="chip">🔥 Promo</span></div>
+<div class="card"><b>Saluran TV</b><div style="margin-top:8px"><span class="chip">📺 RCTI</span><span class="chip">📺 SCTV</span><span class="chip">📺 Indosiar</span><span class="chip">📺 Trans TV</span></div></div>
+<div class="card"><b>🔴 Live Chat</b><div class="cs-msg">user123: Kak TWS nya ready?</div><div class="cs-msg"><b>CS Otomatis:</b> Ready kak ✅ Rp 129.000, COD bisa. Mau pesan?</div></div>
+<div class="card"><b>Produk Spesial</b><div class="row"><span>🎧 Earbuds TWS Pro X</span><span class="price">Rp 129.000</span></div><div class="row"><span>🌀 Cooling Fan Ultra</span><span class="price">Rp 85.000</span></div><button class="btn" style="margin-top:10px" onclick="go(5)">Beli Sekarang</button></div>
+</div></div>
+
+<!-- 2 TV LIVE -->
+<div class="page"><div class="phone">
+<h2>2 • TV Live</h2><small>⭐ Poin Kamu: 1250 • Level: Gold</small>
+<div class="card" style="height:170px;display:flex;align-items:flex-end;background:linear-gradient(135deg,#3A1A00,#111)"><div><span class="tag">● LIVE</span><br><b style="font-size:18px">VTC TV Live</b><br><small>842 penonton</small></div></div>
+<button class="btn" style="margin-top:12px">PUTAR SEKARANG</button>
+<div class="card"><b>Voucher Rewards</b><div class="row"><span>🎟️ Voucher 20RB</span><b>Klaim</b></div><div class="row"><span>💰 Cashback 15%</span><b>Klaim</b></div><div class="row"><span>🚚 FREE ONGKIR</span><b>Klaim</b></div></div>
+</div></div>
+
+<!-- 3 SELLER LIVE -->
+<div class="page"><div class="phone">
+<h2>3 • Seller Live</h2><small>⭐ Poin: 1250 • Host: Sarah</small>
+<div class="card" style="height:160px;display:flex;align-items:flex-end;background:linear-gradient(135deg,#2A1A00,#111)"><div><span class="tag">● LIVE SELLER</span><br><b>Host Sarah - Live Jualan</b><br><small>2.8K penonton • TikTok • FB • YT • X • IG gabung di Live</small></div></div>
+<div class="card"><b>🎯 Tebak Harga Quiz</b><p style="font-size:13px;margin-top:6px">Tebak harga Earbuds TWS Pro X?</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><button class="btn-dark">Rp 129rb</button><button class="btn-dark">Rp 149rb</button><button class="btn-dark">Rp 109rb</button><button class="btn-dark">Rp 99rb</button></div></div>
+<button class="btn" style="margin-top:12px" onclick="go(5)">Beli dari Live COD</button>
+</div></div>
+
+<!-- 4 TOP UP -->
+<div class="page"><div class="phone">
+<h2>5 • Top Up Game</h2><small>Instant • Aman • Murah</small>
+<div class="card"><b>Pilih Game</b><div style="margin-top:8px"><span class="chip">🎮 Mobile Legends</span><span class="chip">🔥 Free Fire</span><span class="chip">🧱 Roblox</span><span class="chip">🎯 PUBG</span></div></div>
+<div class="card"><b>Pilih Paket Diamonds</b><div class="row"><span>86 Diamonds</span><b>Rp 20.000</b></div><div class="row"><span>172 Diamonds ⭐</span><b>Rp 40.000</b></div><div class="row"><span>257 Diamonds</span><b>Rp 60.000</b></div><label>ID Pengguna</label><input placeholder="Masukkan ID Game"><label>Server</label><input placeholder="Server"></div>
+<button class="btn" style="margin-top:12px">Beli Sekarang</button>
+</div></div>
+
+<!-- 5 CHECKOUT COD -->
+<div class="page"><div class="phone">
+<h2>6 • Checkout COD</h2><small>Keranjang • Bayar di Tempat</small>
+<div class="card"><b>Keranjang</b><div class="row"><span>🎧 Earbuds TWS Pro X x1</span><b>Rp 129.000</b></div><div class="row"><span>🌀 Cooling Fan Ultra x1</span><b>Rp 85.000</b></div></div>
+<div class="card"><b>Alamat Pengiriman</b><p style="font-size:13px;margin-top:6px">🏠 Rumah - John Doe<br><small>Jl. Merdeka No.45, Jakarta</small></p><button class="btn-dark" style="margin-top:8px">Ubah Alamat</button></div>
+<div class="card"><b>Ringkasan Pembayaran</b><div class="row"><span>Subtotal Produk</span><b>Rp 214.000</b></div><div class="row"><span>Ongkir JNT</span><b>Rp 15.000</b></div><div class="row"><span>Total Pembayaran</span><b style="color:#FFB86A">Rp 229.000</b></div><label><input type="checkbox" checked style="width:auto"> Saya mau COD - Bayar di Tempat</label></div>
+<button class="btn" onclick="alert('Pesanan COD dibuat! Kurir OTW. CS Otomatis akan kirim resi ke WA kamu.')">Bayar COD (Rp 229.000)</button>
+</div></div>
+
+<!-- 6 LOGIN / OTP / LOGOUT + CS OTOMATIS -->
+<div class="page"><div class="phone">
+<h2>Login • OTP • CS</h2><small>Semua Otomatis • Tanpa Robot</small>
+<div class="card"><b>Login / Daftar</b><label>No HP / Email</label><input placeholder="08xx / email"><label>Password</label><input type="password" placeholder="••••••••"><button class="btn" style="margin-top:12px" onclick="document.getElementById('otpbox').style.display='block'">LOGIN & KIRIM OTP →</button><div id="otpbox" style="display:none"><label>Kode OTP (Otomatis masuk)</label><div class="otp"><input value="1"><input value="2"><input value="3"><input value="4"><input value="5"><input value="6"></div><button class="btn" style="margin-top:10px;background:#25D366" onclick="alert('Login Berhasil! OTP Terverifikasi.')">✅ VERIFIKASI OTP</button></div></div>
+
+<!-- CS OTOMATIS - BUKAN ROBOT, CUMA CS -->
+<div class="cs-box">
+<div style="display:flex;justify-content:space-between;align-items:center"><b>CS Otomatis</b><span class="auto-tag">● AUTO • ONLINE</span></div>
+<small style="color:#aaa">CS VTC SHOP • Bales otomatis &lt; 1 detik • Kalau sulit, diteruskan ke Admin Manusia</small>
+<div class="cs-msg"><b>CS Otomatis:</b> Halo kak 👋 Mau tanya harga, COD, OTP, atau lacak pesanan? Saya bantu sekarang.</div>
+<div id="csChat"></div>
+<div class="cs-input"><input id="csInp" placeholder="Tanya CS Otomatis..." onkeypress="if(event.key==='Enter')csSend()"><button onclick="csSend()">➤</button></div>
+<div style="margin-top:8px"><span class="chip" onclick="csQuick('Harga TWS')">💰 Harga TWS</span><span class="chip" onclick="csQuick('Bisa COD?')">🚚 COD?</span><span class="chip" onclick="csQuick('Kode OTP')">🔑 OTP</span><span class="chip" onclick="csQuick('Lacak pesanan')">📦 Lacak</span></div>
+</div>
+
+<div class="card"><b>Pengaturan CS Otomatis</b><div class="row"><span>CS Otomatis Aktif</span><span class="toggle"></span></div><div class="row"><span>Auto-Balas Komentar Live</span><span class="toggle"></span></div><div class="row"><span>Auto-Kirim Resi & Tracking</span><span class="toggle"></span></div><div class="row"><span>Pindah ke Admin Manusia jika sulit</span><span class="toggle"></span></div></div>
+<button class="btn-dark" style="margin-top:12px" onclick="if(confirm('Yakin Logout?'))alert('Logout Berhasil. Sampai jumpa lagi!')">🚪 LOG OUT</button>
+</div></div>
+
+</div>
+</div>
+
+<div class="dots" id="dots" style="position:fixed;bottom:76px;left:0;right:0;z-index:40"></div>
+
+<!-- BOTTOM MENU GESER -->
+<div class="bottom"><div class="bottom-in">
+<button class="tab" onclick="go(0)"><i>🏠</i><b>Home</b></button>
+<button class="tab" onclick="go(1)"><i>🏠</i><b>Home</b></button>
+<button class="tab" onclick="go(2)"><i>📺</i><b>TV Live</b></button>
+<button class="tab" onclick="go(3)"><i>🎙️</i><b>Seller</b></button>
+<button class="tab" onclick="go(4)"><i>🎮</i><b>Top Up</b></button>
+<button class="tab" onclick="go(5)"><i>💵</i><b>COD</b></button>
+<button class="tab" onclick="go(6)"><i>👤</i><b>CS / Akun</b></button>
+</div></div>
+
+<script>
+let cur=0, total=7, autoTimer=null;
+const track=document.getElementById('track');
+const dotsBox=document.getElementById('dots');
+for(let i=0;i<total;i++){let s=document.createElement('span'); if(i===0)s.className='on'; dotsBox.appendChild(s); dotsBox.children[i].onclick=()=>go(i);}
+function render(){
+  track.style.transform=`translateX(-${cur*100}%)`;
+  [...dotsBox.children].forEach((d,i)=>d.className=i===cur?'on':'');
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active', i===cur || (cur===0&&i===0)));
+  // reset auto geser
+  clearInterval(autoTimer);
+  // OTOMATIS GESER tiap 6 detik, tapi berhenti kalau user lagi ketik di CS
+  autoTimer=setInterval(()=>{ if(document.activeElement && document.activeElement.tagName==='INPUT') return; go((cur+1)%total); },6000);
+}
+function go(n){ cur=Math.max(0,Math.min(total-1,n)); render(); }
+// GESER PAKAI JARI / MOUSE - BUKAN SCROLL
+let startX=0, curX=0, dragging=false;
+const vp=document.getElementById('viewport');
+vp.addEventListener('touchstart',e=>{startX=e.touches[0].clientX; dragging=true; track.style.transition='none';},{passive:true});
+vp.addEventListener('touchmove',e=>{if(!dragging)return; curX=e.touches[0].clientX; let diff=curX-startX; track.style.transform=`translateX(calc(-${cur*100}% + ${diff}px))`;},{passive:true});
+vp.addEventListener('touchend',()=>{dragging=false; track.style.transition=''; let diff=curX-startX; if(diff<-60) go(cur+1); else if(diff>60) go(cur-1); else render();});
+vp.addEventListener('mousedown',e=>{startX=e.clientX; dragging=true; track.style.transition='none';});
+window.addEventListener('mousemove',e=>{if(!dragging)return; curX=e.clientX; let diff=curX-startX; track.style.transform=`translateX(calc(-${cur*100}% + ${diff}px))`;});
+window.addEventListener('mouseup',()=>{if(!dragging)return; dragging=false; track.style.transition=''; let diff=curX-startX; if(diff<-60) go(cur+1); else if(diff>60) go(cur-1); else render();});
+// KEYBOARD PANAH JUGA BISA GESER
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(cur+1); if(e.key==='ArrowLeft')go(cur-1);});
+// CS OTOMATIS - TANPA GAMBAR ROBOT
+function csAdd(text,me){
+  let d=document.createElement('div'); d.className='cs-msg'+(me?' me':'');
+  d.innerHTML=(me?'Kamu: ':'<b>CS Otomatis:</b> ')+text;
+  document.getElementById('csChat').appendChild(d);
+}
+function csReply(q){
+  q=q.toLowerCase();
+  setTimeout(()=>{
+    if(q.includes('harga')||q.includes('tws')) csAdd('TWS Pro X <b>Rp 129.000</b> 🎧 Stok ready, Gratis Ongkir, COD bisa. Mau pesan? Ketik YA.');
+    else if(q.includes('cod')) csAdd('Bisa COD ✅ Bayar di tempat, cek barang dulu, retur 7 hari. Total contoh Rp 229.000. Mau saya buatkan pesanan?');
+    else if(q.includes('otp')) csAdd('OTP sudah dikirim otomatis ke HP kamu 📩 Kode 6 digit, berlaku 2 menit. Belum masuk? Ketik KIRIM ULANG.');
+    else if(q.includes('lacak')||q.includes('pesanan')) csAdd('Pesanan #VTC-8891: <b>📦 Sedang Dikirim - JNT</b> Resi JT123456. Estimasi sampai besok.');
+    else if(q.includes('ya')||q.includes('mau')) csAdd('Siap! Pesanan otomatis dibuat ✅ Total Rp 229.000 COD. Kurir OTW besok. Makasih kak!');
+    else if(q.includes('admin')||q.includes('manusia')) csAdd('Saya teruskan ke Admin Manusia CS.service ya 👤 Admin bales max 5 menit.');
+    else csAdd('Baik kak, saya bantu. Coba tanya: <b>harga, COD, OTP, lacak</b> atau ketik <b>ADMIN</b>.');
+  },600);
+}
+function csSend(){ let i=document.getElementById('csInp'); let v=i.value.trim(); if(!v)return; csAdd(v,true); i.value=''; csReply(v); }
+function csQuick(t){ csAdd(t,true); csReply(t); }
+render();
+console.log('VTC SHOP v6.0 - Geser Menu + CS Otomatis (Tanpa Robot) Aktif');
+</script>
+</body>
+</html>
