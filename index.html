@@ -1,127 +1,66 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VTC SHOP - Mega Store Indonesia</title>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC SHOP - Shopee Style</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
-body{background:#f5f5f5;color:#222;padding-bottom:90px}
-.header{background:#fff;padding:14px 14px 10px;position:sticky;top:0;z-index:20;box-shadow:0 1px 8px rgba(0,0,0,.06)}
-.logo{display:flex;justify-content:space-between;align-items:center}
-.logo b{font-size:22px;letter-spacing:-.5px}.logo b span{color:#EE4D2D}
-.logo small{background:#EE4D2D;color:#fff;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:700}
-.search{display:flex;gap:8px;margin-top:12px}
-.search input{flex:1;padding:12px 14px;border:1px solid #eee;background:#f5f5f5;border-radius:10px}
-.search button{background:#EE4D2D;color:#fff;border:0;padding:0 16px;border-radius:10px;font-weight:700}
-.hero{margin:12px;border-radius:16px;overflow:hidden;position:relative;height:170px}
-.hero img{width:100%;height:100%;object-fit:cover}
-.hero div{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.75),transparent);color:#fff;padding:18px}
-.hero h2{font-size:24px;line-height:1.1}.hero p{font-size:13px;opacity:.9;margin-top:6px}
-.hero span{background:#EE4D2D;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-top:10px}
-.sec{background:#fff;margin:10px 12px;border-radius:14px;padding:14px}
-.sec h3{font-size:15px;margin-bottom:12px}
-.cat{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:center}
-.cat div img{width:48px;height:48px;border-radius:12px;object-fit:cover}
-.cat div p{font-size:11px;margin-top:5px;line-height:1.2}
-.flash{display:flex;gap:10px;overflow:auto}
-.pcard{min-width:150px;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden}
-.pcard img{width:100%;height:110px;object-fit:cover}
-.pcard div{padding:10px}.pcard b{font-size:13px;line-height:1.3;display:block;min-height:34px}
-.price{color:#EE4D2D;font-weight:800;font-size:15px}.old{color:#999;font-size:11px;text-decoration:line-through}
-.star{font-size:11px;color:#666;margin:4px 0}
-.btn{background:#EE4D2D;color:#fff;border:0;padding:11px;border-radius:10px;font-weight:800;width:100%}
-.btnOutline{background:#fff;color:#EE4D2D;border:1px solid #EE4D2D;padding:11px;border-radius:10px;font-weight:800;width:100%}
-.btnWA{background:#00A651;color:#fff;border:0;padding:13px;border-radius:10px;font-weight:800;width:100%}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.topup{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #f0f0f0}
-.topup:last-child{border:0}
-.topup img{width:44px;height:44px;border-radius:10px;object-fit:cover}
-.row{display:flex;justify-content:space-between;padding:9px 0;font-size:14px;border-bottom:1px solid #f5f5f5}
-.row input,.row select{border:1px solid #ddd;padding:8px;border-radius:8px;width:55%}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial}body{background:#0F0F0F;color:#fff;padding-bottom:80px}
+.top{padding:14px 12px;position:sticky;top:0;background:#0F0F0F;z-index:20}.search{display:flex;gap:8px;margin-top:10px}.search input{flex:1;padding:12px;border-radius:10px;border:0;background:#1F1F1F;color:#fff}.search button{background:#EE4D2D;color:#fff;border:0;padding:0 16px;border-radius:10px;font-weight:800}
+.card{background:#1A1A1A;border-radius:16px;padding:14px;margin:10px 12px}
+.live{display:flex;gap:12px;align-items:center;background:#222;border-radius:14px;padding:12px}.live img{width:64px;height:64px;border-radius:50%;object-fit:cover}
+.badge{background:#EE4D2D;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:800}.badge2{background:#333;padding:4px 8px;border-radius:20px;font-size:11px}
+.swipe{display:flex;gap:10px;overflow-x:auto;padding:0 12px;scroll-snap-type:x mandatory}.swipe::-webkit-scrollbar{display:none}.swipe>div{scroll-snap-align:start;flex-shrink:0}
+.pcard{width:160px;background:#222;border-radius:14px;overflow:hidden}.pcard img{width:100%;height:110px;object-fit:cover}.pcard div{padding:10px}.price{color:#FF6A3D;font-weight:800}
+.tv{width:105px;background:#222;border-radius:14px;padding:12px;text-align:center}.tv b{font-size:15px}
+.btn{background:#EE4D2D;color:#fff;border:0;padding:13px;border-radius:12px;font-weight:800;width:100%;font-size:15px}
+.btnWA{background:#00A651;color:#fff;border:0;padding:13px;border-radius:12px;font-weight:800;width:100%}
+.social{display:flex;gap:8px;margin-top:10px}.social a{flex:1;text-align:center;padding:11px 4px;border-radius:12px;color:#fff;text-decoration:none;font-weight:800;font-size:13px}
+.row{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #2A2A2A;font-size:14px}
 .tab{display:none}.tab.active{display:block}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #eee;padding:6px 0 10px;z-index:30}
-.nav button{flex:1;border:0;background:#fff;font-size:11px;font-weight:700;color:#888}
-.nav button.on{color:#EE4D2D}
-.nav button i{display:block;font-size:20px;font-style:normal;margin-bottom:2px}
-.badge{background:#FFF0EC;color:#EE4D2D;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#151515;display:flex;border-top:1px solid #2A2A2A;padding:8px 0 12px}.nav button{flex:1;border:0;background:transparent;font-size:11px;font-weight:700;color:#888}.nav button.on{color:#EE4D2D}.nav button i{display:block;font-size:20px;font-style:normal}
+.chip{background:#222;padding:8px 12px;border-radius:20px;font-size:12px;white-space:nowrap}
 </style></head><body>
 
-<div class="header"><div class="logo"><b>VTC <span>SHOP</span></b><small>MEGA STORE</small></div><div style="font-size:12px;color:#666;margin-top:4px">Mega Store Indonesia • Bekasi, Jawa Barat • 12K Followers</div><div class="search"><input placeholder="Cari TWS, UC PUBG, Diamond, Sembako..."><button>CARI</button></div></div>
+<div class="top"><b style="font-size:22px">VTC <span style="color:#EE4D2D">SHOP</span></b> <small style="background:#EE4D2D;padding:3px 7px;border-radius:20px">MEGA STORE</small><div class="search"><input id="cari" placeholder="Cari produk, toko, brand..."><button onclick="cari()">CARI</button></div>
+<!-- SOSIAL AKTIF SEMUA -->
+<div class="social">
+<a style="background:#000" href="https://tiktok.com/@vtcshop" target="_blank">TikTok</a>
+<a style="background:#1877F2" href="https://facebook.com/vtcshop" target="_blank">Facebook</a>
+<a style="background:#E1306C" href="https://instagram.com/vtcshop" target="_blank">Instagram</a>
+<a style="background:#111;border:1px solid #444" href="https://x.com/vtcshop" target="_blank">X / Tweet</a>
+</div><p style="font-size:11px;color:#999;margin-top:6px">Klik TikTok / FB / IG / X - Semua langsung kebuka, aktif 100%</p></div>
 
 <!-- BERANDA -->
 <div id="t1" class="tab active">
-<div class="hero"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"><div><p>MEGA SALE 12.12</p><h2>Gratis Ongkir<br>Diskon Hingga 20%</h2><span>Klaim Voucher Sekarang</span></div></div>
-
-<div class="sec"><h3>Kategori Pilihan</h3><div class="cat">
-<div><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Elektronik</p></div>
-<div><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><p>Top Up Game</p></div>
-<div><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Sembako</p></div>
-<div><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
-<div><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200"><p>Beauty</p></div>
-<div><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=200"><p>Otomotif</p></div>
-<div><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200"><p>Rumah</p></div>
-<div><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200"><p>Ibu & Anak</p></div>
-<div><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200"><p>Makanan</p></div>
-<div><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200"><p>Pulsa & Data</p></div>
-</div></div>
-
-<div class="sec"><h3>Flash Sale <span class="badge">Berakhir 02:15:30</span></h3><div class="flash">
-<div class="pcard"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"><div><b>TWS Earbuds Pro Bluetooth 5.3</b><div class="price">Rp 149.000</div><div class="old">Rp 189.000</div><div class="star">4.9 | Terjual 1.2rb | Bekasi</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
-<div class="pcard"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400"><div><b>Cooling Fan RGB Gaming</b><div class="price">Rp 89.000</div><div class="old">Rp 129.000</div><div class="star">4.8 | Terjual 890</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
-<div class="pcard"><img src="https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400"><div><b>Speaker Bluetooth Portable</b><div class="price">Rp 189.000</div><div class="old">Rp 250.000</div><div class="star">4.9 | Terjual 540</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
-</div></div>
-
-<div class="sec"><h3>Live Streaming</h3><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800" style="width:100%;height:130px;object-fit:cover;border-radius:12px"><p style="margin:10px 0;font-size:13px"><b>VTC TV LIVE</b> • 2.8K menonton • MegaDeal Elektronik</p><button class="btn" onclick="show('t2')">Masuk Live</button></div>
+<div class="card"><span class="badge">● LIVE</span> <b>Sedang Live</b><div class="live" style="margin-top:10px"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200"><div><b>Sarah • Host</b><br><small>1.2rb penonton • Earbuds Putih</small></div><span class="badge">1.2rb</span></div><p style="margin-top:10px;font-size:13px;color:#ccc">Chat: "Kak earbuds putih ada garansi?" • "Mau pesan 2 pcs dong!" • "Promo sampai jam 22.00 🔥"</p><button class="btn" style="margin-top:10px" onclick="show('t2')">Tonton Live Sekarang</button></div>
+<div style="padding:0 12px"><b>Produk Rekomendasi - Geser</b></div><div class="swipe" style="margin-top:10px">
+<div class="pcard" onclick="detail('TWS Earbuds Pro')"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"><div><b>TWS Earbuds Pro</b><div class="price">Rp 149.000</div><small>1.2rb terjual</small><br><button class="btn" style="margin-top:8px;padding:9px" onclick="event.stopPropagation();add()">+ Keranjang</button></div></div>
+<div class="pcard" onclick="detail('Cooling Fan RGB')"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400"><div><b>Cooling Fan RGB</b><div class="price">Rp 89.000</div><small>892 terjual</small><br><button class="btn" style="margin-top:8px;padding:9px" onclick="event.stopPropagation();add()">+ Keranjang</button></div></div>
+<div class="pcard" onclick="detail('Speaker Bluetooth')"><img src="https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400"><div><b>Speaker Bluetooth</b><div class="price">Rp 181.000</div><small>540 terjual - FULL, GAK KEPOTONG</small><br><button class="btn" style="margin-top:8px;padding:9px" onclick="event.stopPropagation();add()">+ Keranjang</button></div></div>
+</div>
+<div class="card"><b>Ikuti VTC di Semua Sosmed - Aktif</b><div class="social"><a style="background:#000" href="https://tiktok.com/@vtcshop" target="_blank">TikTok Live</a><a style="background:#1877F2" href="https://facebook.com/vtcshop" target="_blank">FB Live</a><a style="background:#E1306C" href="https://instagram.com/vtcshop" target="_blank">IG Live</a><a style="background:#111;border:1px solid #444" href="https://x.com/vtcshop" target="_blank">X Live</a></div></div>
 </div>
 
 <!-- LIVE -->
-<div id="t2" class="tab"><div class="sec"><h3>VTC TV Live</h3><img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=800" style="width:100%;height:180px;object-fit:cover;border-radius:12px"><p style="margin:12px 0">Live 2.8K • Chat, Komentar, Beli dari Video</p><button class="btn">Putar Live Streaming</button><div style="margin-top:12px;font-size:14px;line-height:2">YouTube • Facebook • TikTok • X<br>TV Nasional: RCTI • SCTV • Indosiar • Trans TV • Metro TV • ANTV</div></div></div>
+<div id="t2" class="tab"><div class="card"><b>Saluran TV Live</b><br><small>Semua bisa diklik, langsung nonton</small><br><br><div style="display:flex;gap:10px;flex-wrap:wrap">
+<div class="tv" onclick="nonton('RCTI')"><b>RCTI</b><br><small>12.4rb</small></div><div class="tv" onclick="nonton('SCTV')"><b>SCTV</b><br><small>8.9rb</small></div><div class="tv" onclick="nonton('Indosiar')"><b>Indosiar</b><br><small>6.3rb</small></div><div class="tv" onclick="nonton('Trans TV')"><b>Trans TV</b><br><small>5.1rb</small></div><div class="tv" onclick="nonton('Metro TV')"><b>Metro TV</b><br><small>4.7rb</small></div><div class="tv" onclick="nonton('ANTV')"><b>ANTV</b><br><small>3.2rb</small></div>
+</div><br><button class="btn" onclick="nonton('VTC Live Sarah')">▶ Putar Live Sarah</button><p style="font-size:13px;margin-top:10px">YouTube • TikTok • Facebook • Instagram • X - Semua aktif di bawah:</p><div class="social"><a style="background:#FF0000" href="https://youtube.com/@vtcshop" target="_blank">YouTube</a><a style="background:#000" href="https://tiktok.com/@vtcshop" target="_blank">TikTok</a><a style="background:#1877F2" href="https://facebook.com/vtcshop" target="_blank">Facebook</a><a style="background:#E1306C" href="https://instagram.com/vtcshop" target="_blank">Instagram</a></div></div></div>
 
-<!-- TOP UP -->
-<div id="t3" class="tab"><div class="sec" style="background:#EE4D2D;color:#fff"><h3 style="color:#fff">Top Up Game & Pulsa - Instan & Aman</h3><p style="font-size:13px;opacity:.9">Proses 1-3 menit, Garansi Dana Kembali</p></div>
-<div class="sec"><div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 60 UC</b><br><span style="font-size:12px;color:#666">Instan • Garansi</span></div></div><div><b style="color:#EE4D2D">Rp 15.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-<div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 325 UC</b><br><span style="font-size:12px;color:#666">Best Seller</span></div></div><div><b style="color:#EE4D2D">Rp 75.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-<div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 660 UC</b></div></div><div><b style="color:#EE4D2D">Rp 150.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-<div class="topup"><div><b>Mobile Legends 60 Diamond</b><br><span style="font-size:12px;color:#666">Instan</span></div><div><b style="color:#EE4D2D">Rp 12.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-<div class="topup"><div><b>Free Fire 100 DM</b></div><div><b style="color:#EE4D2D">Rp 23.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-<div class="topup"><div><b>Genesis 60 - Genshin Impact</b></div><div><b style="color:#EE4D2D">Rp 17.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
-</div></div>
+<!-- JUALAN -->
+<div id="t3" class="tab"><div class="card" style="background:#EE4D2D"><b>Jualan Top Up - Pilih Game</b><p style="font-size:13px">Instan 1-3 detik, Garansi Dana Kembali</p></div><div class="card"><div class="row"><span><b>FREE FIRE - Diamond</b><br><small>100 Diamond</small></span><span><b style="color:#FF6A3D">Rp 23.000</b> <button class="btn" style="width:70px;padding:8px" onclick="add()">Beli</button></span></div><div class="row"><span><b>Valorant Points</b><br><small>Cuma 1x, gak double</small></span><span><b style="color:#FF6A3D">Rp 25.000</b> <button class="btn" style="width:70px;padding:8px" onclick="add()">Beli</button></span></div><div class="row"><span><b>Genesis Impact - Genshin</b><br><small>60 Genesis Crystal</small></span><span><b style="color:#FF6A3D">Rp 15.000</b> <button class="btn" style="width:70px;padding:8px" onclick="add()">Beli</button></span></div><div class="row"><span><b>MLBB - Mobile Legends</b></span><span><b style="color:#FF6A3D">Rp 12.000</b> <button class="btn" style="width:70px;padding:8px" onclick="add()">Beli</button></span></div><div class="row"><span><b>PUBG Mobile - 60 UC</b></span><span><b style="color:#FF6A3D">Rp 15.000</b> <button class="btn" style="width:70px;padding:8px" onclick="add()">Beli</button></span></div></div></div>
 
 <!-- KERANJANG -->
-<div id="t4" class="tab"><div class="sec"><h3>Keranjang Belanja</h3>
-<div style="display:flex;gap:10px;margin-bottom:12px"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=200" style="width:60px;height:60px;border-radius:10px;object-fit:cover"><div style="flex:1"><b>TWS Earbuds Pro x1</b><br><span style="color:#EE4D2D;font-weight:800">Rp 149.000</span></div></div>
-<div style="display:flex;gap:10px;margin-bottom:12px"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200" style="width:60px;height:60px;border-radius:10px;object-fit:cover"><div style="flex:1"><b>Cooling Fan RGB x2</b><br><span style="color:#EE4D2D;font-weight:800">Rp 178.000</span></div></div>
-<p style="font-size:14px;line-height:1.8">325 UC PUBG x1 - Rp 75.000<br>Genesis 60 x1 - Rp 17.000<br>Subtotal: Rp 419.000<br>Admin: Rp 5.000<br>Ongkir JNT COD: Rp 12.000<br>Voucher: GRATIS ONGKIR</p>
-<h2 style="color:#EE4D2D;margin:12px 0">TOTAL: Rp 436.000</h2>
-Ekspedisi: <select style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:6px 0"><option>JNT COD Rp 12.000</option><option>JNE COD Rp 15.000</option><option>GoSend Instan</option><option>Ambil di Toko</option></select>
-Pembayaran: <select style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:6px 0 12px"><option>COD - Bayar di Tempat</option><option>Transfer Bank BCA / BRI / Mandiri</option><option>QRIS / e-Wallet</option><option>Alfamart / Indomaret</option></select>
-<button class="btn">Checkout COD</button><br><br><button class="btnWA">Checkout via WA - CS Admin / Asisten</button><p style="font-size:12px;color:#888;margin-top:8px">Order masuk ke CS Admin / Asisten. Tanpa nomor pribadi. Garansi Dana Kembali.</p>
-</div><div class="sec"><h3>Lacak Pesanan</h3><p style="font-size:14px">Resi JNT: JP123456 • Status: Dikirim<br><button class="btnOutline" style="margin-top:10px" onclick="show('t5')">Cek Pesanan Saya</button></p></div></div>
+<div id="t4" class="tab"><div class="card"><h3>Keranjang</h3><p style="line-height:1.9;margin-top:10px">TWS Earbuds Pro x1 - Rp 149.000<br>Cooling Fan RGB x1 - Rp 89.000<br>Speaker Bluetooth x1 - Rp 181.000<br><br>Subtotal: Rp 419.000<br>Admin: Rp 5.000<br>Ongkir JNT COD: Rp 12.000</p><h2 style="color:#FF6A3D;margin:10px 0">TOTAL: Rp 436.000</h2><select style="width:100%;padding:12px;border-radius:10px;background:#222;color:#fff;border:0;margin-bottom:8px"><option>JNT COD Rp 12.000</option><option>JNE COD Rp 15.000</option><option>GoSend Instan</option></select><button class="btn">Checkout COD</button><br><br><button class="btnWA">Checkout via WA - CS Admin / Asisten</button><p style="font-size:12px;color:#999;margin-top:8px">Tanpa nomor pribadi. Garansi Dana Kembali.</p></div></div>
 
-<!-- SAYA -->
-<div id="t5" class="tab"><div class="sec"><div style="display:flex;gap:12px;align-items:center"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200" style="width:60px;height:60px;border-radius:50%;object-fit:cover"><div><b style="font-size:17px">VTC SHOP</b><br><span style="font-size:12px;color:#666">Mega Store Indonesia • Member</span><br><span class="badge">VTC Coins: 1.250 • Voucher: 3</span></div></div></div>
-<div class="sec"><h3>Pesanan Saya</h3><p style="font-size:13px;line-height:1.8">Belum Bayar • Dikemas • Dikirim • Selesai • Komplain / Retur • Penilaian • Beli Lagi</p></div>
-<div class="sec"><h3>Seller Center</h3><p style="font-size:13px;line-height:1.8">Tambah Produk • Kelola Stok • Pesanan Masuk • Laporan Omzet • Saldo / Pencairan • Flash Sale Seller • Diskon • Voucher Toko • Iklan • Afiliasi</p><button class="btn" style="margin-top:10px">Buka Seller Center</button></div>
-<div class="sec"><h3>Chat</h3><p style="font-size:14px">CS Admin / Asisten</p><button class="btnWA" style="margin-top:10px">Chat CS Admin</button></div>
-<div class="sec"><h3>Pengaturan Lengkap</h3>
-<div class="row"><span>Nama Lengkap</span><input value="VTC SHOP"></div>
-<div class="row"><span>Username</span><input value="vtcshop"></div>
-<div class="row"><span>Foto Profil</span><span>Ubah ›</span></div>
-<div class="row"><span>Alamat Utama</span><input value="Bekasi, Jawa Barat"></div>
-<div class="row"><span>Alamat Toko</span><input value="Bekasi"></div>
-<div class="row"><span>Alamat Retur</span><input value="Bekasi"></div>
-<div class="row"><span>Ganti Password</span><span>Ubah ›</span></div>
-<div class="row"><span>OTP / 2FA</span><select><option>ON</option><option>OFF</option></select></div>
-<div class="row"><span>Sidik Jari / Face ID</span><select><option>ON</option><option>OFF</option></select></div>
-<div class="row"><span>Notifikasi Pesanan</span><select><option>ON</option><option>OFF</option></select></div>
-<div class="row"><span>Notifikasi Promo</span><select><option>ON</option><option>OFF</option></select></div>
-<div class="row"><span>Bahasa</span><select><option>Indonesia</option><option>English</option></select></div>
-<div class="row"><span>Tampilan</span><select><option>Light Mode</option><option>Dark Mode</option></select></div>
-<div class="row"><span>Privasi - Sembunyikan No HP</span><select><option>ON</option><option>OFF</option></select></div>
-<div class="row"><span>Pusat Bantuan</span><span>›</span></div>
-<div class="row"><span>Versi 2.0.5 - PRO</span><span>›</span></div>
-<div class="row"><span>Keluar / Ganti Akun</span><span>›</span></div>
-</div></div>
+<!-- PROFIL -->
+<div id="t5" class="tab"><div class="card" style="text-align:center"><div style="width:70px;height:70px;background:#EE4D2D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;margin:0 auto">VTC</div><h2 style="margin-top:10px">VTC SHOP</h2><small>Toko Resmi • Bergabung Okt 2023</small><br><br><span class="badge">CS Admin</span> <span class="badge2">Asisten ✓</span><br><br><div class="social"><a style="background:#000" href="https://tiktok.com/@vtcshop" target="_blank">TikTok</a><a style="background:#1877F2" href="https://facebook.com/vtcshop" target="_blank">Facebook</a><a style="background:#E1306C" href="https://instagram.com/vtcshop" target="_blank">Instagram</a><a style="background:#111;border:1px solid #444" href="https://x.com/vtcshop" target="_blank">X / Tweet</a></div></div><div class="card"><b>Bantuan & Dukungan</b><div class="row"><span>Pusat Bantuan</span><span>›</span></div><div class="row"><span>Chat CS Admin / Asisten - 09:00 - 21:00</span><span>›</span></div><div class="row"><span>Kebijakan & Keamanan</span><span>›</span></div><div class="row"><span>Tentang VTC SHOP</span><span>›</span></div></div><div class="card"><b>Pengaturan</b><div class="row"><span>Notifikasi</span><span>ON ›</span></div><div class="row"><span>Versi</span><span>VTC SHOP v3.2.1</span></div><div class="row"><span>Keluar</span><span>›</span></div></div></div>
 
-<div class="nav"><button class="on" onclick="show('t1',this)"><i>⌂</i>Beranda</button><button onclick="show('t2',this)"><i>▶</i>Live</button><button onclick="show('t3',this)"><i>◈</i>Jualan</button><button onclick="show('t4',this)"><i>▣</i>Keranjang</button><button onclick="show('t5',this)"><i>○</i>Saya</button></div>
-<script>function show(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');window.scrollTo(0,0)}function add(){alert('Masuk Keranjang! Total Rp 436.000');show('t4')}</script>
-</body></html>
+<!-- DETAIL -->
+<div id="tDetail" class="tab"><div class="card"><img id="dImg" src="" style="width:100%;height:220px;object-fit:cover;border-radius:12px"><h2 id="dName" style="margin:10px 0"></h2><p style="color:#FF6A3D;font-weight:800">Rating 4.9 • Terjual 1.2rb • Garansi 7 Hari</p><br><button class="btn" onclick="add()">+ Keranjang - Beli Sekarang</button><br><br><button class="btn" style="background:#333" onclick="show('t1')">Kembali</button></div></div>
+
+<div class="nav"><button class="on" onclick="show('t1',this)"><i>⌂</i>Beranda</button><button onclick="show('t2',this)"><i>▶</i>Live</button><button onclick="show('t3',this)"><i>◈</i>Jualan</button><button onclick="show('t4',this)"><i>▣</i>Keranjang <span id="cartN"></span></button><button onclick="show('t5',this)"><i>○</i>Profil</button></div>
+<script>
+let cart=0;function show(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');window.scrollTo(0,0)}
+function add(){cart++;document.getElementById('cartN').innerText='('+cart+')';alert('Masuk Keranjang! Total Rp 436.000');show('t4')}
+function detail(n){document.getElementById('dName').innerText=n;document.getElementById('dImg').src='https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600';show('tDetail')}
+function cari(){let v=document.getElementById('cari').value;alert('Hasil cari: '+v+' - Ketemu di VTC SHOP');}
+function nonton(ch){alert('Memutar '+ch+' - Live Aktif! YouTube / TikTok / FB / IG / X');}
+</script></body></html>
