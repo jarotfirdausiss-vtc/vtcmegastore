@@ -1,145 +1,173 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>VTC Dark - Swipe App</title>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>VTC SHOP v3.0 AI PRO - MEGA STORE INDONESIA</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;font-family:Arial,Helvetica,sans-serif;background:#0f0f0f;color:#fff}
-/* CONTAINER BISA DIGESER */
-.app{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;height:calc(100% - 72px);scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
-.app::-webkit-scrollbar{display:none}
-.page{min-width:100%;height:100%;overflow-y:auto;scroll-snap-align:start;padding:12px 14px 20px}
-.top{display:flex;justify-content:space-between;align-items:center;padding:6px 2px 12px}
-.logo{font-size:22px;font-weight:900}.logo i{color:#ff6b00;font-style:normal}
-.topIcons{display:flex;gap:16px}.topIcons svg{width:22px;height:22px;stroke:#ff8a3c;fill:none;stroke-width:2}
-.liveCard{position:relative;border-radius:18px;overflow:hidden;background:#000}
-.liveCard img{width:100%;height:340px;object-fit:cover;display:block}
-.liveTop{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between}
-.liveBadge{background:#e53935;color:#fff;font-size:11px;font-weight:900;padding:5px 10px;border-radius:6px}
-.liveView{background:#000a;font-size:11px;padding:5px 10px;border-radius:20px}
-.chat{position:absolute;right:10px;bottom:12px;width:58%;display:flex;flex-direction:column;gap:8px}
-.chat div{background:#000b;border:1px solid #ff6b0055;border-radius:12px;padding:8px 10px;font-size:12px;line-height:1.4}
-.chat small{color:#aaa;font-size:10px}
-.hRow{display:flex;justify-content:space-between;align-items:center;margin:16px 2px 10px}.hRow h3{margin:0;font-size:16px}.hRow a{color:#ff8a3c;font-size:13px;font-weight:700}
-.proRow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
-.proCard{min-width:145px;background:#1c1c1c;border-radius:14px;padding:10px}
-.proCard img{width:100%;height:105px;object-fit:cover;border-radius:10px}
-.proCard b{font-size:12px;display:block;margin-top:8px;line-height:1.3}
-.price{color:#ff7a1a;font-weight:900;font-size:14px;margin-top:4px}.tag{font-size:11px;color:#aaa}
-.card{background:#1c1c1c;border-radius:16px;padding:14px;margin-bottom:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid .proCard{min-width:0}
-input{width:100%;padding:12px;border:1px solid #333;border-radius:12px;background:#222;color:#fff;margin-top:6px}
-.btn{width:100%;padding:13px;border:0;border-radius:12px;font-weight:900;cursor:pointer}
-.btn2{padding:10px 10px;border:0;border-radius:12px;font-weight:800;cursor:pointer;font-size:12px}
-.flex{display:flex;gap:8px}.tvBtn{padding:12px;border-radius:12px;text-align:center;cursor:pointer;color:#fff;font-size:13px}
-.menuRow{padding:12px 4px;border-bottom:1px solid #2a2a2a;cursor:pointer}.menuRow b{font-size:14px}.menuRow span{float:right;color:#888}.menuRow .small{color:#aaa;font-size:12px}
-.hint{text-align:center;color:#888;font-size:11px;padding:8px 0}
-/* BOTTOM NAV */
-.bottom{position:fixed;bottom:0;left:0;right:0;height:72px;background:#141414;display:flex;justify-content:space-around;align-items:center;max-width:480px;margin:auto;border-top:1px solid #222;border-radius:18px 18px 0 0;z-index:99}
-.navItem{text-align:center;font-size:11px;color:#888;cursor:pointer;flex:1}.navItem.active{color:#fff}
-.navItem svg{width:22px;height:22px;fill:#888;display:block;margin:0 auto 3px}.navItem.active svg{fill:#fff}
-.navCenter{background:#ff6b00;color:#fff!important;border-radius:14px;padding:8px 14px;margin-top:-26px;box-shadow:0 6px 18px #ff6b0088}
-.navCenter svg{fill:#fff!important}
-.dots{display:flex;justify-content:center;gap:6px;padding:6px}.dot{width:6px;height:6px;border-radius:50%;background:#333}.dot.active{background:#ff6b00;width:18px;border-radius:10px}
-</style>
-</head>
-<body>
-<div class="app" id="app" onscroll="syncNav()">
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--o:#FF6B00;--o2:#FF9A00;--d:#0F0F0F;--c:#1A1A1A;--c2:#222;--l:#2E2E2E;--m:#A0A0A0;--g:#25D366;--r:#FF3B30;--pink:#FF2E9A;--b:#00C2FF;--gold:#FFD700}
+body{background:var(--d);color:#fff;font-family:'Segoe UI',system-ui,Roboto,Arial,sans-serif;padding-bottom:82px}
+button{font-family:inherit;cursor:pointer;border:0} input,select,textarea{font-family:inherit}
+.top{position:sticky;top:0;z-index:50;background:rgba(15,15,15,.95);backdrop-filter:blur(12px);padding:10px 14px;border-bottom:1px solid var(--l)}
+.topRow{display:flex;gap:10px;align-items:center}.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--o),var(--pink),var(--b));display:grid;place-items:center;font-weight:900;font-size:22px}
+.top h1{font-size:14px;line-height:1.1}.top h1 span{color:var(--o);font-size:10px;letter-spacing:1px}.online{margin-left:auto;background:#1F2A1F;color:#4ADE80;font-size:11px;padding:6px 8px;border-radius:20px;font-weight:700}
+.searchBar{display:flex;gap:6px;margin-top:10px}.searchBar input{flex:1;background:var(--c);border:1px solid var(--l);border-radius:13px;padding:12px;color:#fff;outline:0}
+.iconBtn{background:var(--c);border:1px solid var(--l);border-radius:13px;padding:11px 12px;color:#fff;font-size:18px}
+.aiBar{background:linear-gradient(90deg,#FF6B00,#FF2E9A,#7C3AED);padding:9px 12px;border-radius:12px;margin-top:8px;font-size:12px;display:flex;justify-content:space-between;align-items:center}
+.aiBar b{background:#fff;color:#111;padding:4px 9px;border-radius:20px;font-size:11px}
+/* SPLASH */
+#splash{position:fixed;inset:0;z-index:999;background:radial-gradient(circle at 50% 30%,#FF7A00,#E65100 35%,#0F0F0F 78%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;transition:.6s}
+#splash.hide{opacity:0;visibility:hidden}.sV{font-size:140px;font-weight:900;line-height:1;background:linear-gradient(180deg,#FF2E9A,#00C2FF 55%,#FFD700);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 28px rgba(255,46,154,.8));animation:f 1.5s infinite}
+@keyframes f{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.loader{width:240px;height:10px;background:rgba(0,0,0,.35);border-radius:20px;margin-top:16px;overflow:hidden}.loader i{display:block;height:100%;width:0;background:#fff}
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;display:none;align-items:flex-end;justify-content:center}.modal.open{display:flex}
+.sheet{background:#1A1A1A;width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:18px;max-height:88vh;overflow:auto}
+.sheet h3{font-size:17px}.sheet p{color:var(--m);font-size:12px;margin:5px 0 12px}.inp{width:100%;background:#222;border:1px solid #333;border-radius:12px;padding:12px;color:#fff;outline:0;margin-top:8px}
+.btnO{width:100%;background:var(--o);color:#fff;padding:13px;border-radius:12px;font-weight:900;margin-top:10px}.btnG{width:100%;background:var(--g);color:#fff;padding:13px;border-radius:12px;font-weight:900;margin-top:8px}
+.btnDark{width:100%;background:#2A2A2A;color:#fff;padding:12px;border-radius:12px;font-weight:700;margin-top:8px}.closeX{float:right;background:#333;color:#fff;width:30px;height:30px;border-radius:50%}
+.otpBox{display:flex;gap:8px;margin-top:10px}.otpBox input{width:48px;height:52px;text-align:center;font-size:20px;font-weight:900;background:#222;border:1px solid #333;border-radius:12px;color:#fff}
+/* LAYOUT */
+.dots{display:flex;justify-content:center;gap:7px;padding:7px}.dot{width:8px;height:8px;border-radius:50%;background:#3A3A3A}.dot.on{width:24px;border-radius:10px;background:var(--o)}
+.slider{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}.slider::-webkit-scrollbar{display:none}
+.page{min-width:100%;scroll-snap-align:center;padding:4px 14px 10px}
+.hero{background:linear-gradient(135deg,#FF6B00,#FF2E9A 60%,#7C3AED);border-radius:20px;padding:16px}.hero h2{font-size:21px;line-height:1.1}.hero p{font-size:12px;margin:6px 0 10px;opacity:.95}.heroBtn{background:#fff;color:#111;font-weight:800;padding:10px 14px;border-radius:11px}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:13px 0;scrollbar-width:none}.chip{white-space:nowrap;background:var(--c);border:1px solid var(--l);padding:9px 13px;border-radius:20px;font-size:12px;color:#fff}.chip.on{background:var(--o)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px}.sec h3{font-size:16px}.sec a{color:var(--o);font-size:12px;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--c);border:1px solid var(--l);border-radius:16px;overflow:hidden}.card .im{height:105px;display:grid;place-items:center;font-size:40px;background:#262626}.card .bd{padding:10px}.card h4{font-size:13px;line-height:1.3;min-height:34px}.pr{color:var(--o);font-weight:900}.old{color:var(--m);font-size:11px;text-decoration:line-through}.buy{width:100%;margin-top:8px;background:var(--o);color:#fff;padding:9px;border-radius:10px;font-weight:800}
+.tag{font-size:10px;background:#2A1A0F;color:#FFB86B;padding:3px 7px;border-radius:20px;font-weight:700}
+.box{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:13px;margin-top:10px}
+.row{display:flex;gap:10px;align-items:center}.row .ic{width:38px;height:38px;border-radius:11px;background:#2A2A2A;display:grid;place-items:center;font-size:19px}
+.list{margin-top:8px}.li{display:flex;gap:10px;background:var(--c);border:1px solid var(--l);padding:11px;border-radius:14px;margin-top:8px;align-items:center}
+.badgeLive{background:var(--r);padding:5px 9px;border-radius:20px;font-size:11px;font-weight:800}
+.tvG{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.tv{background:var(--c);border:1px solid var(--l);padding:12px 6px;border-radius:12px;text-align:center;font-size:12px;font-weight:800}.tv small{display:block;color:var(--m);font-weight:400}
+.social{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.soc{padding:12px;border-radius:13px;text-align:center;font-weight:800;font-size:12px;color:#fff}.yt{background:#FF0000}.fb{background:#1877F2}.ig{background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)}.tt{background:#000;border:1px solid #333}.x{background:#111;border:1px solid #333}.wa{background:var(--g)}
+.ucG{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.uc{background:var(--c);border:2px solid var(--l);border-radius:14px;padding:12px;text-align:left;color:#fff}.uc.sel{border-color:var(--o);background:#2A1A0F}
+.sum{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:13px;margin-top:12px}.sum div{display:flex;justify-content:space-between;font-size:13px;padding:4px 0}.sum .tot{font-weight:900;border-top:1px dashed #444;margin-top:6px;padding-top:9px}.sum .tot span{color:var(--o)}
+.track{margin-top:10px}.step{display:flex;gap:10px;margin-top:10px}.step .dot2{width:22px;height:22px;border-radius:50%;background:var(--o);color:#fff;display:grid;place-items:center;font-size:11px;flex-shrink:0}.step.done .dot2{background:var(--g)}.step small{color:var(--m);display:block}
+.switch{width:46px;height:26px;background:#333;border-radius:20px;position:relative;flex-shrink:0}.switch:after{content:'';position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;left:3px;transition:.2s}.switch.on{background:var(--g)}.switch.on:after{left:23px}
+.menu{display:flex;justify-content:space-between;background:var(--c);border:1px solid var(--l);padding:13px;border-radius:14px;margin-top:8px;font-size:13px}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#141414;border-top:1px solid var(--l);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 4px;z-index:100}
+.bottom button{background:transparent;color:var(--m);font-size:10px;display:flex;flex-direction:column;gap:2px;align-items:center}.bottom button span{font-size:20px}.bottom button.on{color:var(--o)}
+.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:#fff;color:#111;padding:11px 16px;border-radius:20px;font-weight:800;font-size:13px;opacity:0;transition:.3s;z-index:400;white-space:nowrap;box-shadow:0 10px 30px rgba(0,0,0,.4)}.toast.show{opacity:1}
+.aiChat{position:fixed;right:14px;bottom:88px;z-index:120;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--o),var(--pink));font-size:24px;color:#fff;box-shadow:0 8px 22px rgba(255,107,0,.5)}
+.camBox{border:2px dashed #FF6B00;border-radius:16px;padding:16px;text-align:center;margin-top:10px;background:#1F150E}
+.progress{height:8px;background:#333;border-radius:20px;overflow:hidden;margin-top:8px}.progress i{display:block;height:100%;background:var(--g);width:75%}
+@media(min-width:700px){body{max-width:480px;margin:0 auto;box-shadow:0 0 0 1px #222}}
+</style></head><body>
 
-<!-- 1 BERANDA - GESER KE KANAN -->
-<div class="page" id="pg0">
-<div class="top"><div class="logo"><i>.</i>VTC Dark</div><div class="topIcons"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div></div>
-<div class="hint">GESER KE KANAN UNTUK LIVE / JUALAN</div>
-<div class="liveCard" onclick="goTo(1)"><img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800"><div class="liveTop"><div><span class="liveBadge">LIVE</span> <span class="liveView">12.4K menonton</span></div><div>...</div></div><div class="chat"><div>Kak itu earbuds warna putih ada garansi?<br><small>baru saja</small></div><div>Harga promo sampai jam 22.00 ya<br><small>baru saja</small></div><div>Mau pesan 2 pcs dong!<br><small>baru saja</small></div></div></div>
-<div class="hRow"><h3>Produk Spesial Hari Ini</h3><a onclick="goTo(2)">Lihat Semua ></a></div>
-<div class="proRow" id="listHome"></div>
-<div class="card" style="display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#e65100,#ff8a3c)"><div><b>FLASH SALE 90% OFF</b><br><span style="font-size:12px">Berakhir <b id="timer">02:59:59</b></span></div><button class="btn2" style="background:#fff;color:#e65100" onclick="alert('Voucher diklaim! Kode: VTC2050')">Klaim</button></div>
-<div class="card"><b>PUBG MOBILE - 325 UC - Rp 72.000</b><p style="color:#aaa;font-size:12px">Resmi - 1 Menit Masuk - QRIS / DANA</p><button class="btn" style="background:#ff6b00;color:#fff" onclick="goTo(2)">BELI UC SEKARANG</button></div>
-</div>
+<!-- SPLASH -->
+<div id="splash"><div class="sV">V</div><h2 style="font-size:27px;line-height:1.05">VTC SHOP<br>MEGA STORE<br>INDONESIA</h2><p style="color:#FFE8D6;font-size:12px;margin-top:6px">System AI PRO v3.0 • Semua Fitur Aktif Otomatis</p><div class="loader"><i id="bar"></i></div><div id="loadTxt" style="font-size:12px;margin-top:8px">Memuat System... 0%</div><small style="position:absolute;bottom:18px;opacity:.8;font-size:11px">v3.0 AI PRO • COD • JNT • JNE • OTP • Tracking</small></div>
 
-<!-- 2 LIVE - TV YOUTUBE FACEBOOK TIKTOK -->
-<div class="page" id="pg1">
-<div class="top"><div class="logo">Live</div><div style="font-size:12px;color:#aaa">VTC TV - ON AIR</div></div>
-<div class="card" style="padding:0;overflow:hidden"><iframe width="100%" height="260" src="https://www.youtube.com/embed/live_stream?channel=UC_YOUR_CHANNEL_ID" frameborder="0" allowfullscreen></iframe><div style="padding:12px"><b>VTC TV - LIVE JUALAN</b><p style="color:#aaa;font-size:12px">Tanya di chat, langsung dibalas admin</p><div class="flex"><button class="btn2" style="background:#e53935;color:#fff;flex:1" onclick="window.open('https://youtube.com/@vtcbangka/live','_blank')">YouTube Live</button><button class="btn2" style="background:#1877F2;color:#fff;flex:1" onclick="window.open('https://facebook.com','_blank')">Facebook</button><button class="btn2" style="background:#fff;color:#000;flex:1" onclick="window.open('https://tiktok.com','_blank')">TikTok</button></div></div></div>
-<div class="card"><h3 style="margin:0 0 10px">TV NASIONAL - LIVE GRATIS</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-<div class="tvBtn" style="background:#c62828" onclick="window.open('https://www.rctiplus.com/tv/rcti','_blank')"><b>RCTI</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#0d47a1" onclick="window.open('https://www.vidio.com/live/204-sctv','_blank')"><b>SCTV</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#ef6c00" onclick="window.open('https://www.vidio.com/live/205-indosiar','_blank')"><b>INDOSIAR</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#fdd835;color:#000" onclick="window.open('https://www.vidio.com/live/206-antv','_blank')"><b>ANTV</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#2e7d32" onclick="window.open('https://www.vidio.com/live/208-metro-tv','_blank')"><b>METRO TV</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#b71c1c" onclick="window.open('https://www.vidio.com/live/209-tvone','_blank')"><b>TV ONE</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#0288d1" onclick="window.open('https://www.vidio.com/live/210-trans-tv','_blank')"><b>TRANS TV</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#6a1b9a" onclick="window.open('https://www.vidio.com/live/211-trans7','_blank')"><b>TRANS 7</b><br><span style="font-size:11px">Nonton</span></div>
-<div class="tvBtn" style="background:#1565c0" onclick="window.open('https://www.vidio.com/live/212-mnc-tv','_blank')"><b>MNCTV</b><br><span style="font-size:11px">Nonton</span></div>
-</div></div>
-<div class="hint">GESER KIRI / KANAN UNTUK PINDAH HALAMAN</div>
-</div>
+<!-- LOGIN / OTP MODAL -->
+<div class="modal" id="loginModal"><div class="sheet"><button class="closeX" onclick="closeModal('loginModal')">✕</button><h3 id="loginTitle">🔐 Login / Daftar VTC</h3><p>Masuk dengan HP + OTP. Aman, cepat, otomatis.</p>
+<input class="inp" id="phoneInput" placeholder="Nomor HP: 0838 7850 2333" value="0838 7850 2333"><button class="btnO" onclick="sendOTP()">📩 KIRIM KODE OTP</button>
+<div id="otpArea" style="display:none"><p style="margin-top:12px">Masukkan Kode OTP yang dikirim via WA / SMS:</p><div class="otpBox"><input maxlength="1"><input maxlength="1"><input maxlength="1"><input maxlength="1"><input maxlength="1"><input maxlength="1"></div><p style="color:#4ADE80">Kode demo: 123456 • <span id="otpTimer">Kirim ulang 30s</span></p><button class="btnG" onclick="verifyOTP()">✅ VERIFIKASI & MASUK</button></div>
+<button class="btnDark" onclick="loginGoogle()">🔍 Login Google</button><button class="btnDark" onclick="closeModal('loginModal');showToast('Lanjut sebagai Tamu')">👤 Lanjut Sebagai Tamu</button></div></div>
 
-<!-- 3 JUALAN - TOP UP GAME + PRODUK -->
-<div class="page" id="pg2">
-<div class="top"><div class="logo">Jualan</div><div style="font-size:12px;color:#aaa">Top Up + Belanja</div></div>
-<div class="card" style="background:linear-gradient(135deg,#e65100,#000)"><h3 style="margin:0">TOP UP PUBG MOBILE</h3><p style="color:#ddd;font-size:12px">UC Resmi - 1 Menit Masuk - QRIS / DANA</p><div class="flex"><button class="btn2" style="background:#ff9900;color:#000">PUBG</button><button class="btn2" onclick="alert('Segera hadir: Free Fire')">Free Fire</button><button class="btn2" onclick="alert('Segera hadir: Mobile Legends')">MLBB</button><button class="btn2" onclick="alert('Segera hadir: Valorant')">Valorant</button></div><label style="font-size:12px"><b>ID PUBG Kamu:</b></label><input id="pubgId" placeholder="Contoh: 5212345678"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px">
-<div onclick="pilihUC('60 UC','Rp 14.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>60 UC</b><br><b style="color:#ffcc00">Rp 14.000</b></div>
-<div onclick="pilihUC('325 UC','Rp 72.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>325 UC</b><br><b style="color:#ffcc00">Rp 72.000</b><br><span style="font-size:11px">BEST</span></div>
-<div onclick="pilihUC('660 UC','Rp 145.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>660 UC</b><br><b style="color:#ffcc00">Rp 145.000</b></div>
-<div onclick="pilihUC('1800 UC','Rp 365.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>1800 UC</b><br><b style="color:#ffcc00">Rp 365.000</b></div>
-<div onclick="pilihUC('3850 UC','Rp 720.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>3850 UC</b><br><b style="color:#ffcc00">Rp 720.000</b></div>
-<div onclick="pilihUC('8100 UC','Rp 1.450.000',this)" class="ucCard" style="background:#ffffff22;padding:12px;border-radius:12px;text-align:center;cursor:pointer;border:2px solid transparent"><b>8100 UC</b><br><b style="color:#ffcc00">Rp 1.450.000</b></div>
-</div><p id="pilihUCText" style="text-align:center;font-weight:800">Pilih UC dulu...</p><button class="btn" style="background:#ff6b00;color:#fff" onclick="beliUC()">BELI SEKARANG - QRIS</button><button class="btn2" style="width:100%;margin-top:8px" onclick="window.open('https://wa.me/6283878502333?text=Halo%20VTC%20mau%20top%20up%20PUBG','_blank')">Tanya Admin WA - 0838 7850 2333</button></div>
-<input placeholder="Cari produk...">
-<h3>Semua Produk</h3><div class="grid" id="listAll"></div>
-</div>
+<!-- TRACKING MODAL -->
+<div class="modal" id="trackModal"><div class="sheet"><button class="closeX" onclick="closeModal('trackModal')">✕</button><h3>📦 Tracking & Resi</h3><p>Cek resi JNT / JNE / COD otomatis.</p><input class="inp" id="resiInput" placeholder="Masukkan No Resi: JT1234567890"><select class="inp" id="kurirSelect"><option>JNT Express</option><option>JNE</option><option>JNE REG</option><option>COD - Bayar di Tempat</option><option>GoSend</option></select><button class="btnO" onclick="cekResi()">🔍 LACAK PAKET SEKARANG</button><div id="trackResult"></div></div></div>
+
+<!-- RETUR MODAL -->
+<div class="modal" id="returModal"><div class="sheet"><button class="closeX" onclick="closeModal('returModal')">✕</button><h3>↩️ Retur & Refund</h3><p>Retur 7 hari, refund otomatis 1x24 jam.</p><select class="inp"><option>TWS Earbuds Pro - Rp 149.000</option><option>Cooling Fan RGB - Rp 178.000</option></select><select class="inp"><option>Alasan: Barang Rusak</option><option>Alasan: Salah Ukuran / Warna</option><option>Alasan: Tidak Sesuai Deskripsi</option><option>Alasan: Barang Tidak Datang</option></select><textarea class="inp" placeholder="Cerita detail retur..."></textarea><button class="btnO" onclick="closeModal('returModal');showToast('Retur diajukan - Kode RTN-8821')">📩 AJUKAN RETUR</button></div></div>
+
+<!-- CAMERA / SPECK SEARCH MODAL -->
+<div class="modal" id="camModal"><div class="sheet"><button class="closeX" onclick="closeModal('camModal')">✕</button><h3>📸 Kamera & Speck Search AI</h3><p>Foto produk, AI cari yang mirip + cek speck lengkap.</p><div class="camBox"><div style="font-size:48px">📷</div><p>Kamera AI aktif - Arahkan ke produk</p><button class="btnO" onclick="scanCamera()">📸 AMBIL FOTO & CARI</button><input type="file" accept="image/*" capture="environment" style="margin-top:8px;color:#fff"></div><div id="camResult"></div></div></div>
+
+<!-- AI ASSISTANT MODAL -->
+<div class="modal" id="aiModal"><div class="sheet"><button class="closeX" onclick="closeModal('aiModal')">✕</button><h3>🤖 VTC AI Asisten</h3><p>Online 24 jam • Tanya produk, harga, ongkir, resi, retur.</p><div id="aiChatBox" style="background:#111;border-radius:14px;padding:10px;min-height:140px;font-size:13px"><div><b style="color:#FF6B00">VTC AI:</b> Halo! Saya Asisten VTC 🤖 Mau cari apa? Ketik: TWS, UC, Resi, Ongkir, Retur</div></div><div style="display:flex;gap:6px;margin-top:8px"><input class="inp" id="aiInput" style="margin:0" placeholder="Tanya AI..."><button class="btnO" style="width:80px;margin:0" onclick="askAI()">Kirim</button></div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="chip" onclick="quickAI('Cek Resi')">Cek Resi</button><button class="chip" onclick="quickAI('Cek Ongkir Bekasi')">Cek Ongkir</button><button class="chip" onclick="quickAI('Rekomendasi TWS')">Rekomendasi</button></div></div></div>
+
+<header class="top"><div class="topRow"><div class="logo">V</div><h1>VTC SHOP<br><span>MEGA STORE INDONESIA v3.0</span></h1><div class="online">● AI ON</div></div>
+<div class="searchBar"><input id="searchInput" placeholder="🔍 Cari AI: TWS, UC, Sepatu..."><button class="iconBtn" onclick="openModal('camModal')">📷</button><button class="iconBtn" onclick="openModal('aiModal')">🤖</button></div>
+<div class="aiBar"><span>✨ <b>AI SEARCH PRO</b> • Speck • Kamera • Voice</span><b onclick="openModal('aiModal')">COBA AI →</b></div></header>
+
+<div class="dots" id="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+
+<main class="slider" id="slider">
+
+<!-- 1 BERANDA -->
+<section class="page"><div class="hero"><span class="badgeLive">⚡ FLASH SALE • AI PRO v3.0</span><h2 style="margin-top:8px">TWS Earbuds Pro<br>Hanya Rp 149.000</h2><p>Stok: 128 • Garansi 1 Tahun • COD JNT JNE • Cek Produk Otomatis</p><button class="heroBtn" onclick="addToCart('TWS Earbuds Pro',149000)">🛒 BELI SEKARANG</button></div>
+<div class="chips"><button class="chip on" onclick="filterCat(this,'Semua')">Semua</button><button class="chip" onclick="filterCat(this,'Elektronik')">⚡ Elektronik</button><button class="chip" onclick="filterCat(this,'Fashion')">👕 Fashion</button><button class="chip" onclick="filterCat(this,'Game')">🎮 Game</button><button class="chip" onclick="openModal('camModal')">📷 Kamera AI</button></div>
+<div class="sec"><h3>🔥 Produk Terlaris - Cek Otomatis</h3><a onclick="goTo(2)">Semua →</a></div><div class="grid" id="productGrid"></div>
+<div class="box"><div class="row"><div class="ic">🚚</div><div style="flex:1"><b>Pengiriman: JNT • JNE • COD</b><br><small style="color:var(--m)">Estimasi 1-3 hari • Resi otomatis • Tracking live</small></div><button class="chip" onclick="openModal('trackModal')">Lacak</button></div>
+<div class="row" style="margin-top:10px"><div class="ic">💳</div><div style="flex:1"><b>Payment: QRIS • Transfer • COD • VA</b><br><small style="color:var(--m)">Bayar aman, verifikasi otomatis 1 menit</small></div><span style="color:#4ADE80;font-weight:800;font-size:12px">● AKTIF</span></div></div>
+<button class="btnO" onclick="goTo(1)">▶ NONTON LIVE SELLER & DAPAT VOUCHER</button></section>
+
+<!-- 2 LIVE -->
+<section class="page"><span class="badgeLive">● LIVE • VTC TV • 2.8K Nonton • ON AIR</span>
+<div class="box"><div style="height:170px;background:linear-gradient(180deg,#333,#111);border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:50px">👩‍💼👨‍💼</div><b>Live Seller: Sarah & Tim VTC</b><small style="color:#ddd">Jualan + Giveaway TWS Setiap Jam • Komen = Voucher</small><div style="background:#FF0000;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:800;margin-top:8px">▶ SEDANG LIVE</div></div>
+<div class="social"><button class="soc yt" onclick="showToast('Buka YouTube Live')">▶ YouTube</button><button class="soc fb" onclick="showToast('Buka Facebook Live')">f Facebook</button><button class="soc ig" onclick="showToast('Buka Instagram Live')">◎ Instagram</button><button class="soc tt" onclick="showToast('Buka TikTok Live')">♪ TikTok</button><button class="soc x" onclick="showToast('Buka X / Tweet')">𝕏 Tweet / X</button><button class="soc wa" onclick="showToast('Buka WA Live')">💬 WA</button></div></div>
+<div class="sec"><h3>📺 TV Live Streaming</h3><span style="font-size:11px;color:var(--m)">Gratis</span></div><div class="tvG"><div class="tv" onclick="showToast('RCTI Live')">RCTI<small>Live</small></div><div class="tv">SCTV<small>Live</small></div><div class="tv">INDOSIAR<small>Live</small></div><div class="tv">TransTV<small>Live</small></div><div class="tv">MetroTV<small>Live</small></div><div class="tv">ANTV<small>Live</small></div><div class="tv">Trans7<small>Live</small></div><div class="tv">GTV<small>Live</small></div><div class="tv">NET TV<small>Live</small></div></div>
+<div class="box"><b>💬 Komentar Live Seller</b><p style="color:var(--m);font-size:12px;margin-top:4px">@budi_88: Kak TWS masih ada? • @sari: Sudah CO 2x amanah ⭐⭐⭐⭐⭐</p><div style="display:flex;gap:6px;margin-top:8px"><input class="inp" style="margin:0" placeholder="Komen live..."><button class="btnO" style="width:80px;margin:0" onclick="showToast('Komen terkirim')">Kirim</button></div></div></section>
+
+<!-- 3 JUALAN -->
+<section class="page"><div style="background:linear-gradient(135deg,#FF6B00,#FF9A00);border-radius:16px;padding:14px"><h3>🎮 TOP UP PUBG MOBILE</h3><p style="font-size:12px">Isi UC Instan 1-5 Menit • Garansi 100% • Otomatis</p></div>
+<input class="inp" id="playerId" placeholder="Player ID PUBG / ID Game"><div class="sec"><h3>💎 Paket UC</h3></div><div class="ucG" id="ucGrid"></div><div class="sec"><h3>🎮 Game Lainnya</h3></div><div id="gameList"></div><button class="btnO" onclick="buyUC()">⚡ BELI UC - VIA WA</button>
+<div class="box"><b>📸 Speck Search - Cek Speck Produk</b><p style="color:var(--m);font-size:12px;margin-top:4px">Contoh: TWS Pro - Bluetooth 5.3, Baterai 36 jam, IPX5, Garansi 1 tahun</p><input class="inp" id="speckInput" placeholder="Ketik speck: misal TWS baterai..."><button class="btnO" onclick="cekSpeck()">🔍 CEK SPECK AI</button><div id="speckResult"></div></div></section>
 
 <!-- 4 KERANJANG -->
-<div class="page" id="pg3">
-<div class="top"><div class="logo">Keranjang</div></div>
-<div class="card"><b>Keranjang Belanja (3)</b><p style="color:#aaa;font-size:12px">Wireless Earbuds Pro - Rp 129.000<br>Smartwatch Series X - Rp 349.000<br>Portable Speaker Mini - Rp 210.000</p><hr style="border:1px solid #333"><div style="display:flex;justify-content:space-between"><b>Total</b><b style="color:#ff7a1a">Rp 688.000</b></div><button class="btn" style="background:#ff6b00;color:#fff;margin-top:10px" onclick="window.open('https://wa.me/6283878502333?text=Halo%20VTC%20mau%20checkout','_blank')">CHECKOUT VIA WA</button></div>
-</div>
+<section class="page"><div class="sec" style="margin-top:0"><h3>🛒 Keranjang - Cek Produk Otomatis</h3><button onclick="clearCart()" style="background:transparent;color:var(--r)">🗑 Kosongkan</button></div>
+<div id="cartList"></div>
+<div style="display:flex;gap:6px;margin-top:10px"><input class="inp" style="margin:0" id="voucher" placeholder="Voucher: VTCDISKON"><button class="btnO" style="width:90px;margin:0" onclick="applyVoucher()">Pakai</button></div>
+<div class="box"><b>🚚 Pilih Pengiriman</b><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="chip on" onclick="setKurir(this,'JNT',15000)">JNT - Rp 15.000</button><button class="chip" onclick="setKurir(this,'JNE',18000)">JNE - Rp 18.000</button><button class="chip" onclick="setKurir(this,'COD',20000)">COD - Rp 20.000</button></div><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="chip" onclick="showToast('Alamat tersimpan: Bekasi')">📍 Bekasi</button><button class="chip" onclick="openModal('trackModal')">📦 Cek Resi</button><button class="chip" onclick="openModal('returModal')">↩️ Retur</button></div></div>
+<div class="box"><b>💳 Pilih Payment</b><div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap"><button class="chip on" onclick="setPay(this,'QRIS')">QRIS</button><button class="chip" onclick="setPay(this,'Transfer Bank')">Transfer</button><button class="chip" onclick="setPay(this,'COD')">COD</button><button class="chip" onclick="setPay(this,'VA')">Virtual Account</button></div><div id="payInfo" style="font-size:12px;color:#4ADE80;margin-top:8px">QRIS aktif - Scan & bayar otomatis terverifikasi</div></div>
+<div class="sum"><div><span>Subtotal</span><span id="subtotal">Rp 0</span></div><div><span>Diskon</span><span id="discount">- Rp 0</span></div><div><span>Biaya Admin</span><span>Rp 5.000</span></div><div><span>Ongkir <span id="kurirLabel">JNT</span></span><span id="ongkir">Rp 15.000</span></div><div class="tot"><span>Total</span><span id="grandTotal">Rp 0</span></div></div>
+<button class="btnG" onclick="checkoutWA()">💬 CHECKOUT VIA WA - 0838 7850 2333</button><p style="text-align:center;color:var(--m);font-size:11px;margin-top:8px">COD • Retur 7 Hari • Resi Otomatis Setelah Bayar</p></section>
 
-<!-- 5 PROFIL -->
-<div class="page" id="pg4">
-<div class="top"><div class="logo">Profil</div></div>
-<div class="card" style="text-align:center;background:linear-gradient(135deg,#0a1a4d,#ff6b00)"><div style="width:64px;height:64px;background:#fff;color:#0a1a4d;border-radius:50%;margin:auto;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px">VTC</div><h2 style="margin:8px 0 2px">VTC 2050</h2><p style="color:#eee;font-size:12px">Bangka - Belanja, Nonton, Top Up</p></div>
-<div class="card"><div class="menuRow" onclick="window.open('https://wa.me/6283878502333?text=Halo%20VTC','_blank')"><b>Chat Admin WA</b><span>&gt;</span><br><span class="small">0838 7850 2333 - Fast Respon</span></div><div class="menuRow" onclick="window.open('https://youtube.com/@vtcbangka','_blank')"><b>Channel YouTube</b><span>&gt;</span><br><span class="small">@vtcbangka</span></div><div class="menuRow" onclick="alert('Pesanan kamu: 3 pesanan sedang diproses')"><b>Pesanan Saya</b><span>&gt;</span></div><div class="menuRow" style="border:0" onclick="alert('Voucher kamu: VTC2050 - 90% OFF')"><b>Voucher Saya</b><span>&gt;</span></div></div>
-<div class="card"><h3 style="margin:0 0 6px">Bantuan</h3><p style="color:#aaa;font-size:12px">Bangka, Indonesia<br>Buka Setiap Hari 08.00 - 22.00 WIB<br>Bayar: QRIS / DANA / Transfer / COD</p></div>
-</div>
+<!-- 5 PROFIL / PENGATURAN SYSTEM -->
+<section class="page"><div class="box" style="display:flex;gap:12px;align-items:center"><div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--o),var(--pink));display:grid;place-items:center;font-size:26px;font-weight:900">V</div><div style="flex:1"><b id="userName">VTC 2050</b><br><small style="color:var(--m)">member since 2024 • ID: VTC2050023<br>⭐ 4.9 • Bekasi, Indonesia</small></div><button class="chip" id="loginBtn" onclick="openModal('loginModal')">Login</button></div>
+<div class="box"><b>⚙️ PENGATURAN SYSTEM - SEMUA AKTIF OTOMATIS</b>
+<div class="menu"><span>🚚 COD - Bayar di Tempat</span><div class="switch on" onclick="toggleSw(this,'COD')"></div></div>
+<div class="menu"><span>📦 JNT Express</span><div class="switch on" onclick="toggleSw(this,'JNT')"></div></div>
+<div class="menu"><span>📦 JNE Reg / OKE</span><div class="switch on" onclick="toggleSw(this,'JNE')"></div></div>
+<div class="menu"><span>🔢 Resi Otomatis</span><div class="switch on" onclick="toggleSw(this,'Resi Otomatis')"></div></div>
+<div class="menu"><span>↩️ Retur Otomatis 7 Hari</span><div class="switch on" onclick="toggleSw(this,'Retur')"></div></div>
+<div class="menu"><span>🔐 OTP Login</span><div class="switch on" onclick="toggleSw(this,'OTP')"></div></div>
+<div class="menu"><span>📍 Tracking Live</span><div class="switch on" onclick="toggleSw(this,'Tracking')"></div></div>
+<div class="menu"><span>💳 Payment Otomatis</span><div class="switch on" onclick="toggleSw(this,'Payment')"></div></div>
+<div class="menu"><span>🤖 AI Asisten</span><div class="switch on" onclick="toggleSw(this,'AI Asisten')"></div></div>
+<div class="menu"><span>📸 Kamera Search</span><div class="switch on" onclick="toggleSw(this,'Kamera')"></div></div>
+<div class="menu"><span>🌙 Dark Mode</span><div class="switch on" onclick="toggleSw(this,'Dark Mode')"></div></div>
+<div class="menu"><span>🔔 Notifikasi Order</span><div class="switch on" onclick="toggleSw(this,'Notifikasi')"></div></div></div>
+<div class="box"><b>📦 Tracking Terakhir</b><div class="track"><div class="step done"><div class="dot2">✓</div><div><b>Pesanan Diterima - JNT JT1234567890</b><small>18 Nov 2026 • 10:00 WIB</small></div></div><div class="step done"><div class="dot2">✓</div><div><b>Dikemas & Resi Terbit</b><small>18 Nov 2026 • 12:30 WIB</small></div></div><div class="step"><div class="dot2">3</div><div><b>Dalam Perjalanan - Bekasi → Jakarta</b><small>Estimasi sampai: 19 Nov 2026</small><div class="progress"><i style="width:75%"></i></div></div></div></div><button class="btnO" onclick="openModal('trackModal')">🔍 LACAK RESI LENGKAP</button><button class="btnDark" onclick="openModal('returModal')">↩️ AJUKAN RETUR</button></div>
+<div class="menu" onclick="openModal('aiModal')"><span>🤖 Asisten AI VTC</span><span>›</span></div><div class="menu" onclick="showToast('Voucher: VTCDISKON 10%')"><span>🎟️ Voucher Saya • 3 Voucher</span><span>›</span></div><div class="menu" onclick="showToast('Pusat Bantuan - WA 0838 7850 2333')"><span>🛟 Pusat Bantuan</span><span>›</span></div>
+<button class="btnO" onclick="logout()">🚪 LOGOUT</button><p style="text-align:center;color:var(--m);font-size:11px;margin-top:10px">VTC SHOP v3.0 AI PRO • Industri Shop AI Tertinggi<br>© 2026 VTC • Semua Fitur Aktif</p></section>
+</main>
 
-</div>
-
-<div class="dots"><div class="dot active" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div><div class="dot" id="d4"></div></div>
-
-<!-- BOTTOM NAV -->
-<div class="bottom">
-<div class="navItem active" id="n0" onclick="goTo(0)"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H5v-9H2z"/></svg>Beranda</div>
-<div class="navItem" id="n1" onclick="goTo(1)"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-2 14V8l6 4-6 4z"/></svg>Live</div>
-<div class="navItem" id="n2" onclick="goTo(2)"><div class="navCenter"><svg viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45A2 2 0 0 0 7 15h12v-2H7l1.1-2h7.45a2 2 0 0 0 1.75-1.03l3.58-6.49A1 1 0 0 0 20 2H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>Jualan</div></div>
-<div class="navItem" id="n3" onclick="goTo(3)"><svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45A2 2 0 0 0 7 15h12v-2H7l1.1-2h7.45a2 2 0 0 0 1.75-1.03l3.58-6.49A1 1 0 0 0 20 2H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>Keranjang</div>
-<div class="navItem" id="n4" onclick="goTo(4)"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5 0-8 2.5-8 6v2h16v-2c0-3.5-3-6-8-6z"/></svg>Profil</div>
-</div>
-
+<button class="aiChat" onclick="openModal('aiModal')">🤖</button>
+<nav class="bottom" id="bottomNav"><button class="on" onclick="goTo(0)"><span>🏠</span>Beranda</button><button onclick="goTo(1)"><span>📺</span>Live</button><button onclick="goTo(2)"><span>🛍️</span>Jualan</button><button onclick="goTo(3)"><span>🛒</span>Keranjang <b id="cartCount" style="background:var(--r);color:#fff;padding:1px 5px;border-radius:10px;font-size:9px">0</b></button><button onclick="goTo(4)"><span>👤</span>Profil</button></nav>
+<div class="toast" id="toast"></div>
 <script>
-let produk=[
-["Wireless Earbuds Pro",129000,"Terjual 1.2RB+","https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"],
-["Smartwatch Series X",349000,"Terjual 1.2RB+","https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"],
-["Portable Speaker Mini",210000,"Terjual 850+","https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400"],
-["Kemeja Katun Pria",89000,"Terjual 2.5RB+","https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400"],
-["Headset Gaming",175000,"Terjual 1.1RB+","https://images.unsplash.com/photo-1599669454699-248893623440?w=400"],
-["Tas Ransel",95000,"Terjual 870+","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400"],
-];
-document.getElementById('listHome').innerHTML=produk.slice(0,3).map(p=>`<div class="proCard"><img src="${p[3]}"><b>${p[0]}</b><div class="price">Rp ${p[1].toLocaleString('id-ID')}</div><div class="tag">${p[2]}</div></div>`).join('');
-document.getElementById('listAll').innerHTML=produk.map(p=>`<div class="proCard"><img src="${p[3]}"><b>${p[0]}</b><div class="price">Rp ${p[1].toLocaleString('id-ID')}</div><div class="tag">${p[2]}</div><button class="btn" style="background:#ff6b00;color:#fff;margin-top:8px;padding:8px" onclick="alert('Ditambah: ${p[0]}')">+ Keranjang</button></div>`).join('');
-function goTo(i){document.getElementById('app').scrollTo({left:i*window.innerWidth,behavior:'smooth'});setActive(i);}
-function syncNav(){let i=Math.round(document.getElementById('app').scrollLeft/window.innerWidth);setActive(i);}
-function setActive(i){for(let k=0;k<5;k++){document.getElementById('n'+k).classList.toggle('active',k==i);document.getElementById('d'+k).classList.toggle('active',k==i);}}
-let ucPilih='',hargaPilih='';
-function pilihUC(n,h,el){ucPilih=n;hargaPilih=h;document.querySelectorAll('.ucCard').forEach(c=>c.style.border='2px solid transparent');el.style.border='2px solid #ff6b00';document.getElementById('pilihUCText').innerText='Kamu pilih: '+n+' - '+h;}
-function beliUC(){let id=document.getElementById('pubgId').value;if(!id) return alert('Isi dulu ID PUBG kamu!');if(!ucPilih) return alert('Pilih UC dulu!');alert('ORDER BERHASIL!\n\nPUBG ID: '+id+'\nPaket: '+ucPilih+'\nHarga: '+hargaPilih);}
-let s=2*3600+59*60+59;setInterval(()=>{s--;if(s<0)s=2*3600+59*60+59;let h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor(s%3600/60)).padStart(2,'0'),d=String(s%60).padStart(2,'0');document.getElementById('timer').innerText=h+':'+m+':'+d;},1000);
-// SWIPE DENGAN JARI - TAMBAHAN
-let startX=0;let app=document.getElementById('app');
-app.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
-app.addEventListener('touchend',e=>{let dx=e.changedTouches[0].clientX-startX;let cur=Math.round(app.scrollLeft/window.innerWidth);if(dx<-50 && cur<4) goTo(cur+1);if(dx>50 && cur>0) goTo(cur-1);},{passive:true});
-</script>
-</body>
-</html>
+const products=[{name:"TWS Earbuds Pro",price:149000,old:299000,emoji:"🎧",cat:"Elektronik",star:"⭐ 4.9",sold:"2.1K"},{name:"Cooling Fan RGB",price:178000,old:250000,emoji:"❄️",cat:"Elektronik",star:"⭐ 4.8",sold:"890"},{name:"Charger Fast 65W",price:49000,old:99000,emoji:"🔌",cat:"Elektronik",star:"⭐ 4.9",sold:"3.4K"},{name:"Headset Gaming",price:189000,old:350000,emoji:"🎮",cat:"Elektronik",star:"⭐ 4.7",sold:"1.1K"},{name:"Jam Tangan Smart",price:375000,old:750000,emoji:"⌚",cat:"Aksesoris",star:"⭐ 4.8",sold:"650"},{name:"Sepatu Sneakers",price:259000,old:499000,emoji:"👟",cat:"Fashion",star:"⭐ 4.9",sold:"2.8K"},{name:"Kacamata Hitam",price:120000,old:220000,emoji:"🕶️",cat:"Fashion",star:"⭐ 4.6",sold:"430"},{name:"Baju Oversize",price:89000,old:179000,emoji:"👕",cat:"Fashion",star:"⭐ 4.8",sold:"1.9K"}];
+const ucs=[{label:"60 UC",price:15000},{label:"325 UC",price:75000},{label:"660 UC",price:150000},{label:"1800 UC",price:380000}];
+const games=[{n:"Diamond Mobile Legends 60",p:12000,e:"💎"},{n:"100 Diamonds FF",p:23000,e:"🔥"},{n:"Genesis Crystal 60",p:17000,e:"✨"},{n:"Valorant Points 100",p:65000,e:"🎯"}];
+let cart=[{name:"TWS Earbuds Pro",price:149000,qty:1,emoji:"🎧"},{name:"Cooling Fan RGB",price:178000,qty:2,emoji:"❄️"}],selectedUC=ucs[1],voucherDiscount=0,ongkirVal=15000,kurirName='JNT',payName='QRIS',currentPage=0,isLogin=false;
+const slider=document.getElementById('slider'),dots=document.querySelectorAll('.dot'),navBtns=document.querySelectorAll('.bottom button');
+function fmt(n){return 'Rp '+n.toLocaleString('id-ID')} function showToast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2400)}
+function openModal(id){document.getElementById(id).classList.add('open')} function closeModal(id){document.getElementById(id).classList.remove('open')}
+function renderProducts(f='Semua'){let g=document.getElementById('productGrid');g.innerHTML='';products.filter(p=>f==='Semua'||p.cat===f).forEach(p=>{g.innerHTML+=`<div class="card"><div class="im">${p.emoji}</div><div class="bd"><h4>${p.name}</h4><div class="pr">${fmt(p.price)}</div><div class="old">${fmt(p.old)}</div><div style="font-size:11px">${p.star} • ${p.sold} terjual • <span style="color:#4ADE80">✓ Stok Ready</span></div><div style="margin-top:5px"><span class="tag">✓ ORI 100%</span> <span class="tag">✓ Garansi</span></div><button class="buy" onclick="addToCart('${p.name}',${p.price})">+ BELI</button><button class="btnDark" style="width:100%;padding:8px;margin-top:6px;font-size:11px" onclick="cekProduk('${p.name}')">🔍 CEK PRODUK</button></div></div>`})}
+function cekProduk(n){showToast('Cek '+n+': ORI ✓ Stok Ready ✓ Garansi ✓');openModal('aiModal');document.getElementById('aiChatBox').innerHTML+='<div style="margin-top:8px"><b style="color:#FF6B00">VTC AI:</b> '+n+' ORI 100%, stok ready, garansi 1 tahun, COD JNT/JNE aktif.</div>'}
+function filterCat(el,c){document.querySelectorAll('.chips .chip').forEach(x=>x.classList.remove('on'));el.classList.add('on');renderProducts(c)}
+function renderUC(){document.getElementById('ucGrid').innerHTML=ucs.map((u,i)=>`<button class="uc ${u===selectedUC?'sel':''}" onclick="selectUC(${i})"><b>${u.label}</b><span>Popular</span><strong style="color:var(--o)">${fmt(u.price)}</strong></button>`).join('');document.getElementById('gameList').innerHTML=games.map(g=>`<div class="li" onclick="addToCart('${g.n}',${g.p})"><div class="ic">${g.e}</div><div style="flex:1"><b style="font-size:13px">${g.n}</b><small style="color:var(--m)">${fmt(g.p)} • Instan</small></div><button class="buy" style="width:70px;margin:0">+ Beli</button></div>`).join('')}
+function selectUC(i){selectedUC=ucs[i];renderUC();showToast(selectedUC.label+' dipilih')}
+function renderCart(){let list=document.getElementById('cartList'),sub=0;if(!cart.length)list.innerHTML='<p style="text-align:center;color:var(--m);padding:18px">Keranjang kosong<br><button class="btnO" onclick="goTo(0)">Belanja Sekarang</button></p>';else list.innerHTML=cart.map((it,i)=>{sub+=it.price*it.qty;return `<div class="li"><div class="ic">${it.emoji||'🛍️'}</div><div style="flex:1"><b style="font-size:13px">${it.name}</b><div style="color:var(--o);font-weight:800">${fmt(it.price)}</div><div style="font-size:11px;color:#4ADE80">✓ Stok Ready • ✓ ORI • ✓ Garansi</div><div style="display:flex;gap:8px;align-items:center;margin-top:6px"><button onclick="changeQty(${i},-1)" style="width:26px;height:26px;border-radius:50%;background:#333;color:#fff">-</button><b>${it.qty}</b><button onclick="changeQty(${i},1)" style="width:26px;height:26px;border-radius:50%;background:#333;color:#fff">+</button><button onclick="removeItem(${i})" style="background:transparent;color:var(--r);font-size:12px">Hapus</button></div></div></div>`}).join('');let total=sub-voucherDiscount+(cart.length?5000:0)+(cart.length?ongkirVal:0);document.getElementById('subtotal').textContent=fmt(sub);document.getElementById('discount').textContent='- '+fmt(voucherDiscount);document.getElementById('ongkir').textContent=fmt(cart.length?ongkirVal:0);document.getElementById('grandTotal').textContent=fmt(Math.max(0,total));document.getElementById('cartCount').textContent=cart.reduce((a,b)=>a+b.qty,0)}
+function addToCart(n,p){let f=cart.find(c=>c.name===n);if(f)f.qty++;else cart.push({name:n,price:p,qty:1,emoji:'🛍️'});renderCart();showToast(n+' ditambahkan ✓ Cek otomatis OK')}
+function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);renderCart()} function removeItem(i){cart.splice(i,1);renderCart();showToast('Item dihapus')} function clearCart(){cart=[];voucherDiscount=0;renderCart();showToast('Keranjang dikosongkan')}
+function applyVoucher(){let v=document.getElementById('voucher').value.trim().toUpperCase();if(v==='VTCDISKON'){voucherDiscount=20000;renderCart();showToast('Voucher berhasil -Rp 20.000')}else showToast('Voucher tidak valid')}
+function setKurir(el,n,ong){document.querySelectorAll('.chip').forEach(c=>{});ongkirVal=ong;kurirName=n;document.getElementById('kurirLabel').textContent=n;renderCart();showToast('Kurir: '+n+' - '+fmt(ong))}
+function setPay(el,n){payName=n;document.getElementById('payInfo').textContent=n+' aktif - '+ (n==='QRIS'?'Scan & bayar otomatis terverifikasi':n==='COD'?'Bayar di tempat saat paket datang':n+' - Verifikasi otomatis 1 menit');showToast('Payment: '+n)}
+function buyUC(){let id=document.getElementById('playerId').value||'ID belum diisi';window.open('https://wa.me/6283878502333?text='+encodeURIComponent('Halo Admin, Top Up '+selectedUC.label+' - '+fmt(selectedUC.price)+' | ID: '+id),'_blank')}
+function checkoutWA(){if(!cart.length){showToast('Keranjang kosong');return}let msg='Halo Admin VTC, saya mau checkout:\n'+cart.map(c=>'- '+c.name+' x'+c.qty+' = '+fmt(c.price*c.qty)).join('\n')+'\nKurir: '+kurirName+' - '+fmt(ongkirVal)+'\nPayment: '+payName+'\nTotal: '+document.getElementById('grandTotal').textContent;window.open('https://wa.me/6283878502333?text='+encodeURIComponent(msg),'_blank')}
+function sendOTP(){document.getElementById('otpArea').style.display='block';showToast('OTP dikirim ke WA: 123456');let s=30;let iv=setInterval(()=>{s--;document.getElementById('otpTimer').textContent='Kirim ulang '+s+'s';if(s<=0){clearInterval(iv);document.getElementById('otpTimer').textContent='Bisa kirim ulang'}},1000)}
+function verifyOTP(){isLogin=true;document.getElementById('userName').textContent='VTC 2050 - Login ✓';document.getElementById('loginBtn').textContent='Logout';closeModal('loginModal');showToast('Login berhasil! Selamat datang VTC 2050')}
+function loginGoogle(){isLogin=true;document.getElementById('userName').textContent='VTC 2050 - Google ✓';closeModal('loginModal');showToast('Login Google berhasil')}
+function logout(){isLogin=false;document.getElementById('userName').textContent='VTC 2050';document.getElementById('loginBtn').textContent='Login';showToast('Logout berhasil - Sampai jumpa!')}
+function cekResi(){let r=document.getElementById('resiInput').value||'JT1234567890',k=document.getElementById('kurirSelect').value;document.getElementById('trackResult').innerHTML=`<div class="box"><b>📦 ${k} - ${r}</b><p style="color:#4ADE80;font-size:12px;margin-top:4px">Status: Dalam Perjalanan • 75% • Estimasi sampai besok</p><div class="progress"><i style="width:75%"></i></div><p style="font-size:12px;margin-top:8px">✓ Diterima Gudang<br>✓ Dikemas<br>● Dalam Perjalanan - Bekasi<br>○ Sampai Tujuan</p></div>`;showToast('Resi ditemukan!')}
+function cekSpeck(){let q=document.getElementById('speckInput').value||'TWS Earbuds Pro';document.getElementById('speckResult').innerHTML=`<div class="box"><b>🔍 Speck AI: ${q}</b><p style="font-size:12px;margin-top:6px">• Bluetooth 5.3 • Baterai 36 jam • IPX5<br>• Driver 13mm • Garansi 1 Tahun • ORI 100%<br>• Harga: Rp 149.000 • Stok: 128 • Rating 4.9</p></div>`}
+function scanCamera(){document.getElementById('camResult').innerHTML=`<div class="box"><b>📸 Hasil Kamera AI</b><p style="font-size:12px;margin-top:6px">Ditemukan: TWS Earbuds Pro - 98% Mirip<br>Harga Rp 149.000 • Stok Ready • <span style="color:#4ADE80">✓ ORI</span></p><button class="btnO" onclick="addToCart('TWS Earbuds Pro',149000);closeModal('camModal')">🛒 BELI PRODUK INI</button></div>`;showToast('Kamera AI: Produk ditemukan 98%')}
+function askAI(){let q=document.getElementById('aiInput').value;if(!q)return;quickAI(q)} function quickAI(q){let box=document.getElementById('aiChatBox');box.innerHTML+=`<div style="margin-top:8px;text-align:right"><b>Kamu:</b> ${q}</div>`;let ans='Saya cek ya...';let l=q.toLowerCase();if(l.includes('resi')||l.includes('tracking'))ans='Resi JNT JT1234567890: Dalam Perjalanan 75%, sampai besok. COD aktif.';else if(l.includes('ongkir'))ans='Ongkir Bekasi: JNT Rp 15.000, JNE Rp 18.000, COD Rp 20.000. Gratis ongkir min Rp 300.000 pakai VTCDISKON.';else if(l.includes('tws')||l.includes('rekomendasi'))ans='Rekomendasi: TWS Earbuds Pro Rp 149.000, rating 4.9, stok 128, ORI + Garansi 1 tahun.';else if(l.includes('uc'))ans='Top Up UC: 325 UC Rp 75.000, proses 1-5 menit. Masukkan Player ID di menu Jualan.';else if(l.includes('retur'))ans='Retur 7 hari, refund otomatis 1x24 jam. Buka menu Retur di Keranjang / Profil.';else ans='VTC Shop siap bantu! Produk ORI, COD JNT JNE aktif, tracking live, payment QRIS / COD / Transfer. Mau cari produk apa lagi?';box.innerHTML+=`<div style="margin-top:6px"><b style="color:#FF6B00">VTC AI:</b> ${ans}</div>`;document.getElementById('aiInput').value='';box.scrollTop=box.scrollHeight;openModal('aiModal')}
+function toggleSw(el,name){el.classList.toggle('on');showToast(name+': '+(el.classList.contains('on')?'AKTIF ✓':'NONAKTIF'))}
+function goTo(i){currentPage=i;slider.scrollTo({left:i*slider.clientWidth,behavior:'smooth'});updateNav(i)} function updateNav(i){dots.forEach((d,idx)=>d.classList.toggle('on',idx===i));navBtns.forEach((b,idx)=>b.classList.toggle('on',idx===i))}
+slider.addEventListener('scroll',()=>{let i=Math.round(slider.scrollLeft/slider.clientWidth);if(i!==currentPage){currentPage=i;updateNav(i)}});
+document.getElementById('searchInput').addEventListener('input',e=>{let q=e.target.value.toLowerCase();if(!q)return renderProducts();let g=document.getElementById('productGrid');g.innerHTML='';products.filter(p=>p.name.toLowerCase().includes(q)).forEach(p=>{g.innerHTML+=`<div class="card"><div class="im">${p.emoji}</div><div class="bd"><h4>${p.name}</h4><div class="pr">${fmt(p.price)}</div><button class="buy" onclick="addToCart('${p.name}',${p.price})">+ BELI</button></div></div>`})});
+let p=0;let iv=setInterval(()=>{p+=2;document.getElementById('bar').style.width=p+'%';document.getElementById('loadTxt').textContent='Memuat System... '+p+'%';if(p>=100){clearInterval(iv);setTimeout(()=>document.getElementById('splash').classList.add('hide'),300)}},90);
+renderProducts();renderUC();renderCart();
+</script></body></html>
