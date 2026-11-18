@@ -1,226 +1,127 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VTC MegaStore - TV Live + Seller Live + Game</title>
+<html lang="id"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VTC SHOP - Mega Store Indonesia</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#0f0f0f;color:#fff;padding-bottom:80px}
-.header{background:linear-gradient(135deg,#ff6a00,#ff2d55);padding:16px;text-align:center;position:sticky;top:0;z-index:99}
-.header h1{font-size:22px}
-.header p{font-size:13px;opacity:.9}
-.nav{display:flex;gap:8px;overflow-x:auto;padding:10px;background:#1a1a1a;position:sticky;top:62px;z-index:98}
-.nav button{white-space:nowrap;background:#222;color:#fff;border:1px solid #333;padding:9px 14px;border-radius:20px;cursor:pointer}
-.nav button.active{background:#ff6a00;border-color:#ff6a00}
-.section{display:none;padding:12px}
-.section.active{display:block}
-.card{background:#1c1c1c;border-radius:16px;padding:14px;margin-bottom:12px}
-.flex{display:flex;gap:8px;margin-top:8px}
-.flex input{flex:1;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff}
-.btn{background:#ff6a00;color:#fff;border:0;padding:11px;border-radius:12px;cursor:pointer;font-weight:bold;flex:1}
-.btn2{background:#2a2a2a;color:#fff;border:1px solid #444;padding:11px;border-radius:12px;cursor:pointer;flex:1}
-.prod{background:#222;border-radius:14px;padding:10px;margin:8px 0;display:flex;gap:10px;align-items:center}
-.prod img{width:70px;height:70px;border-radius:10px;object-fit:cover;background:#333}
-.badge{background:#00e676;color:#000;font-size:11px;padding:2px 7px;border-radius:10px;font-weight:bold}
-.badge-red{background:#ff2d55;color:#fff;font-size:11px;padding:2px 7px;border-radius:10px}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#000;padding:12px 18px;border-radius:20px;font-weight:bold;display:none;z-index:999;max-width:90%;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,.5)}
-</style>
-</head>
-<body>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
+body{background:#f5f5f5;color:#222;padding-bottom:90px}
+.header{background:#fff;padding:14px 14px 10px;position:sticky;top:0;z-index:20;box-shadow:0 1px 8px rgba(0,0,0,.06)}
+.logo{display:flex;justify-content:space-between;align-items:center}
+.logo b{font-size:22px;letter-spacing:-.5px}.logo b span{color:#EE4D2D}
+.logo small{background:#EE4D2D;color:#fff;padding:4px 8px;border-radius:20px;font-size:11px;font-weight:700}
+.search{display:flex;gap:8px;margin-top:12px}
+.search input{flex:1;padding:12px 14px;border:1px solid #eee;background:#f5f5f5;border-radius:10px}
+.search button{background:#EE4D2D;color:#fff;border:0;padding:0 16px;border-radius:10px;font-weight:700}
+.hero{margin:12px;border-radius:16px;overflow:hidden;position:relative;height:170px}
+.hero img{width:100%;height:100%;object-fit:cover}
+.hero div{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.75),transparent);color:#fff;padding:18px}
+.hero h2{font-size:24px;line-height:1.1}.hero p{font-size:13px;opacity:.9;margin-top:6px}
+.hero span{background:#EE4D2D;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-top:10px}
+.sec{background:#fff;margin:10px 12px;border-radius:14px;padding:14px}
+.sec h3{font-size:15px;margin-bottom:12px}
+.cat{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;text-align:center}
+.cat div img{width:48px;height:48px;border-radius:12px;object-fit:cover}
+.cat div p{font-size:11px;margin-top:5px;line-height:1.2}
+.flash{display:flex;gap:10px;overflow:auto}
+.pcard{min-width:150px;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden}
+.pcard img{width:100%;height:110px;object-fit:cover}
+.pcard div{padding:10px}.pcard b{font-size:13px;line-height:1.3;display:block;min-height:34px}
+.price{color:#EE4D2D;font-weight:800;font-size:15px}.old{color:#999;font-size:11px;text-decoration:line-through}
+.star{font-size:11px;color:#666;margin:4px 0}
+.btn{background:#EE4D2D;color:#fff;border:0;padding:11px;border-radius:10px;font-weight:800;width:100%}
+.btnOutline{background:#fff;color:#EE4D2D;border:1px solid #EE4D2D;padding:11px;border-radius:10px;font-weight:800;width:100%}
+.btnWA{background:#00A651;color:#fff;border:0;padding:13px;border-radius:10px;font-weight:800;width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.topup{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid #f0f0f0}
+.topup:last-child{border:0}
+.topup img{width:44px;height:44px;border-radius:10px;object-fit:cover}
+.row{display:flex;justify-content:space-between;padding:9px 0;font-size:14px;border-bottom:1px solid #f5f5f5}
+.row input,.row select{border:1px solid #ddd;padding:8px;border-radius:8px;width:55%}
+.tab{display:none}.tab.active{display:block}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;border-top:1px solid #eee;padding:6px 0 10px;z-index:30}
+.nav button{flex:1;border:0;background:#fff;font-size:11px;font-weight:700;color:#888}
+.nav button.on{color:#EE4D2D}
+.nav button i{display:block;font-size:20px;font-style:normal;margin-bottom:2px}
+.badge{background:#FFF0EC;color:#EE4D2D;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:700}
+</style></head><body>
 
-<div class="header">
-<h1>🛒 VTC MegaStore</h1>
-<p>BANGKA VTC - Bumbu Blok - Umami Alami • COD • Live 24 Jam</p>
+<div class="header"><div class="logo"><b>VTC <span>SHOP</span></b><small>MEGA STORE</small></div><div style="font-size:12px;color:#666;margin-top:4px">Mega Store Indonesia • Bekasi, Jawa Barat • 12K Followers</div><div class="search"><input placeholder="Cari TWS, UC PUBG, Diamond, Sembako..."><button>CARI</button></div></div>
+
+<!-- BERANDA -->
+<div id="t1" class="tab active">
+<div class="hero"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80"><div><p>MEGA SALE 12.12</p><h2>Gratis Ongkir<br>Diskon Hingga 20%</h2><span>Klaim Voucher Sekarang</span></div></div>
+
+<div class="sec"><h3>Kategori Pilihan</h3><div class="cat">
+<div><img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200"><p>Elektronik</p></div>
+<div><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><p>Top Up Game</p></div>
+<div><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200"><p>Sembako</p></div>
+<div><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=200"><p>Fashion</p></div>
+<div><img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=200"><p>Beauty</p></div>
+<div><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=200"><p>Otomotif</p></div>
+<div><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200"><p>Rumah</p></div>
+<div><img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=200"><p>Ibu & Anak</p></div>
+<div><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=200"><p>Makanan</p></div>
+<div><img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200"><p>Pulsa & Data</p></div>
+</div></div>
+
+<div class="sec"><h3>Flash Sale <span class="badge">Berakhir 02:15:30</span></h3><div class="flash">
+<div class="pcard"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"><div><b>TWS Earbuds Pro Bluetooth 5.3</b><div class="price">Rp 149.000</div><div class="old">Rp 189.000</div><div class="star">4.9 | Terjual 1.2rb | Bekasi</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
+<div class="pcard"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400"><div><b>Cooling Fan RGB Gaming</b><div class="price">Rp 89.000</div><div class="old">Rp 129.000</div><div class="star">4.8 | Terjual 890</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
+<div class="pcard"><img src="https://images.unsplash.com/photo-1608156639585-b3a032ef9689?w=400"><div><b>Speaker Bluetooth Portable</b><div class="price">Rp 189.000</div><div class="old">Rp 250.000</div><div class="star">4.9 | Terjual 540</div><button class="btn" onclick="add()">+ Keranjang</button></div></div>
+</div></div>
+
+<div class="sec"><h3>Live Streaming</h3><img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800" style="width:100%;height:130px;object-fit:cover;border-radius:12px"><p style="margin:10px 0;font-size:13px"><b>VTC TV LIVE</b> • 2.8K menonton • MegaDeal Elektronik</p><button class="btn" onclick="show('t2')">Masuk Live</button></div>
 </div>
 
-<!-- NAV UTAMA -->
-<div class="nav">
-<button onclick="show('home',this)" class="active">🏠 Home</button>
-<button onclick="show('produk',this)">🛍️ Produk</button>
-<button onclick="show('keranjang',this)">🛒 Keranjang (<span id="cartCount">0</span>)</button>
-<button onclick="show('tvlive',this)">📺 TV Live</button>
-<button onclick="show('sellerlive',this)">🎥 Seller Live</button>
-<button onclick="show('game',this)">🎮 Game AI</button>
-<button onclick="show('profil',this)">👤 Profil</button>
-</div>
+<!-- LIVE -->
+<div id="t2" class="tab"><div class="sec"><h3>VTC TV Live</h3><img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=800" style="width:100%;height:180px;object-fit:cover;border-radius:12px"><p style="margin:12px 0">Live 2.8K • Chat, Komentar, Beli dari Video</p><button class="btn">Putar Live Streaming</button><div style="margin-top:12px;font-size:14px;line-height:2">YouTube • Facebook • TikTok • X<br>TV Nasional: RCTI • SCTV • Indosiar • Trans TV • Metro TV • ANTV</div></div></div>
 
-<!-- ===== HOME ===== -->
-<div id="home" class="section active">
-<div class="card">
-<b>🔥 Promo Hari Ini - MegaSale Elektronik</b>
-<p style="font-size:13px;color:#aaa;margin-top:5px">Diskon sampai 70% + Gratis Ongkir + COD Bayar di Tempat</p>
-<div class="flex"><button class="btn" onclick="show('produk',document.querySelectorAll('.nav button')[1])">Belanja Sekarang</button><button class="btn2" onclick="show('tvlive',document.querySelectorAll('.nav button')[3])">Nonton TV Live</button></div>
-</div>
-<div class="card">
-<b>📺 Lagi LIVE Sekarang</b>
-<p>🔴 VTC MegaStore - Live Jual Earbuds! 1.240 Nonton</p>
-<div class="flex"><button class="btn" onclick="show('sellerlive',document.querySelectorAll('.nav button')[4])">Masuk Live</button><button class="btn2" onclick="show('game',document.querySelectorAll('.nav button')[5])">Main Game Dapat Voucher</button></div>
-</div>
-<div class="card"><b>⭐ Produk Terlaris</b><div id="homeProduk"></div></div>
-</div>
+<!-- TOP UP -->
+<div id="t3" class="tab"><div class="sec" style="background:#EE4D2D;color:#fff"><h3 style="color:#fff">Top Up Game & Pulsa - Instan & Aman</h3><p style="font-size:13px;opacity:.9">Proses 1-3 menit, Garansi Dana Kembali</p></div>
+<div class="sec"><div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 60 UC</b><br><span style="font-size:12px;color:#666">Instan • Garansi</span></div></div><div><b style="color:#EE4D2D">Rp 15.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+<div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 325 UC</b><br><span style="font-size:12px;color:#666">Best Seller</span></div></div><div><b style="color:#EE4D2D">Rp 75.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+<div class="topup"><div style="display:flex;gap:10px;align-items:center"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200"><div><b>PUBG 660 UC</b></div></div><div><b style="color:#EE4D2D">Rp 150.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+<div class="topup"><div><b>Mobile Legends 60 Diamond</b><br><span style="font-size:12px;color:#666">Instan</span></div><div><b style="color:#EE4D2D">Rp 12.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+<div class="topup"><div><b>Free Fire 100 DM</b></div><div><b style="color:#EE4D2D">Rp 23.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+<div class="topup"><div><b>Genesis 60 - Genshin Impact</b></div><div><b style="color:#EE4D2D">Rp 17.000</b><br><button class="btn" style="width:80px;padding:8px;margin-top:4px" onclick="add()">Beli</button></div></div>
+</div></div>
 
-<!-- ===== PRODUK ===== -->
-<div id="produk" class="section">
-<div class="card"><b>🛍️ Semua Produk</b><p style="font-size:13px;color:#aaa">Klik + Keranjang untuk beli COD</p></div>
-<div id="listProduk"></div>
-</div>
+<!-- KERANJANG -->
+<div id="t4" class="tab"><div class="sec"><h3>Keranjang Belanja</h3>
+<div style="display:flex;gap:10px;margin-bottom:12px"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=200" style="width:60px;height:60px;border-radius:10px;object-fit:cover"><div style="flex:1"><b>TWS Earbuds Pro x1</b><br><span style="color:#EE4D2D;font-weight:800">Rp 149.000</span></div></div>
+<div style="display:flex;gap:10px;margin-bottom:12px"><img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=200" style="width:60px;height:60px;border-radius:10px;object-fit:cover"><div style="flex:1"><b>Cooling Fan RGB x2</b><br><span style="color:#EE4D2D;font-weight:800">Rp 178.000</span></div></div>
+<p style="font-size:14px;line-height:1.8">325 UC PUBG x1 - Rp 75.000<br>Genesis 60 x1 - Rp 17.000<br>Subtotal: Rp 419.000<br>Admin: Rp 5.000<br>Ongkir JNT COD: Rp 12.000<br>Voucher: GRATIS ONGKIR</p>
+<h2 style="color:#EE4D2D;margin:12px 0">TOTAL: Rp 436.000</h2>
+Ekspedisi: <select style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:6px 0"><option>JNT COD Rp 12.000</option><option>JNE COD Rp 15.000</option><option>GoSend Instan</option><option>Ambil di Toko</option></select>
+Pembayaran: <select style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:6px 0 12px"><option>COD - Bayar di Tempat</option><option>Transfer Bank BCA / BRI / Mandiri</option><option>QRIS / e-Wallet</option><option>Alfamart / Indomaret</option></select>
+<button class="btn">Checkout COD</button><br><br><button class="btnWA">Checkout via WA - CS Admin / Asisten</button><p style="font-size:12px;color:#888;margin-top:8px">Order masuk ke CS Admin / Asisten. Tanpa nomor pribadi. Garansi Dana Kembali.</p>
+</div><div class="sec"><h3>Lacak Pesanan</h3><p style="font-size:14px">Resi JNT: JP123456 • Status: Dikirim<br><button class="btnOutline" style="margin-top:10px" onclick="show('t5')">Cek Pesanan Saya</button></p></div></div>
 
-<!-- ===== KERANJANG ===== -->
-<div id="keranjang" class="section">
-<div class="card"><b>🛒 Keranjang Belanja</b><div id="cartList" style="margin-top:10px">Keranjang masih kosong</div><h3 id="cartTotal" style="margin-top:10px">Total: Rp 0</h3>
-<div class="flex"><input id="namaPembeli" placeholder="Nama Kamu"><input id="alamatPembeli" placeholder="Alamat / Blok"></div>
-<div class="flex"><button class="btn" onclick="checkoutCOD()">✅ Checkout COD - Bayar di Tempat</button></div>
-<p style="font-size:12px;color:#aaa;margin-top:8px">* COD = Bayar pas barang datang. Gratis ongkir area Bangka.</p>
-</div>
-</div>
+<!-- SAYA -->
+<div id="t5" class="tab"><div class="sec"><div style="display:flex;gap:12px;align-items:center"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200" style="width:60px;height:60px;border-radius:50%;object-fit:cover"><div><b style="font-size:17px">VTC SHOP</b><br><span style="font-size:12px;color:#666">Mega Store Indonesia • Member</span><br><span class="badge">VTC Coins: 1.250 • Voucher: 3</span></div></div></div>
+<div class="sec"><h3>Pesanan Saya</h3><p style="font-size:13px;line-height:1.8">Belum Bayar • Dikemas • Dikirim • Selesai • Komplain / Retur • Penilaian • Beli Lagi</p></div>
+<div class="sec"><h3>Seller Center</h3><p style="font-size:13px;line-height:1.8">Tambah Produk • Kelola Stok • Pesanan Masuk • Laporan Omzet • Saldo / Pencairan • Flash Sale Seller • Diskon • Voucher Toko • Iklan • Afiliasi</p><button class="btn" style="margin-top:10px">Buka Seller Center</button></div>
+<div class="sec"><h3>Chat</h3><p style="font-size:14px">CS Admin / Asisten</p><button class="btnWA" style="margin-top:10px">Chat CS Admin</button></div>
+<div class="sec"><h3>Pengaturan Lengkap</h3>
+<div class="row"><span>Nama Lengkap</span><input value="VTC SHOP"></div>
+<div class="row"><span>Username</span><input value="vtcshop"></div>
+<div class="row"><span>Foto Profil</span><span>Ubah ›</span></div>
+<div class="row"><span>Alamat Utama</span><input value="Bekasi, Jawa Barat"></div>
+<div class="row"><span>Alamat Toko</span><input value="Bekasi"></div>
+<div class="row"><span>Alamat Retur</span><input value="Bekasi"></div>
+<div class="row"><span>Ganti Password</span><span>Ubah ›</span></div>
+<div class="row"><span>OTP / 2FA</span><select><option>ON</option><option>OFF</option></select></div>
+<div class="row"><span>Sidik Jari / Face ID</span><select><option>ON</option><option>OFF</option></select></div>
+<div class="row"><span>Notifikasi Pesanan</span><select><option>ON</option><option>OFF</option></select></div>
+<div class="row"><span>Notifikasi Promo</span><select><option>ON</option><option>OFF</option></select></div>
+<div class="row"><span>Bahasa</span><select><option>Indonesia</option><option>English</option></select></div>
+<div class="row"><span>Tampilan</span><select><option>Light Mode</option><option>Dark Mode</option></select></div>
+<div class="row"><span>Privasi - Sembunyikan No HP</span><select><option>ON</option><option>OFF</option></select></div>
+<div class="row"><span>Pusat Bantuan</span><span>›</span></div>
+<div class="row"><span>Versi 2.0.5 - PRO</span><span>›</span></div>
+<div class="row"><span>Keluar / Ganti Akun</span><span>›</span></div>
+</div></div>
 
-<!-- ===== 1. TV LIVE ===== -->
-<div id="tvlive" class="section">
-<div class="card">
-<b>📺 TV LIVE - VTC TV 24 Jam</b>
-<div style="background:#000;height:190px;border-radius:14px;display:grid;place-items:center;text-align:center;margin-top:10px">
-<div><div style="font-size:50px">📺</div><b id="tvJudul">RCTI - MegaSale Elektronik Live</b><br><small id="tvStatus" style="color:#ff4444">● LIVE • 12.480 Nonton • Host: MegaDeal</small></div>
-</div>
-<div class="flex"><button class="btn2" onclick="gantiTV('RCTI')">RCTI</button><button class="btn2" onclick="gantiTV('SCTV')">SCTV</button><button class="btn2" onclick="gantiTV('Indosiar')">Indosiar</button><button class="btn2" onclick="gantiTV('Trans TV')">Trans TV</button></div>
-<div class="flex"><button class="btn" onclick="toast('▶️ TV Live Dimainkan')">▶️ Play</button><button class="btn2" onclick="toast('⏸️ TV Dijeda')">⏸️ Pause</button><button class="btn2" onclick="toast('🔊 Volume 80%')">🔊 Volume</button></div>
-<p style="font-size:13px;margin-top:8px">Jadwal Hari Ini:<br>19:00 MegaSale Elektronik • 20:00 Live Seller Battle • 21:00 Game Show AI • 22:00 Fashion Week</p>
-<div id="tvChat" style="background:#111;padding:10px;border-radius:10px;height:90px;overflow:auto;font-size:13px"><b>Chat Live:</b><br>👤 Budi: Keren TV nya!<br>👤 Sari: Diskon earbuds dong kak!<br>👤 Andi: COD bisa ga?</div>
-<div class="flex"><input id="tvChatInput" placeholder="Chat di TV Live..."><button class="btn" style="flex:0 0 90px" onclick="kirimTVChat()">Kirim</button></div>
-</div>
-</div>
-
-<!-- ===== 2. SELLER LIVE ===== -->
-<div id="sellerlive" class="section">
-<div class="card"><b>🎥 SELLER LIVE - Live Jualan Bareng</b><p style="font-size:13px;color:#aaa">Ratusan seller bisa live bareng, buyer bisa beli langsung dari live!</p><div id="sellerLiveList" style="margin-top:8px"></div><button class="btn" onclick="mulaiLive()">🎥 + Mulai Live Jualan Saya</button></div>
-<div class="card"><b>🔴 Live Sekarang - Lagi On Air</b>
-<div style="background:#000;height:170px;border-radius:14px;display:grid;place-items:center;text-align:center;margin-top:8px"><div><div style="font-size:45px">🎥</div><b id="liveSellerNama">Berkah Elektronik - Live Jual Earbuds!</b><br><small style="color:#ff4444">● LIVE • 842 Nonton • 128 Terjual</small><br><button class="btn2" style="margin-top:8px" onclick="beliLive()">🛒 Beli dari Live Ini - Rp 129.000 COD</button></div></div>
-<div class="flex"><button class="btn2" onclick="toast('❤️ Kamu Like Live Ini!')">❤️ Like</button><button class="btn2" onclick="toast('🎁 Kamu Kirim Gift!')">🎁 Gift</button><button class="btn2" onclick="toast('🔗 Link Live Dibagikan')">🔗 Share</button></div>
-</div>
-</div>
-
-<!-- ===== 3. GAME ===== -->
-<div id="game" class="section">
-<div class="card"><b>🎮 GAME AI - Main Dapat Voucher!</b><p style="font-size:13px">Main game, kumpulin poin, tuker voucher belanja.</p>
-<div style="background:linear-gradient(135deg,#ff6a00,#ff2d55);padding:16px;border-radius:14px;text-align:center;margin-top:10px"><div style="font-size:40px">🎰</div><h2 id="gamePoin">Poin Kamu: 1.250</h2><p>Voucher: 3 Tersedia • Rank: #12 dari 1.248 Player</p></div>
-<div class="flex"><button class="btn" onclick="mainSpin()">🎰 SPIN - Dapat Hadiah</button><button class="btn2" onclick="mainTebak()">🎯 Tebak Harga</button></div>
-<div class="flex"><button class="btn2" onclick="mainKuis()">🧠 Kuis AI</button><button class="btn2" onclick="tukarVoucher()">🎟️ Tukar Voucher</button></div>
-<div id="gameHasil" style="background:#111;padding:10px;border-radius:10px;margin-top:10px;font-size:14px">🎮 Belum main. Coba Spin dulu, siapa tau dapat Voucher 50rb!</div></div>
-<div class="card"><b>🏆 Leaderboard Game</b><p>🥇 1. Budi - 5.400 Poin - Voucher 100rb<br>🥈 2. Sari - 4.980 Poin - Voucher 50rb<br>🥉 3. Kamu - <span id="myPoin2">1.250</span> Poin - Naik terus!</p><button class="btn2" onclick="toast('🏆 Leaderboard Diupdate - AI Hitung Real-time')">Refresh Leaderboard</button></div>
-</div>
-
-<!-- ===== PROFIL ===== -->
-<div id="profil" class="section">
-<div class="card"><b>👤 Profil Toko</b><p style="margin-top:8px">BANGKA VTC - Bumbu Blok - Umami Alami<br>📍 Bangka, Indonesia<br>📞 WA Order: Chat Admin<br>⭐ Rating: 4.9 (2.341 Ulasan)</p><div class="flex"><button class="btn2" onclick="toast('📞 Admin dihubungi via WA')">Hubungi Admin</button><button class="btn2" onclick="toast('⭐ Terima kasih sudah kasih rating!')">Kasih Rating</button></div></div>
-<div class="card"><b>ℹ️ Tentang VTC</b><p style="font-size:13px;color:#aaa">VTC MegaStore adalah marketplace live + game pertama di Bangka. Seller bisa live, buyer bisa nonton TV, main game dapat voucher, semua COD.</p></div>
-</div>
-
-<div id="toast"></div>
-
-<script>
-let produkData=[
-{id:1,nama:"Earbuds Pro X - TWS",harga:129000,diskon:"-40%",img:"🎧",desc:"Bass nendang, baterai 30 jam"},
-{id:2,nama:"Bumbu Blok Umami Alami",harga:25000,diskon:"BEST SELLER",img:"🍲",desc:"Bumbu blok asli Bangka, 1 blok untuk 1 panci"},
-{id:3,nama:"Smartwatch Neural",harga:349000,diskon:"-30%",img:"⌚",desc:"Cek jantung, chat, AI voice"},
-{id:4,nama:"Cooling Fan Ultra",harga:89000,diskon:"-20%",img:"🌀",desc:"Kipas dingin 3 speed, USB"},
-{id:5,nama:"Speaker Bluetooth Bass",harga:189000,diskon:"HOT",img:"🔊",desc:"Suara gede, tahan air"},
-];
-let cart=[];
-let poin=1250;
-
-function show(id,btn){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-if(btn) btn.classList.add('active');
-window.scrollTo(0,0);
-}
-function toast(msg){
-let t=document.getElementById('toast');t.innerText=msg;t.style.display='block';
-setTimeout(()=>t.style.display='none',2500);
-}
-function renderProduk(){
-let html=produkData.map(p=>`<div class="prod"><div style="font-size:40px">${p.img}</div><div style="flex:1"><b>${p.nama}</b><br><small style="color:#aaa">${p.desc}</small><br><b style="color:#ff6a00">Rp ${p.harga.toLocaleString('id-ID')}</b> <span class="badge">${p.diskon}</span></div><button class="btn" style="flex:0 0 80px" onclick="addCart(${p.id})">+ Keranjang</button></div>`).join('');
-document.getElementById('listProduk').innerHTML=html;
-document.getElementById('homeProduk').innerHTML=html;
-}
-function addCart(id){
-let p=produkData.find(x=>x.id===id);cart.push(p);
-document.getElementById('cartCount').innerText=cart.length;
-renderCart();toast('🛒 '+p.nama+' masuk keranjang!');
-}
-function renderCart(){
-if(cart.length===0){document.getElementById('cartList').innerHTML='Keranjang masih kosong';document.getElementById('cartTotal').innerText='Total: Rp 0';return;}
-let total=cart.reduce((a,b)=>a+b.harga,0);
-document.getElementById('cartList').innerHTML=cart.map((c,i)=>`${i+1}. ${c.nama} - Rp ${c.harga.toLocaleString('id-ID')} <button onclick="hapusCart(${i})" style="background:#ff2d55;color:#fff;border:0;padding:4px 8px;border-radius:8px">Hapus</button>`).join('<br>');
-document.getElementById('cartTotal').innerText='Total: Rp '+total.toLocaleString('id-ID');
-}
-function hapusCart(i){cart.splice(i,1);document.getElementById('cartCount').innerText=cart.length;renderCart();}
-function checkoutCOD(){
-if(cart.length===0) return toast('Keranjang masih kosong!');
-let nama=document.getElementById('namaPembeli').value||'Kamu';
-toast('✅ Order Berhasil! '+nama+' - COD, bayar di tempat. Kurir OTW!');
-cart=[];document.getElementById('cartCount').innerText='0';renderCart();
-}
-
-// TV LIVE
-function gantiTV(ch){
-document.getElementById('tvJudul').innerText=ch+' - Live VTC MegaStore';
-document.getElementById('tvStatus').innerText='● LIVE • '+Math.floor(Math.random()*20000)+' Nonton • Host: MegaDeal';
-toast('📺 Pindah ke '+ch+' - Live Dimainkan');
-}
-function kirimTVChat(){
-let v=document.getElementById('tvChatInput').value;if(!v) return;
-document.getElementById('tvChat').innerHTML+='<br>👤 Kamu: '+v;
-document.getElementById('tvChatInput').value='';
-setTimeout(()=>{document.getElementById('tvChat').innerHTML+='<br>🤖 AI Host: Siap! '+v+' langsung kita kasih diskon!';},800);
-}
-
-// SELLER LIVE
-let sellerLives=[
-{nama:"Berkah Elektronik",produk:"Earbuds Pro X",nonton:842,terjual:128},
-{nama:"Gadget Murah 88",produk:"Smartwatch Neural",nonton:512,terjual:89},
-{nama:"VTC MegaStore",produk:"Cooling Fan Ultra",nonton:1240,terjual:210},
-];
-function renderSellerLive(){
-let el=document.getElementById('sellerLiveList');if(!el) return;
-el.innerHTML=sellerLives.map(s=>`<div style="background:#222;padding:10px;border-radius:12px;margin:6px 0">🔴 <b>${s.nama}</b> - Jual ${s.produk}<br><small>👀 ${s.nonton} Nonton • 🛒 ${s.terjual} Terjual • <span style="color:#00e676">● LIVE</span></small><br><button class="btn2" onclick="masukLive('${s.nama}')">Masuk Live</button></div>`).join('');
-}
-function masukLive(nama){document.getElementById('liveSellerNama').innerText=nama+' - Live Jualan!';toast('🎥 Masuk Live '+nama);}
-function mulaiLive(){
-let nama=prompt('Nama Toko Kamu untuk Live:')||'Toko Kamu';
-sellerLives.unshift({nama,produk:'Produk Andalan',nonton:1,terjual:0});
-renderSellerLive();toast('🎥 Kamu LIVE Sekarang! Buyer bisa langsung beli!');
-}
-function beliLive(){toast('🛒 Beli dari Live Berhasil! COD - Bayar di Tempat');poin+=50;updatePoin();}
-
-// GAME
-function mainSpin(){
-let hadiah=['Voucher 10rb 🎟️','Voucher 20rb 🎟️','Voucher 50rb 🎟️','Poin +100 ⭐','Zonk 😅 Coba Lagi','Earbuds Gratis! 🎧'];
-let h=hadiah[Math.floor(Math.random()*hadiah.length)];
-poin+=100;
-document.getElementById('gameHasil').innerHTML='🎰 SPIN: Kamu Dapat <b>'+h+'</b>! Poin +100';
-updatePoin();toast('🎰 Kamu Dapat: '+h);
-}
-function mainTebak(){
-let hargaAsli=129000;let tebak=prompt('Tebak Harga Earbuds? (isi angka, misal 129000)');
-if(!tebak) return;
-if(Math.abs(tebak-hargaAsli)<20000){poin+=200;document.getElementById('gameHasil').innerHTML='🎯 BENAR! Hampir tepat! +200 Poin';toast('🎯 Tebakan Kamu Benar! +200 Poin');}
-else{document.getElementById('gameHasil').innerHTML='🎯 Hampir! Harga aslinya Rp 129.000. Coba lagi!';toast('🎯 Belum tepat, coba lagi');}
-updatePoin();
-}
-function mainKuis(){
-let j=prompt('Kuis AI: Earbuds TWS itu singkatan apa? A. True Wireless Stereo B. Total Wireless Sound');
-if(j && j.toLowerCase().includes('a')){poin+=150;document.getElementById('gameHasil').innerHTML='🧠 BENAR! True Wireless Stereo! +150 Poin';toast('🧠 Kuis Benar! +150');}else{document.getElementById('gameHasil').innerHTML='🧠 Jawabannya A. True Wireless Stereo! Coba lagi besok.';}
-updatePoin();
-}
-function tukarVoucher(){
-if(poin<500) return toast('Poin kurang, main dulu sampai 500');
-poin-=500;document.getElementById('gameHasil').innerHTML='🎟️ Berhasil Tukar 500 Poin jadi Voucher 20rb! Bisa dipakai belanja!';updatePoin();toast('🎟️ Voucher 20rb Berhasil Ditukar!');
-}
-function updatePoin(){document.getElementById('gamePoin').innerText='Poin Kamu: '+poin;document.getElementById('myPoin2').innerText=poin;}
-
-renderProduk();renderSellerLive();
-</script>
-</body>
-</html>
+<div class="nav"><button class="on" onclick="show('t1',this)"><i>⌂</i>Beranda</button><button onclick="show('t2',this)"><i>▶</i>Live</button><button onclick="show('t3',this)"><i>◈</i>Jualan</button><button onclick="show('t4',this)"><i>▣</i>Keranjang</button><button onclick="show('t5',this)"><i>○</i>Saya</button></div>
+<script>function show(id,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));if(el)el.classList.add('on');window.scrollTo(0,0)}function add(){alert('Masuk Keranjang! Total Rp 436.000');show('t4')}</script>
+</body></html>
