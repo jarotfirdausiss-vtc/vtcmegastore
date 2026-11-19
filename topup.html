@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Up Game - VTC SHOP AI 3.0</title>
+<style>
+*{box-sizing:border-box;font-family:sans-serif}
+body{margin:0;background:#071022;color:#fff;padding:16px;padding-bottom:80px}
+h1{color:#fb923c;text-align:center;margin:10px 0 4px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.card{background:#1a120b;border:1px solid #f97316;border-radius:12px;padding:12px;text-align:center;cursor:pointer}
+.card.active{background:#f97316}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:#fff;margin:10px 0}
+.pay{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.pay div{border:1px solid #334155;border-radius:8px;padding:10px;text-align:center;cursor:pointer}
+.pay .active{background:#f97316}
+.btn{display:block;text-align:center;background:#f97316;color:#fff;padding:14px;border-radius:999px;font-weight:900;text-decoration:none;margin-top:16px}
+a{color:#22d3ee;text-decoration:none}
+</style></head>
+<body>
+<a href="index.html">← Kembali</a>
+<h1>Top Up Game</h1><p style="text-align:center;color:#94a3b8;margin:0">VTC Shop AI • Top Up Otomatis</p>
+<p><b>Pilih Game</b></p><div class="grid">
+<div class="card active" onclick="pilih(this)">🎮<br>Mobile Legends</div>
+<div class="card" onclick="pilih(this)">🔥<br>Free Fire</div>
+<div class="card" onclick="pilih(this)">🎯<br>PUBG Mobile</div>
+<div class="card" onclick="pilih(this)">⚡<br>Valorant</div>
+<div class="card" onclick="pilih(this)">✨<br>Genshin</div>
+<div class="card" onclick="pilih(this)">🧱<br>Roblox</div></div>
+<p><b>Pilih Paket Diamonds</b></p><div class="grid">
+<div class="card" onclick="pilihPaket(this,20000)">💎 86<br>Rp 20.000</div>
+<div class="card" onclick="pilihPaket(this,40000)">💎 172<br>Rp 40.000</div>
+<div class="card active" onclick="pilihPaket(this,60000)">💎 257<br>Rp 60.000<br>⭐ Best Seller</div></div>
+<p><b>ID Pengguna</b></p><input placeholder="Masukkan User ID / Game ID">
+<p><b>Metode Pembayaran</b></p><div class="pay">
+<div class="active" onclick="pilih(this)">DANA</div><div onclick="pilih(this)">OVO</div><div onclick="pilih(this)">goPay</div>
+<div onclick="pilih(this)">QRIS</div><div onclick="pilih(this)">Transfer</div><div onclick="pilih(this)">COD</div></div>
+<p>✅ VOUCHER10 - Diskon 10% <span style="float:right;color:#fb923c">Pakai</span></p>
+<p>Total: <b id="total">Rp 60.000</b></p>
+<a class="btn" href="checkout.html">🛒 Beli Sekarang</a>
+<script>
+function pilih(el){el.parentElement.querySelectorAll('.card,.pay div').forEach(e=>e.classList.remove('active'));el.classList.add('active')}
+function pilihPaket(el,harga){el.parentElement.querySelectorAll('.card').forEach(e=>e.classList.remove('active'));el.classList.add('active');document.getElementById('total').innerText='Rp '+harga.toLocaleString('id-ID')}
+</script>
+</body></html>
