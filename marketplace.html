@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VTC MARKETPLACE - COD JNE J&T</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<style>*{box-sizing:border-box;font-family:sans-serif}body{background:#020617;color:#fff;display:flex;justify-content:center}.p{width:100%;max-width:400px;padding:14px}input,select,textarea{width:100%;padding:12px;border-radius:10px;background:#0f172a;color:#fff;border:1px solid #334155;margin-bottom:8px}.btn{background:#22d3ee;color:#000;font-weight:900;border:none;padding:12px;border-radius:999px;width:100%;cursor:pointer;margin-bottom:6px}.btn2{background:#1e293b;color:#fff;border:1px solid #22d3ee;padding:10px;border-radius:999px;width:100%;cursor:pointer;margin-bottom:6px}.card{background:#0f172a;border:1px solid #164e63;border-radius:14px;padding:12px;margin-bottom:10px}.tab{display:flex;gap:6px;margin-bottom:10px}.tab button{flex:1;padding:10px;border-radius:999px;border:1px solid #22d3ee;background:#0f172a;color:#fff;cursor:pointer}.tab button.on{background:#22d3ee;color:#000;font-weight:900}.badge{background:#22d3ee;color:#000;font-size:11px;padding:3px 8px;border-radius:999px;font-weight:900}</style></head>
+<body><div class="p">
+<h2 style="text-align:center;color:#22d3ee">VTC MARKETPLACE 🔥</h2>
+<p id="userInfo" style="text-align:center;color:#94a3b8;font-size:13px">Login dulu...</p>
+<div style="text-align:center"><a href="login.html" style="color:#22d3ee">Login</a></div>
+<div class="tab"><button id="tBelanja" class="on" onclick="show('belanja')">🛒 Belanja</button><button id="tJual" onclick="show('jual')">🏪 Jualan</button><button id="tPesanan" onclick="show('pesanan')">📦 Pesanan</button></div>
+
+<!-- BELANJA -->
+<div id="belanja">
+<input id="cari" placeholder="🔍 Cari produk, ex: Bakso..." oninput="loadProduk()">
+<div id="listProduk">Memuat...</div>
+</div>
+
+<!-- JUALAN -->
+<div id="jual" style="display:none">
+<h3>+ Tambah Produk</h3>
+<input id="nama" placeholder="Nama Produk"><input id="harga" type="number" placeholder="Harga"><input id="stok" type="number" placeholder="Stok"><input id="wa" placeholder="WA Seller"><textarea id="desc" placeholder="Deskripsi"></textarea>
+<label><input type="checkbox" id="cod" checked> Bisa COD</label><br>
+<select id="ekspedisiSeller"><option>JNE</option><option>J&T</option><option>SiCepat</option><option>AnterAja</option><option>Pos Indonesia</option><option>Semua Ekspedisi</option></select>
+<button class="btn" onclick="tambahProduk()">Upload ke Ratusan Juta HP →</button>
+<h3>Produk Kamu</h3><div id="myProduk"></div>
+</div>
+
+<!-- PESANAN -->
+<div id="pesanan" style="display:none">
+<h3>Pesanan Saya (Beli & Jual)</h3>
+<div id="listPesanan">Login dulu...</div>
+<h3>🔍 Lacak Resi</h3>
+<input id="cekResi" placeholder="Masukkan No Resi, ex: JT123..."><button class="btn2" onclick="lacak()">Lacak Resi</button><div id="hasilLacak"></div>
+</div>
+
+<!-- MODAL BELI -->
+<div id="modalBeli" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);padding:20px"><div style="background:#0f172a;border-radius:16px;padding:16px;max-width:380px;margin:20px auto">
+<h3 id="judulBeli">Beli</h3>
+<input id="bNama" placeholder="Nama Penerima"><input id="bHp" placeholder="No HP Penerima"><textarea id="bAlamat" placeholder="Alamat Lengkap COD"></textarea>
+<label>Metode Bayar</label><select id="bMetode"><option>COD - Bayar di Tempat (Cash)</option><option>COD - Bayar di Tempat (QRIS ke Kurir)</option><option>Transfer Bank</option></select>
+<label>Ekspedisi</label><select id="bEkspedisi"><option>JNE - REG (2-4 Hari)</option><option>JNE - YES (1 Hari)</option><option>J&T - EZ (2-3 Hari)</option><option>SiCepat - REG</option><option>AnterAja - Reguler</option><option>Pos - Paket Kilat</option></select>
+<p style="font-size:12px;color:#94a3b8">Ongkir COD: Bayar ke kurir saat barang datang.<br>Resi akan diinput seller setelah kirim.</p>
+<button class="btn" onclick="buatPesanan()">Buat Pesanan COD →</button>
+<button class="btn2" onclick="document.getElementById('modalBeli').style.display='none'">Batal</button>
+</div></div>
+</div>
+<script>
+const firebaseConfig={apiKey:"AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",authDomain:"vtc-mega-shop-resmi.firebaseapp.com",projectId:"vtc-mega-shop-resmi",storageBucket:"vtc-mega-shop-resmi.firebasestorage.app",messagingSenderId:"959376548779",appId:"1:959376548779:web:45ceae80758eefab2a68ee"};
+firebase.initializeApp(firebaseConfig); const auth=firebase.auth(); const db=firebase.firestore(); let me=null, produkDipilih=null;
+auth.onAuthStateChanged(u=>{ me=u; document.getElementById('userInfo').innerText = u ? 'Login: '+(u.displayName||u.email||u.phoneNumber) : 'Belum Login'; loadProduk(); loadMyProduk(); loadPesanan(); });
+function show(t){ ['belanja','jual','pesanan'].forEach(x=>document.getElementById(x).style.display = x===t?'block':'none'); ['tBelanja','tJual','tPesanan'].forEach((x,i)=>document.getElementById(x).classList.toggle('on', ['belanja','jual','pesanan'][i]===t)); }
+async function tambahProduk(){
+ if(!me){alert('Login dulu!');return;} let n=document.getElementById('nama').value,h=document.getElementById('harga').value; if(!n||!h){alert('Isi nama & harga!');return;}
+ await db.collection('products').add({nama:n,harga:Number(h),stok:Number(document.getElementById('stok').value||0),wa:document.getElementById('wa').value,desc:document.getElementById('desc').value,cod:document.getElementById('cod').checked,ekspedisi:document.getElementById('ekspedisiSeller').value,sellerId:me.uid,sellerNama:me.displayName||me.email||me.phoneNumber,createdAt:new Date().toISOString()});
+ alert('Tayang ke semua HP! 🔥'); loadProduk(); loadMyProduk();
+}
+function loadProduk(){
+ let q=document.getElementById('cari')?.value?.toLowerCase()||'';
+ db.collection('products').onSnapshot(s=>{ let h=''; s.forEach(d=>{let p=d.data(); if(q && !p.nama.toLowerCase().includes(q)) return; h+=`<div class="card"><b>${p.nama}</b> <span style="color:#22d3ee">Rp ${p.harga.toLocaleString()}</span><br><span style="font-size:12px;color:#94a3b8">Seller: ${p.sellerNama} • Stok ${p.stok} • ${p.ekspedisi||'JNE/J&T'} • ${p.cod?'✅ COD':''}</span><br>${p.desc||''}<br><br><button class="btn" onclick="pilihBeli('${d.id}','${p.nama.replace(/'/g,'')}','${p.sellerId}','${p.harga}')">🛵 Beli COD / Kirim JNE J&T</button></div>`}); document.getElementById('listProduk').innerHTML=h||'Belum ada produk'; });
+}
+async function loadMyProduk(){ if(!me) return; let s=await db.collection('products').where('sellerId','==',me.uid).get(); let h=''; s.forEach(d=>{let p=d.data(); h+=`<div class="card"><b>${p.nama}</b> - Rp ${p.harga.toLocaleString()} <button onclick="hapusP('${d.id}')">Hapus</button></div>`}); document.getElementById('myProduk').innerHTML=h||'Belum ada'; }
+async function hapusP(id){ await db.collection('products').doc(id).delete(); loadMyProduk(); loadProduk(); }
+function pilihBeli(id,nama,sellerId,harga){ if(!me){alert('Login dulu!');location.href='login.html';return;} produkDipilih={id,nama,sellerId,harga}; document.getElementById('judulBeli').innerText='Beli: '+nama; document.getElementById('modalBeli').style.display='block'; }
+async function buatPesanan(){
+ let kode='VTC-'+Math.floor(100000+Math.random()*900000);
+ await db.collection('orders').add({kode: kode, productId:produkDipilih.id, productNama:produkDipilih.nama, harga:Number(produkDipilih.harga), sellerId:produkDipilih.sellerId, buyerId:me.uid, buyerNama:me.displayName||me.email||me.phoneNumber, buyerHp:document.getElementById('bHp').value, penerima:document.getElementById('bNama').value, alamat:document.getElementById('bAlamat').value, metode:document.getElementById('bMetode').value, ekspedisi:document.getElementById('bEkspedisi').value, resi:'', status:'Baru - Menunggu Seller', retur:'', createdAt:new Date().toISOString()});
+ document.getElementById('modalBeli').style.display='none'; alert('Pesanan Berhasil! Kode: '+kode+'\nSeller akan segera proses & input Resi JNE/J&T.'); show('pesanan'); loadPesanan();
+}
+function loadPesanan(){
+ if(!me) return;
+ db.collection('orders').onSnapshot(s=>{
+  let h=''; s.forEach(d=>{ let o=d.data(); if(o.buyerId!==me.uid && o.sellerId!==me.uid) return;
+   let isSeller = o.sellerId===me.uid;
+   h+=`<div class="card"><b>${o.productNama}</b> <span class="badge">${o.kode||''}</span><br><span style="font-size:12px">Pembeli: ${o.buyerNama} • HP: ${o.buyerHp}<br>Alamat: ${o.alamat}<br>Metode: ${o.metode}<br>Ekspedisi: ${o.ekspedisi}<br>Resi: <b style="color:#22d3ee">${o.resi||'Belum ada - Menunggu Seller'}</b><br>Status: <b>${o.status}</b><br>Retur: ${o.retur||'-'}</span><br><br>`
+   + (isSeller && o.status.includes('Baru') ? `<button class="btn" onclick="upd('${d.id}','Diproses - Siap Kirim')">Proses</button>`:'')
+   + (isSeller && o.status.includes('Diproses') ? `<input id="resi-${d.id}" placeholder="Input Resi JNE / J&T"><button class="btn" onclick="kirimResi('${d.id}')">Kirim + Input Resi →</button>`:'')
+   + (o.status.includes('Dikirim') ? `<button class="btn" onclick="upd('${d.id}','Selesai - Sudah Bayar COD')">✅ Pesanan Diterima / Sudah Bayar</button>`:'')
+   + `<button class="btn2" onclick="ajukanRetur('${d.id}')">↩ Ajukan Retur</button></div>`;
+  }); document.getElementById('listPesanan').innerHTML=h||'Belum ada pesanan';
+ });
+}
+async function upd(id,st){ await db.collection('orders').doc(id).update({status:st}); }
+async function kirimResi(id){ let r=document.getElementById('resi-'+id).value; if(!r){alert('Isi Resi!');return;} await db.collection('orders').doc(id).update({resi:r, status:'Dikirim - Lacak Resi: '+r}); alert('Resi terkirim ke Pembeli!'); }
+async function ajukanRetur(id){ let al=prompt('Alasan Retur: Barang Rusak / Salah / dll'); if(!al) return; await db.collection('orders').doc(id).update({retur:'DIAJUKAN: '+al, status:'Retur Diajukan'}); alert('Retur diajukan! Seller akan hubungi kamu.'); }
+async function lacak(){ let r=document.getElementById('cekResi').value; if(!r){alert('Isi Resi!');return;} let s=await db.collection('orders').where('resi','==',r).get(); if(s.empty){document.getElementById('hasilLacak').innerHTML='<div class="card">Resi tidak ditemukan. Coba cek lagi / tanya seller.</div>';return;} let h=''; s.forEach(d=>{let o=d.data(); h+=`<div class="card"><b>${o.kode}</b><br>${o.productNama}<br>Ekspedisi: ${o.ekspedisi}<br>Resi: ${o.resi}<br>Status: ${o.status}<br><a href="https://cekresi.com/?noresi=${o.resi}" target="_blank" style="color:#22d3ee">Cek di CekResi.com →</a></div>`}); document.getElementById('hasilLacak').innerHTML=h; }
+</script></body></html>
