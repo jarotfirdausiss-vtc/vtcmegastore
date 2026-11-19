@@ -1,126 +1,276 @@
-k<!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Beneran - VTC SHOP AI 3.0</title>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VTC SHOP AI 3.0 - Semua Tombol Jalan</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <style>
-*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{margin:0;background:#020617;color:#fff;display:flex;justify-content:center;padding:20px 12px}
-.phone{width:100%;max-width:380px;background:#071022;border:1px solid #164e63;border-radius:28px;padding:20px}
-.logo{text-align:center;color:#22d3ee;font-weight:900;font-size:22px}
-h1{text-align:center;font-size:21px;margin:14px 0 4px}
-.sub{text-align:center;color:#94a3b8;font-size:13px;margin-bottom:16px}
-.btn{display:flex;align-items:center;gap:12px;width:100%;border:1.5px solid #22d3ee;border-radius:999px;padding:13px 16px;margin-bottom:10px;background:#0b1a2e;color:#fff;font-size:14px;cursor:pointer}
-.btn b{flex:1}
-.primary{background:#22d3ee;color:#000;border:none;font-weight:900;justify-content:center}
-input{width:100%;padding:13px;border-radius:12px;border:1px solid #334155;background:#0f172a;color:#fff;margin-bottom:10px}
-.box{background:#0f172a;border:1px solid #164e63;border-radius:16px;padding:14px;text-align:center;margin-bottom:12px}
-.note{text-align:center;font-size:11px;color:#94a3b8;line-height:1.6}
-a{color:#22d3ee}
-</style></head>
+*{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{margin:0;background:#020617;color:#fff;display:flex;justify-content:center}
+.phone{width:100%;max-width:400px;min-height:100vh;background:#0f172a;padding:14px;padding-bottom:80px;position:relative}
+.logo{text-align:center;color:#22d3ee;font-size:26px;font-weight:900}
+h1{text-align:center;font-size:22px;margin:12px 0 4px}
+.sub{text-align:center;color:#94a3b8;font-size:13px;line-height:1.4}
+.btn{display:flex;align-items:center;gap:10px;justify-content:center;width:100%;padding:13px;border-radius:20px;border:1px solid #22d3ee;background:transparent;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
+.btn b{flex:1;text-align:center}
+.primary{background:#22d3ee;color:#000;border:none}
+.orange{background:#ff5a00;color:#fff;border:none}
+.green{background:#22c55e;color:#fff;border:none}
+.red{background:#ff3b3b;color:#fff;border:none}
+input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #334155;background:#1e293b;color:#fff;outline:none;margin-top:8px;font-size:14px}
+.divider{text-align:center;color:#64748b;font-size:12px;margin:14px 0 4px}
+.note{text-align:center;color:#94a3b8;font-size:12px;line-height:1.5;margin-top:12px}
+.hidden{display:none!important}
+.card{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:12px;margin-top:10px;font-size:13px;line-height:1.5}
+.card b{font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prod{background:#fff;color:#111;border-radius:12px;padding:10px;text-align:center;font-size:12px}
+.prod .img{font-size:32px}.prod p{color:#ff5a00;font-weight:800;margin:4px 0}
+.add{background:#ff5a00;color:#fff;border:none;width:100%;padding:7px;border-radius:8px;cursor:pointer;font-weight:700}
+.top-user{display:flex;justify-content:space-between;align-items:center;background:#1e293b;border:1px solid #22d3ee;border-radius:14px;padding:10px;margin-top:10px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:400px;display:flex;justify-content:space-around;background:#020617;border-top:1px solid #334155;padding:8px 0;font-size:11px;z-index:10}
+.nav div{cursor:pointer;text-align:center;opacity:.6}.nav .on{opacity:1;color:#22d3ee;font-weight:700}
+.badge{background:#ff2d55;color:#fff;font-size:10px;padding:2px 6px;border-radius:10px}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:12px 18px;border-radius:20px;display:none;z-index:99;font-size:14px;max-width:90%;text-align:center}
+.tag{display:inline-block;background:#22d3ee;color:#000;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px}
+.tag-orange{background:#ff5a00;color:#fff}
+.timeline{border-left:3px solid #22d3ee;margin:10px 0 0 8px;padding-left:12px;line-height:1.8}
+</style>
+</head>
 <body>
 <div class="phone">
 <div class="logo">VTC SHOP AI 3.0</div>
-<div id="loading"><h1>Memuat...</h1><p class="sub">Cek akun di server...</p></div>
 
-<div id="sudahLogin" style="display:none">
-<h1>Selamat Datang 👋</h1><p class="sub">Login beneran via Firebase</p>
-<div class="box"><b id="namaUser" style="font-size:18px;color:#22d3ee"></b><br><span id="hpUser" style="color:#94a3b8;font-size:13px"></span><br><span style="font-size:12px">✅ Akun tersimpan di Server Google<br>Buka di HP manapun tetap sama</span></div>
-<a class="btn primary" href="index.html" style="text-decoration:none;justify-content:center">Masuk ke Beranda →</a>
-<button class="btn" onclick="logout()" style="justify-content:center">🚪 Logout</button>
-</div>
-
-<div id="belumLogin" style="display:none">
+<!-- ============ 1. LOGIN ============ -->
+<div id="page-login">
 <h1>Login / Daftar</h1><p class="sub">1 Akun untuk semua HP • Ratusan Juta User Bisa Join</p>
-<button class="btn" onclick="loginGoogle()"><span>🔍</span><b>Login dengan Google</b></button>
-<div style="text-align:center;color:#64748b;font-size:12px;margin:12px 0">— LOGIN NO HP (OTP BENERAN) —</div>
-<input id="hp" placeholder="No HP +62... contoh: +6281234567890">
-<div id="recaptcha"></div>
+<button class="btn" onclick="loginGoogle()"><svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 18.9 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2.1 13.9-5.5l-6.4-5.4C29.2 34.9 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.7 39.7 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.4l6.4 5.4C41.6 35.3 44 30.1 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg><b>Login dengan Google</b></button>
+<div class="divider">— LOGIN NO HP (OTP BENERAN) —</div>
+<input id="phoneInput" placeholder="No HP +62... contoh: +6281234567890">
+<div id="recaptcha-container"></div>
 <button class="btn primary" onclick="kirimOTP()">Kirim OTP ke SMS</button>
-<div id="otpBox" style="display:none">
-<input id="otp" placeholder="Masukkan 6 digit OTP dari SMS">
-<button class="btn primary" onclick="verifikasiOTP()">Verifikasi OTP</button>
-</div>
-<div style="text-align:center;color:#64748b;font-size:12px;margin:12px 0">— LOGIN EMAIL —</div>
-<input id="email" placeholder="Email">
-<input id="pass" type="password" placeholder="Password">
+<div id="otpBox" class="hidden"><input id="otpInput" placeholder="Masukkan Kode OTP SMS"><button class="btn primary" onclick="verifikasiOTP()">Verifikasi OTP</button></div>
+<div class="divider">— LOGIN EMAIL —</div>
+<input id="email" placeholder="Email" value="bos@vtc.id"><input id="password" type="password" placeholder="Password" value="123456">
 <button class="btn primary" onclick="loginEmail()">Login / Daftar Email</button>
-<p class="note">Akun disimpan di Firebase Server.<br>Beda HP = Tetap akun yang sama kalau login yang sama.<br>Seller & Konsumen bisa transaksi bareng.</p>
+<button class="btn" onclick="loginDemo()">🚀 Coba Tanpa Login (Demo)</button>
+<p class="note">Akun disimpan di Firebase Server.<br>Beda HP = Tetap akun yang sama.<br>Seller & Konsumen bisa transaksi bareng. ●</p>
+</div>
+
+<!-- ============ 2. HOME SETELAH LOGIN ============ -->
+<div id="page-home" class="hidden">
+<div class="top-user"><div><b id="userName">Halo Bos Super!</b><br><small id="userEmail">Login Berhasil ✅</small></div><button class="btn red" style="width:auto;padding:8px 12px;margin:0" onclick="logout()">Logout</button></div>
+
+<div class="card" style="background:#009688;border:none">🔴 <b>LIVE - Kak Sarah • FLASH SALE 70%</b><br>12,5rb penonton • <span id="viewer">12,5rb</span> • Diskon Hari Ini<br><button class="btn" style="background:#fff;color:#009688;margin-top:8px" onclick="pg('shop')">▶ Tonton Live & Belanja</button></div>
+
+<div class="grid2" style="margin-top:10px">
+<button class="btn orange" onclick="pg('shop')">🛒 VTC SHOP - COD</button>
+<button class="btn" style="background:#fff;color:#ff5a00" onclick="pg('jual')">🏪 Jualan</button>
+</div>
+<div class="grid2" style="margin-top:8px">
+<button class="btn" onclick="pg('lacak')">📦 Lacak Resi JNE / J&T</button>
+<button class="btn" onclick="pg('retur')">↩️ Retur Barang</button>
+</div>
+
+<div class="card">📊 <b>Omset Hari Ini: Rp2.450.000</b> <span class="tag">+45%</span><br>Pesanan baru: 12 • Produk: <span id="totalProd">6</span> • Rating: ⭐ 4.9</div>
+<div class="card">📦 <b>Pesanan Terakhir:</b><br><div id="lastOrder">Belum ada pesanan. Yuk belanja COD!</div></div>
+</div>
+
+<!-- ============ 3. VTC SHOP COD - BENERAN ============ -->
+<div id="page-shop" class="hidden">
+<h1>🛒 VTC SHOP - COD</h1><p class="sub">Bayar di Tempat • Bisa Retur • JNE / J&T</p>
+<div style="display:flex;gap:6px;margin-top:10px"><button class="btn primary" style="margin:0" onclick="filterProd('all')">Semua</button><button class="btn" style="margin:0" onclick="filterProd('elektronik')">Elektronik</button><button class="btn" style="margin:0" onclick="filterProd('fashion')">Fashion</button></div>
+<div id="prodList" class="grid2" style="margin-top:10px"></div>
+<div class="card">🛒 <b>Keranjang (<span id="cc">0</span>)</b><div id="cartList">Kosong</div><p id="ctotal"></p>
+<input id="namaPembeli" placeholder="Nama Penerima">
+<input id="alamatPembeli" placeholder="Alamat Lengkap + No HP">
+<select id="kurir"><option value="JNE - Rp12.000">JNE - Rp12.000</option><option value="J&T - Rp10.000">J&T - Rp10.000</option><option value="COD Kurir VTC - Gratis">COD Kurir VTC - Gratis</option></select>
+<button class="btn orange" onclick="checkoutCOD()">✅ Checkout COD - Bayar di Tempat</button>
 </div>
 </div>
+
+<!-- ============ 4. JUALAN / SELLER - BENERAN ============ -->
+<div id="page-jual" class="hidden">
+<h1>🏪 Jualan - Seller</h1><p class="sub">Tambah produk lu, langsung muncul di Shop</p>
+<div class="card">💰 <b>Saldo Seller: Rp<span id="saldo">1.250.000</span></b><br>Omset: Rp2.450.000 • Pesanan Masuk: 12</div>
+<input id="pNama" placeholder="Nama Produk - contoh: Kaos Oversize">
+<input id="pHarga" type="number" placeholder="Harga - contoh: 85000">
+<select id="pKategori"><option value="fashion">Fashion</option><option value="elektronik">Elektronik</option><option value="kecantikan">Kecantikan</option></select>
+<select id="pEmoji"><option value="👕">👕 Kaos</option><option value="👗">👗 Gamis</option><option value="🎧">🎧 TWS / Headset</option><option value="🧴">🧴 Skincare</option><option value="👟">👟 Sepatu</option><option value="⌚">⌚ Jam</option></select>
+<button class="btn green" onclick="tambahProduk()">+ Tambah Produk ke Toko</button>
+<div class="card"><b>Produk Saya:</b><div id="myProd"></div></div>
+<button class="btn" onclick="tarikSaldo()">💸 Tarik Saldo ke Rekening</button>
+</div>
+
+<!-- ============ 5. LACAK RESI - BENERAN ============ -->
+<div id="page-lacak" class="hidden">
+<h1>📦 Lacak Resi</h1><p class="sub">JNE / J&T / VTC Kurir - Real Tracking</p>
+<input id="resiInput" placeholder="Masukkan No Resi - contoh: JNE1234567890">
+<div style="display:flex;gap:6px"><button class="btn primary" style="flex:1" onclick="lacakResi()">🔍 Lacak Sekarang</button><button class="btn" style="flex:1" onclick="pakaiResiTerakhir()">Pakai Resi Terakhir</button></div>
+<div id="hasilLacak" class="hidden">
+<div class="card"><b id="resiNo">Resi: -</b> <span class="tag tag-orange" id="resiStatus">OTW</span><br><small id="resiKurir">-</small>
+<div class="timeline" id="resiTimeline"></div>
+<button class="btn" onclick="pg('retur')">↩️ Ajukan Retur Paket Ini</button>
+</div>
+</div>
+<div class="card"><b>Contoh Resi Buat Tes:</b><br>• <b onclick="isiResi('JNE1234567890')" style="color:#22d3ee;cursor:pointer">JNE1234567890</b> - Lagi di Palembang<br>• <b onclick="isiResi('JT987654321')" style="color:#22d3ee;cursor:pointer">JT987654321</b> - Sudah Sampai<br>• <b onclick="isiResi('VTC555')" style="color:#22d3ee;cursor:pointer">VTC555</b> - Kurir OTW ke Rumah</div>
+</div>
+
+<!-- ============ 6. RETUR - BENERAN ============ -->
+<div id="page-retur" class="hidden">
+<h1>↩️ Retur Barang</h1><p class="sub">Barang Rusak / Salah / Tidak Sesuai</p>
+<input id="rResi" placeholder="No Resi / No Pesanan">
+<select id="rAlasan"><option>Barang Rusak</option><option>Barang Salah / Tidak Sesuai</option><option>Ukuran Salah</option><option>Barang Tidak Datang</option><option>Lainnya</option></select>
+<textarea id="rKet" rows="3" placeholder="Ceritakan masalahnya..."></textarea>
+<input id="rRek" placeholder="No Rekening untuk Refund">
+<button class="btn orange" onclick="ajukanRetur()">Ajukan Retur</button>
+<div id="listRetur"></div>
+</div>
+
+<!-- NAV -->
+<div class="nav hidden" id="navBar">
+<div id="n-home" class="on" onclick="pg('home')">🏠<br>Home</div>
+<div id="n-shop" onclick="pg('shop')">🛒<br>Shop COD <span class="badge" id="badge">0</span></div>
+<div id="n-jual" onclick="pg('jual')">🏪<br>Jualan</div>
+<div id="n-lacak" onclick="pg('lacak')">📦<br>Lacak</div>
+<div id="n-retur" onclick="pg('retur')">↩️<br>Retur</div>
+</div>
+</div>
+<div id="toast" class="toast"></div>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",
-  authDomain: "vtc-mega-shop-resmi.firebaseapp.com",
-  projectId: "vtc-mega-shop-resmi",
-  storageBucket: "vtc-mega-shop-resmi.firebasestorage.app",
-  messagingSenderId: "959376548779",
-  appId: "1:959376548779:web:45ceae80758eefab2a68ee",
-  measurementId: "G-TDCL3505F2"
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
-let confirmationResult = null;
+// ===== FIREBASE - GANTI DENGAN CONFIG LU =====
+const firebaseConfig={apiKey:"ISI_API_KEY_LU",authDomain:"ISI_AUTH_DOMAIN_LU",projectId:"ISI_PROJECT_ID_LU",storageBucket:"ISI_STORAGE_LU",messagingSenderId:"ISI_SENDER_ID_LU",appId:"ISI_APP_ID_LU"};
+try{firebase.initializeApp(firebaseConfig);var auth=firebase.auth();}catch(e){var auth=null;}
+let confirmationResult=null;
 
-auth.onAuthStateChanged(async (user)=>{
-  document.getElementById('loading').style.display='none';
-  if(user){
-    document.getElementById('sudahLogin').style.display='block';
-    document.getElementById('namaUser').innerText = user.displayName || user.email || user.phoneNumber || 'User VTC';
-    document.getElementById('hpUser').innerText = (user.phoneNumber||'')+' '+(user.email||'')+' • UID: '+user.uid.substring(0,8)+'...';
-    // Simpan user ke database biar seller & konsumen bisa ketemu
-    try{ await db.collection('users').doc(user.uid).set({nama:user.displayName||'',email:user.email||'',hp:user.phoneNumber||'',lastLogin:new Date().toISOString()}, {merge:true}); }catch(e){}
-  } else {
-    document.getElementById('belumLogin').style.display='block';
-  }
-});
+// ===== DATA - PERMANEN DI HP =====
+let products = JSON.parse(localStorage.getItem('vtc_products')||'null') || [
+ {nama:'TWS Earbuds Pro',harga:299000,kat:'elektronik',emoji:'🎧'},
+ {nama:'Gamis Polos Crinkle',harga:185000,kat:'fashion',emoji:'👗'},
+ {nama:'Serum Niacinamide',harga:120000,kat:'kecantikan',emoji:'🧴'},
+ {nama:'Kaos Oversize',harga:85000,kat:'fashion',emoji:'👕'},
+ {nama:'Jam Smartwatch',harga:450000,kat:'elektronik',emoji:'⌚'},
+ {nama:'Sepatu Sneakers',harga:320000,kat:'fashion',emoji:'👟'},
+];
+let cart = JSON.parse(localStorage.getItem('vtc_cart')||'[]');
+let orders = JSON.parse(localStorage.getItem('vtc_orders')||'[]');
+let returs = JSON.parse(localStorage.getItem('vtc_returs')||'[]');
+let saldo = parseInt(localStorage.getItem('vtc_saldo')||'1250000');
+let filter='all';
+let viewers=12500;
 
-async function loginGoogle(){
-  try{ const p = new firebase.auth.GoogleAuthProvider(); await auth.signInWithPopup(p); }
-  catch(e){ alert('Gagal Google: '+e.message); }
+function saveAll(){localStorage.setItem('vtc_products',JSON.stringify(products));localStorage.setItem('vtc_cart',JSON.stringify(cart));localStorage.setItem('vtc_orders',JSON.stringify(orders));localStorage.setItem('vtc_returs',JSON.stringify(returs));localStorage.setItem('vtc_saldo',saldo)}
+function toast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2800)}
+function pg(p){
+  let pages={home:'page-home',shop:'page-shop',jual:'page-jual',lacak:'page-lacak',retur:'page-retur',login:'page-login'};
+  Object.keys(pages).forEach(k=>document.getElementById(pages[k]).classList.toggle('hidden',k!==p));
+  ['home','shop','jual','lacak','retur'].forEach(x=>{let n=document.getElementById('n-'+x);if(n)n.classList.toggle('on',x===p)});
+  if(p!=='login') document.getElementById('navBar').classList.remove('hidden'); else document.getElementById('navBar').classList.add('hidden');
+  window.scrollTo(0,0);
+  if(p==='shop') renderProd(); if(p==='jual') renderSeller(); if(p==='retur') renderRetur(); if(p==='home') renderHome();
 }
-async function kirimOTP(){
-  let hp = document.getElementById('hp').value.trim();
-  if(!hp.startsWith('+')){ alert('Pakai format +62 ya! Contoh: +6281234567890'); return; }
-  try{
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'invisible'});
-    confirmationResult = await auth.signInWithPhoneNumber(hp, window.recaptchaVerifier);
-    document.getElementById('otpBox').style.display='block';
-    alert('OTP beneran dikirim ke SMS '+hp+' ! Cek HP lu.');
-  }catch(e){ alert('Gagal kirim OTP: '+e.message+'\nPastikan Phone sudah di-Enable di Firebase & Domain sudah ditambah.'); }
+function renderHome(){
+  document.getElementById('totalProd').innerText=products.length;
+  document.getElementById('saldo').innerText=saldo.toLocaleString('id-ID');
+  if(orders.length){let o=orders[orders.length-1];document.getElementById('lastOrder').innerHTML=`${o.items} • Total Rp${o.total.toLocaleString('id-ID')} • Resi: <b>${o.resi}</b> • ${o.kurir} • <span style="color:#22c55e">${o.status}</span> <button onclick="pg('lacak');isiResi('${o.resi}')" style="background:#22d3ee;border:none;padding:4px 8px;border-radius:8px;cursor:pointer">Lacak</button>`}
 }
-async function verifikasiOTP(){
-  let kode = document.getElementById('otp').value;
-  try{ await confirmationResult.confirm(kode); alert('Berhasil Login HP!'); }
-  catch(e){ alert('OTP Salah: '+e.message); }
+function filterProd(k){filter=k;renderProd()}
+function renderProd(){
+  let list=products.filter(p=>filter==='all'||p.kat===filter);
+  document.getElementById('prodList').innerHTML=list.map((p,i)=>`
+  <div class="prod"><div class="img">${p.emoji}</div><b>${p.nama}</b><br><small>${p.kat}</small><p>Rp${p.harga.toLocaleString('id-ID')}</p><button class="add" onclick="addCart(${products.indexOf(p)})">+ Keranjang</button></div>`).join('');
+  updCart();
 }
-async function loginEmail(){
-  let e=document.getElementById('email').value, p=document.getElementById('pass').value;
-  if(!e||!p){ alert('Isi Email & Password!'); return; }
-  try{ await auth.signInWithEmailAndPassword(e,p); }
-  catch(err){
-    if(err.code==='auth/user-not-found' || err.code==='auth/invalid-credential'){
-      try{ await auth.createUserWithEmailAndPassword(e,p); alert('Akun baru dibuat! Selamat datang!'); }
-      catch(e2){ alert(e2.message); }
-    } else alert(err.message);
-  }
+function addCart(idx){cart.push(products[idx]);saveAll();updCart();toast(products[idx].nama+' masuk Keranjang 🛒')}
+function updCart(){
+  document.getElementById('cc').innerText=cart.length;document.getElementById('badge').innerText=cart.length;
+  let t=0,html='';cart.forEach((it,i)=>{t+=it.harga;html+=`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #334155"><span>${it.emoji} ${it.nama}</span><span>Rp${it.harga.toLocaleString('id-ID')} <b onclick="cart.splice(${i},1);saveAll();updCart()" style="color:red;cursor:pointer">✕</b></span></div>`});
+  document.getElementById('cartList').innerHTML=cart.length?html:'Kosong';
+  document.getElementById('ctotal').innerText=cart.length?'Total Produk: Rp'+t.toLocaleString('id-ID'):'';
 }
-function logout(){ auth.signOut().then(()=>location.reload()); }
-</script><style>body{flex-wrap:wrap !important}</style>
-<!-- VTC SHOP -->
-<div style="flex:1 1 100%;min-width:100%;width:100%;display:block;padding:12px;box-sizing:border-box;order:99">
-  <div style="display:flex;gap:8px;margin-bottom:8px">
-    <a href="vtc-shop.html" style="flex:1;background:#ee4d2d;color:#fff;font-weight:900;text-align:center;padding:14px 6px;border-radius:12px;text-decoration:none;font-size:14px">🛒 VTC SHOP - COD</a>
-    <a href="vtc-shop.html" style="flex:1;background:#fff;color:#ee4d2d;border:1px solid #ee4d2d;text-align:center;padding:14px 6px;border-radius:12px;text-decoration:none;font-weight:900;font-size:14px">🏪 Jualan</a>
-  </div>
-  <div style="display:flex;gap:8px">
-    <a href="vtc-shop.html" style="flex:1;background:#1e293b;color:#fff;text-align:center;padding:12px 6px;border-radius:12px;text-decoration:none;font-size:12px">📦 Lacak Resi JNE / J&T</a>
-    <a href="vtc-shop.html" style="flex:1;background:#1e293b;color:#fff;text-align:center;padding:12px 6px;border-radius:12px;text-decoration:none;font-size:12px">↩ Retur Barang</a>
-  </div>
-</div>
-<!-- END VTC SHOP -->
-</body></html>
+function checkoutCOD(){
+  if(!cart.length) return toast('Keranjang kosong ❌');
+  let nama=document.getElementById('namaPembeli').value.trim();
+  let alamat=document.getElementById('alamatPembeli').value.trim();
+  if(!nama||!alamat) return toast('Isi Nama & Alamat dulu ❌');
+  let kurir=document.getElementById('kurir').value;
+  let total=cart.reduce((a,b)=>a+b.harga,0);
+  let resi='VTC'+Math.floor(100000+Math.random()*900000);
+  orders.push({items:cart.map(c=>c.nama).join(', '),total,kurir,resi,status:'OTW - Kurir Jalan',nama,alamat,tanggal:new Date().toLocaleString('id-ID')});
+  cart=[];saveAll();updCart();renderHome();
+  toast('Checkout COD Berhasil 🎉 Resi: '+resi);
+  document.getElementById('rResi').value=resi;
+  pg('home');
+  setTimeout(()=>{if(confirm('Pesanan COD Berhasil! Resi '+resi+'\nMau Lacak Resi sekarang?')){pg('lacak');isiResi(resi)}},800);
+}
+// ===== JUALAN =====
+function tambahProduk(){
+  let n=document.getElementById('pNama').value.trim();
+  let h=parseInt(document.getElementById('pHarga').value);
+  if(!n||!h) return toast('Isi Nama & Harga Produk ❌');
+  products.push({nama:n,harga:h,kat:document.getElementById('pKategori').value,emoji:document.getElementById('pEmoji').value});
+  saveAll();renderSeller();renderProd();toast('Produk '+n+' Berhasil Ditambah ✅ Langsung Muncul di Shop!');
+  document.getElementById('pNama').value='';document.getElementById('pHarga').value='';
+}
+function renderSeller(){
+  document.getElementById('saldo').innerText=saldo.toLocaleString('id-ID');
+  document.getElementById('myProd').innerHTML=products.map((p,i)=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #334155"><span>${p.emoji} ${p.nama} - Rp${p.harga.toLocaleString('id-ID')}</span><b onclick="products.splice(${i},1);saveAll();renderSeller();renderProd()" style="color:red;cursor:pointer">Hapus</b></span></div>`).join('');
+}
+function tarikSaldo(){
+  if(saldo<=0) return toast('Saldo kosong ❌');
+  toast('Tarik Saldo Rp'+saldo.toLocaleString('id-ID')+' Berhasil! Cair 1x24 Jam 💸');
+  saldo=0;saveAll();renderSeller();
+}
+// ===== LACAK RESI =====
+function isiResi(r){document.getElementById('resiInput').value=r; lacakResi()}
+function pakaiResiTerakhir(){if(!orders.length) return toast('Belum ada pesanan ❌'); isiResi(orders[orders.length-1].resi)}
+function lacakResi(){
+  let r=document.getElementById('resiInput').value.trim().toUpperCase();
+  if(!r) return toast('Isi No Resi dulu ❌');
+  document.getElementById('hasilLacak').classList.remove('hidden');
+  document.getElementById('resiNo').innerText='Resi: '+r;
+  document.getElementById('rResi').value=r;
+  let kurir=r.startsWith('JNE')?'JNE Express':r.startsWith('JT')?'J&T Express':'VTC Kurir COD';
+  document.getElementById('resiKurir').innerText=kurir+' • Palembang → Alamat Kamu';
+  let isSampai=r.includes('987')||r.includes('JT');
+  document.getElementById('resiStatus').innerText=isSampai?'SUDAH SAMPAI ✅':'OTW - DI PALEMBANG';
+  document.getElementById('resiTimeline').innerHTML=isSampai?
+  `✅ Paket Diterima - Hari Ini, 10:30<br>✅ Kurir Sampai di Alamat Kamu<br>✅ Paket Keluar dari Gudang Palembang<br>✅ Pesanan Diproses Seller`:
+  `📦 Pesanan Diproses Seller - Kemarin<br>🚚 Paket Keluar Gudang Palembang - Hari Ini 08:00<br>📍 Paket di Sortir Palembang - Saat Ini<br>⏳ Estimasi Sampai: Besok`;
+  toast('Resi '+r+' Ditemukan ✅');
+}
+// ===== RETUR =====
+function ajukanRetur(){
+  let resi=document.getElementById('rResi').value.trim();
+  let alasan=document.getElementById('rAlasan').value;
+  let ket=document.getElementById('rKet').value.trim();
+  let rek=document.getElementById('rRek').value.trim();
+  if(!resi||!ket||!rek) return toast('Lengkapi Resi, Alasan & Rekening ❌');
+  returs.push({resi,alasan,ket,rek,status:'Diproses - Menunggu Kurir Jemput',tanggal:new Date().toLocaleString('id-ID')});
+  saveAll();renderRetur();toast('Retur Diajukan ✅ Kurir akan jemput 1x24 Jam');
+  document.getElementById('rKet').value='';document.getElementById('rRek').value='';
+}
+function renderRetur(){
+  document.getElementById('listRetur').innerHTML=returs.length?returs.map(r=>`<div class="card"><b>Retur: ${r.resi}</b> <span class="tag">${r.status}</span><br>Alasan: ${r.alasan}<br>Keterangan: ${r.ket}<br>Refund ke: ${r.rek}<br><small>${r.tanggal}</small></div>`).join(''):`<div class="card">Belum ada pengajuan retur.</div>`;
+}
+// ===== LOGIN =====
+function showAfterLogin(user){
+  document.getElementById('userName').innerText='Halo '+(user.displayName||user.email||user.phoneNumber||'Bos Super')+'!';
+  document.getElementById('userEmail').innerText=user.email||user.phoneNumber||'Login Berhasil ✅';
+  pg('home');renderHome();
+}
+function loginDemo(){showAfterLogin({email:'demo@vtc.id'});toast('Mode Demo ✅ Semua tombol jalan!')}
+if(auth){auth.onAuthStateChanged((u)=>{if(u) showAfterLogin(u); else pg('login')})} else {pg('login')}
+async function loginGoogle(){if(!auth) return loginDemo(); try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());toast('Login Google Berhasil ✅')}catch(e){alert(e.message)}}
+async function kirimOTP(){let phone=document.getElementById('phoneInput').value.trim();if(!phone) return alert('Isi No HP dulu'); try{window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptcha-container',{size:'invisible'});confirmationResult=await auth.signInWithPhoneNumber(phone,window.recaptchaVerifier);document.getElementById('otpBox').classList.remove('hidden');alert('OTP dikirim ke SMS '+phone)}catch(e){alert('Gagal kirim OTP: '+e.message)}}
+async function verifikasiOTP(){try{await confirmationResult.confirm(document.getElementById('otpInput').value.trim());toast('OTP Berhasil ✅')}catch(e){alert('OTP Salah: '+e.message)}}
+async function loginEmail(){let e=document.getElementById('email').value.trim();let p=document.getElementById('password').value.trim();if(!e||!p) return alert('Isi Email & Password'); try{await auth.signInWithEmailAndPassword(e,p);toast('Login Berhasil ✅')}catch(err){if(err.code==='auth/user-not-found'){try{await auth.createUserWithEmailAndPassword(e,p);toast('Akun Baru Dibuat ✅')}catch(e2){alert(e2.message)}}else alert(err.message)}}
+function logout(){if(auth) auth.signOut().then(()=>{pg('login');toast('Logout Berhasil 👋')}); else {pg('login')}}
+renderProd();renderSeller();renderRetur();renderHome();
+setInterval(()=>{viewers+=Math.floor(Math.random()*8);let el=document.getElementById('viewer');if(el)el.innerText=(viewers/1000).toFixed(1)+'rb'},3000);
+</script>
+</body>
+</html>
