@@ -10,7 +10,7 @@
 *{box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
 body{margin:0;background:#020617;color:#fff;display:flex;justify-content:center}
 .phone{width:100%;max-width:400px;min-height:100vh;background:#0f172a;padding:18px;padding-bottom:90px}
-.logo{text-align:center;color:#22d3ee;font-size:28px;font-weight:900;letter-spacing:1px}
+.logo{text-align:center;color:#22d3ee;font-size:28px;font-weight:900}
 h1{text-align:center;font-size:22px;margin:16px 0 16px}
 .btn{display:flex;align-items:center;gap:10px;justify-content:center;width:100%;padding:14px;border-radius:20px;border:1px solid #22d3ee;background:transparent;color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:10px}
 .btn b{flex:1;text-align:center}
@@ -38,22 +38,20 @@ input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px soli
 .pass-wrap input{margin-top:0;padding-right:48px}
 .eye{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:#334155;border:none;color:#fff;width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center}
 .link-email{text-align:center;color:#94a3b8;font-size:13px;margin-top:18px;cursor:pointer}
+.footer{text-align:center;color:#64748b;font-size:11px;margin-top:20px;line-height:1.8}
+.footer a{color:#22d3ee;text-decoration:none}
+.priv h2{font-size:16px;margin-top:16px;color:#22d3ee}
+.priv p,.priv li{font-size:13px;line-height:1.7;color:#cbd5e1}
 </style>
 </head>
 <body>
 <div class="phone">
 <div class="logo">VTC SHOP AI 3.0</div>
 
-<!-- LOGIN BERSIH -->
 <div id="page-login">
 <h1>Login / Daftar</h1>
-
-<!-- 1. GOOGLE - PALING GEDE -->
 <button class="btn" style="padding:16px" onclick="loginGoogle()"><svg width="22" height="22" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 18.9 12 24 12c3.1 0 5.9 1.2 8 3.1l5.7-5.7C34.5 6.1 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2.1 13.9-5.5l-6.4-5.4C29.2 34.9 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.7 39.7 16.3 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.1-4 5.4l6.4 5.4C41.6 35.3 44 30.1 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg><b>Login dengan Google</b></button>
-
-<!-- 2. WHATSAPP - KEDUA -->
 <button class="btn wa" style="padding:16px" onclick="toggleWA()">💬 Login dengan WhatsApp</button>
-
 <div id="waBox" class="hidden">
 <input id="waInput" type="tel" placeholder="No WA kamu, contoh 0812..." autocomplete="off" value="">
 <button class="btn wa" onclick="kirimWA()">Kirim Kode ke WhatsApp</button>
@@ -62,30 +60,28 @@ input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px soli
 <button class="btn wa" onclick="verifikasiWA()">Verifikasi & Masuk</button>
 </div>
 </div>
-
-<!-- 3. EMAIL - DISEMBUNYIIN, DIKLIK BARU MUNCUL -->
 <div class="link-email" onclick="toggleEmail()">atau login dengan email ▼</div>
 <div id="emailBox" class="hidden">
 <input id="email" type="email" placeholder="Email kamu" autocomplete="off" value="">
-<div class="pass-wrap">
-<input id="password" type="password" placeholder="Password kamu" autocomplete="new-password" value="">
-<button type="button" class="eye" id="eyeBtn" onclick="togglePass()">👁️</button>
-</div>
+<div class="pass-wrap"><input id="password" type="password" placeholder="Password kamu" autocomplete="new-password" value=""><button type="button" class="eye" id="eyeBtn" onclick="togglePass()">👁️</button></div>
 <div style="display:flex;justify-content:flex-end;font-size:12px;margin-top:6px"><span onclick="lupaPass()" style="color:#22d3ee;cursor:pointer">Lupa Password?</span></div>
 <button class="btn primary" onclick="loginEmail()">Login / Daftar Email</button>
 </div>
+<div class="footer">Dengan login, kamu menyetujui<br><a href="#" onclick="pg('priv');return false">Kebijakan Privasi</a> • <a href="#" onclick="pg('priv');return false">Syarat & Ketentuan</a><br>VTC SHOP • Indonesia</div>
 </div>
 
 <div id="page-home" class="hidden">
 <div class="top-user"><div><b id="userName">Halo!</b><br><small id="userEmail">Login Berhasil ✅</small></div><button class="btn red" style="width:auto;padding:8px 12px;margin:0" onclick="logout()">Logout</button></div>
-<div class="card" style="background:#009688;border:none">🔴 <b>LIVE - Kak Sarah • FLASH SALE</b><br><span id="viewer">0</span> penonton<br><button class="btn" style="background:#fff;color:#009688;margin-top:8px" onclick="pg('shop')">▶ Tonton Live & Belanja</button></div>
+<div class="card" style="background:#009688;border:none">🔴 <b>LIVE - FLASH SALE</b><br><span id="viewer">0</span> penonton<br><button class="btn" style="background:#fff;color:#009688;margin-top:8px" onclick="pg('shop')">▶ Tonton Live & Belanja</button></div>
 <div class="grid2" style="margin-top:10px"><button class="btn orange" onclick="pg('shop')">🛒 VTC SHOP - COD</button><button class="btn" style="background:#fff;color:#ff5a00" onclick="pg('jual')">🏪 Jualan</button></div>
 <div class="grid2" style="margin-top:8px"><button class="btn" onclick="pg('lacak')">📦 Lacak Resi JNE / J&T</button><button class="btn" onclick="pg('retur')">↩️ Retur Barang</button></div>
 <div class="card">📦 <b>Pesanan Terakhir:</b><br><div id="lastOrder">Belum ada pesanan.</div></div>
+<div class="footer"><a href="#" onclick="pg('priv');return false">Kebijakan Privasi</a> • <a href="#" onclick="hapusAkun();return false" style="color:#ff3b3b">Hapus Akun</a></div>
 </div>
 
 <div id="page-shop" class="hidden">
 <h1>🛒 VTC SHOP - COD</h1>
+<div class="card">🚚 Kirim ke Seluruh Indonesia • COD Bayar di Tempat</div>
 <div id="prodList" class="grid2" style="margin-top:10px"></div>
 <div id="emptyShop" class="card empty">Belum ada produk.<br>Seller belum tambah produk.</div>
 <div class="card">🛒 <b>Keranjang (<span id="cc">0</span>)</b><div id="cartList">Kosong</div><p id="ctotal"></p>
@@ -124,6 +120,28 @@ input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px soli
 <div id="listRetur"></div>
 </div>
 
+<div id="page-priv" class="hidden">
+<h1>📄 Kebijakan Privasi</h1>
+<div class="card priv">
+<p><b>Terakhir diperbarui: 19 November 2026</b><br>VTC SHOP AI 3.0 - Indonesia<br>Kontak: vtcshop.id@gmail.com</p>
+<h2>1. Data Yang Kami Kumpulkan</h2>
+<p>Kami mengumpulkan data yang kamu berikan saat login: nama, email, nomor WhatsApp / HP, alamat pengiriman, dan riwayat pesanan. Data ini digunakan untuk memproses pesanan COD, lacak resi, dan retur.</p>
+<h2>2. Bagaimana Data Digunakan</h2>
+<ul><li>Memproses pesanan COD dan pengiriman JNE / J&T ke seluruh Indonesia</li><li>Verifikasi login via Google, WhatsApp, dan Email</li><li>Menghubungi kamu terkait pesanan dan retur</li><li>Meningkatkan layanan VTC SHOP</li></ul>
+<h2>3. Pembagian Data</h2>
+<p>Data alamat pengiriman hanya dibagikan ke kurir (JNE / J&T / Kurir VTC) untuk keperluan pengiriman. Kami tidak menjual data kamu ke pihak lain.</p>
+<h2>4. Keamanan Data</h2>
+<p>Password kamu disimpan terenkripsi di Firebase (Google). Kami tidak bisa melihat password kamu. Kode OTP WhatsApp jangan dibagikan ke siapa pun.</p>
+<h2>5. COD & Retur</h2>
+<p>Pembayaran COD dilakukan di tempat saat paket diterima di seluruh Indonesia. Retur dapat diajukan maksimal 7 hari setelah paket diterima dengan alasan barang rusak / salah / tidak sesuai. Refund dikirim ke rekening yang kamu isi saat pengajuan retur.</p>
+<h2>6. Hapus Akun</h2>
+<p>Kamu dapat menghapus akun kapan saja dari menu Home > Hapus Akun. Setelah dihapus, data akun dan riwayat pesanan kamu akan dihapus dari perangkat. Hubungi vtcshop.id@gmail.com jika butuh bantuan penghapusan data di server.</p>
+<h2>7. Perubahan Kebijakan</h2>
+<p>Kebijakan ini dapat diperbarui sewaktu-waktu. Perubahan akan diumumkan di halaman ini.</p>
+<button class="btn primary" onclick="pg('login')">← Kembali ke Login</button>
+</div>
+</div>
+
 <div class="nav hidden" id="navBar">
 <div id="n-home" class="on" onclick="pg('home')">🏠<br>Home</div>
 <div id="n-shop" onclick="pg('shop')">🛒<br>Shop COD <span class="badge" id="badge">0</span></div>
@@ -149,7 +167,7 @@ let returs = JSON.parse(localStorage.getItem('vtc_returs')||'[]');
 let saldo = parseInt(localStorage.getItem('vtc_saldo')||'0');
 function saveAll(){localStorage.setItem('vtc_products',JSON.stringify(products));localStorage.setItem('vtc_cart',JSON.stringify(cart));localStorage.setItem('vtc_orders',JSON.stringify(orders));localStorage.setItem('vtc_returs',JSON.stringify(returs));localStorage.setItem('vtc_saldo',saldo)}
 function toast(m){let t=document.getElementById('toast');t.innerText=m;t.style.display='block';setTimeout(()=>t.style.display='none',2800)}
-function pg(p){let pages={home:'page-home',shop:'page-shop',jual:'page-jual',lacak:'page-lacak',retur:'page-retur',login:'page-login'};Object.keys(pages).forEach(k=>document.getElementById(pages[k]).classList.toggle('hidden',k!==p));['home','shop','jual','lacak','retur'].forEach(x=>{let n=document.getElementById('n-'+x);if(n)n.classList.toggle('on',x===p)});if(p!=='login')document.getElementById('navBar').classList.remove('hidden');else document.getElementById('navBar').classList.add('hidden');window.scrollTo(0,0);if(p==='shop')renderProd();if(p==='jual')renderSeller();if(p==='retur')renderRetur();if(p==='home')renderHome()}
+function pg(p){let pages={home:'page-home',shop:'page-shop',jual:'page-jual',lacak:'page-lacak',retur:'page-retur',login:'page-login',priv:'page-priv'};Object.keys(pages).forEach(k=>document.getElementById(pages[k]).classList.toggle('hidden',k!==p));['home','shop','jual','lacak','retur'].forEach(x=>{let n=document.getElementById('n-'+x);if(n)n.classList.toggle('on',x===p)});if(p==='priv'||p==='login')document.getElementById('navBar').classList.add('hidden');else document.getElementById('navBar').classList.remove('hidden');window.scrollTo(0,0);if(p==='shop')renderProd();if(p==='jual')renderSeller();if(p==='retur')renderRetur();if(p==='home')renderHome()}
 function renderHome(){if(orders.length){let o=orders[orders.length-1];document.getElementById('lastOrder').innerHTML=`${o.items} • Rp${o.total.toLocaleString('id-ID')} • Resi: <b>${o.resi}</b>`} else {document.getElementById('lastOrder').innerText='Belum ada pesanan.'}}
 function renderProd(){document.getElementById('prodList').innerHTML=products.map((p,i)=>`<div class="prod"><div class="img">${p.emoji}</div><b>${p.nama}</b><p>Rp${p.harga.toLocaleString('id-ID')}</p><button class="add" onclick="addCart(${i})">+ Keranjang</button></div>`).join('');document.getElementById('emptyShop').classList.toggle('hidden', products.length>0);updCart();}
 function addCart(idx){cart.push(products[idx]);saveAll();updCart();toast(products[idx].nama+' masuk Keranjang 🛒')}
@@ -160,28 +178,15 @@ function renderSeller(){let omset=orders.reduce((a,b)=>a+b.total,0);document.get
 function tarikSaldo(){if(saldo<=0) return toast('Saldo masih 0 ❌');toast('Tarik Saldo Rp'+saldo.toLocaleString('id-ID')+' Berhasil!');saldo=0;saveAll();renderSeller()}
 function isiResi(r){document.getElementById('resiInput').value=r;lacakResi()}
 function pakaiResiTerakhir(){if(!orders.length) return toast('Belum ada pesanan ❌');isiResi(orders[orders.length-1].resi)}
-function lacakResi(){let r=document.getElementById('resiInput').value.trim().toUpperCase();if(!r) return toast('Isi No Resi dulu ❌');document.getElementById('hasilLacak').classList.remove('hidden');document.getElementById('resiNo').innerText='Resi: '+r;document.getElementById('rResi').value=r;let found=orders.find(o=>o.resi===r);let kurir=found?found.kurir:(r.startsWith('JNE')?'JNE':r.startsWith('JT')?'J&T':'VTC Kurir COD');document.getElementById('resiKurir').innerText=kurir;document.getElementById('resiStatus').innerText='OTW - DI PALEMBANG';document.getElementById('resiTimeline').innerHTML=`📦 Pesanan Diproses<br>🚚 Paket Keluar Gudang Palembang<br>📍 Paket di Sortir Palembang<br>⏳ Estimasi Sampai: Besok`;toast('Resi '+r+' Ditemukan ✅')}
+function lacakResi(){let r=document.getElementById('resiInput').value.trim().toUpperCase();if(!r) return toast('Isi No Resi dulu ❌');document.getElementById('hasilLacak').classList.remove('hidden');document.getElementById('resiNo').innerText='Resi: '+r;document.getElementById('rResi').value=r;let found=orders.find(o=>o.resi===r);let kurir=found?found.kurir:(r.startsWith('JNE')?'JNE':r.startsWith('JT')?'J&T':'VTC Kurir COD');document.getElementById('resiKurir').innerText=kurir;document.getElementById('resiStatus').innerText='OTW - DALAM PERJALANAN';document.getElementById('resiTimeline').innerHTML=`📦 Pesanan Diproses<br>🚚 Paket Keluar Gudang<br>📍 Paket di Sortir Gudang<br>⏳ Estimasi Sampai: 2-5 Hari Kerja`;toast('Resi '+r+' Ditemukan ✅')}
 function ajukanRetur(){let resi=document.getElementById('rResi').value.trim();let alasan=document.getElementById('rAlasan').value;let ket=document.getElementById('rKet').value.trim();let rek=document.getElementById('rRek').value.trim();if(!resi||!ket||!rek) return toast('Lengkapi Resi, Alasan & Rekening ❌');returs.push({resi,alasan,ket,rek,status:'Diproses'});saveAll();renderRetur();toast('Retur Diajukan ✅');document.getElementById('rKet').value='';document.getElementById('rRek').value=''}
 function renderRetur(){document.getElementById('listRetur').innerHTML=returs.length?returs.map(r=>`<div class="card"><b>Retur: ${r.resi}</b> <span class="tag">${r.status}</span><br>${r.alasan}<br>${r.ket}<br>Refund ke: ${r.rek}</div>`).join(''):`<div class="card">Belum ada pengajuan retur.</div>`}
+function hapusAkun(){if(!confirm('Hapus akun kamu permanen? Semua data di HP ini akan dihapus.')) return; localStorage.clear(); if(auth) auth.currentUser?.delete().catch(()=>{}); if(auth) auth.signOut(); pg('login'); toast('Akun Dihapus ✅')}
 function showAfterLogin(user){document.getElementById('userName').innerText='Halo '+(user.displayName||user.email||user.phoneNumber||'Bos')+'!';document.getElementById('userEmail').innerText=user.email||user.phoneNumber||'Login Berhasil ✅';pg('home');renderHome()}
 if(auth){auth.onAuthStateChanged((u)=>{if(u) showAfterLogin(u); else pg('login')})} else {pg('login')}
 async function loginGoogle(){if(!auth) return alert('Firebase belum disetting - isi API Key dulu'); try{await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());toast('Login Google Berhasil ✅')}catch(e){alert(e.message)}}
-function kirimWA(){
-  let wa=document.getElementById('waInput').value.trim().replace(/\D/g,'');
-  if(!wa || wa.length<9) return alert('Isi No WA kamu dulu');
-  if(wa.startsWith('0')) wa='62'+wa.substring(1);
-  waKode=Math.floor(1000+Math.random()*9000).toString();
-  document.getElementById('waOtpBox').classList.remove('hidden');
-  let msg=encodeURIComponent('Kode OTP VTC SHOP kamu: '+waKode+' - Jangan kasih ke siapa pun!');
-  window.open('https://wa.me/'+wa+'?text='+msg,'_blank');
-  toast('Kode dikirim ke WA kamu 💬');
-}
-function verifikasiWA(){
-  let inp=document.getElementById('waOtpInput').value.trim();
-  if(!inp) return alert('Isi kode OTP WA kamu');
-  if(inp===waKode){let wa=document.getElementById('waInput').value.trim();showAfterLogin({phoneNumber:'WA '+wa});localStorage.setItem('vtc_wa_login', wa);toast('Login WhatsApp Berhasil ✅')}
-  else alert('Kode WA Salah ❌');
-}
+function kirimWA(){let wa=document.getElementById('waInput').value.trim().replace(/\D/g,'');if(!wa || wa.length<9) return alert('Isi No WA kamu dulu'); if(wa.startsWith('0')) wa='62'+wa.substring(1); waKode=Math.floor(1000+Math.random()*9000).toString(); document.getElementById('waOtpBox').classList.remove('hidden'); let msg=encodeURIComponent('Kode OTP VTC SHOP kamu: '+waKode+' - Jangan kasih ke siapa pun!'); window.open('https://wa.me/'+wa+'?text='+msg,'_blank'); toast('Kode dikirim ke WA kamu 💬')}
+function verifikasiWA(){let inp=document.getElementById('waOtpInput').value.trim();if(!inp) return alert('Isi kode OTP WA kamu'); if(inp===waKode){let wa=document.getElementById('waInput').value.trim();showAfterLogin({phoneNumber:'WA '+wa});localStorage.setItem('vtc_wa_login', wa);toast('Login WhatsApp Berhasil ✅')} else alert('Kode WA Salah ❌')}
 async function loginEmail(){let e=document.getElementById('email').value.trim();let p=document.getElementById('password').value.trim();if(!e||!p) return alert('Isi Email & Password kamu'); if(p.length<6) return alert('Password minimal 6 huruf'); try{await auth.signInWithEmailAndPassword(e,p);toast('Login Berhasil ✅')}catch(err){if(err.code==='auth/user-not-found'||err.code==='auth/invalid-credential'){try{await auth.createUserWithEmailAndPassword(e,p);toast('Akun Baru Berhasil Dibuat ✅')}catch(e2){alert(e2.message)}}else alert(err.message)}}
 function logout(){localStorage.removeItem('vtc_wa_login');if(auth) auth.signOut().then(()=>{pg('login');toast('Logout Berhasil 👋')}); else {pg('login')}}
 let waSaved=localStorage.getItem('vtc_wa_login');
