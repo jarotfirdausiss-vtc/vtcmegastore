@@ -1,53 +1,114 @@
-<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VTC SHOP AI 3.0 - FINAL</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff}.app{max-width:430px;margin:0 auto;min-height:100vh;background:#050A0E;padding-bottom:95px}.head{padding:14px 16px;display:flex;justify-content:space-between}.head h1{color:#00E5FF;font-size:22px;text-shadow:0 0 12px #00E5FF}.card{background:#0E171E;border:1px solid rgba(0,229,255,.25);border-radius:14px;padding:14px;margin:10px 14px}.btn{background:#00E5FF;color:#000;border:0;padding:12px;border-radius:10px;font-weight:900;width:100%;margin-top:8px}.btnP{background:#FF2E9A;color:#fff;border:0;padding:12px;border-radius:10px;font-weight:900;width:100%;margin-top:8px}input{width:100%;padding:12px;border-radius:10px;border:1px solid #00E5FF;background:#0A1218;color:#fff;margin-top:8px}.n{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:#0A1218;display:flex;padding:10px 0 14px;border-radius:18px 18px 0 0;border-top:1px solid #1A2A33;z-index:99}.n button{flex:1;border:0;background:none;color:#8A9BA8;font-size:11px}.n button.on{color:#00E5FF}.n span{font-size:21px;display:block}.badge{background:#FFD700;color:#000;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:900}.grid{display:flex;gap:10px;overflow-x:auto;margin-top:10px}.pCard{min-width:150px;background:#0E171E;border:1px solid #222;border-radius:14px;overflow:hidden}.pCard img{width:100%;height:130px;object-fit:cover}.pCard .p{padding:10px;text-align:center}
-</style></head><body><div class="app">
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Beneran - VTC SHOP AI 3.0</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<style>
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{margin:0;background:#020617;color:#fff;display:flex;justify-content:center;padding:20px 12px}
+.phone{width:100%;max-width:380px;background:#071022;border:1px solid #164e63;border-radius:28px;padding:20px}
+.logo{text-align:center;color:#22d3ee;font-weight:900;font-size:22px}
+h1{text-align:center;font-size:21px;margin:14px 0 4px}
+.sub{text-align:center;color:#94a3b8;font-size:13px;margin-bottom:16px}
+.btn{display:flex;align-items:center;gap:12px;width:100%;border:1.5px solid #22d3ee;border-radius:999px;padding:13px 16px;margin-bottom:10px;background:#0b1a2e;color:#fff;font-size:14px;cursor:pointer}
+.btn b{flex:1}
+.primary{background:#22d3ee;color:#000;border:none;font-weight:900;justify-content:center}
+input{width:100%;padding:13px;border-radius:12px;border:1px solid #334155;background:#0f172a;color:#fff;margin-bottom:10px}
+.box{background:#0f172a;border:1px solid #164e63;border-radius:16px;padding:14px;text-align:center;margin-bottom:12px}
+.note{text-align:center;font-size:11px;color:#94a3b8;line-height:1.6}
+a{color:#22d3ee}
+</style></head>
+<body>
+<div class="phone">
+<div class="logo">VTC SHOP AI 3.0</div>
+<div id="loading"><h1>Memuat...</h1><p class="sub">Cek akun di server...</p></div>
 
-<!-- LOGIN OTP - AKUN MASING-MASING -->
-<div id="loginPage" style="padding:28px 16px;text-align:center"><h1 style="color:#00E5FF;font-size:28px">✨ VTC SHOP AI 3.0</h1><p style="color:#999;font-size:13px">COD Garansi • Live AI • Saldo VTC • Nabung • Affiliate</p><div style="text-align:left;margin-top:16px"><label style="color:#00E5FF;font-size:13px;font-weight:800">Nomor HP - Akun Kamu Sendiri</label><input id="hpIn" placeholder="+62 812 xxx"><label style="color:#00E5FF;font-size:13px;font-weight:800;display:block;margin-top:10px">Mau Jadi Apa?</label><select id="roleIn" style="width:100%;padding:12px;border-radius:10px;background:#0A1218;color:#fff;border:1px solid #00E5FF;margin-top:8px"><option value="pembeli">🛒 PEMBELI</option><option value="seller">🏪 SELLER</option></select><button class="btn" onclick="kirimOTP()">📩 KIRIM OTP</button><div id="otpBox" style="display:none"><div style="background:#1A2A33;padding:10px;border-radius:10px;margin-top:10px;text-align:center">OTP Demo: <b id="otpShow" style="color:#FFD700;font-size:18px">000000</b></div><input id="otpIn" placeholder="Masukkan 6 digit OTP"><button class="btnP" onclick="masuk()">✅ MASUK KE AKUN SAYA</button></div></div></div>
+<div id="sudahLogin" style="display:none">
+<h1>Selamat Datang 👋</h1><p class="sub">Login beneran via Firebase</p>
+<div class="box"><b id="namaUser" style="font-size:18px;color:#22d3ee"></b><br><span id="hpUser" style="color:#94a3b8;font-size:13px"></span><br><span style="font-size:12px">✅ Akun tersimpan di Server Google<br>Buka di HP manapun tetap sama</span></div>
+<a class="btn primary" href="index.html" style="text-decoration:none;justify-content:center">Masuk ke Beranda →</a>
+<button class="btn" onclick="logout()" style="justify-content:center">🚪 Logout</button>
+</div>
 
-<div id="mainApp" style="display:none">
-<div class="head"><h1 id="logoVTC" onclick="klikLogo()">✨ VTC SHOP AI 3.0</h1><span>🔍 🔔</span></div>
-<div style="padding:0 16px"><b style="font-size:20px" id="haloTxt">Halo 👋</b><p style="color:#00E5FF;font-size:12px" id="infoAkun">-</p></div>
+<div id="belumLogin" style="display:none">
+<h1>Login / Daftar</h1><p class="sub">1 Akun untuk semua HP • Ratusan Juta User Bisa Join</p>
+<button class="btn" onclick="loginGoogle()"><span>🔍</span><b>Login dengan Google</b></button>
+<div style="text-align:center;color:#64748b;font-size:12px;margin:12px 0">— LOGIN NO HP (OTP BENERAN) —</div>
+<input id="hp" placeholder="No HP +62... contoh: +6281234567890">
+<div id="recaptcha"></div>
+<button class="btn primary" onclick="kirimOTP()">Kirim OTP ke SMS</button>
+<div id="otpBox" style="display:none">
+<input id="otp" placeholder="Masukkan 6 digit OTP dari SMS">
+<button class="btn primary" onclick="verifikasiOTP()">Verifikasi OTP</button>
+</div>
+<div style="text-align:center;color:#64748b;font-size:12px;margin:12px 0">— LOGIN EMAIL —</div>
+<input id="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Password">
+<button class="btn primary" onclick="loginEmail()">Login / Daftar Email</button>
+<p class="note">Akun disimpan di Firebase Server.<br>Beda HP = Tetap akun yang sama kalau login yang sama.<br>Seller & Konsumen bisa transaksi bareng.</p>
+</div>
+</div>
 
-<!-- 1. SALDO VTC JADI DOMPET - UANG MUTER DI DALAM -->
-<div class="card" style="border:1px solid #FFD700"><b>💰 SALDO VTC SAYA - DOMPET</b><div style="display:flex;gap:8px;margin-top:10px"><div style="flex:1;background:#1A2A33;border-radius:10px;padding:10px;text-align:center"><b style="color:#7ED957" id="saldoBisa">Rp 0</b><br><span style="font-size:11px">Bisa Dipakai Belanja</span></div><div style="flex:1;background:#3A2A00;border-radius:10px;padding:10px;text-align:center;border:1px solid #FFD700"><b style="color:#FFD700" id="saldoTahan">Rp 299.000</b><br><span style="font-size:11px">⏳ Ditahan VTC</span></div></div><p style="font-size:11px;color:#999;margin-top:8px">Uang ditahan VTC sampai 3 pihak deal. Kalau udah deal, masuk ke saldo bisa dipakai belanja lagi di VTC.</p><button class="btn" onclick="topup()">➕ TOP UP SALDO VTC</button></div>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",
+  authDomain: "vtc-mega-shop-resmi.firebaseapp.com",
+  projectId: "vtc-mega-shop-resmi",
+  storageBucket: "vtc-mega-shop-resmi.firebasestorage.app",
+  messagingSenderId: "959376548779",
+  appId: "1:959376548779:web:45ceae80758eefab2a68ee",
+  measurementId: "G-TDCL3505F2"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+let confirmationResult = null;
 
-<!-- 2. COD GARANSI CEK DULU -->
-<div class="card" style="border:1px solid #00E5FF"><b>🛡️ COD GARANSI - CEK DULU DI DEPAN KURIR</b><p style="font-size:12px;color:#ccc;margin-top:6px">Buka paket 2 menit di depan kurir. Kalau salah / rusak, retur di tempat, uang balik. Gak ada tipu-tipu!</p><div style="background:#1A2A33;border-radius:10px;padding:10px;margin-top:8px"><b>TWS Earbuds - Rp 299.000</b><p style="font-size:12px;color:#FFD700">⏳ UANG DITAHAN VTC • Kurir di jalan</p><p style="font-size:11px;color:#999">Seller ✅ | Kurir ✅ | Kamu: Belum Cek</p><div style="display:flex;gap:8px;margin-top:8px"><button style="flex:1;background:#00E5FF;border:0;padding:10px;border-radius:8px;font-weight:900" onclick="terimaCek()">✅ UDAH CEK - BAGUS! LEPAS UANG</button><button style="flex:1;background:#FF3B30;color:#fff;border:0;padding:10px;border-radius:8px;font-weight:900" onclick="returTempat()">❌ RUSAK - RETUR DI TEMPAT</button></div></div></div>
+auth.onAuthStateChanged(async (user)=>{
+  document.getElementById('loading').style.display='none';
+  if(user){
+    document.getElementById('sudahLogin').style.display='block';
+    document.getElementById('namaUser').innerText = user.displayName || user.email || user.phoneNumber || 'User VTC';
+    document.getElementById('hpUser').innerText = (user.phoneNumber||'')+' '+(user.email||'')+' • UID: '+user.uid.substring(0,8)+'...';
+    // Simpan user ke database biar seller & konsumen bisa ketemu
+    try{ await db.collection('users').doc(user.uid).set({nama:user.displayName||'',email:user.email||'',hp:user.phoneNumber||'',lastLogin:new Date().toISOString()}, {merge:true}); }catch(e){}
+  } else {
+    document.getElementById('belumLogin').style.display='block';
+  }
+});
 
-<!-- 3. LIVE AI - SELLER MALU NGOMONG DIBANTU AI -->
-<div class="card" style="border:1px solid #FF2E9A"><b>🔴 LIVE AI - SELLER GAK PERLU NGOMONG</b><p style="font-size:12px;color:#ccc;margin-top:6px">Upload foto, AI yang ngomongin di live. Seller tinggal duduk!</p><input id="liveTxt" placeholder="Nama produk yang mau dijual live..."><button class="btnP" onclick="liveAI()">🤖 MULAI LIVE AI - AI NGOMONG</button><p id="liveOut" style="color:#FFD700;font-size:13px;margin-top:8px">"Halo guys! Selamat datang di live!"</p></div>
-
-<!-- 4. PRODUK + LENCANA EMAS -->
-<div style="padding:0 14px"><b>— Toko Terpercaya <span class="badge">⭐ LENCANA EMAS VTC</span></b><div class="grid"><div class="pCard" onclick="beli('TWS Earbuds Pro',299000)"><img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400"><div class="p"><b>TWS Earbuds Pro</b><br><span class="badge">⭐ EMAS - 100x Jujur</span><div style="color:#00E5FF;font-weight:900">Rp299.000</div><span style="font-size:11px;color:#ccc">Toko Jaya • 4.9</span></div></div><div class="pCard" onclick="beli('Gamis Crinkle',185000)"><img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400"><div class="p"><b>Gamis Crinkle</b><br><span class="badge">⭐ EMAS</span><div style="color:#00E5FF;font-weight:900">Rp185.000</div><span style="font-size:11px;color:#ccc">HijabStyle • 4.8</span></div></div><div class="pCard" onclick="beli('Serum Niacinamide',120000)"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400"><div class="p"><b>Serum Niacinamide</b><br><span style="font-size:11px;color:#FFD700">⚠️ Baru - Belum Emas</span><div style="color:#00E5FF;font-weight:900">Rp120.000</div><span style="font-size:11px;color:#ccc">BeautyLab • 4.7</span></div></div></div></div>
-
-<!-- 5. NABUNG BARENG -->
-<div class="card"><b>🐷 NABUNG BARENG VTC - Rp 5.000 / Hari</b><p style="font-size:12px;color:#ccc">Nabung dikit-dikit, pas kekumpul langsung bisa beli HP / Gamis!</p><div style="background:#1A2A33;border-radius:10px;padding:10px;margin-top:8px"><b>Target: HP Samsung - Rp 2.000.000</b><div style="background:#000;border-radius:20px;height:12px;margin-top:6px;overflow:hidden"><div id="nabungBar" style="background:linear-gradient(90deg,#00E5FF,#FF2E9A);height:100%;width:35%"></div></div><p style="font-size:12px;margin-top:6px">Udah terkumpul: <b id="nabungTxt" style="color:#7ED957">Rp 700.000 (35%)</b></p></div><div style="display:flex;gap:8px;margin-top:8px"><button style="flex:1;background:#00E5FF;border:0;padding:10px;border-radius:8px;font-weight:900" onclick="nabung(5000)">+ Rp 5.000</button><button style="flex:1;background:#FFD700;border:0;padding:10px;border-radius:8px;font-weight:900" onclick="nabung(20000)">+ Rp 20.000</button></div></div>
-
-<!-- 6. AFFILIATE KAMPUNG -->
-<div class="card" style="border:1px solid #7ED957"><b>💸 AFFILIATE KAMPUNG - JADI SALES GRATIS</b><p style="font-size:12px;color:#ccc">Share link, ada yang beli, kamu dapat 5%! Gak perlu modal!</p><div style="background:#1A2A33;border-radius:10px;padding:10px;margin-top:8px;font-size:12px">Link Kamu: <b style="color:#00E5FF">vtc.id/<span id="linkAff">user123</span></b><br>Komisi Kamu Hari Ini: <b style="color:#7ED957" id="komisiAff">Rp 0</b></div><button class="btn" style="background:#7ED957" onclick="shareAff()">📤 SHARE LINK AFFILIATE SAYA</button></div>
-
-<!-- AKUN SAYA -->
-<div class="card" id="akunSayaCard"><b>👤 AKUN SAYA - MASING-MASING</b><div style="font-size:13px;line-height:2;margin-top:6px"><p>📱 HP: <b id="akunHp">-</b></p><p>👤 Peran: <b id="akunRole">-</b></p><p>🏪 Toko Saya: <b id="akunToko">-</b></p><p>💰 Saldo: <b id="akunSaldo">Rp 0</b></p><p>🐷 Nabung: <b id="akunNabung">Rp 700.000</b></p><p>💸 Komisi Affiliate: <b id="akunAff2">Rp 0</b></p></div><button class="btn" style="background:#FF3B30;color:#fff" onclick="logout()">🚪 LOGOUT AKUN INI</button><p style="font-size:11px;color:#666;margin-top:8px">Ini akun HP ini aja. HP lain beda akun. Admin & Robot disembunyiin, cuma Bos yang liat.</p></div>
-
-<!-- SELLER UPLOAD -->
-<div class="card" id="sellerCard" style="display:none"><b>🏪 TOKO SAYA - UPLOAD PRODUK</b><input id="namaP" placeholder="Nama Produk"><input id="hargaP" placeholder="Harga" type="number"><button class="btn" onclick="uploadP()">🚀 UPLOAD - TAYANG DI VTC</button><div id="listSeller"></div></div>
-
-</div></div><div class="n" id="bottomNav" style="display:none"><button class="on" onclick="nav(this,'beranda')"><span>🏠</span>Beranda</button><button onclick="nav(this,'live')"><span>📺</span>Live</button><button onclick="nav(this,'seller')"><span>🏪</span>Jadi Seller</button><button onclick="nav(this,'cart')"><span>🛒</span>Keranjang</button><button onclick="nav(this,'akun')"><span>👤</span>Akun Saya</button></div>
-<div id="toast" style="position:fixed;left:50%;bottom:95px;transform:translateX(-50%);background:#fff;color:#000;padding:10px 16px;border-radius:20px;font-weight:700;font-size:13px;display:none;z-index:999"></div>
-<script>let otp='',hp='',role='pembeli',cart=0,nabungVal=700000,komisi=0,klikLogoCount=0;
-function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2800)}
-function kirimOTP(){hp=document.getElementById('hpIn').value.trim();if(hp.length<9){toast('Isi HP dulu!');return}role=document.getElementById('roleIn').value;otp=String(Math.floor(100000+Math.random()*900000));document.getElementById('otpShow').innerText=otp;document.getElementById('otpBox').style.display='block';toast('📩 OTP ke '+hp+' : '+otp)}
-function masuk(){if(document.getElementById('otpIn').value!==otp){toast('❌ OTP salah! Yang bener: '+otp);return}document.getElementById('loginPage').style.display='none';document.getElementById('mainApp').style.display='block';document.getElementById('bottomNav').style.display='flex';updateAkun();toast('✅ Masuk! Akun '+hp+' - Akun kamu sendiri!')}
-function updateAkun(){document.getElementById('haloTxt').innerText='Halo, '+hp+' 👋';document.getElementById('infoAkun').innerText='Akun: '+hp+' • '+role.toUpperCase()+' • Akun HP ini saja';document.getElementById('akunHp').innerText=hp;document.getElementById('akunRole').innerText=role.toUpperCase();document.getElementById('akunToko').innerText=role==='seller'?'Toko '+hp+' Store ⭐ EMAS':'Belum Ada Toko - Klik Jadi Seller';document.getElementById('akunSaldo').innerText='Rp '+cart.toLocaleString('id-ID');document.getElementById('linkAff').innerText='user'+hp.slice(-4);document.getElementById('akunNabung').innerText='Rp '+nabungVal.toLocaleString('id-ID');document.getElementById('akunAff2').innerText='Rp '+komisi.toLocaleString('id-ID')}
-function logout(){document.getElementById('loginPage').style.display='block';document.getElementById('mainApp').style.display='none';document.getElementById('bottomNav').style.display='none';toast('Logout! HP lain login pake OTP-nya sendiri')}
-function beli(n,h){cart+=h;toast(n+' masuk keranjang! Uang ditahan VTC dulu sampai cek barang!');updateAkun()}
-function terimaCek(){toast('✅ Kamu udah cek, barang bagus! Uang Rp 299.000 dilepas ke seller! Komisi VTC 5% masuk!');document.getElementById('saldoTahan').innerText='Rp 0';document.getElementById('saldoBisa').innerText='Rp 299.000';if('speechSynthesis' in window){let u=new SpeechSynthesisUtterance('Terima kasih! Barang sudah dicek, uang sudah dilepas ke seller!');u.lang='id-ID';speechSynthesis.speak(u)}}
-function returTempat(){toast('🛑 RETUR DI TEMPAT! Uang ditahan VTC! Kurir bawa balik barang! Uang balik ke kamu!')}
-function liveAI(){let p=document.getElementById('liveTxt').value.trim()||'Produk Viral';let teks='Halo guys! Selamat datang di live VTC! Hari ini ada '+p+' diskon lima puluh persen! Cek keranjang kuning guys! Buruan sebelum kehabisan!';document.getElementById('liveOut').innerText='"'+teks+'"';if('speechSynthesis' in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(teks);u.lang='id-ID';speechSynthesis.speak(u)}toast('🤖 Live AI jalan! AI yang ngomong, kamu tinggal duduk!')}
-function topup(){let j=prompt('Top up berapa?','50000');if(j){toast('✅ Top up Rp '+Number(j).toLocaleString('id-ID')+' masuk ke Saldo VTC! Bisa dipakai belanja lagi!')}}
-function nabung(j){nabungVal+=j;let persen=Math.min(100,Math.round(nabungVal/2000000*100));document.getElementById('nabungBar').style.width=persen+'%';document.getElementById('nabungTxt').innerText='Rp '+nabungVal.toLocaleString('id-ID')+' ('+persen+'%)';toast('🐷 Nabung +Rp '+j.toLocaleString('id-ID')+'! Semangat, dikit lagi bisa beli HP!');updateAkun()}
-function shareAff(){komisi+=14950;document.getElementById('komisiAff').innerText='Rp '+komisi.toLocaleString('id-ID');toast('📤 Link affiliate kamu dishare! Ada yang beli, kamu dapat Rp 14.950!');updateAkun()}
-function uploadP(){let n=document.getElementById('namaP').value.trim();let h=document.getElementById('hargaP').value;if(!n){toast('Isi nama produk!');return}document.getElementById('listSeller').innerHTML='<div style="background:#1A2A33;padding:10px;border-radius:10px;margin-top:8px">📦 <b>'+n+'</b> - Rp '+Number(h||0).toLocaleString('id-ID')+' • ⭐ Tayang di Toko '+hp+'</div>'+document.getElementById('listSeller').innerHTML;toast('✅ Produk tayang!');document.getElementById('namaP').value='';document.getElementById('hargaP').value=''}
-function nav(el,t){document.querySelectorAll('.n button').forEach(b=>b.classList.remove('on'));el.classList.add('on');if(t==='seller'){document.getElementById('sellerCard').style.display='block';document.getElementById('sellerCard').scrollIntoView({behavior:'smooth'});toast('🏪 Jadi Seller! Upload produk di Toko Kamu!')}else if(t==='cart'){toast('🛒 Keranjang Akun '+hp+': Rp '+cart.toLocaleString('id-ID'))}else if(t==='live'){liveAI()}else if(t==='akun'){document.getElementById('akunSayaCard').scrollIntoView({behavior:'smooth'});updateAkun()}else{window.scrollTo(0,0)}}
-function klikLogo(){klikLogoCount++;if(klikLogoCount>=5){klikLogoCount=0;let k=prompt('🔐 KODE ADMIN - CUMA BOS:');if(k==='VTCBOS123'){alert('👑 SELAMAT DATANG BOS! Ini Web Admin Lu - Pantau 100 Juta Akun, Uang Ditahan, Asisten Robot, Blokir Seller Nakal. Di HP user gak ada ini!')}else{toast('❌ Bukan Bos!')}}}
-</script></body></html>
+async function loginGoogle(){
+  try{ const p = new firebase.auth.GoogleAuthProvider(); await auth.signInWithPopup(p); }
+  catch(e){ alert('Gagal Google: '+e.message); }
+}
+async function kirimOTP(){
+  let hp = document.getElementById('hp').value.trim();
+  if(!hp.startsWith('+')){ alert('Pakai format +62 ya! Contoh: +6281234567890'); return; }
+  try{
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha', {size:'invisible'});
+    confirmationResult = await auth.signInWithPhoneNumber(hp, window.recaptchaVerifier);
+    document.getElementById('otpBox').style.display='block';
+    alert('OTP beneran dikirim ke SMS '+hp+' ! Cek HP lu.');
+  }catch(e){ alert('Gagal kirim OTP: '+e.message+'\nPastikan Phone sudah di-Enable di Firebase & Domain sudah ditambah.'); }
+}
+async function verifikasiOTP(){
+  let kode = document.getElementById('otp').value;
+  try{ await confirmationResult.confirm(kode); alert('Berhasil Login HP!'); }
+  catch(e){ alert('OTP Salah: '+e.message); }
+}
+async function loginEmail(){
+  let e=document.getElementById('email').value, p=document.getElementById('pass').value;
+  if(!e||!p){ alert('Isi Email & Password!'); return; }
+  try{ await auth.signInWithEmailAndPassword(e,p); }
+  catch(err){
+    if(err.code==='auth/user-not-found' || err.code==='auth/invalid-credential'){
+      try{ await auth.createUserWithEmailAndPassword(e,p); alert('Akun baru dibuat! Selamat datang!'); }
+      catch(e2){ alert(e2.message); }
+    } else alert(err.message);
+  }
+}
+function logout(){ auth.signOut().then(()=>location.reload()); }
+</script>
+</body></html>
