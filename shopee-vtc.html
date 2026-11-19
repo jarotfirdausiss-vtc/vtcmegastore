@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VTC - Shopee Indonesia Versi VTC</title>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<style>*{box-sizing:border-box;font-family:sans-serif}body{background:#f5f5f5;color:#111;display:flex;justify-content:center}.p{width:100%;max-width:420px;background:#fff;min-height:100vh;padding-bottom:80px}.top{background:#ee4d2d;color:#fff;padding:14px;display:flex;gap:8px;align-items:center;position:sticky;top:0;z-index:10}.top input{flex:1;padding:9px;border-radius:6px;border:none}.card{background:#fff;border:1px solid #eee;border-radius:10px;padding:12px;margin:10px}.btn{background:#ee4d2d;color:#fff;font-weight:900;border:none;padding:12px;border-radius:8px;width:100%;cursor:pointer}.btn2{background:#fff;color:#ee4d2d;border:1px solid #ee4d2d;padding:10px;border-radius:8px;width:100%;cursor:pointer;margin-bottom:6px}input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid #ddd;margin-bottom:8px;background:#fff;color:#111}.tab{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:#fff;border-top:1px solid #eee;display:flex}.tab button{flex:1;padding:12px;border:none;background:#fff;cursor:pointer}.tab button.on{color:#ee4d2d;font-weight:900}.badge{background:#ee4d2d;color:#fff;font-size:11px;padding:3px 7px;border-radius:999px}.star{color:#ffb400}</style></head>
+<body><div class="p">
+<!-- HEADER SHOPEE -->
+<div class="top"><b>VTC</b><input id="cari" placeholder="Cari Bakso, Baju, HP..." oninput="loadProduk()"><span onclick="show('keranjang')">🛒<b id="jmlKeranjang">0</b></span></div>
+<p id="userInfo" style="text-align:center;font-size:12px;color:#666">Login dulu di <a href="login.html">login.html</a></p>
+
+<!-- 1. BERANDA -->
+<div id="beranda">
+<div style="background:#ffe9e3;padding:12px;margin:10px;border-radius:10px"><b>🔥 GRATIS ONGKIR • COD • JNE / J&T</b><br><span style="font-size:12px">Sama persis Shopee - Garansi 100% Uang Kembali</span></div>
+<div style="display:flex;gap:6px;padding:0 10px"><button class="btn2" onclick="filterKat('')">Semua</button><button class="btn2" onclick="filterKat('Makanan')">Makanan</button><button class="btn2" onclick="filterKat('Fashion')">Fashion</button><button class="btn2" onclick="filterKat('Elektronik')">Elektronik</button></div>
+<div id="listProduk">Memuat...</div>
+</div>
+
+<!-- 2. KERANJANG -->
+<div id="keranjang" style="display:none"><h3 style="padding:0 10px">🛒 Keranjang Saya</h3><div id="listKeranjang"></div><div style="padding:10px"><h3>Total: Rp <span id="totalKeranjang">0</span></h3><button class="btn" onclick="show('checkout')">Checkout →</button></div></div>
+
+<!-- 3. CHECKOUT -->
+<div id="checkout" style="display:none;padding:10px"><h3>Checkout - Kayak Shopee</h3>
+<input id="cNama" placeholder="Nama Penerima"><input id="cHp" placeholder="No HP"><textarea id="cAlamat" placeholder="Alamat Lengkap"></textarea>
+<label>Kota Tujuan (Ongkir Otomatis)</label><select id="cKota" onchange="hitungOngkir()"><option value="10000">Jakarta - Rp 10.000</option><option value="12000">Bandung - Rp 12.000</option><option value="15000">Surabaya - Rp 15.000</option><option value="18000">Medan - Rp 18.000</option><option value="20000">Makassar - Rp 20.000</option><option value="8000">Palembang - Rp 8.000</option></select>
+<label>Ekspedisi</label><select id="cEkspedisi"><option>JNE - REG</option><option>JNE - YES</option><option>J&T - EZ</option><option>SiCepat - REG</option><option>AnterAja</option><option>Pos Kilat</option></select>
+<label>Metode Bayar</label><select id="cMetode"><option>COD - Bayar di Tempat</option><option>QRIS - Scan QR (Otomatis)</option><option>Transfer Bank - BCA 1234567890 a/n VTC</option><option>Virtual Account - BRI</option><option>Indomaret / Alfamart</option></select>
+<div id="qrBox" style="display:none;background:#fff3cd;padding:12px;border-radius:10px;text-align:center"><b>Scan QRIS Ini:</b><br><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=VTC-PAY" style="width:120px"><br><span style="font-size:12px">Bayar sesuai total, upload bukti di bawah</span></div>
+<input id="cBukti" placeholder="Link Bukti Transfer / No Referensi (kalau QRIS/Transfer)">
+<p>Ongkir: Rp <b id="ongkirTxt">0</b> | Total Bayar: Rp <b id="totalBayar">0</b></p>
+<button class="btn" onclick="buatPesanan()">Buat Pesanan - Uang Masuk Rekening Bersama →</button>
+<p style="font-size:11px;color:#666;text-align:center">✅ Garansi Shopee: Uang ditahan Admin, baru cair ke Seller kalau barang sampai & kamu klik Terima.</p></div>
+
+<!-- 4. PESANAN -->
+<div id="pesanan" style="display:none;padding:10px"><h3>📦 Pesanan Saya</h3><input id="cekResi" placeholder="Lacak Resi JNE/J&T..."><button class="btn2" onclick="lacak()">Lacak Resi</button><div id="hasilLacak"></div><div id="listPesanan"></div></div>
+
+<!-- 5. JUALAN + VERIFIKASI -->
+<div id="jualan" style="display:none;padding:10px">
+<h3>🏪 Jualan - Verifikasi Seller</h3>
+<div style="background:#fff3cd;padding:10px;border-radius:10px;font-size:13px">Wajib Verifikasi kayak Shopee:<br>Upload KTP + No Rekening biar bisa jualan & cair dana.</div><br>
+<input id="vKtp" placeholder="NIK KTP (16 digit)"><input id="vRek" placeholder="No Rekening - ex: BCA 1234567890"><input id="vNamaRek" placeholder="Nama di Rekening">
+<button class="btn2" onclick="verifikasi()">✅ Verifikasi Seller Sekarang</button><p id="statusVerif" style="font-size:13px;color:green"></p>
+<hr><h3>+ Tambah Produk</h3>
+<input id="pNama" placeholder="Nama Produk"><input id="pHarga" type="number" placeholder="Harga"><input id="pStok" type="number" placeholder="Stok"><select id="pKat"><option>Makanan</option><option>Fashion</option><option>Elektronik</option><option>Lainnya</option></select><textarea id="pDesc" placeholder="Deskripsi"></textarea><label><input type="checkbox" id="pCod" checked> Bisa COD</label>
+<button class="btn" onclick="tambahProduk()">Upload Produk →</button><div id="myProduk"></div>
+</div>
+
+<!-- 6. AKUN / ADMIN -->
+<div id="akun" style="display:none;padding:10px"><h3>👤 Akun Saya</h3><div id="akunInfo"></div><button class="btn2" onclick="location.href='admin.html'">👑 Masuk Admin (Owner)</button><button class="btn2" onclick="location.href='login.html'">Login / Ganti Akun</button>
+<h3>💬 CS VTC</h3><input id="csPesan" placeholder="Tanya CS..."><button class="btn2" onclick="kirimCS()">Kirim ke CS</button><div id="csList"></div></div>
+
+</div>
+<div class="tab"><button id="tbBeranda" class="on" onclick="show('beranda')">🏠 Beranda</button><button onclick="show('keranjang')">🛒 Keranjang</button><button onclick="show('pesanan')">📦 Pesanan</button><button onclick="show('jualan')">🏪 Jualan</button><button onclick="show('akun')">👤 Akun</button></div>
+<script>
+const firebaseConfig={apiKey:"AIzaSyAxYlnHbtGtEbmOZB2GLp_1I-qrBeN7x4g",authDomain:"vtc-mega-shop-resmi.firebaseapp.com",projectId:"vtc-mega-shop-resmi",storageBucket:"vtc-mega-shop-resmi.firebasestorage.app",messagingSenderId:"959376548779",appId:"1:959376548779:web:45ceae80758eefab2a68ee"};
+firebase.initializeApp(firebaseConfig); const auth=firebase.auth(); const db=firebase.firestore(); let me=null, keranjang=JSON.parse(localStorage.getItem('vtc_cart')||'[]'), kat='';
+auth.onAuthStateChanged(u=>{ me=u; document.getElementById('userInfo').innerText = u ? 'Login: '+(u.displayName||u.email||u.phoneNumber)+' • Saldo Escrow Aman' : 'Belum Login'; loadProduk(); loadPesanan(); loadMyProduk(); loadAkun(); renderKeranjang(); });
+function show(t){ ['beranda','keranjang','checkout','pesanan','jualan','akun'].forEach(x=>document.getElementById(x).style.display = x===t?'block':'none'); document.querySelectorAll('.tab button').forEach(b=>b.classList.remove('on')); }
+function filterKat(k){ kat=k; loadProduk(); }
+function loadProduk(){ db.collection('products').onSnapshot(s=>{ let h=''; s.forEach(d=>{let p=d.data(); if(kat && p.kat!==kat) return; if(document.getElementById('cari').value && !p.nama.toLowerCase().includes(document.getElementById('cari').value.toLowerCase())) return; h+=`<div class="card"><b>${p.nama}</b> <span class="badge">${p.kat||''}</span><br><b style="color:#ee4d2d;font-size:18px">Rp ${p.harga?.toLocaleString()}</b> <span style="font-size:12px;color:#888">Terjual 100+</span><br><span class="star">★★★★★</span> <span style="font-size:12px">(4.9) • Stok ${p.stok}</span><br><span style="font-size:12px;color:#666">Seller: ${p.sellerNama} ${p.verif?'✅ Terverifikasi':''} • ${p.cod?'COD':''} • ${p.ekspedisi||'JNE/J&T'}</span><br><p style="font-size:13px">${p.desc||''}</p><button class="btn2" onclick="tambahKeranjang('${d.id}','${p.nama}','${p.harga}','${p.sellerId}')">+ Keranjang</button><button class="btn" onclick="beliLangsung('${d.id}','${p.nama}','${p.harga}','${p.sellerId}')">Beli Sekarang</button></div>`}); document.getElementById('listProduk').innerHTML=h||'Belum ada produk'; }); }
+function tambahKeranjang(id,nama,harga,sellerId){ keranjang.push({id,nama,harga:Number(harga),sellerId}); localStorage.setItem('vtc_cart',JSON.stringify(keranjang)); renderKeranjang(); alert('Masuk Keranjang!'); }
+function beliLangsung(id,nama,harga,sellerId){ keranjang=[{id,nama,harga:Number(harga),sellerId}]; localStorage.setItem('vtc_cart',JSON.stringify(keranjang)); renderKeranjang(); show('checkout'); hitungOngkir(); }
+function renderKeranjang(){ document.getElementById('jmlKeranjang').innerText=keranjang.length; let h='', tot=0; keranjang.forEach((k,i)=>{ tot+=k.harga; h+=`<div class="card"><b>${k.nama}</b> - Rp ${k.harga.toLocaleString()} <button onclick="hapusKeranjang(${i})">Hapus</button></div>`}); document.getElementById('listKeranjang').innerHTML=h||'Keranjang kosong'; document.getElementById('totalKeranjang').innerText=tot.toLocaleString(); }
+function hapusKeranjang(i){ keranjang.splice(i,1); localStorage.setItem('vtc_cart',JSON.stringify(keranjang)); renderKeranjang(); }
+function hitungOngkir(){ let o=Number(document.getElementById('cKota').value||0); document.getElementById('ongkirTxt').innerText=o.toLocaleString(); let tot=keranjang.reduce((a,b)=>a+b.harga,0); document.getElementById('totalBayar').innerText=(tot+o).toLocaleString(); if(document.getElementById('cMetode').value.includes('QRIS')) document.getElementById('qrBox').style.display='block'; else document.getElementById('qrBox').style.display='none'; }
+document.getElementById('cMetode').addEventListener('change',hitungOngkir);
+async function verifikasi(){ if(!me){alert('Login dulu!');return;} await db.collection('users').doc(me.uid).set({ktp:document.getElementById('vKtp').value, rekening:document.getElementById('vRek').value, namaRekening:document.getElementById('vNamaRek').value, verif:true}, {merge:true}); document.getElementById('statusVerif').innerText='✅ Seller Terverifikasi! Bisa jualan & cair dana.'; alert('Verifikasi Berhasil!'); }
+async function tambahProduk(){ if(!me){alert('Login dulu!');return;} await db.collection('products').add({nama:document.getElementById('pNama').value, harga:Number(document.getElementById('pHarga').value), stok:Number(document.getElementById('pStok').value||0), kat:document.getElementById('pKat').value, desc:document.getElementById('pDesc').value, cod:document.getElementById('pCod').checked, ekspedisi:'JNE / J&T / SiCepat', sellerId:me.uid, sellerNama:me.displayName||me.email||me.phoneNumber, verif:true, createdAt:new Date().toISOString()}); alert('Produk Tayang!'); loadProduk(); loadMyProduk(); }
+async function loadMyProduk(){ if(!me) return; let s=await db.collection('products').where('sellerId','==',me.uid).get(); let h=''; s.forEach(d=>{let p=d.data(); h+=`<div class="card"><b>${p.nama}</b> - Rp ${p.harga?.toLocaleString()}</div>`}); document.getElementById('myProduk').innerHTML=h; }
+async function buatPesanan(){
+ if(!me){alert('Login dulu!'); location.href='login.html'; return;} if(keranjang.length===0){alert('Keranjang kosong!');return;}
+ let kode='VTC-'+Math.floor(100000+Math.random()*900000); let ongkir=Number(document.getElementById('cKota').value||0);
+ for(let k of keranjang){
+  await db.collection('orders').add({kode:kode, productId:k.id, productNama:k.nama, harga:k.harga, ongkir:ongkir, total:k.harga+ongkir, sellerId:k.sellerId, buyerId:me.uid, buyerNama:me.displayName||me.email||me.phoneNumber, buyerHp:document.getElementById('cHp').value, penerima:document.getElementById('cNama').value, alamat:document.getElementById('cAlamat').value, kota:document.getElementById('cKota').selectedOptions[0].text, metode:document.getElementById('cMetode').value, ekspedisi:document.getElementById('cEkspedisi').value, bukti:document.getElementById('cBukti').value, resi:'', status:'Menunggu Pembayaran / Menunggu Seller', escrow:'DITAHAN ADMIN - Belum Cair ke Seller', rating:0, retur:'', createdAt:new Date().toISOString()});
+ }
+ keranjang=[]; localStorage.setItem('vtc_cart','[]'); renderKeranjang(); alert('Pesanan Berhasil! Kode: '+kode+'\nUang kamu AMAN ditahan Admin (Escrow). Seller baru dapat uang kalau kamu klik Terima Barang.'); show('pesanan'); loadPesanan();
+}
+function loadPesanan(){ if(!me) return; db.collection('orders').onSnapshot(s=>{ let h=''; s.forEach(d=>{let o=d.data(); if(o.buyerId!==me.uid && o.sellerId!==me.uid) return; let isSeller=o.sellerId===me.uid; h+=`<div class="card"><b>${o.kode} - ${o.productNama}</b><br><span style="font-size:12px">Total: Rp ${(o.total||o.harga)?.toLocaleString()} • ${o.metode}<br>Ekspedisi: ${o.ekspedisi} • Ongkir Rp ${o.ongkir?.toLocaleString()}<br>Resi: <b style="color:#ee4d2d">${o.resi||'Belum ada'}</b><br>Status: <b>${o.status}</b><br>Escrow: ${o.escrow}<br>Alamat: ${o.alamat}<br>Rating: ${'★'.repeat(o.rating||0)}</span><br><br>`
+ + (isSeller && o.status.includes('Menunggu') ? `<input id="resi-${d.id}" placeholder="Input Resi JNE/J&T"><button class="btn" onclick="kirimResi('${d.id}')">Kirim + Input Resi</button>`:'')
+ + (!isSeller && o.status.includes('Dikirim') ? `<button class="btn" onclick="terimaBarang('${d.id}')">✅ Terima Barang - Cairkan ke Seller</button>`:'')
+ + `<button class="btn2" onclick="beriRating('${d.id}')">⭐ Kasih Rating</button><button class="btn2" onclick="ajukanRetur('${d.id}')">↩ Retur / Refund</button><button class="btn2" onclick="chatSeller('${d.id}')">💬 Chat Seller</button></div>`}); document.getElementById('listPesanan').innerHTML=h||'Belum ada pesanan'; }); }
+async function kirimResi(id){ let r=document.getElementById('resi-'+id).value; if(!r){alert('Isi Resi!');return;} await db.collection('orders').doc(id).update({resi:r, status:'Dikirim - Dalam Perjalanan'}); }
+async function terimaBarang(id){ await db.collection('orders').doc(id).update({status:'Selesai - Barang Diterima', escrow:'DICAIRKAN ke Seller (Komisi Admin 2% dipotong)'}); alert('Terima kasih! Uang dicairkan ke Seller.'); }
+async function beriRating(id){ let r=prompt('Rating 1-5:'); if(!r) return; let u=prompt('Ulasan:'); await db.collection('orders').doc(id).update({rating:Number(r), ulasan:u}); alert('Rating terkirim!'); }
+async function ajukanRetur(id){ let a=prompt('Alasan Retur / Refund:'); if(!a) return; await db.collection('orders').doc(id).update({retur:'DIAJUKAN: '+a, status:'Retur Diajukan - Menunggu Admin'}); alert('Retur diajukan ke Admin!'); }
+function chatSeller(id){ let p=prompt('Chat ke Seller:'); if(p) alert('Chat terkirim ke Seller: '+p); }
+async function lacak(){ let r=document.getElementById('cekResi').value; let s=await db.collection('orders').where('resi','==',r).get(); if(s.empty){document.getElementById('hasilLacak').innerHTML='Resi tidak ditemukan';return;} let h=''; s.forEach(d=>{let o=d.data(); h+=`<div class="card"><b>${o.kode}</b><br>${o.productNama}<br>Resi ${o.resi} - ${o.ekspedisi}<br>Status ${o.status}<br><a href="https://cekresi.com/?noresi=${o.resi}" target="_blank">Cek di CekResi →</a></div>`}); document.getElementById('hasilLacak').innerHTML=h; }
+async function loadAkun(){ if(!me) return; document.getElementById('akunInfo').innerHTML=`<div class="card">Login: ${me.displayName||me.email||me.phoneNumber}<br>ID: ${me.uid}<br>Status: Member VTC</div>`; }
+async function kirimCS(){ let p=document.getElementById('csPesan').value; if(!p)return; await db.collection('cs').add({pesan:p, dari:me?.uid||'Guest', createdAt:new Date().toISOString()}); alert('CS akan balas!'); }
+</script></body></html>
