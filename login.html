@@ -2,153 +2,67 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Login - VTC MEGASTORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - VTC SHOP AI 3.0</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{background:#ee4d2d;min-height:100vh;padding:20px;display:flex;align-items:center;justify-content:center}
-.box{background:#fff;width:100%;max-width:400px;border-radius:20px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.logo{text-align:center}
-.logo .v{width:60px;height:60px;background:#ee4d2d;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;margin:0 auto}
-.logo h1{font-size:22px;margin-top:10px}
-.logo p{font-size:12px;color:#888;margin-top:4px}
-.role{display:flex;gap:8px;margin:18px 0}
-.role button{flex:1;padding:12px;border:1px solid #ddd;background:#fff;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700}
-.role button.on{background:#ee4d2d;color:#fff;border-color:#ee4d2d}
-.role button small{display:block;font-weight:400;font-size:11px;margin-top:2px}
-label{font-size:13px;font-weight:700;display:block;margin:12px 0 6px}
-input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;outline:none;font-size:15px}
-input:focus{border-color:#ee4d2d}
-.phone-row{display:flex;gap:8px}
-.phone-row .kode{background:#f0f0f0;padding:13px 12px;border-radius:10px;font-weight:700;font-size:14px;white-space:nowrap}
-.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:800;font-size:15px;cursor:pointer;margin-top:14px}
-.btn-otp{background:#ff9e2c;color:#fff}
-.btn-login{background:#ee4d2d;color:#fff}
-.btn-wa{background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;padding:13px;border-radius:10px;font-weight:800;font-size:14px;margin-top:10px}
-.otp-box{display:none;background:#fffbe6;border:1px dashed #ff9800;border-radius:12px;padding:14px;margin-top:14px;text-align:center}
-.otp-box h3{color:#d84315}
-.otp-code{font-size:32px;letter-spacing:8px;font-weight:900;color:#ee4d2d;margin:8px 0}
-.otp-inputs{display:flex;gap:8px;justify-content:center;margin:12px 0}
-.otp-inputs input{width:45px;height:50px;text-align:center;font-size:20px;font-weight:800;padding:0}
-.timer{font-size:12px;color:#888}
-.akun-list{background:#f8f8f8;border-radius:10px;padding:12px;margin-top:14px;font-size:12px;line-height:1.6}
-.akun-list b{font-size:13px}
-.vtc-aman{background:#e8f5e9;border-radius:10px;padding:11px;font-size:12px;line-height:1.5;margin-top:12px}
-.link{font-size:12px;color:#888;text-align:center;margin-top:14px}
-.link a{color:#ee4d2d;text-decoration:none;font-weight:700}
+*{box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{margin:0;background:#020617;color:#fff;min-height:100vh;display:flex;justify-content:center;padding:20px 12px}
+.phone{width:100%;max-width:380px;background:#071022;border:1px solid #164e63;border-radius:28px;padding:20px}
+.logo{text-align:center;color:#22d3ee;font-weight:900;font-size:24px}
+h1{text-align:center;font-size:22px;margin:16px 0 4px}
+.sub{text-align:center;color:#94a3b8;font-size:13px;margin-bottom:20px}
+.btn{display:flex;align-items:center;gap:12px;width:100%;border:1.5px solid #22d3ee;border-radius:999px;padding:13px 16px;margin-bottom:10px;background:#0b1a2e;color:#fff;font-size:14px;text-decoration:none;cursor:pointer}
+.btn:hover{background:#0e7490}
+.btn span{font-size:19px}
+.btn small{margin-left:auto;color:#94a3b8}
+.divider{text-align:center;color:#64748b;font-size:12px;margin:14px 0}
+input{width:100%;padding:13px;border-radius:12px;border:1px solid #334155;background:#0f172a;color:#fff;margin-bottom:10px}
+.otp{display:flex;gap:8px;justify-content:center;margin:8px 0 14px}
+.otp input{width:44px;text-align:center;font-size:18px;padding:10px 0}
+.primary{background:#22d3ee;color:#000;border:none;font-weight:900;justify-content:center}
+.note{text-align:center;font-size:11px;color:#94a3b8;line-height:1.6;margin-top:14px}
+a{color:#22d3ee}
 </style>
 </head>
 <body>
-<div class="box">
-<div class="logo"><div class="v">V</div><h1>VTC MEGASTORE</h1><p>Login Persis Shopee, Tapi Lebih Cepat!</p></div>
+<div class="phone">
+<div class="logo">VTC SHOP AI 3.0</div>
+<h1>Login / Masuk</h1>
+<p class="sub">Masuk untuk melanjutkan ke VTC SHOP AI 3.0</p>
 
-<!-- PILIH ROLE - PEMBELI / SELLER / ADMIN -->
-<div class="role" id="roleBox">
-<button class="on" onclick="pilihRole(this,'PEMBELI')">🛒 PEMBELI<small>Belanja & Tracking</small></button>
-<button onclick="pilihRole(this,'SELLER')">🏪 SELLER<small>Jualan & Duit</small></button>
-<button onclick="pilihRole(this,'ADMIN')">👑 ADMIN<small>Bos / Putusin</small></button>
+<a class="btn" href="index.html"><span>🔍</span><b>Lanjutkan dengan Google</b><small>›</small></a>
+<a class="btn" href="index.html"><span>📘</span><b>Lanjutkan dengan Facebook</b><small>›</small></a>
+<a class="btn" href="index.html"><span>💬</span><b>Lanjutkan dengan LINE</b><small>›</small></a>
+<a class="btn" href="https://wa.me/6283878502333?text=Halo%20VTC%2C%20mau%20login%20via%20WA"><span>💚</span><b>Lanjutkan dengan WhatsApp</b><small>›</small></a>
+<a class="btn" href="index.html"><span>✉️</span><b>Lanjutkan dengan Email</b><small>›</small></a>
+
+<div class="divider">— ATAU —</div>
+<b style="font-size:13px;color:#22d3ee">Login dengan No HP + OTP</b>
+<input id="hp" placeholder="+62 812 3456 7890" style="margin-top:10px">
+<button class="btn primary" onclick="kirimOTP()">Kirim Kode OTP</button>
+<div id="otpBox" style="display:none">
+<p style="text-align:center;font-size:12px;color:#94a3b8">Masukkan Kode OTP 6 Digit</p>
+<div class="otp">
+<input maxlength="1"><input maxlength="1"><input maxlength="1">
+<input maxlength="1"><input maxlength="1"><input maxlength="1">
+</div>
+<a class="btn primary" href="index.html">Masuk Sekarang</a>
+<p style="text-align:center;font-size:12px">Belum terima kode? <a href="#" onclick="kirimOTP()">Kirim Ulang</a></p>
 </div>
 
-<div id="step1">
-<label>Nama Lengkap</label>
-<input id="nama" placeholder="Contoh: Budi Santoso">
-<label>Nomor WA / HP</label>
-<div class="phone-row"><div class="kode">+62</div><input id="hp" placeholder="838-7850-2333" inputmode="numeric" maxlength="13"></div>
-<label id="labelExtra" style="display:none">Kode Seller / Admin</label>
-<input id="kodeExtra" placeholder="Masukkan Kode Akses" style="display:none">
-
-<button class="btn btn-otp" onclick="kirimOTP()">📩 Kirim Kode OTP Otomatis</button>
-<p style="font-size:11px;color:#888;text-align:center;margin-top:8px">OTP langsung muncul otomatis, gak perlu nunggu SMS kayak Shopee!</p>
+<p class="note">Dengan melanjutkan, kamu menyetujui<br><a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a><br><br>Belum punya akun? <a href="index.html">Daftar Gratis</a></p>
 </div>
-
-<!-- OTP OTOMATIS -->
-<div class="otp-box" id="otpBox">
-<h3>🔐 KODE OTP OTOMATIS</h3>
-<p style="font-size:12px;color:#666">Kode ini juga dikirim ke WA lu</p>
-<div class="otp-code" id="otpShow">------</div>
-<div class="otp-inputs">
-<input maxlength="1" id="o1" oninput="pindah(this,'o2')"><input maxlength="1" id="o2" oninput="pindah(this,'o3')"><input maxlength="1" id="o3" oninput="pindah(this,'o4')"><input maxlength="1" id="o4" oninput="pindah(this,'o5')"><input maxlength="1" id="o5" oninput="pindah(this,'o6')"><input maxlength="1" id="o6">
-</div>
-<div class="timer">Kode berlaku <b id="timer">60</b> detik • <a href="#" onclick="kirimOTP();return false" style="color:#ee4d2d;font-weight:700">Kirim Ulang</a></div>
-<button class="btn btn-login" onclick="verifikasi()">✅ Verifikasi & Masuk</button>
-<a class="btn-wa" id="waLink" target="_blank">💬 Kirim OTP ke WA Saya</a>
-</div>
-
-<div class="vtc-aman">🛡️ <b>Kenapa VTC Lebih Aman dari Shopee?</b><br>• Setiap akun punya OTP sendiri, gak bisa dibobol<br>• Seller & Pembeli dipisah, gak bisa saling intip<br>• Admin hanya Bos VTC yang pegang kode khusus</div>
-
-<!-- AKUN DEMO BIAR LANGSUNG TES -->
-<div class="akun-list">
-<b>🔑 AKUN DEMO - LANGSUNG COBA (Klik untuk isi otomatis):</b><br>
-👤 <a href="#" onclick="isiDemo('Budi Pembeli','83878502333','PEMBELI');return false">Pembeli: Budi - 0838-7850-2333</a><br>
-🏪 <a href="#" onclick="isiDemo('Toko Berkah','81234567890','SELLER');return false">Seller: Toko Berkah - 0812-3456-7890</a><br>
-👑 <a href="#" onclick="isiDemo('Bos VTC','83878502333','ADMIN');return false">Admin: Bos VTC - 0838-7850-2333</a><br>
-<span style="color:#888">Kode Seller: <b>SELLER123</b> • Kode Admin: <b>BOSVTC123</b></span>
-</div>
-
-<div class="link">Belum punya akun? <a href="#" onclick="alert('Langsung isi nama + WA aja, akun otomatis dibuat!')">Daftar Otomatis Gratis</a><br><br><a href="index.html">← Kembali ke Beranda</a> • WA: 0838-7850-2333</div>
-</div>
-
 <script>
-let role='PEMBELI', otp='000000', countdown;
-function pilihRole(el,r){
-role=r;
-document.querySelectorAll('#roleBox button').forEach(b=>b.classList.remove('on'));el.classList.add('on');
-let show=(r!=='PEMBELI');
-document.getElementById('labelExtra').style.display=show?'block':'none';
-document.getElementById('kodeExtra').style.display=show?'block':'none';
-document.getElementById('kodeExtra').placeholder = r==='SELLER' ? 'Kode Seller (Demo: SELLER123)' : 'Kode Admin (Demo: BOSVTC123)';
-}
-function isiDemo(nama,hp,r){
-document.getElementById('nama').value=nama;
-document.getElementById('hp').value=hp;
-let btns=document.querySelectorAll('#roleBox button');
-let idx=r==='PEMBELI'?0:r==='SELLER'?1:2;
-pilihRole(btns[idx],r);
-if(r!=='PEMBELI') document.getElementById('kodeExtra').value = r==='SELLER'?'SELLER123':'BOSVTC123';
-alert('Akun '+r+' terisi! Tinggal klik Kirim OTP');
-}
 function kirimOTP(){
-let nama=document.getElementById('nama').value.trim();
-let hp=document.getElementById('hp').value.trim();
-if(!nama||!hp){alert('Isi Nama + Nomor WA dulu Bos!');return}
-if(role!=='PEMBELI'){
-let kode=document.getElementById('kodeExtra').value.trim();
-let benar= role==='SELLER'?'SELLER123':'BOSVTC123';
-if(kode!==benar){alert('Kode '+role+' salah! Demo: '+benar);return}
+  document.getElementById('otpBox').style.display='block';
+  alert('Kode OTP dikirim ke ' + (document.getElementById('hp').value || 'No HP kamu'));
+  // Auto fokus ke kotak pertama
+  document.querySelector('.otp input').focus();
 }
-// OTP OTOMATIS 6 DIGIT
-otp=Math.floor(100000+Math.random()*900000).toString();
-document.getElementById('otpShow').innerText=otp;
-document.getElementById('otpBox').style.display='block';
-// Auto isi OTP biar cepet (kayak auto-read SMS di Shopee)
-let chars=otp.split('');
-['o1','o2','o3','o4','o5','o6'].forEach((id,i)=>document.getElementById(id).value=chars[i]);
-// Link WA otomatis
-let pesan=encodeURIComponent('Halo VTC! Saya '+nama+' ('+role+') minta OTP. Kode saya: '+otp);
-document.getElementById('waLink').href='https://wa.me/6283878502333?text='+pesan;
-// Timer 60 detik
-let t=60;clearInterval(countdown);
-countdown=setInterval(()=>{t--;document.getElementById('timer').innerText=t;if(t<=0){clearInterval(countdown);otp='EXPIRED';document.getElementById('otpShow').innerText='EXPIRED'}},1000);
-document.getElementById('otpBox').scrollIntoView({behavior:'smooth'});
-alert('OTP '+role+' terkirim! Kode: '+otp+' (Auto terisi di bawah)');
-}
-function pindah(el,next){if(el.value && next) document.getElementById(next).focus()}
-function verifikasi(){
-let input=['o1','o2','o3','o4','o5','o6'].map(id=>document.getElementById(id).value).join('');
-if(input!==otp){alert('OTP salah! Kode bener: '+otp);return}
-let nama=document.getElementById('nama').value;
-let hp=document.getElementById('hp').value;
-// SIMPAN AKUN KE HP (localStorage)
-let user={nama:nama,hp:hp,role:role,loginAt:new Date().toISOString()};
-localStorage.setItem('vtc_user',JSON.stringify(user));
-alert('Selamat Datang, '+nama+'! Login sebagai '+role+' Berhasil!');
-if(role==='PEMBELI') window.location.href='index.html';
-else if(role==='SELLER') window.location.href='seller.html';
-else window.location.href='admin.html';
-}
-// Cek udah login belum
-let saved=localStorage.getItem('vtc_user');
-if(saved){let u=JSON.parse(saved);console.log('Udah login:',u)}
+// Auto pindah kotak OTP
+document.querySelectorAll('.otp input').forEach((el,i,arr)=>{
+  el.addEventListener('input',()=>{ if(el.value && i<5) arr[i+1].focus(); });
+});
 </script>
 </body>
 </html>
